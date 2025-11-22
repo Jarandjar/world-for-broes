@@ -222,6 +222,10 @@ class SwarmLiveOps:
             ('coder', 'code_fixme'): JobType.HOURLY_STATS,
             ('coder', 'code_hack'): JobType.HOURLY_STATS,
             ('coder', 'code_xxx'): JobType.HOURLY_STATS,
+
+            # Fitness tasks
+            ('FitnessHarvester', 'fitness_sync'): JobType.FITNESS_SYNC,
+            ('FitnessAnalyst', 'fitness_analysis'): JobType.FITNESS_ANALYSIS,
         }
         
         # Try direct mapping first
@@ -229,6 +233,12 @@ class SwarmLiveOps:
         if result:
             return result
         
+        # Fallback logic based on task type first (agent-agnostic)
+        if task_type == 'fitness_sync':
+            return JobType.FITNESS_SYNC
+        if task_type == 'fitness_analysis':
+            return JobType.FITNESS_ANALYSIS
+
         # Fallback logic based on agent type
         agent_defaults = {
             'rag': JobType.RAG_QUERY,
