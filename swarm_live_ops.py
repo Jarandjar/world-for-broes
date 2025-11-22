@@ -52,7 +52,7 @@ class SwarmLiveOps:
     
     def __init__(self, interval: int = 10, db_path: str = 'evidence.duckdb', output_style: str = 'compact'):
         self.interval = interval
-        self.governor = Governor(db_path=db_path)
+        self.governor = Governor(db_path=db_path, verbose=False)  # Quiet mode - no per-job logs
         self.db_path = db_path
         self.cycle_count = 0
         self.start_time = datetime.now()
