@@ -49,10 +49,16 @@ class SwarmCTL:
     """Command-line interface controller"""
     
     def __init__(self, db_path: str = 'evidence.duckdb'):
-        self.governor = Governor(db_path=db_path)
+        self.governor = None  # Lazy init for commands that need it
         self.db_path = db_path
         self._codex_client: Optional[CodexClient] = None
         self.summary_dir = REPO_ROOT / "summaries"
+    
+    def _ensure_governor(self):
+        """Lazy initialize governor only when needed"""
+        if self.governor is None:
+            self.governor = Governor(db_path=self.db_path)
+        return self.governor
     
     # ===== BACKTEST COMMANDS =====
     
@@ -62,7 +68,8 @@ class SwarmCTL:
             print("❌ Error: --therapy and --cohort required")
             return 1
         
-        job_id = self.governor.create_job(JobType.BACKTEST_THERAPY, {
+        gov = self._ensure_governor()
+        job_id = gov.create_job(JobType.BACKTEST_THERAPY, {
             "therapy": args.therapy,
             "strategy": args.strategy,
             "cohort": args.cohort,
@@ -271,7 +278,126 @@ class SwarmCTL:
     
     def show_status(self, args):
         """Show swarm status"""
-        self.governor.print_status()
+        gov = self._ensure_governor()
+        gov.print_status()
+        return 0
+    
+    def show_briefing(self, args):
+        """Generate daily briefing"""
+        import subprocess
+        cmd = [sys.executable, 'agent_daily_briefing.py']
+        if args.print:
+            cmd.append('--print')
+        return subprocess.run(cmd).returncode
+    
+    def show_fitness(self, args):
+        """Show fitness status or generate dashboard"""
+        if args.dashboard:
+            import subprocess
+            cmd = [sys.executable, 'fitness_dashboard.py', '--days', str(args.days)]
+            return subprocess.run(cmd).returncode
+        
+        # Quick fitness status
+        if not DUCKDB_AVAILABLE:
+            print("⚠️ DuckDB not available")
+            return 1
+        
+        try:
+            conn = duckdb.connect(self.db_path, read_only=True)
+            print("🏃 Fitness Intelligence\n")
+            
+            workouts = conn.execute("""
+                SELECT COUNT(*), 
+                       SUM(duration_seconds)/3600.0,
+                       SUM(distance_meters)/1000.0
+                FROM workouts
+                WHERE start_time > CURRENT_TIMESTAMP - INTERVAL '7 days'
+            """).fetchone()
+            
+            count, hours, km = workouts
+            
+            if count and count > 0:
+                print(f"  📅 Last 7 Days:")
+                print(f"     Workouts: {count}")
+                print(f"     Duration: {hours:.1f}h" if hours else "     Duration: 0h")
+                print(f"     Distance: {km:.1f}km" if km else "     Distance: 0km")
+            else:
+                print("  ⚠️  No workout data")
+                print("  💡 Run: python add_fitness_test_tasks.py")
+            
+            conn.close()
+            
+        except Exception as e:
+            print(f"  ⚠️  Error: {e}")
+        
+        return 0
+    
+    def show_health(self, args):
+        """Show system health dashboard"""
+        if not DUCKDB_AVAILABLE:
+            print("⚠️ DuckDB not available")
+            return 1
+        
+        try:
+            conn = duckdb.connect(self.db_path, read_only=True)
+            print("📊 Swarm Health Dashboard\n")
+            
+            # Tasks per hour (last 24h)
+            tasks_24h = conn.execute("""
+                SELECT COUNT(*) FROM agent_tasks
+                WHERE started_at > CURRENT_TIMESTAMP - INTERVAL '24 hours'
+            """).fetchone()[0]
+            
+            tasks_per_hour = tasks_24h / 24 if tasks_24h > 0 else 0
+            
+            # Error rate
+            failed = conn.execute("""
+                SELECT COUNT(*) FROM agent_tasks
+                WHERE status = 'failed'
+                  AND started_at > CURRENT_TIMESTAMP - INTERVAL '24 hours'
+            """).fetchone()[0]
+            
+            error_rate = (failed / tasks_24h * 100) if tasks_24h > 0 else 0
+            
+            # Long-running tasks
+            long_running = conn.execute("""
+                SELECT COUNT(*) FROM agent_tasks
+                WHERE status = 'running'
+                  AND started_at < CURRENT_TIMESTAMP - INTERVAL '1 hour'
+            """).fetchone()[0]
+            
+            # Stuck tasks
+            stuck = conn.execute("""
+                SELECT COUNT(*) FROM agent_tasks
+                WHERE status = 'pending'
+                  AND created_at < CURRENT_TIMESTAMP - INTERVAL '24 hours'
+            """).fetchone()[0]
+            
+            # Display
+            print(f"  ⚡ Tasks/Hour: {tasks_per_hour:.1f}")
+            print(f"  {'✅' if error_rate < 5 else '⚠️'} Error Rate: {error_rate:.1f}%")
+            print(f"  {'⏱️' if long_running > 0 else '✅'} Long-Running: {long_running}")
+            print(f"  {'⚠️' if stuck > 50 else '✅'} Stuck Tasks: {stuck}")
+            
+            # Health score
+            health = 100
+            if error_rate > 10:
+                health -= 30
+            elif error_rate > 5:
+                health -= 15
+            if stuck > 50:
+                health -= 20
+            if long_running > 10:
+                health -= 15
+            
+            status_emoji = '✨' if health >= 80 else '⚠️' if health >= 60 else '🔥'
+            print(f"\n  {status_emoji} Overall Health: {health}/100")
+            
+            conn.close()
+            
+        except Exception as e:
+            print(f"  ⚠️  Error: {e}")
+        
         return 0
 
     # ===== GPT COMMAND =====
@@ -603,6 +729,18 @@ def main():
     
     # STATUS
     subparsers.add_parser('status', help='Show swarm status')
+    
+    # BRIEFING
+    briefing = subparsers.add_parser('briefing', help='Generate daily command scroll')
+    briefing.add_argument('--print', action='store_true', help='Print to console')
+    
+    # FITNESS
+    fitness = subparsers.add_parser('fitness', help='Fitness status and dashboard')
+    fitness.add_argument('--dashboard', action='store_true', help='Generate HTML dashboard')
+    fitness.add_argument('--days', type=int, default=90, help='Days for dashboard')
+    
+    # HEALTH
+    subparsers.add_parser('health', help='System health dashboard')
 
     # GPT
     gpt = subparsers.add_parser('gpt', help='Ask GPT-5.1 with optional repo context')
@@ -668,6 +806,12 @@ def main():
     
     elif args.command == 'status':
         return ctl.show_status(args)
+    elif args.command == 'briefing':
+        return ctl.show_briefing(args)
+    elif args.command == 'fitness':
+        return ctl.show_fitness(args)
+    elif args.command == 'health':
+        return ctl.show_health(args)
     elif args.command == 'gpt':
         return ctl.gpt_chat(args)
     elif args.command == 'gpt-scope':
