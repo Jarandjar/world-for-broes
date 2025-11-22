@@ -53,6 +53,8 @@ class JobType(Enum):
     GENERATE_REPORT = "generate_report"
     SAFETY_CHECK = "safety_check"
     HOURLY_STATS = "hourly_stats"
+    FITNESS_SYNC = "fitness_sync"
+    FITNESS_ANALYSIS = "fitness_analysis"
 
 
 class JobStatus(Enum):
@@ -344,6 +346,62 @@ class CoderAgent(Agent):
             "files_analyzed": 25,
             "suggestions": 12
         }
+
+
+class FitnessHarvesterAgent(Agent):
+    """Fitness data harvester from Strava, Garmin, Fitbit"""
+    def __init__(self):
+        super().__init__("FitnessHarvester", [JobType.FITNESS_SYNC])
+    
+    def execute(self, job: Job) -> Dict[str, Any]:
+        days_back = job.meta.get('days_back', 7)
+        print(f"  🏃 {self.name}: Syncing last {days_back} days")
+        
+        try:
+            from agent_fitness_harvester import FitnessHarvester
+            harvester = FitnessHarvester()
+            result = harvester.sync_all(days_back=days_back)
+            return result
+        except Exception as e:
+            print(f"  ⚠️ Fitness sync failed: {e}")
+            return {
+                "sync_id": str(uuid.uuid4())[:8],
+                "total_fetched": 0,
+                "total_new": 0,
+                "sources": [],
+                "error": str(e)
+            }
+
+
+class FitnessAnalystAgent(Agent):
+    """Fitness data analyst - training insights, overtraining detection"""
+    def __init__(self):
+        super().__init__("FitnessAnalyst", [JobType.FITNESS_ANALYSIS])
+    
+    def execute(self, job: Job) -> Dict[str, Any]:
+        analysis_type = job.meta.get('analysis_type', 'full_report')
+        print(f"  📊 {self.name}: Running {analysis_type}")
+        
+        try:
+            from agent_fitness_analyst import FitnessAnalyst
+            analyst = FitnessAnalyst()
+            
+            if analysis_type == 'full_report':
+                return analyst.generate_insights_report()
+            elif analysis_type == 'overtraining':
+                return analyst.detect_overtraining()
+            elif analysis_type == 'trends':
+                activity = job.meta.get('activity_type', 'run')
+                return analyst.detect_performance_trends(activity)
+            else:
+                return analyst.generate_insights_report()
+        except Exception as e:
+            print(f"  ⚠️ Fitness analysis failed: {e}")
+            return {
+                "error": str(e),
+                "analysis_type": analysis_type
+            }
+
 
 
 class DetectiveAgent(Agent):
@@ -672,7 +730,9 @@ class Governor:
             CostAgent(),
             DataQualityAgent(),
             ModelMonitorAgent(),
-            FeedbackerAgent()
+            FeedbackerAgent(),
+            FitnessHarvesterAgent(),
+            FitnessAnalystAgent()
         ,
             # Generated agents (102 from Waves 2-8)
             SchedulerAgent(),
