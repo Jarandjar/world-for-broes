@@ -1,0 +1,42 @@
+# Python dependencies for Diabetes Data Archaeology Toolkit
+
+# Core dependencies (required)
+requests>=2.31.0
+duckdb>=0.10.0
+PyYAML>=6.0
+
+# Optional: For Academic Torrents downloads
+academictorrents>=2.0.0
+
+# Optional: For advanced XML parsing
+lxml>=4.9.0
+
+# Optional: For language detection
+langdetect>=1.0.9
+
+# Optional: For PDF text extraction
+pypdf2>=3.0.0
+pdfplumber>=0.10.0
+
+# Optional: For Word document extraction
+python-docx>=1.0.0
+
+# Optional: For Excel extraction
+openpyxl>=3.1.0
+
+# Optional: For token counting
+tiktoken>=0.5.0
+
+# Optional: For fuzzy duplicate detection
+python-Levenshtein>=0.21.0
+
+# Optional: For vector search and embeddings
+qdrant-client>=1.7.0
+openai>=1.0.0
+
+# Note: External tools (not Python packages):
+# - aria2c: https://aria2.github.io/
+# - transmission-cli: https://transmissionbt.com/
+# - ClamAV: https://www.clamav.net/
+# - Windows Defender (built-in on Windows)
+

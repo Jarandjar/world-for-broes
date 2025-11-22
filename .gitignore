@@ -1,0 +1,53 @@
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Databases
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.db
+
+# Vector DB
+qdrant_storage/
+
+# Logs
+logs/
+*.log
+
+# Output
+out/
+summaries/*.md
+!summaries/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/
+storage/
+*.csv
+*.json
+!*config*.json
+!*schema*.json
+
+# Temporary
+tmp/
+temp/
+*.tmp
