@@ -228,7 +228,7 @@ class SwarmCTL:
     
     def jobs_list(self, args):
         """List jobs in queue/history"""
-        print(f"\n📋 Jobs (status: {args.status or 'all'}):\n")
+        print(f"\n📋 Local swarm jobs (status: {args.status or 'all'}):\n")
         
         for job_id, job in self.governor.jobs.items():
             if args.status and job.status.value.lower() != args.status.lower():
@@ -243,6 +243,14 @@ class SwarmCTL:
             
             print(f"  {status_icon} {job.job_id:30s} | {job.job_type.value:20s} | "
                   f"{job.status.value:10s} | Pri:{job.priority}")
+        
+        if getattr(args, 'cloud', False):
+            from cloud_tasks import CloudTaskError, fetch_cloud_tasks, format_cloud_tasks
+            try:
+                print("\n" + format_cloud_tasks(fetch_cloud_tasks(getattr(args, 'repo', None))))
+            except CloudTaskError as error:
+                print(f"\n❌ Could not list GitHub cloud tasks: {error}", file=sys.stderr)
+                return 1
         
         return 0
     
@@ -722,7 +730,10 @@ def main():
     
     jobs_list = jobs_sub.add_parser('list', help='List jobs')
     jobs_list.add_argument('--status', choices=['pending', 'running', 'completed', 'failed'],
-                          help='Filter by status')
+                          help='Filter by status (local swarm jobs only)')
+    jobs_list.add_argument('--cloud', action='store_true',
+                          help='Also list GitHub Copilot cloud tasks (separate from local swarm jobs)')
+    jobs_list.add_argument('--repo', help='owner/repository for --cloud (default: $GITHUB_REPOSITORY)')
     
     jobs_inspect = jobs_sub.add_parser('inspect', help='Inspect job details')
     jobs_inspect.add_argument('job_id', help='Job ID')
