@@ -25,7 +25,7 @@ python-docx>=1.0.0
 openpyxl>=3.1.0
 
 # Optional: For token counting
-tiktoken>=0.5.0
+tiktoken>=0.14.0
 
 # Optional: For fuzzy duplicate detection
 python-Levenshtein>=0.21.0
