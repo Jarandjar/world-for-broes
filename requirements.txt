@@ -22,7 +22,7 @@ pdfplumber>=0.10.0
 python-docx>=1.0.0
 
 # Optional: For Excel extraction
-openpyxl>=3.1.0
+openpyxl>=3.1.5
 
 # Optional: For token counting
 tiktoken>=0.5.0
