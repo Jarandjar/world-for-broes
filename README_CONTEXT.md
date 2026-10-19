@@ -125,6 +125,29 @@ print(context)
 
 Pull requests welcome. For major changes, open an issue first.
 
+## Roadmap-to-cloud coding
+
+Add coding ideas to [`ROADMAP.md`](ROADMAP.md) with an ID, rationale, expected outcome, and testable acceptance criteria. Ideas remain inert while marked `proposed`. After you deliberately change an item to `ready` and merge that change to `main`, the `Roadmap cloud coding` workflow creates a GitHub issue and starts a Copilot cloud task. The task is asked to implement only that item, run relevant tests, and open a pull request; human review and merge are still required.
+
+Before enabling dispatch:
+
+1. Enable Copilot cloud agent for this repository and confirm the token owner has a Copilot Business or Enterprise plan.
+2. Create a fine-grained personal access token for the repository with **Agent tasks: read and write**, and save it as the Actions secret `COPILOT_AGENT_TOKEN`. The workflow uses the built-in `GITHUB_TOKEN` for issue creation.
+3. Confirm Actions are enabled. The workflow only runs on `main`; it can be triggered by a `ROADMAP.md` push or manually from the Actions tab.
+
+The cloud-agent task API is in public preview and requires a user-to-server token; installation tokens and the built-in `GITHUB_TOKEN` cannot start tasks. After the issue is launched, change its roadmap status to `in-progress`; change it to `done` after review and merge. If a run is interrupted after its issue receives a pending-launch marker, inspect the [cloud task list](https://docs.github.com/en/rest/agent-tasks/agent-tasks) before clearing the marker or retrying, to avoid duplicate work. Check active and completed cloud tasks with:
+
+```bash
+COPILOT_AGENT_TOKEN=... GITHUB_REPOSITORY=owner/repo python roadmap_agent.py tasks
+python roadmap_agent.py validate
+```
+
+`swarmctl jobs list` continues to report the local swarm queue; GitHub cloud tasks have their own states and are listed separately by `roadmap_agent.py tasks`.
+
+The existing swarm queue handles ingestion (`INGEST_TRIAL`, `INGEST_TORRENT`), retrieval and analysis (`RAG_QUERY`, `BACKTEST_THERAPY`, `STATS_ANALYSIS`), reporting and safety (`GENERATE_REPORT`, `SAFETY_CHECK`, `HOURLY_STATS`), and fitness (`FITNESS_SYNC`, `FITNESS_ANALYSIS`). Its lifecycle states are pending, assigned, running, completed, and failed. The current coder task mappings (`code_todo`, `code_fixme`, `code_hack`, and `code_xxx`) map to `HOURLY_STATS`; they identify code markers but do not implement them. For that reason, roadmap-driven code work is dispatched to the separate Copilot cloud task API rather than being reported as a local swarm job.
+
+See GitHub's [Copilot cloud agent API guide](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/use-cloud-agent-via-the-api) for supported task states, permissions, and API details.
+
 ## License
 
 MIT

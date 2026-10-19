@@ -1,0 +1,46 @@
+name: Roadmap cloud coding
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ROADMAP.md
+  workflow_dispatch:
+    inputs:
+      item_id:
+        description: Optional roadmap item ID (otherwise dispatch every Ready item)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: roadmap-cloud-coding-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate and dispatch ready roadmap items
+        env:
+          COPILOT_AGENT_TOKEN: ${{ secrets.COPILOT_AGENT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          BASE_REF: main
+          ROADMAP_ITEM_ID: ${{ github.event.inputs.item_id }}
+        run: |
+          if [ -n "$ROADMAP_ITEM_ID" ]; then
+            python roadmap_agent.py dispatch --item-id "$ROADMAP_ITEM_ID"
+          else
+            python roadmap_agent.py dispatch
+          fi
