@@ -852,6 +852,7 @@ export class Game {
     const pt = this.playerT, n = this.playerNeeds;
     const isLit = this.isLit(pt.x, pt.y);
     const dark = this.clock.darkness > 0.45;
+    const zombieSpeedScale = 0.72;
 
     for (const e of this.ecs.query(Comp.Zombie, Comp.Transform, Comp.Body)) {
       const z = this.ecs.get(e, Comp.Zombie)!, zt = this.ecs.get(e, Comp.Transform)!, zb = this.ecs.get(e, Comp.Body)!;
@@ -893,8 +894,8 @@ export class Game {
           const tdx = targetT.x - zt.x, tdy = targetT.y - zt.y, td = Math.hypot(tdx, tdy);
           zt.angle = lerpAngle(zt.angle, Math.atan2(tdy, tdx), 1 - Math.exp(-8 * dt));
           if (td > z.def.attackRadius * 0.85) {
-            zb.vx = Math.cos(zt.angle) * z.def.runSpeed;
-            zb.vy = Math.sin(zt.angle) * z.def.runSpeed;
+            zb.vx = Math.cos(zt.angle) * z.def.runSpeed * zombieSpeedScale;
+            zb.vy = Math.sin(zt.angle) * z.def.runSpeed * zombieSpeedScale;
           } else {
             zb.vx = 0; zb.vy = 0;
           }
@@ -934,8 +935,8 @@ export class Game {
           z.alertPos = null;
         } else {
           zt.angle = lerpAngle(zt.angle, Math.atan2(ady, adx), 1 - Math.exp(-6 * dt));
-          zb.vx = (adx / ad) * z.def.speed * 1.1;
-          zb.vy = (ady / ad) * z.def.speed * 1.1;
+          zb.vx = (adx / ad) * z.def.speed * 1.1 * zombieSpeedScale;
+          zb.vy = (ady / ad) * z.def.speed * 1.1 * zombieSpeedScale;
         }
       } else {
         zb.vx = damp(zb.vx, 0, 4, dt);
@@ -1083,19 +1084,22 @@ export class Game {
       if (r.cooldown > 0) r.cooldown -= dt;
       if (r.reactionTimer > 0) r.reactionTimer -= dt;
 
-      // Find target: prefer nearest player or zombie
+      // Find target:
+      // - Friendly bots focus zombies
+      // - Hostile raiders prefer player but can switch to closer zombies
       let targetPos: { x: number; y: number } | null = null;
       const pt = this.playerT;
-      const distToPlayer = Math.hypot(pt.x - rt.x, pt.y - rt.y);
+      let nearestDist = Number.POSITIVE_INFINITY;
 
-      // Check zombies nearby too
-      let nearestDist = distToPlayer;
-      targetPos = { x: pt.x, y: pt.y };
+      if (r.team !== 'bot') {
+        nearestDist = Math.hypot(pt.x - rt.x, pt.y - rt.y);
+        targetPos = { x: pt.x, y: pt.y };
+      }
 
       for (const ze of this.ecs.query(Comp.Zombie, Comp.Transform)) {
         const zt = this.ecs.get(ze, Comp.Transform)!;
         const dz = Math.hypot(zt.x - rt.x, zt.y - rt.y);
-        if (dz < nearestDist && dz < r.sight) {
+        if (dz < r.sight && dz < nearestDist) {
           nearestDist = dz;
           targetPos = { x: zt.x, y: zt.y };
         }
