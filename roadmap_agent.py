@@ -28,6 +28,14 @@ class RoadmapError(Exception):
     """An expected configuration, roadmap, or GitHub API error."""
 
 
+class QuotaExhausted(RoadmapError):
+    """GitHub or Copilot usage limits were hit; work resumes on a later scheduled run."""
+
+
+QUOTA_HINTS = re.compile(r"rate limit|quota|usage limit|premium request|billing|too many", re.I)
+ACTIVE_TASK_STATES = "queued,in_progress"
+
+
 @dataclass(frozen=True)
 class RoadmapItem:
     item_id: str
@@ -61,7 +69,8 @@ class RoadmapItem:
             f"Acceptance criteria:\n{criteria}\n\n"
             "Follow the repository instructions and run the most relevant tests. "
             "Keep changes limited to this issue, report any blocked acceptance criteria, "
-            "and create a pull request for human review. Do not merge the pull request, "
+            f"and create a pull request for human review that says 'Fixes {issue_url}'. "
+            "Do not merge the pull request, "
             "modify unrelated roadmap items, or expose or copy secrets."
         )
 
@@ -127,9 +136,12 @@ def parse_roadmap(text: str) -> list[RoadmapItem]:
     return items
 
 
-def _api_error_message(error: urllib.error.HTTPError) -> str:
+def _api_error(error: urllib.error.HTTPError) -> RoadmapError:
     detail = error.read().decode("utf-8", errors="replace").strip()
-    return f"GitHub API request failed with HTTP {error.code}: {detail or error.reason}"
+    message = f"GitHub API request failed with HTTP {error.code}: {detail or error.reason}"
+    if error.code == 429 or (error.code in (402, 403) and QUOTA_HINTS.search(detail)):
+        return QuotaExhausted(message)
+    return RoadmapError(message)
 
 
 class GitHubApi:
@@ -156,7 +168,7 @@ class GitHubApi:
             with urllib.request.urlopen(request, timeout=30) as response:
                 payload = response.read()
         except urllib.error.HTTPError as error:
-            raise RoadmapError(_api_error_message(error)) from error
+            raise _api_error(error) from error
         except urllib.error.URLError as error:
             raise RoadmapError(f"Could not reach the GitHub API: {error.reason}") from error
         if not payload:
@@ -279,15 +291,22 @@ def _dispatch_item(
         f"{PENDING_MARKER}\nLaunching the Copilot cloud task. If the workflow fails, inspect "
         "cloud task history before clearing this marker to avoid duplicate runs.",
     )
-    task = agent_api.request(
-        "POST",
-        f"/agents/repos/{owner}/{repo}/tasks",
-        {
-            "prompt": item.agent_prompt(issue_url),
-            "base_ref": base_ref,
-            "create_pull_request": True,
-        },
-    )
+    try:
+        task = agent_api.request(
+            "POST",
+            f"/agents/repos/{owner}/{repo}/tasks",
+            {
+                "prompt": item.agent_prompt(issue_url),
+                "base_ref": base_ref,
+                "create_pull_request": True,
+            },
+        )
+    except QuotaExhausted:
+        # Nothing launched, so drop the pending marker to allow a clean retry after the reset.
+        for comment in _issue_comments(github_api, owner, repo, issue_number):
+            if PENDING_MARKER in (comment.get("body") or "") and isinstance(comment.get("id"), int):
+                github_api.request("DELETE", f"/repos/{owner}/{repo}/issues/comments/{comment['id']}")
+        raise
     task_id = task.get("id") if isinstance(task, dict) else None
     if not isinstance(task_id, str) or not task_id:
         raise RoadmapError(f"Copilot cloud agent returned no task ID for roadmap item '{item.item_id}'.")
@@ -327,9 +346,26 @@ def dispatch(roadmap_path: Path, item_id: str | None) -> int:
     github_api = GitHubApi(github_token)
     agent_api = GitHubApi(agent_token)
 
-    for item in selected:
-        _dispatch_item(github_api, agent_api, owner, repo, base_ref, item)
+    try:
+        budget = _launch_budget(agent_api, owner, repo)
+        if budget < len(selected):
+            print(f"Concurrency cap: launching {budget} of {len(selected)} ready items this run.")
+        for item in selected[:budget]:
+            _dispatch_item(github_api, agent_api, owner, repo, base_ref, item)
+    except QuotaExhausted as error:
+        print(f"Usage limit reached; remaining items resume on the next scheduled run. {error}")
     return 0
+
+
+def _launch_budget(api: GitHubApi, owner: str, repo: str) -> int:
+    max_active = int(os.environ.get("MAX_ACTIVE_TASKS", "3"))
+    max_per_run = int(os.environ.get("MAX_LAUNCHES_PER_RUN", "2"))
+    active = 0
+    for state in ACTIVE_TASK_STATES.split(","):
+        response = api.request("GET", f"/agents/repos/{owner}/{repo}/tasks?per_page=100&state={state}")
+        tasks = response.get("tasks") if isinstance(response, dict) else None
+        active += len(tasks) if isinstance(tasks, list) else 0
+    return max(0, min(max_per_run, max_active - active))
 
 
 def list_tasks(state: str | None) -> int:
