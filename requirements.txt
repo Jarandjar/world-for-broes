@@ -9,7 +9,7 @@ PyYAML>=6.0
 academictorrents>=2.0.0
 
 # Optional: For advanced XML parsing
-lxml>=4.9.0
+lxml>=6.1.3
 
 # Optional: For language detection
 langdetect>=1.0.9
