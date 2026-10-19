@@ -7,7 +7,7 @@ To add an idea, copy the item format below. Give it a stable, unique ID, explain
 ## Proposed ideas
 
 ### `cloud-task-dashboard` Show Copilot cloud tasks alongside swarm jobs
-- Status: ready
+- Status: done
 - Why: `swarmctl jobs list` shows the local swarm queue, while Copilot cloud task runs have a separate lifecycle and should be easy to check without confusing the two systems.
 - Outcome: Operators can see cloud task state and linked branches or pull requests from the existing CLI, while GitHub remains the source of truth.
 - Acceptance criteria:

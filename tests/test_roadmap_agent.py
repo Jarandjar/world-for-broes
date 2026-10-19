@@ -99,8 +99,11 @@ class ParseRoadmapTests(unittest.TestCase):
 
     def test_default_roadmap_is_inert_without_credentials(self):
         output = StringIO()
-        with patch.dict("os.environ", {}, clear=True), redirect_stdout(output):
-            result = dispatch(ROADMAP_PATH, None)
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "ROADMAP.md"
+            path.write_text(ROADMAP.replace("Status: ready", "Status: proposed"), encoding="utf-8")
+            with patch.dict("os.environ", {}, clear=True), redirect_stdout(output):
+                result = dispatch(path, None)
 
         self.assertEqual(result, 0)
         self.assertIn("No roadmap items are marked ready", output.getvalue())
