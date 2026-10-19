@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - ROADMAP.md
+  schedule:
+    # Every 3 hours: picks up remaining Ready items after daily/weekly limits reset.
+    - cron: "17 */3 * * *"
   workflow_dispatch:
     inputs:
       item_id:
