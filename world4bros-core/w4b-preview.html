@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>World4Bros — Live Map, Road & Prop Sandbox</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+    h2 { margin: 4px 0 8px; color: #facc15; letter-spacing: 1px; }
+    .hud { margin-bottom: 10px; font-size: 13px; color: #94a3b8; }
+    canvas {
+      border: 2px solid #334155;
+      border-radius: 6px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+      cursor: crosshair;
+      image-rendering: pixelated;
+    }
+    button {
+      background: #334155;
+      color: #facc15;
+      border: 1px solid #facc15;
+      padding: 4px 10px;
+      font-family: monospace;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+    button:hover { background: #475569; }
+  </style>
+</head>
+<body>
+  <h2>✨ WORLD4BROS LIVE MAP & ASSET SANDBOX</h2>
+  <div class="hud">
+    Dual-Grid Biomes (Asphalt Highway + Moss + Swamp) | <b>Click any prop to test damage states!</b>
+    <button id="regenBtn">🔄 Regenerate Map</button>
+  </div>
+  <canvas id="gameCanvas" width="896" height="576"></canvas>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const TILE_SIZE = 32;
+    const OUTLINE_DARK = '#1e293b';
+    const OUTLINE_DEEP = '#0f172a';
+
+    function applyStroke(c, color = OUTLINE_DARK) {
+      c.strokeStyle = color;
+      c.lineWidth = 1;
+      c.lineJoin = 'round';
+      c.lineCap = 'round';
+    }
+
+    function drawShadow(c, x, y, rx, ry) {
+      c.save();
+      c.fillStyle = 'rgba(15, 23, 42, 0.32)';
+      c.beginPath();
+      c.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+      c.fill();
+      c.restore();
+    }
+
+    function drawSandbagUnit(c, bx, by, w, h) {
+      const r = h * 0.45;
+      c.fillStyle = '#b89b72';
+      c.beginPath(); c.roundRect(bx - w / 2, by - h / 2 + 2, w, h, r); c.fill(); c.stroke();
+      c.fillStyle = '#d4b996';
+      c.beginPath(); c.roundRect(bx - w / 2, by - h / 2, w, h * 0.72, r * 0.8); c.fill(); c.stroke();
+    }
+
+    const OBJECT_DRAWERS = {
+      'obj:slime_drum': ({ ctx: c, x, y, hpRatio, timeMs }) => {
+        c.save(); c.translate(Math.round(x), Math.round(y)); applyStroke(c);
+        const rx = 13, ry = 6, topY = -12, botY = 10;
+        drawShadow(c, 0, botY + 3, rx + 3, ry + 2);
+        if (hpRatio < 0.75) {
+          c.fillStyle = '#22c55e';
+          c.beginPath(); c.ellipse(7, botY + 3, 10, 4.5, 0.2, 0, Math.PI * 2); c.fill(); c.stroke();
+        }
+        c.fillStyle = '#ec4899';
+        c.beginPath(); c.moveTo(-rx, topY); c.lineTo(-rx, botY);
+        c.ellipse(0, botY, rx, ry, 0, Math.PI, 0, true); c.lineTo(rx, topY); c.closePath(); c.fill(); c.stroke();
+
+        c.fillStyle = '#facc15';
+        c.beginPath(); c.moveTo(-rx, -4); c.lineTo(-rx, 3);
+        c.ellipse(0, 3, rx, ry * 0.85, 0, Math.PI, 0, true); c.lineTo(rx, -4);
+        c.ellipse(0, -4, rx, ry * 0.85, 0, 0, Math.PI, false); c.closePath(); c.fill(); c.stroke();
+
+        c.fillStyle = '#94a3b8';
+        c.beginPath(); c.ellipse(0, topY, rx, ry, 0, 0, Math.PI * 2); c.fill(); c.stroke();
+        c.fillStyle = '#22c55e';
+        c.beginPath(); c.ellipse(0, topY, rx - 2.5, ry - 1.5, 0, 0, Math.PI * 2); c.fill(); c.stroke();
+
+        const pulse = Math.sin(timeMs * 0.008) * 0.8;
+        c.fillStyle = '#facc15';
+        c.beginPath(); c.arc(4, topY + 0.5, 2.2 + pulse * 0.4, 0, Math.PI * 2); c.fill(); c.stroke();
+        c.restore();
+      },
+      'obj:scrap_wall': ({ ctx: c, x, y, hpRatio }) => {
+        c.save(); c.translate(Math.round(x), Math.round(y)); applyStroke(c);
+        drawShadow(c, 0, 10, 24, 6);
+        [-17, 0, 17].forEach(rx => {
+          c.fillStyle = OUTLINE_DARK; c.fillRect(rx - 1.5, -15, 3, 24);
+          c.fillStyle = '#ea580c'; c.fillRect(rx - 0.5, -15, 1, 6);
+        });
+        c.fillStyle = '#78350f'; c.beginPath(); c.roundRect(-22, -11, 44, 6, 1); c.fill(); c.stroke();
+        c.fillStyle = '#94a3b8'; c.beginPath(); c.roundRect(-21, -7, 42, 17, 1.5); c.fill(); c.stroke();
+        for (let cx = -17; cx <= 17; cx += 4) {
+          c.fillStyle = '#64748b'; c.fillRect(cx, -6, 2, 15);
+          c.fillStyle = '#cbd5e1'; c.fillRect(cx - 1, -6, 1, 15);
+        }
+        c.fillStyle = '#ea580c';
+        c.beginPath(); c.moveTo(-18, 2); c.lineTo(-8, -3); c.lineTo(-5, 9); c.lineTo(-19, 9); c.closePath(); c.fill(); c.stroke();
+        c.fillStyle = '#78350f';
+        c.beginPath(); c.moveTo(-22, 4); c.lineTo(22, -3); c.lineTo(22, 1); c.lineTo(-22, 8); c.closePath(); c.fill(); c.stroke();
+        if (hpRatio < 0.65) {
+          c.fillStyle = OUTLINE_DEEP;
+          c.beginPath(); c.arc(-2, -1, 2.5, 0, Math.PI * 2); c.arc(11, 3, 2, 0, Math.PI * 2); c.fill();
+        }
+        c.restore();
+      },
+      'obj:tactical_shield': ({ ctx: c, x, y, hpRatio }) => {
+        c.save(); c.translate(Math.round(x), Math.round(y)); applyStroke(c);
+        drawShadow(c, 0, 11, 22, 6);
+        c.fillStyle = '#3f6212';
+        c.beginPath(); c.moveTo(-20, 4); c.lineTo(20, 4); c.lineTo(18, 11); c.lineTo(-18, 11); c.closePath(); c.fill(); c.stroke();
+        c.fillStyle = '#334155';
+        c.beginPath(); c.moveTo(-21, -5); c.lineTo(-14, -8); c.lineTo(14, -8); c.lineTo(21, -5);
+        c.lineTo(20, 6); c.lineTo(13, 9); c.lineTo(-13, 9); c.lineTo(-20, 6); c.closePath(); c.fill(); c.stroke();
+        c.fillStyle = '#94a3b8';
+        c.beginPath(); c.moveTo(-21, -5); c.lineTo(-14, -8); c.lineTo(14, -8); c.lineTo(21, -5); c.lineTo(14, -5); c.lineTo(-14, -5); c.closePath(); c.fill(); c.stroke();
+        c.fillStyle = OUTLINE_DEEP; c.beginPath(); c.roundRect(-11, -3, 22, 5, 1); c.fill();
+        c.fillStyle = hpRatio > 0.4 ? '#38bdf8' : '#94a3b8'; c.fillRect(-9, -1.5, 18, 2);
+        c.fillStyle = '#f59e0b';
+        c.beginPath(); c.moveTo(-18, 0); c.lineTo(-14, -1); c.lineTo(-14, 4); c.lineTo(-18, 5); c.closePath(); c.fill(); c.stroke();
+        c.beginPath(); c.moveTo(18, 0); c.lineTo(14, -1); c.lineTo(14, 4); c.lineTo(18, 5); c.closePath(); c.fill(); c.stroke();
+        c.restore();
+      },
+      'obj:sandbags': ({ ctx: c, x, y, hpRatio }) => {
+        c.save(); c.translate(Math.round(x), Math.round(y)); applyStroke(c);
+        drawShadow(c, 0, 9, 24, 6);
+        drawSandbagUnit(c, -14, 6, 16, 9); drawSandbagUnit(c, 14, 6, 16, 9); drawSandbagUnit(c, 0, 7, 17, 9);
+        drawSandbagUnit(c, -8, 0, 17, 9); drawSandbagUnit(c, 8, 0, 17, 9);
+        drawSandbagUnit(c, -7, -6, 15, 8);
+        if (hpRatio > 0.35) drawSandbagUnit(c, 7, -6, 15, 8);
+        c.fillStyle = '#3f6212';
+        c.beginPath(); c.moveTo(0, -10); c.lineTo(16, -9); c.lineTo(20, 2); c.lineTo(11, 5); c.lineTo(3, -1); c.closePath(); c.fill(); c.stroke();
+        c.restore();
+      }
+    };
+
+    let world = null;
+    function buildWorld(seedOffset = 0) {
+      const cols = 28, rows = 18;
+      const grid = Array.from({ length: rows }, (_, y) =>
+        Array.from({ length: cols }, (_, x) => {
+          const w = Math.sin((x + seedOffset) * 0.35) + Math.cos((y + seedOffset) * 0.45);
+          return w > -0.2 ? 1 : 0;
+        })
+      );
+      const midY = 9, midX = 14;
+      for (let x = 0; x < cols; x++) {
+        const ry = midY + Math.round(Math.sin((x + seedOffset) * 0.25));
+        grid[ry][x] = 2; grid[ry + 1][x] = 2;
+      }
+      for (let y = 0; y < rows; y++) {
+        grid[y][midX] = 2; grid[y][midX + 1] = 2;
+      }
+      const cx = (midX + 0.5) * TILE_SIZE, cy = (midY + 0.5) * TILE_SIZE;
+      const props = [
+        { drawer: 'obj:sandbags', x: cx - 140, y: cy - 34, hp: 100, maxHp: 100 },
+        { drawer: 'obj:tactical_shield', x: cx - 105, y: cy + 20, hp: 100, maxHp: 100 },
+        { drawer: 'obj:slime_drum', x: cx - 165, y: cy - 6, hp: 100, maxHp: 100 },
+        { drawer: 'obj:scrap_wall', x: cx + 150, y: cy - 18, hp: 100, maxHp: 100 },
+        { drawer: 'obj:slime_drum', x: cx + 122, y: cy + 24, hp: 60, maxHp: 100 },
+        { drawer: 'obj:sandbags', x: cx + 165, y: cy + 36, hp: 100, maxHp: 100 },
+        { drawer: 'obj:tactical_shield', x: cx + 18, y: cy - 110, hp: 100, maxHp: 100 },
+        { drawer: 'obj:scrap_wall', x: cx - 28, y: cy - 125, hp: 100, maxHp: 100 },
+      ];
+      world = { grid, props };
+    }
+
+    function getMask(grid, vx, vy, target) {
+      const m = (tx, ty) => grid[ty]?.[tx] === target;
+      return (m(vx, vy) ? 1 : 0) | (m(vx + 1, vy) ? 2 : 0) | (m(vx, vy + 1) ? 4 : 0) | (m(vx + 1, vy + 1) ? 8 : 0);
+    }
+
+    function drawDualTile(px, py, mask, fill, edge) {
+      if (!mask) return;
+      const h = 16;
+      const corners = [{ b: 1, dx: 0, dy: 0 }, { b: 2, dx: h, dy: 0 }, { b: 4, dx: 0, dy: h }, { b: 8, dx: h, dy: h }];
+      ctx.fillStyle = edge;
+      corners.forEach(c => { if (mask & c.b) ctx.fillRect(px + c.dx - 1, py + c.dy - 1, h + 2, h + 2); });
+      ctx.fillStyle = fill;
+      corners.forEach(c => { if (mask & c.b) ctx.fillRect(px + c.dx, py + c.dy, h, h); });
+    }
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      world.props.forEach(p => {
+        if (Math.hypot(p.x - mx, p.y - my) < 28) {
+          p.hp = p.hp <= 25 ? 100 : p.hp - 35;
+        }
+      });
+    });
+
+    document.getElementById('regenBtn').addEventListener('click', () => buildWorld(Math.random() * 50));
+    buildWorld(0);
+
+    function loop(timeMs) {
+      const { grid, props } = world;
+      ctx.fillStyle = '#3b2f2f';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let vy = 0; vy < grid.length - 1; vy++) {
+        for (let vx = 0; vx < grid[0].length - 1; vx++) {
+          const px = vx * 32 + 16, py = vy * 32 + 16;
+          drawDualTile(px, py, getMask(grid, vx, vy, 1), '#4d7c0f', '#3f6212');
+          const rMask = getMask(grid, vx, vy, 2);
+          drawDualTile(px, py, rMask, '#1e293b', '#64748b');
+          if (rMask === 15 && (vx % 2 === 0 || vy % 2 === 0)) {
+            ctx.fillStyle = '#facc15';
+            if (grid[vy][vx - 1] === 2 && grid[vy - 1]?.[vx] !== 2 && vx % 2 === 0) ctx.fillRect(px + 6, py + 14, 14, 3);
+            if (grid[vy - 1]?.[vx] === 2 && grid[vy][vx - 1] !== 2 && vy % 2 === 0) ctx.fillRect(px + 14, py + 6, 3, 14);
+          }
+        }
+      }
+
+      props.slice().sort((a, b) => a.y - b.y).forEach(p => {
+        OBJECT_DRAWERS[p.drawer]({ ctx, x: p.x, y: p.y, hpRatio: p.hp / p.maxHp, timeMs });
+      });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5174/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="module" src="./World 4 Bro’s_ core_files/client"></script>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>World 4 Bro’s: core</title>
+<link href="./World 4 Bro’s_ core_files/css2" rel="stylesheet">
+<style>
+:root{--ink:#0A0C10;--cream:#E9E1CC;--muted:#9AA6AB;--panel:rgba(14,16,20,.92);--line:rgba(233,225,204,.28);--glow:#F08A32;--gold:#F9C45A;
+ padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#0A0C10;--cream:#E9E1CC;--panel:rgba(14,16,20,.92)}}
+:root[data-theme="dark"]{--ink:#0A0C10;--cream:#E9E1CC;--panel:rgba(14,16,20,.92)}
+html,body{margin:0;height:100%;background:#15171b;overflow:hidden;color:var(--cream);font:16px/1.35 'Crimson Pro',Georgia,serif}
+canvas#game{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#ui{position:fixed;inset:0;pointer-events:none}#ui>*{pointer-events:auto}
+button,select,input,textarea{font:inherit;color:var(--cream)}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#stats{position:absolute;left:calc(14px + env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.stat{display:flex;align-items:center;gap:8px;font:600 13px/1 'Crimson Pro',serif;text-shadow:0 1px 0 #000}.stat span{width:54px}
+.bar{width:130px;height:13px;border:2px solid var(--ink);border-radius:8px;background:rgba(10,12,16,.7);overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.fill{height:100%;transition:width .2s}.fill.hunger{background:repeating-linear-gradient(-45deg,#B8783F 0 8px,#9a6232 8px 16px)}
+.fill.health{background:repeating-linear-gradient(-45deg,#C4473D 0 8px,#a33a31 8px 16px)}.fill.sanity{background:repeating-linear-gradient(-45deg,#C98C95 0 8px,#a8727b 8px 16px)}
+.stat.low .bar{animation:pulse .8s infinite}@keyframes pulse{50%{box-shadow:0 0 10px 2px rgba(196,71,61,.7)}}
+#clock{position:absolute;right:calc(14px + env(safe-area-inset-right,0px));top:calc(14px + env(safe-area-inset-top,0px));font:700 15px 'Alegreya SC',serif;letter-spacing:.04em;text-shadow:0 1px 0 #000;pointer-events:auto;cursor:pointer;user-select:none;transition:transform .15s,color .15s}#clock:hover{color:var(--gold);transform:scale(1.05)}
+#menu{position:absolute;right:calc(14px + env(safe-area-inset-right,0px));top:calc(44px + env(safe-area-inset-top,0px));display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:60vw}
+#menu button,.panel button,.tab{background:rgba(27,20,16,.92);border:1.5px solid var(--line);border-radius:999px;padding:7px 13px;min-height:36px}
+#menu button:hover,.panel button:hover:not(:disabled){border-color:var(--glow)}kbd{font:11px 'Special Elite',monospace;color:var(--muted);margin-left:6px}
+#prompt{position:absolute;left:50%;bottom:calc(104px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:8px 20px;background:rgba(38,38,34,.92);border:1px solid var(--line);font:15px 'Special Elite',monospace;opacity:0;transition:opacity .15s;pointer-events:none;white-space:nowrap}
+#prompt.show{opacity:1}#prompt.bad{color:#e8a08a}
+#banner{position:absolute;left:50%;top:70px;transform:translateX(-50%);text-align:center;padding:12px 30px;background:rgba(35,35,40,.92);font:700 21px/1.2 'Alegreya SC',serif;letter-spacing:.04em;opacity:0;transition:opacity .4s;pointer-events:none;clip-path:polygon(0 12%,4% 0,12% 8%,30% 0,58% 7%,86% 0,96% 8%,100% 14%,98% 60%,100% 92%,88% 100%,64% 94%,40% 100%,16% 94%,3% 100%,0 86%)}
+#banner.show{opacity:1}
+#toasts{position:absolute;left:50%;top:calc(110px + env(safe-area-inset-top,0px));transform:translateX(-50%);display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none}
+.toast{background:rgba(14,16,20,.9);border:1px solid var(--line);padding:6px 14px;border-radius:6px;font-size:15px;animation:fade 2.6s forwards}@keyframes fade{0%{opacity:0;transform:translateY(-6px)}10%,80%{opacity:1;transform:none}100%{opacity:0}}
+#hotbar{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:6px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.slot{position:relative;width:52px;height:52px;border:1.5px solid var(--line);border-radius:8px;background:rgba(27,20,16,.92);padding:0;display:flex;align-items:center;justify-content:center}
+.slot.active{border-color:var(--glow);box-shadow:0 0 12px rgba(240,138,50,.5)}.slot.sel{border-color:var(--gold)}
+.slot canvas{width:40px;height:40px}.slot b{position:absolute;right:4px;bottom:2px;font:700 12px 'Crimson Pro',serif;text-shadow:0 1px 0 #000}.slot i{position:absolute;left:4px;top:1px;font:11px 'Special Elite',monospace;color:var(--muted);font-style:normal}
+#panel{position:absolute;left:calc(14px + env(safe-area-inset-left,0px));top:calc(120px + env(safe-area-inset-top,0px));max-height:calc(100% - 200px);overflow:auto;display:none}
+#panel.open{display:block}
+.panel{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:300px;max-width:min(560px,calc(100vw - 28px))}
+.panel h2{margin:0 0 8px;font:700 22px 'Alegreya SC',serif;letter-spacing:.03em}.panel .x{position:absolute;right:10px;top:10px;padding:0 10px;min-height:30px}
+.grid{display:grid;grid-template-columns:repeat(8,52px);gap:5px}.hint{color:var(--muted);font-size:14px;margin:8px 0 0}.cols{display:flex;gap:22px;flex-wrap:wrap}
+.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.worn{display:flex;flex-direction:column;gap:5px}.wornrow{display:flex;justify-content:space-between;gap:12px;align-items:center;min-width:220px}.wornrow em{color:var(--muted)}
+.recipe{display:flex;gap:12px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}.recipe.no{opacity:.55}.rinfo{display:flex;flex-direction:column;flex:1}.rinfo span{color:var(--muted);font-size:14px}
+.struct{display:flex;flex-direction:column;align-items:flex-start;width:100%;border-radius:10px!important;margin-bottom:6px;text-align:left}.struct.on{border-color:var(--glow)!important}.struct.no{opacity:.6}.struct span,.struct em{color:var(--muted);font-size:13px;font-style:normal}
+.custom{width:340px}.previewbox{background:#1d2120;border-radius:10px;padding:6px}.preview{width:100%;height:auto;display:block;border-radius:8px}.row{display:flex;gap:6px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:6px}
+.tabs{display:flex;gap:6px;margin:10px 0}.tab.on{border-color:var(--glow)}.tabbody{max-height:300px;overflow:auto;padding-right:4px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:11px}.field>span,.slotname{color:var(--muted);font-size:14px}
+select,textarea,input[type=text]{background:#1b1410;border:1.5px solid var(--line);border-radius:8px;padding:6px 8px}textarea{width:100%;box-sizing:border-box;font:12px monospace}
+.swatches{display:flex;flex-wrap:wrap;gap:5px}.sw{width:26px;height:26px;border-radius:50%!important;padding:0!important;min-height:0!important;border:2px solid var(--ink)!important;box-shadow:0 0 0 1px var(--line)}.sw.on{box-shadow:0 0 0 2px var(--gold)}
+.pick{font-size:14px;color:var(--muted);display:flex;gap:8px;align-items:center}input[type=color]{width:34px;height:28px;padding:0;border:1.5px solid var(--line);border-radius:6px;background:none}
+.slotrow{display:flex;gap:6px;align-items:center;margin-bottom:7px;flex-wrap:wrap}.slotname{width:96px}.slotrow select{flex:1;min-width:110px}.colors{display:flex;gap:3px}
+input[type=range]{accent-color:#F08A32}
+#debug{position:absolute;left:calc(14px + env(safe-area-inset-left,0px));bottom:76px;font:12px 'Special Elite',monospace;white-space:pre;display:none;pointer-events:none;text-shadow:0 1px 0 #000}#debug.on{display:block}
+#touch{display:none}#touch.on{display:block}#touch .stick{position:absolute;left:calc(20px + env(safe-area-inset-left,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:120px;height:120px;border-radius:50%;background:rgba(10,12,16,.45);border:2px solid var(--line);touch-action:none;user-select:none;-webkit-user-select:none}
+#touch .knob{position:absolute;left:34px;top:34px;width:52px;height:52px;border-radius:50%;background:rgba(240,138,50,.35);border:2px solid var(--glow);pointer-events:none}
+#touch .btn{position:absolute;border-radius:50%;background:rgba(27,20,16,.88);border:2px solid var(--glow);box-shadow:0 0 14px rgba(240,138,50,.45);width:74px;height:74px;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center;color:var(--glow);font:700 14px 'Special Elite',monospace;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#touch .btn.use{width:56px;height:56px;right:calc(102px + env(safe-area-inset-right,0px));bottom:calc(100px + env(safe-area-inset-bottom,0px));border-color:var(--gold);box-shadow:0 0 14px rgba(249,196,90,.4);color:var(--gold);font:700 12px 'Special Elite',monospace}
+#touch .btn:active{transform:scale(0.92);background:rgba(240,138,50,.25)}
+#minimap{position:absolute;right:calc(14px + env(safe-area-inset-right,0px));top:calc(92px + env(safe-area-inset-top,0px));width:124px;height:124px;border-radius:50%;border:2px solid var(--line);background:rgba(14,16,20,.85);box-shadow:0 4px 14px rgba(0,0,0,.6);cursor:pointer;touch-action:none;transition:transform .15s,border-color .15s}
+#minimap:hover{transform:scale(1.06);border-color:var(--glow)}
+.map-canvas{width:100%;height:380px;background:#181614;border:1.5px solid var(--line);border-radius:8px;cursor:grab;touch-action:none}
+.map-canvas:active{cursor:grabbing}
+.map-coords{font:13px 'Special Elite',monospace;color:var(--muted);margin:6px 0}
+@media (max-width:700px){#minimap{width:96px;height:96px;top:calc(82px + env(safe-area-inset-top,0px))}.grid{grid-template-columns:repeat(6,48px)}.slot{width:44px;height:44px}#hotbar{gap:3px;bottom:calc(8px + env(safe-area-inset-bottom,0px))}.slot canvas{width:34px;height:34px}#panel{top:104px;max-height:calc(100% - 190px)}}
+.garage-panel{min-width:320px;max-width:540px}
+.garage-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.fleet-park-btn{background:rgba(50,38,28,.95)!important;border:1.5px solid var(--gold)!important;color:var(--gold)!important;font-weight:bold;padding:6px 12px!important;border-radius:999px}
+.garage-grid{display:flex;flex-direction:column;gap:10px;margin-top:10px;max-height:420px;overflow-y:auto;padding-right:4px}
+.vehicle-card{background:rgba(20,23,28,.88);border:1px solid var(--line);border-radius:10px;padding:10px 12px;transition:border-color .15s}
+.vehicle-card:hover{border-color:var(--glow)}
+.v-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.v-title{display:flex;align-items:center;gap:8px;font:700 17px 'Alegreya SC',serif}
+.v-icon{font-size:20px}
+.v-badge{font:700 10px 'Special Elite',monospace;background:rgba(255,255,255,.08);padding:2px 7px;border-radius:999px;color:var(--muted);letter-spacing:.05em}
+.v-quirk{font-size:13px;color:var(--cream);margin:3px 0 8px;font-style:italic;line-height:1.3}
+.v-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 8px;font:12px 'Special Elite',monospace;color:var(--muted);background:rgba(10,12,16,.6);padding:6px 8px;border-radius:6px;margin-bottom:8px}
+.v-buttons{display:flex;gap:8px}
+.v-act-btn{flex:1;padding:6px 10px!important;min-height:30px!important;font-size:13px!important;border-radius:6px!important;background:rgba(30,34,42,.9)!important}
+.v-act-btn.highlight{background:rgba(50,38,28,.9)!important;border-color:var(--glow)!important;color:var(--glow)!important;font-weight:bold}
+.overseer-panel{min-width:340px;max-width:760px}
+.story-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.story-btn{flex:1;min-width:110px;padding:6px 10px!important;border-radius:8px!important;font-size:13px!important;text-align:center;background:rgba(20,23,28,.88)!important;cursor:pointer}
+.story-btn.active{border-color:var(--gold)!important;background:rgba(50,38,28,.95)!important;color:var(--gold)!important;font-weight:bold}
+.incident-strip{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;padding:6px;background:rgba(10,12,16,.5);border-radius:8px}
+.inc-btn{font-size:12px!important;padding:4px 8px!important;min-height:26px!important;border-radius:6px!important}
+.work-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+.work-table th{background:rgba(10,12,16,.7);padding:6px 4px;font-family:'Alegreya SC',serif;border-bottom:1.5px solid var(--line);text-align:center}
+.work-table td{padding:5px 4px;border-bottom:1px solid rgba(233,225,204,.1);text-align:center;vertical-align:middle}
+.pawn-cell{text-align:left!important;font-weight:bold;cursor:pointer;white-space:nowrap}
+.pawn-cell:hover{color:var(--gold)}
+.pawn-cell.selected{color:var(--gold);text-decoration:underline}
+.prio-btn{width:28px;height:28px;min-height:28px!important;padding:0!important;border-radius:4px!important;font:700 13px 'Special Elite',monospace;border:1px solid var(--line)!important;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.prio-1{background:#c0392b!important;color:#fff!important;border-color:#e74c3c!important}
+.prio-2{background:#d35400!important;color:#fff!important;border-color:#e67e22!important}
+.prio-3{background:#27ae60!important;color:#fff!important;border-color:#2ecc71!important}
+.prio-4{background:#7f8c8d!important;color:#eee!important;border-color:#95a5a6!important}
+.prio-0{background:rgba(20,24,30,.6)!important;color:var(--muted)!important;opacity:.6}
+.mood-box{display:flex;flex-direction:column;gap:2px;min-width:68px}
+.mood-bar-bg{height:8px;background:rgba(10,12,16,.8);border-radius:4px;overflow:hidden;border:1px solid var(--line)}
+.mood-bar-fill{height:100%;transition:width .2s}
+.mood-high{background:#2ecc71}
+.mood-med{background:#f39c12}
+.mood-low{background:#e74c3c}
+.break-badge{font-size:10px;color:#e74c3c;font-weight:bold;animation:pulse .8s infinite}
+.colonist-detail{background:rgba(20,23,28,.88);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px}
+.traits-wrap{display:flex;gap:4px;flex-wrap:wrap;margin:4px 0}
+.trait-tag{font:700 11px 'Special Elite',monospace;background:rgba(240,138,50,.18);color:var(--gold);padding:2px 6px;border-radius:4px;border:1px solid rgba(240,138,50,.3)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin:8px 0;background:rgba(10,12,16,.6);padding:6px 8px;border-radius:6px}
+.skill-item{font-size:12px;display:flex;justify-content:space-between}
+.thoughts-list{display:flex;flex-direction:column;gap:3px;margin:6px 0;max-height:110px;overflow-y:auto}
+.thought-row{font-size:12px;display:flex;justify-content:space-between;color:var(--cream);padding:2px 4px;border-radius:4px}
+.thought-pos{background:rgba(46,204,113,.15);color:#2ecc71}
+.thought-neg{background:rgba(231,76,60,.15);color:#e74c3c}
+.faction-panel{min-width:340px;max-width:680px}
+.zone-header{padding:10px 14px;border-radius:10px;margin-bottom:10px;font-family:'Alegreya SC',serif;border:1.5px solid var(--line)}
+.zone-green{background:rgba(46,204,113,.15);border-color:#2ecc71!important;color:#2ecc71}
+.zone-yellow{background:rgba(243,156,18,.15);border-color:#f39c12!important;color:#f39c12}
+.zone-red{background:rgba(231,76,60,.18);border-color:#e74c3c!important;color:#e74c3c}
+.shield-box{background:rgba(10,12,16,.65);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}
+.shield-active{border-color:#38bdf8!important;box-shadow:0 0 10px rgba(56,189,248,.3)}
+.shield-down{border-color:#f43f5e!important;animation:pulse .8s infinite}
+.bounty-grid{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.bounty-item{background:rgba(20,24,30,.8);border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.bounty-item.done{border-color:#2ecc71;background:rgba(46,204,113,.08)}
+.panel.inv-wide{max-width:min(900px,calc(100vw - 28px))}
+.inv-tab-btn{background:rgba(27,20,16,.92);border:1.5px solid var(--line);border-radius:8px;padding:7px 14px;color:var(--cream);cursor:pointer;font-weight:bold;font-size:14px;transition:all .15s}
+.inv-tab-btn:hover{border-color:var(--glow)}
+.inv-tab-btn.active{background:rgba(60,42,30,.95)!important;border-color:var(--gold)!important;color:var(--gold)!important;box-shadow:0 0 10px rgba(249,196,90,.3)}
+.base-storage-grid{display:grid;grid-template-columns:repeat(6,52px);gap:5px}
+.shelter-card{background:rgba(20,24,30,.88);border:1.5px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}
+.shelter-card.sheltered{border-color:#2ecc71;box-shadow:0 0 12px rgba(46,204,113,.2)}
+.shelter-card.exposed{border-color:#f39c12;box-shadow:0 0 12px rgba(243,156,18,.15)}
+@media (prefers-reduced-motion:reduce){.toast,.stat.low .bar{animation:none}}
+</style>
+<style>
+    .hover-editor {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 500px;
+      min-width: 320px;
+      height: 80vh;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .hover-editor:focus-within {
+      border-color: #66afe9;
+      box-shadow: 0 2px 10px rgba(102, 175, 233, 0.6);
+    }
+    .editor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+      cursor: move;
+    }
+    .editor-controls {
+      display: flex;
+      gap: 5px;
+    }
+    .editor-control {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #666;
+      padding: 2px;
+    }
+    .editor-control:hover {
+      color: #333;
+    }
+    .editor-content {
+      flex-grow: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+    .drag-handle {
+      width: 24px;
+      height: 24px;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+    .hover-editor:hover .drag-handle {
+      opacity: 1;
+    }
+    .resize-handle {
+      position: absolute;
+      background: transparent;
+    }
+    .resize-handle-left, .resize-handle-right {
+      top: 0;
+      width: 6px;
+      height: 100%;
+      cursor: ew-resize;
+    }
+    .resize-handle-left {
+      left: -3px;
+    }
+    .resize-handle-right {
+      right: -3px;
+    }
+    .hover-editor.focus-mode-active .resize-handle-left,
+    .hover-editor.focus-mode-active .resize-handle-right {
+      cursor: default !important;
+      pointer-events: none !important;
+    }
+    .resize-handle-top, .resize-handle-bottom {
+      left: 0;
+      width: 100%;
+      height: 6px;
+      cursor: ns-resize;
+    }
+    .resize-handle-top {
+      top: -3px;
+    }
+    .resize-handle-bottom {
+      bottom: -3px;
+    }
+    .resize-handle-corner {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, transparent 0%, transparent 50%, #ccc 50%, #ccc 100%);
+    }
+    .resize-handle-nw {
+      top: -3px;
+      left: -3px;
+      cursor: nwse-resize;
+      transform: rotate(180deg);
+    }
+    .resize-handle-ne {
+      top: -3px;
+      right: -3px;
+      cursor: nesw-resize;
+      transform: rotate(-90deg);
+    }
+    .resize-handle-sw {
+      bottom: -3px;
+      left: -3px;
+      cursor: nesw-resize;
+      transform: rotate(90deg);
+    }
+    .resize-handle-se {
+      bottom: -3px;
+      right: -3px;
+      cursor: nwse-resize;
+    }
+
+    /* Optional: If you want to allow vertical scrolling but prevent horizontal swipes */
+    .prevent-swipe-horizontal {
+      overscroll-behavior-x: none;
+      touch-action: pan-y pinch-zoom;
+    }
+
+
+    .focus-mode-close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 999999;
+    }
+
+/*the focus mode layer container that sits on top the page*/
+.focus-mode-container {
+  position: fixed !important;
+  inset: 0 !important;
+  display: flex !important;
+  padding: 20px !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  z-index: 999998 !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+  justify-content: space-between !important;
+  overflow: hidden !important;
+}
+
+.focus-mode-hidden {
+  display: none !important;
+}
+
+.focus-mode-visible {
+  display: flex !important;
+}
+
+/* this is the left part of the container that will hold the video stuff*/
+.focus-mode-area {
+  flex: 1.6 !important; /*NOTE: Default flex value (can be overridden by user's saved preference from localStorage). This adjusts the size distribution between the video area and editor area. */
+  display: flex !important;
+  flex-direction: column !important;
+  background: #0f0f0f !important;
+  border-radius: 8px !important;
+  min-width: 200px !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Video content container - holds the actual video, takes remaining space */
+.focus-mode-video-content {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.focus-mode-gutter {
+  width: 10px !important;
+  background-color: transparent !important;
+  /* cursor: col-resize !important; */
+  height: 100% !important;
+  transition: background-color 0.2s !important;
+  position: relative !important;
+  z-index: 999999 !important;
+  border-radius: 0.5em !important;
+}
+
+
+.focus-mode-video-content > iframe,
+.focus-mode-video-content > video {
+  width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  border: none !important;
+  display: block !important;
+  background: #000 !important;
+  object-fit: contain !important;
+}
+
+/*NOTE:  Reset problematic styles on direct video/iframe elements moved into focus mode.
+  These !important rules override page stylesheet classes (e.g. .dc-u-stretch with position:absolute)
+  that would otherwise fight our focus mode layout. Inline style overrides alone aren't enough
+  because page stylesheets can use !important too.
+  Restoration on exit is handled by removing the element from .focus-mode-video-content
+  (moving it back to its original DOM position), so these rules simply stop applying. */
+.focus-mode-video-content > video,
+.focus-mode-video-content > iframe {
+  position: relative !important;
+  top: unset !important;
+  left: unset !important;
+  right: unset !important;
+  bottom: unset !important;
+  margin: 0 auto !important;
+  transform: none !important;
+}
+
+/*Target any descendant (not just direct children)*/
+/* =============== BILIBILI STYLES IN FOCUS MODE =============== */
+
+/* Bilibili player wrapper in focus mode - this is our wrapper */
+.focus-mode-video-content .bilibili-player-wrapper {
+  width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 16/9 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Bilibili player container in focus mode */
+.focus-mode-area .bpx-player-container,
+.focus-mode-area #bilibili-player {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Bilibili primary area */
+.focus-mode-area .bpx-player-primary-area {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* Bilibili video area - THE KEY CONTAINER for positioning controls relative to video */
+.focus-mode-area .bpx-player-video-area {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Bilibili video wrap - contains the actual video */
+.focus-mode-area .bpx-player-video-wrap {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* Bilibili video element in focus mode */
+.focus-mode-area .bilibili-player-wrapper video,
+.focus-mode-area .bpx-player-video-wrap video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Bilibili control bar in focus mode - positioned relative to bpx-player-video-area */
+.focus-mode-area .bpx-player-control-wrap {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7)) !important;
+}
+
+/* Ensure Bilibili controls are visible */
+.focus-mode-area .bpx-player-control-entity {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Bilibili control bottom section */
+.focus-mode-area .bpx-player-control-bottom {
+  padding: 0 12px !important;
+}
+
+/* Bilibili progress bar area */
+.focus-mode-area .bpx-player-control-top,
+.focus-mode-area .bpx-player-progress-area {
+  width: 100% !important;
+}
+
+/* Bilibili overlays in focus mode */
+.focus-mode-area .bpx-player-dm-area,
+.focus-mode-area .bpx-player-tooltip-area,
+.focus-mode-area .bpx-player-dialog-wrap,
+.focus-mode-area .bpx-player-toast-wrap,
+.focus-mode-area .bpx-player-ending-panel,
+.focus-mode-area .bpx-player-electric-panel,
+.focus-mode-area .bpx-player-recommend-container,
+.focus-mode-area .bpx-player-state-wrap {
+  display: none !important;
+}
+
+/* Hide the danmaku input bar clutter but keep Bilibili's own danmaku
+   on/off switch (.bpx-player-dm-root) visible and usable in focus mode */
+.focus-mode-area .bpx-player-sending-area .bpx-player-video-info,
+.focus-mode-area .bpx-player-sending-area .bpx-player-video-inputbar,
+.focus-mode-area .bpx-player-sending-area .bpx-player-dm-btn-send,
+.focus-mode-area .bpx-player-sending-area .bpx-player-dm-hint,
+.focus-mode-area .bpx-player-sending-area .bpx-player-dm-wrap,
+.focus-mode-area .bpx-player-dm-input {
+  display: none !important;
+}
+
+/* The danmaku settings panel anchors left of its gear assuming the input
+   bar pushes the gear right; with that clutter hidden the gear sits at the
+   far left, so pin the panel inside the player to stop it clipping */
+.focus-mode-area .bpx-player-dm-setting-wrap {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+/* Blend the danmaku switch strip into the dark player (its background is
+   designed for Bilibili's white page) and brighten its icons to match */
+.focus-mode-area .bpx-player-sending-area,
+.focus-mode-area .bpx-player-sending-bar {
+  background: transparent !important;
+}
+
+.focus-mode-area .bpx-player-dm-switch svg,
+.focus-mode-area .bpx-player-dm-setting > span svg {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* =============== COURSERA STYLES IN FOCUS MODE =============== */
+
+/* Coursera player wrapper in focus mode - this is our wrapper */
+.focus-mode-video-content .coursera-player-wrapper {
+  width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 16/9 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Coursera video.js player container */
+.focus-mode-video-content .coursera-player-wrapper [data-vjs-player="true"],
+.focus-mode-video-content .coursera-player-wrapper [data-testid="playerContainer"] {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* Coursera video element */
+.focus-mode-video-content .coursera-player-wrapper video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Coursera control bar */
+.focus-mode-video-content .coursera-player-wrapper [data-testid="video-control-bar"],
+.focus-mode-video-content .coursera-player-wrapper .rc-VideoControlsContainer {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
+}
+
+/* Coursera: hide Video.js + native browser captions — mirrored captions shown instead */
+.focus-mode-video-content .coursera-player-wrapper .vjs-text-track-display {
+  display: none !important;
+}
+
+.focus-mode-video-content .coursera-player-wrapper video::-webkit-media-text-track-display {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Coursera mirrored captions — smaller type, unified box, tighter max width */
+.focus-mode-video-content .coursera-player-wrapper .focus-mode-captions-mirror--coursera {
+  position: absolute !important;
+  bottom: 16px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 100 !important;
+  pointer-events: none !important;
+  max-width: min(88%, 32em) !important;
+  width: max-content !important;
+}
+
+.focus-mode-video-content .coursera-player-wrapper .focus-mode-captions-mirror--coursera .focus-mode-captions-mirror__inner {
+  background: rgba(0, 0, 0, 0.55) !important;
+  border-radius: 4px !important;
+  padding: 5px 12px !important;
+  text-align: center !important;
+}
+
+.focus-mode-video-content .coursera-player-wrapper .focus-mode-captions-mirror--coursera .focus-mode-captions-mirror__line {
+  color: #fff !important;
+  font-size: clamp(13px, 0.35vw + 12px, 16px) !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+
+.focus-mode-video-content .coursera-player-wrapper .focus-mode-captions-mirror--coursera .focus-mode-captions-mirror__line:empty {
+  display: none !important;
+}
+
+/* Hide Coursera's native controls in focus mode - we use our own */
+.focus-mode-video-content .coursera-player-wrapper [data-testid="video-control-bar"],
+.focus-mode-video-content .coursera-player-wrapper .rc-VideoControlsContainer,
+.focus-mode-video-content .coursera-player-wrapper .vjs-control-bar {
+  display: none !important;
+}
+
+/* Hide YouTube player tooltips on hover */
+.focus-mode-area .ytp-tooltip {
+  display: none !important;
+}
+
+/* Alternative: Hide tooltips by removing title attributes via CSS */
+.focus-mode-area .ytp-chrome-top .ytp-button,
+.focus-mode-area .ytp-chrome-controls .ytp-button,
+.focus-mode-area .ytp-replay-button {
+  pointer-events: auto !important;
+}
+
+/* Hide any remaining tooltip containers */
+.focus-mode-area .ytp-tooltip-text,
+.focus-mode-area .ytp-tooltip-bg {
+  display: none !important;
+}
+
+
+
+
+/*focus-mode-target focus-mode-video*/
+/*target actual <video> HTML elements that have the focus-mode-video class*/
+video.focus-mode-video {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 8px !important;
+  border: none !important;
+  justify-self: center !important;
+  align-self: center !important;
+  position: unset !important;
+  aspect-ratio: 16/9 !important;
+}
+
+
+/*target iframe elements that have the focus-mode-video class to match video styling*/
+iframe.focus-mode-video {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+  border-radius: 8px !important;
+  border: none !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  background: #000 !important;
+}
+
+/*target div elements that have the focus-mode-video class*/
+div.focus-mode-video {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+  border-radius: 8px !important;
+  border: none !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  background: #000 !important;
+}
+
+/* HoverNotes repositioned skip button styles */
+.hn-repositioned-skip-button {
+  position: fixed !important;
+  z-index: 999999 !important;
+  background: rgba(208, 27, 27, 0.9) !important;
+  color: white !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.hn-repositioned-skip-button:hover {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  transform: scale(1.05) !important;
+}
+
+/* Override YouTube's internal skip button element styles */
+.hn-repositioned-skip-button .ytp-skip-ad-button__text {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  line-height: 1.4em !important;
+}
+
+.hn-repositioned-skip-button .ytp-skip-ad-button__icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.hn-repositioned-skip-button .ytp-skip-ad-button__icon svg {
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+}
+
+.focus-mode-editor {
+  flex: 1 !important;
+  min-width: 200px !important; 
+  max-width: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: transparent !important;
+  position: relative !important; /* Create positioning context */
+}
+
+.hover-editor.focus-mode-active {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 999999 !important;
+  transition: all 0.3s ease !important;
+  /* Remove fixed width/height to allow dynamic values */
+  min-width: unset !important;
+  max-width: unset !important;
+  max-height: none !important;
+}
+
+
+.focus-mode-controls {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  column-gap: 6px !important;
+  row-gap: 0 !important;
+  background: transparent !important;
+  padding: 4px 8px !important;
+  margin: 0 !important;
+  border-radius: 4px !important;
+  box-sizing: border-box !important;
+}
+
+.focus-mode-controls:hover {
+  opacity: 1 !important;
+}
+
+
+.focus-mode-container.hidden {
+  display: none;  /* Hide the entire container */
+}
+
+.focus-mode-button {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: rgba(50, 50, 50, 0.8) !important;
+  border: 1px solid #444 !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  min-width: 50px !important;
+  min-height: 32px !important;
+  color: #ddd !important;
+  transition: background 0.2s ease !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.focus-mode-button:hover {
+  background: rgba(70, 70, 70, 0.9) !important;
+  color: white !important;
+}
+
+/* Windows-specific scaling - Windows renders UI larger at 96 DPI vs Mac's 72 */
+.windows-controls .focus-mode-button {
+  font-size: 11px !important;
+  min-width: 40px !important;
+  min-height: 30px !important;
+  padding: 3px 6px !important;
+}
+
+/* Twemoji icons - consistent emoji rendering across platforms */
+.twemoji-icon {
+  height: 1em;
+  width: 1em;
+  vertical-align: -0.1em;
+  display: inline-block;
+}
+
+/* Twemoji inside flex buttons - remove vertical-align, let flex handle centering */
+.focus-mode-button .twemoji-icon {
+  vertical-align: baseline;
+  height: 1.2em;
+  width: 1.2em;
+}
+
+/* Video feedback overlay - shows over video content area at center */
+.video-feedback-overlay {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-radius: 16px !important;
+  padding: 24px 32px !important;
+  margin: 0 !important;
+  border: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s ease-out !important;
+  box-sizing: border-box !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  text-align: center !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.video-feedback-overlay.visible {
+  opacity: 1 !important;
+}
+
+.video-feedback-overlay .feedback-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  line-height: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+}
+
+.video-feedback-overlay .feedback-icon svg {
+  width: 48px !important;
+  height: 48px !important;
+  display: block !important;
+  fill: currentColor !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.video-feedback-overlay .feedback-icon span {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.video-feedback-overlay .feedback-value {
+  display: block !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  color: white !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  text-align: center !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+  </style></head>
+<body>
+<canvas id="game" aria-label="Top-down survival world" width="2438" height="1263"></canvas>
+<div id="ui">
+  <div id="stats"><div class="stat"><span>Hunger</span><div class="bar"><div class="fill hunger" style="width: 49.7543%;"></div></div></div><div class="stat"><span>Health</span><div class="bar"><div class="fill health" style="width: 58.2958%;"></div></div></div><div class="stat"><span>Sanity</span><div class="bar"><div class="fill sanity" style="width: 70%;"></div></div></div></div><div id="clock" title="Click to toggle Daylight (Shortcut: L)" style="cursor: pointer;">🟢 GREEN · Day 1 · ☀️ DAY · Bro Meadow</div><div id="menu"><button title="I">Pack<kbd>I</kbd></button><button title="T">Nav: OFF<kbd>T</kbd></button><button title="R">Craft<kbd>R</kbd></button><button title="B">Build<kbd>B</kbd></button><button title="U">Gunsmith<kbd>U</kbd></button><button title="Y">Range<kbd>Y</kbd></button><button title="H">Arena<kbd>H</kbd></button><button title="J">SwarmLab<kbd>J</kbd></button><button title="V">Garage<kbd>V</kbd></button><button title="O">Overseer<kbd>O</kbd></button><button title="P">Faction<kbd>P</kbd></button><button title="TAB">Map<kbd>TAB</kbd></button><button title="C">Character<kbd>C</kbd></button><button title="M">Mode<kbd>M</kbd></button><button title="F2">DevLog<kbd>F2</kbd></button><button title="F5">Save<kbd>F5</kbd></button></div>
+  <canvas id="minimap" width="124" height="124" title="Minimap (Click or TAB for World Map)"></canvas>
+  <div id="banner">It’s pitch black!<br>Something is lurking…</div>
+  <div id="toasts"><div class="toast">📢 Screamer Queen rallied nearby undead!</div><div class="toast">📢 Screamer Queen rallied nearby undead!</div><div class="toast">📢 Screamer Queen rallied nearby undead!</div><div class="toast">📢 Screamer Queen rallied nearby undead!</div></div><div id="prompt" class="show">[E] Open Trunk (0 items)</div><div id="hotbar"><button class="slot active" title="Precision Hunting Rifle"><canvas height="40" width="40"></canvas><i>1</i></button><button class="slot" title="Heavy Pump Shotgun"><canvas height="40" width="40"></canvas><i>2</i></button><button class="slot" title="Scrap Pneumatic SMG"><canvas height="40" width="40"></canvas><i>3</i></button><button class="slot" title="Pressurized Potato Cannon"><canvas height="40" width="40"></canvas><i>4</i></button><button class="slot" title="Forked Slingshot"><canvas height="40" width="40"></canvas><i>5</i></button><button class="slot" title="Stone"><canvas height="40" width="40"></canvas><b>8</b><i>6</i></button><button class="slot" title="Twig"><canvas height="40" width="40"></canvas><b>6</b><i>7</i></button><button class="slot" title="Flint"><canvas height="40" width="40"></canvas><b>3</b><i>8</i></button></div><div id="panel"></div><div id="debug"></div>
+  <div id="touch"><div class="stick"><div class="knob"></div></div><button class="btn use" aria-label="Use">USE</button><button class="btn act" aria-label="Action">ACT</button></div>
+</div>
+<script type="module" src="./World 4 Bro’s_ core_files/main.ts"></script>
+
+
+</body></html>

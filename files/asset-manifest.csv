@@ -1,0 +1,1065 @@
+ID,Name,Category,Asset type,What to generate,Variants,Phase,Priority,Notes,Status
+bro_player,Bro player,Characters and NPCs,3D model or 2D sprite set,"Concept sheet (front, 3/4, side, back); model or sprites; hand-painted texture; portrait icon",4 color variants (one per bro),S3,P1,"Big head, noodle limbs, mitten hands, backpack and hooded jacket. Neutral lighting, no outline halo.",todo
+old_stuffins,Old stuffins,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P2,Talking scarecrow with swappable hat.,todo
+traveling_salesbro,Traveling salesbro,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+grumpy_shopkeeper,Grumpy shopkeeper,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+jumpy_mechanic,Jumpy mechanic,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+nervous_nurse,Nervous nurse,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+retired_general_of_nothing,Retired general of nothing,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+hermit_hank,Hermit hank,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+lost_tourist,Lost tourist,Characters and NPCs,3D model or 2D sprite set,Concept sheet; model or sprites; texture; portrait icon,1,Z10,P3,"Goofy proportions, readable silhouette.",todo
+radio_dj_midnight,Radio dj midnight,Characters and NPCs,Portrait icon,Portrait icon only (the DJ is a voice on the radio),1,Z10,P3,Pair with the voice rows.,todo
+traffic_cone_hat,Traffic cone hat,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+cheese_hat,Cheese hat,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+flower_crown,Flower crown,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+tiny_top_hat,Tiny top hat,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+pot_helmet,Pot helmet,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+shark_slippers,Shark slippers,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+cape_of_dramatic_wind,Cape of dramatic wind,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+mechanic_hat,Mechanic hat,Characters and NPCs,Wearable model or sprite,Model or sprite fitted to the bro rig; icon,2 colors,Z13,P3,Cosmetic. Needs a socket on the character rig.,todo
+face_stickers,Face stickers,Characters and NPCs,Texture set,Face sticker textures,10,Z13,P3,Cosmetic.,todo
+trail_effects,Trail effects,Characters and NPCs,VFX sprite set,"Sparkle, bubble and heart trail sprites",3,Z13,P3,Cosmetic.,todo
+shambler,Shambler,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z5,P1,"Slow, lurching, mint-gray skin, muted purple clothes.",todo
+traffic_cone_zombie,Traffic cone zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z5,P1,Cone hat is knocked off by the first hit: make the cone a separate piece.,todo
+lurker,Lurker,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,S3,P1,Mostly a silhouette and a pair of glowing eyes (#C9D84A) at the edge of the light.,todo
+zombie_pop_puff,Zombie pop puff,Zombies and threats,VFX sprite set,Pale spore puff sheet with glowing specks and a soft ring,1,S4,P1,Replaces any gore. See VFX rows for details.,todo
+jogger,Jogger,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z5,P2,"Lean, forward-leaning, fast.",todo
+clown_zombie,Clown zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P2,"Squeaky honks; keep it funny, not scary.",todo
+bloater_balloon,Bloater balloon,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P2,"Inflates and floats, pops into a slowing cloud.",todo
+brute_in_a_bathrobe,Brute in a bathrobe,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P2,"Big, slow, bathrobe and slippers.",todo
+screamer_karaoke,Screamer karaoke,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P2,Holds a microphone.,todo
+crawler_roomba,Crawler roomba,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P2,"Low crawler. RENAME suggestion: crawler_bot, because Roomba is a trademark.",todo
+zombie_goose,Zombie goose,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P2,"Honk plus bite, steals items.",todo
+frost_zombie,Frost zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Tundra variant of the shambler: frosty tint.,todo
+husk_zombie,Husk zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,"Desert variant: dried, dusty tint.",todo
+mud_zombie,Mud zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Bog variant: mud-covered.,todo
+ember_zombie,Ember zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Volcano variant: glowing cracks.,todo
+ghost_sheet_zombie,Ghost sheet zombie,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Hollow variant: a sheet with eyeholes.,todo
+gloomblob,Gloomblob,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Dark puddle-like blob that shrinks in light.,todo
+pillow_bandit,Pillow bandit,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Hops onto your head.,todo
+highway_hulk,Highway hulk,Zombies and threats,3D model or 2D sprite set,Concept sheet; multi-part model; texture; phase variants (3),2 tints,Z9,P3,Boss: a giant zombie stitched from wrecked cars. Needs a larger concept pass.,todo
+quackzilla,Quackzilla,Zombies and threats,3D model or 2D sprite set,Concept sheet; model or sprite set; texture; 2 tint variants; lod model or impostor,2 tints,Z9,P3,Boss: a giant rubber duck. Also needs the baby version duckzilla_jr in Pets.,todo
+hop_bun,Hop bun,Wildlife,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 color variants,2 colors,Z9,P2,Also the base model for the tamed pet version.,todo
+pudge_pigeon,Pudge pigeon,Wildlife,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 color variants,2 colors,Z9,P2,Also the base model for the tamed pet version.,todo
+honk_goose,Honk goose,Wildlife,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 color variants,2 colors,Z9,P2,Also the base model for the tamed pet version.,todo
+waddle_crab,Waddle crab,Wildlife,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 color variants,2 colors,Z10B,P3,Also the base model for the tamed pet version.,todo
+dune_noodle,Dune noodle,Wildlife,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 color variants,2 colors,Z9,P3,Also the base model for the tamed pet version.,todo
+scrappy_pup,Scrappy pup,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z0D,P1,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+shadow_kitty,Shadow kitty,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+truffle_piglet,Truffle piglet,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+clucky_hen,Clucky hen,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+rubber_duckling,Rubber duckling,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+bog_frog,Bog frog,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+sun_gecko,Sun gecko,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+hop_bun_pal,Hop bun pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+pudge_pigeon_pal,Pudge pigeon pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+honk_goose_pal,Honk goose pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+pocket_sloth,Pocket sloth,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10B,P2,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+dawn_rooster,Dawn rooster,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+pocket_mouse,Pocket mouse,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+teddy_pal,Teddy pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+waddle_crab_pal,Waddle crab pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+loot_ferret,Loot ferret,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+trash_panda_pal,Trash panda pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+headbutt_goat,Headbutt goat,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+ball_armadillo,Ball armadillo,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+tank_turtle,Tank turtle,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+llama_loaded,Llama loaded,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+husky_sled_pup,Husky sled pup,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+dig_mole,Dig mole,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+sausage_dog_medic,Sausage dog medic,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+chatterbox_parrot,Chatterbox parrot,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+glow_moth,Glow moth,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+lantern_bat,Lantern bat,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+hermit_crab_condo,Hermit crab condo,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+night_owl_noodle,Night owl noodle,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+wrench_monkey,Wrench monkey,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+bucket_octopus,Bucket octopus,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+camel_captain,Camel captain,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+bumble_buddy,Bumble buddy,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+tidy_bot,Tidy bot,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+hover_drone,Hover drone,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+toaster_bot,Toaster bot,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+snack_bot,Snack bot,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+boombox_bot,Boombox bot,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+gooey_zombie_pup,Gooey zombie pup,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+ghost_sheet_pal,Ghost sheet pal,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,Tamed creature: reuse the wildlife model with a collar or accessory.,todo
+snowman_buddy,Snowman buddy,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+golden_goose,Golden goose,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+cheddar_wyrm,Cheddar wyrm,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+duckzilla_jr,Duckzilla jr,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+pocket_pony,Pocket pony,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+goose_steed,Goose steed,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+ostrich_runner,Ostrich runner,Pets,3D model or 2D sprite set,Concept sheet; model or sprites; texture; 2 coat variants; portrait icon for the pet card,2 coats,Z10C,P3,"Floppy, goofy shapes; spring-friendly tail and ears.",todo
+rusty_hatchback,Rusty hatchback,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z0D,P1,"Hero vehicle for the vertical slice. Bucket headlight, sock-flag antenna.",todo
+clown_car,Clown car,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+ice_cream_truck,Ice cream truck,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+golf_cart_deluxe,Golf cart deluxe,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+school_bus_of_chaos,School bus of chaos,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+hot_dog_van,Hot dog van,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+banana_van,Banana van,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+pizza_scooter,Pizza scooter,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+monster_truck_of_questionable_taste,Monster truck of questionable taste,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+bathtub_buggy,Bathtub buggy,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+lawn_tractor_racer,Lawn tractor racer,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+shopping_cart_runner,Shopping cart runner,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9,P2,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+taxi_of_lies,Taxi of lies,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+tiny_bubble_car,Tiny bubble car,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+dune_buggy,Dune buggy,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+vintage_roadster,Vintage roadster,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+party_hearse,Party hearse,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+patrol_wagon,Patrol wagon,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+ambulance_pal,Ambulance pal,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+stretch_limo,Stretch limo,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+camper_van_of_comfort,Camper van of comfort,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+hot_tub_hauler,Hot tub hauler,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+couch_on_wheels,Couch on wheels,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+porta_potty_dragster,Porta potty dragster,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+pickup_with_bed,Pickup with bed,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+box_truck_moving,Box truck moving,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+food_truck_fiesta,Food truck fiesta,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+mail_truck_mailbox,Mail truck mailbox,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+tow_truck_with_attitude,Tow truck with attitude,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+fire_truck_of_fun,Fire truck of fun,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+garbage_truck_grumble,Garbage truck grumble,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+cement_mixer_maracas,Cement mixer maracas,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+tanker_truck_gassy,Tanker truck gassy,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+armored_bank_truck,Armored bank truck,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+semi_rig,Semi rig,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+party_bus,Party bus,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+bulldozer_bro,Bulldozer bro,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+road_roller_stan,Road roller stan,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+forklift_fred,Forklift fred,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+party_tank,Party tank,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9B,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+bicycle_bell,Bicycle bell,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+bmx_trick_bike,Bmx trick bike,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+kick_scooter_electric,Kick scooter electric,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+quad_bike_atv,Quad bike atv,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+chopper_motorbike,Chopper motorbike,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+sidecar_motorbike,Sidecar motorbike,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+mobility_scooter_turbo,Mobility scooter turbo,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+unicycle_circus,Unicycle circus,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+rail_handcar,Rail handcar,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+locomotive_of_doom,Locomotive of doom,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,"Rounded boxy body, dents and rust, big wheels, visible jank parts.",todo
+rowboat_oars,Rowboat oars,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+inflatable_dinghy,Inflatable dinghy,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+rubber_duck_pedalboat,Rubber duck pedalboat,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+jet_ski_zoom,Jet ski zoom,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+speedboat_splash,Speedboat splash,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+pontoon_party_boat,Pontoon party boat,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+fishing_trawler,Fishing trawler,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+swamp_hovercraft,Swamp hovercraft,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+snowmobile_zippy,Snowmobile zippy,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+sled_with_sloth,Sled with sloth,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9C,P3,Water or snow ride: also needs a wake or track decal (see VFX).,todo
+whirlybird,Whirlybird,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9D,P3,Hero aircraft. Needs a rotor blur disc texture and landing skids that squish.,todo
+pedal_copter,Pedal copter,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9D,P3,"Optional aircraft, after the whirlybird is approved.",todo
+scout_balloon,Scout balloon,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9D,P3,"Optional aircraft, after the whirlybird is approved.",todo
+paraglider_kite,Paraglider kite,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9D,P3,"Optional aircraft, after the whirlybird is approved.",todo
+crop_duster_biplane,Crop duster biplane,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9D,P3,"Optional aircraft, after the whirlybird is approved.",todo
+sky_blimp,Sky blimp,Vehicles,3D model or 2D sprite set,"Concept (3/4 and side); model or sprites; painted texture; 3 damage states (dented, smoking, wreck); icon",3 damage states,Z9D,P3,"Optional aircraft, after the whirlybird is approved.",todo
+trailer_cargo,Trailer cargo,Vehicles,3D model or 2D sprite set,Concept; model or sprites; painted texture; 2 damage states; icon,2 states,Z9B,P3,Needs a hitch point.,todo
+trailer_camper,Trailer camper,Vehicles,3D model or 2D sprite set,Concept; model or sprites; painted texture; 2 damage states; icon,2 states,Z9B,P3,Needs a hitch point.,todo
+trailer_boat,Trailer boat,Vehicles,3D model or 2D sprite set,Concept; model or sprites; painted texture; 2 damage states; icon,2 states,Z9B,P3,Needs a hitch point.,todo
+trailer_flatbed,Trailer flatbed,Vehicles,3D model or 2D sprite set,Concept; model or sprites; painted texture; 2 damage states; icon,2 states,Z9B,P3,Needs a hitch point.,todo
+trailer_water_tank,Trailer water tank,Vehicles,3D model or 2D sprite set,Concept; model or sprites; painted texture; 2 damage states; icon,2 states,Z9B,P3,Needs a hitch point.,todo
+trailer_hay_wagon,Trailer hay wagon,Vehicles,3D model or 2D sprite set,Concept; model or sprites; painted texture; 2 damage states; icon,2 states,Z9B,P3,Needs a hitch point.,todo
+battery,Battery,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+spark_plugs,Spark plugs,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+engine_block,Engine block,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+fan_belt,Fan belt,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+radiator,Radiator,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+tire,Tire,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+fuel_pump,Fuel pump,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+headlights,Headlights,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+ignition_key,Ignition key,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+windshield,Windshield,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+jerrycan,Jerrycan,Vehicle parts,Icon + small prop model,"Icon 128 px; small model or sprite; 3 quality looks (junk, standard, shiny)",3 qualities,Z7,P2,Shown as a ghost outline when missing.,todo
+bucket_headlight,Bucket headlight,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+rubber_chicken_horn,Rubber chicken horn,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+pancake_stack_tire,Pancake stack tire,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+sock_fan_belt,Sock fan belt,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+bean_burrito_fuel,Bean burrito fuel,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+bucket_of_water_radiator,Bucket of water radiator,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+googly_eyes_dashboard,Googly eyes dashboard,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+cheese_wheel_tire,Cheese wheel tire,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+pool_noodle_oars,Pool noodle oars,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+umbrella_sail,Umbrella sail,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+ceiling_fan_rotor,Ceiling fan rotor,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+trash_bag_balloon,Trash bag balloon,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+bedsheet_wings,Bedsheet wings,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; the visible jank look on the car,1,Z7,P2,Jank fix: it must look funny when fitted to the car.,todo
+muffler,Muffler,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+bull_bar,Bull bar,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+armor_plating,Armor plating,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+spoiler_of_speed,Spoiler of speed,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+turbo_can,Turbo can,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+horn_pack,Horn pack,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+air_freshener_tree,Air freshener tree,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+paint_can,Paint can,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+funny_license_plate,Funny license plate,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+doors,Doors,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+bumper,Bumper,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+roof_rack,Roof rack,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+car_radio,Car radio,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+trunk_lock,Trunk lock,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+seat_covers,Seat covers,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+fuzzy_dice,Fuzzy dice,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+big_red_nose,Big red nose,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+trailer_hitch,Trailer hitch,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+winch_cable,Winch cable,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+hydraulic_pump,Hydraulic pump,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+siren_box,Siren box,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+rotor_blades,Rotor blades,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+tail_rotor,Tail rotor,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+turbine_engine,Turbine engine,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+gearbox,Gearbox,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+landing_skids,Landing skids,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+cockpit_glass,Cockpit glass,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+flight_gizmo,Flight gizmo,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+hull_patch_kit,Hull patch kit,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+outboard_motor,Outboard motor,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+propeller,Propeller,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+bilge_pump,Bilge pump,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+oars,Oars,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+life_jacket,Life jacket,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+sled_runners,Sled runners,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+track_belt,Track belt,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+fan_blade,Fan blade,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+skirt_fabric,Skirt fabric,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+balloon_envelope,Balloon envelope,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+burner,Burner,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+basket,Basket,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+propane_tank,Propane tank,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+rail_wheels,Rail wheels,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+pump_handle,Pump handle,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+track_gap_plates,Track gap plates,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+chain,Chain,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+pedals,Pedals,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+handlebars,Handlebars,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+battery_pack,Battery pack,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+kickstand,Kickstand,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+aviation_fuel,Aviation fuel,Vehicle parts,Icon + small prop model,Icon 128 px; small model or sprite; 3 quality looks,3 qualities,Z9B,P3,"Aircraft, boat and rail parts arrive with their phases.",todo
+stick,Stick,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+nail_bat,Nail bat,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+school_backpack,School backpack,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+bandage,Bandage,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+water_bottle,Water bottle,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+tent_kit,Tent kit,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+axe,Axe,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+pickaxe,Pickaxe,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+torch,Torch,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+lantern,Lantern,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+wood_log,Wood log,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+plank,Plank,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+stone,Stone,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+flint,Flint,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+twig,Twig,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+grass,Grass,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+pine_cone,Pine cone,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+berries,Berries,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+carrot,Carrot,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P1,Muted painted colors with a small warm glint on goofy items.,todo
+stale_baguette,Stale baguette,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+crowbar,Crowbar,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+frying_pan,Frying pan,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hockey_stick,Hockey stick,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+pool_noodle_of_justice,Pool noodle of justice,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+traffic_sign_axe,Traffic sign axe,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+fire_axe,Fire axe,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+chainsaw_of_regret,Chainsaw of regret,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rubber_chicken,Rubber chicken,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+mega_mallet,Mega mallet,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+slingshot,Slingshot,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bow_of_branches,Bow of branches,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+foam_dart_blaster,Foam dart blaster,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+crossbow_of_corks,Crossbow of corks,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+squirt_cannon,Squirt cannon,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+plunger_launcher,Plunger launcher,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+potato_cannon,Potato cannon,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+flare_gun,Flare gun,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+nail_gun_of_justice,Nail gun of justice,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+firework_launcher,Firework launcher,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+confetti_cannon,Confetti cannon,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bubble_wand,Bubble wand,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+water_balloon,Water balloon,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+cream_pie,Cream pie,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+road_flare,Road flare,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+marbles,Marbles,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+banana_peel,Banana peel,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+alarm_clock_decoy,Alarm clock decoy,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+stink_sock_bomb,Stink sock bomb,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+smoke_pot,Smoke pot,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+boombox_decoy,Boombox decoy,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bowling_ball,Bowling ball,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+glitter_bomb,Glitter bomb,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bucket_helmet,Bucket helmet,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bike_helmet,Bike helmet,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+pillow_vest,Pillow vest,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+cardboard_armor,Cardboard armor,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hockey_pads,Hockey pads,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rain_poncho,Rain poncho,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+winter_coat,Winter coat,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+sun_hat,Sun hat,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+snow_boots,Snow boots,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+swim_floaties,Swim floaties,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hi_vis_vest,Hi vis vest,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+fanny_pack_of_holding,Fanny pack of holding,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hiker_backpack,Hiker backpack,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+pet_backpack,Pet backpack,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; worn model fitted to the rig",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+painkillers,Painkillers,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+first_aid_kit,First aid kit,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+antidote_gel,Antidote gel,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+energy_drink,Energy drink,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+thermos_of_cocoa,Thermos of cocoa,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+water_purifier,Water purifier,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hand_warmers,Hand warmers,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+sunscreen,Sunscreen,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+gas_mask,Gas mask,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+sleeping_bag,Sleeping bag,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+shovel,Shovel,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+wrench,Wrench,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+ratchet,Ratchet,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+jack,Jack,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+welding_kit,Welding kit,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+lockpick,Lockpick,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bolt_cutters,Bolt cutters,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+flashlight,Flashlight,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+headlamp,Headlamp,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+walkie_talkie,Walkie talkie,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+binoculars,Binoculars,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+map_scrap,Map scrap,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+compass,Compass,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rope,Rope,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+duct_tape,Duct tape,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hose,Hose,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+gas_can,Gas can,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+fishing_rod,Fishing rod,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+multi_tool,Multi tool,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+grappling_hook_of_doubt,Grappling hook of doubt,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+spear,Spear,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; held model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+scrap_metal,Scrap metal,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+nails,Nails,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+cloth_scrap,Cloth scrap,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+glue,Glue,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+wire,Wire,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+spring,Spring,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+gears,Gears,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+empty_bottle,Empty bottle,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+battery_cell,Battery cell,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+gunk_goo,Gunk goo,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+acorn,Acorn,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+reeds,Reeds,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+pearl,Pearl,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+gold_nugget,Gold nugget,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+glow_shard,Glow shard,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+mismatched_sock,Mismatched sock,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rubber_duck,Rubber duck,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+lava_lamp,Lava lamp,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+garden_gnome,Garden gnome,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+trophy_cup,Trophy cup,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+broken_toaster,Broken toaster,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+novelty_mug,Novelty mug,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+inflatable_flamingo,Inflatable flamingo,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+kazoo,Kazoo,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+disco_ball_shard,Disco ball shard,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+giant_novelty_check,Giant novelty check,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+golden_toilet_seat,Golden toilet seat,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+shiny_buttons,Shiny buttons,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+pebbles,Pebbles,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+foam_darts,Foam darts,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+corks,Corks,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+potatoes,Potatoes,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bottle_rockets,Bottle rockets,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+flare_cartridges,Flare cartridges,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+batteries_aa,Batteries aa,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+house_key,House key,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+car_key,Car key,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+keycard_red,Keycard red,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+keycard_blue,Keycard blue,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+keycard_green,Keycard green,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+padlock_code_note,Padlock code note,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rescue_radio_part_1,Rescue radio part 1,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rescue_radio_part_2,Rescue radio part 2,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rescue_radio_part_3,Rescue radio part 3,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+boat_key,Boat key,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+map_fragment,Map fragment,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+signal_flare,Signal flare,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+evac_beacon,Evac beacon,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent; ground pickup model or sprite",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+hiccup_berries,Hiccup berries,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+giggle_mushroom,Giggle mushroom,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+chili_of_regret,Chili of regret,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+mystery_stew,Mystery stew,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+pancake_stack,Pancake stack,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+rainbow_soup,Rainbow soup,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+bubble_tea_of_buoyancy,Bubble tea of buoyancy,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+crispy_sock_chips,Crispy sock chips,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+roast_sausage_stick,Roast sausage stick,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+egg,Egg,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+goat_cheese,Goat cheese,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+cheese_wheel,Cheese wheel,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+fish,Fish,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+honey,Honey,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+goat_milk,Goat milk,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P2,Muted painted colors with a small warm glint on goofy items.,todo
+tripwire_cans,Tripwire cans,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+spike_strip,Spike strip,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+barricade_planks,Barricade planks,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+sandbag,Sandbag,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+shopping_cart_barrier,Shopping cart barrier,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+whoopee_cushion_trap,Whoopee cushion trap,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+barbed_wire_tangle,Barbed wire tangle,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+sprinkler_slip_n_slide,Sprinkler slip n slide,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+clam_trap,Clam trap,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+scarecrow_decoy,Scarecrow decoy,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+searchlight_tower,Searchlight tower,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+foam_turret,Foam turret,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+flame_pit,Flame pit,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+skateboard,Skateboard,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+roller_skates,Roller skates,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+pogo_stick,Pogo stick,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+zipline_kit,Zipline kit,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+propeller_beanie,Propeller beanie,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+boing_boots,Boing boots,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+air_horn,Air horn,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+umbrella_glider,Umbrella glider,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+bean_burrito_booster,Bean burrito booster,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+disguise_kit,Disguise kit,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+googly_eyes,Googly eyes,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+dancing_lantern,Dancing lantern,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+whoopee_cushion,Whoopee cushion,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+fake_mustache,Fake mustache,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+kibble,Kibble,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+fish_treat,Fish treat,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+seeds,Seeds,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+squeaky_toy,Squeaky toy,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+tennis_ball,Tennis ball,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+pet_shampoo,Pet shampoo,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+collar,Collar,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+leash,Leash,Items (icons and held models),Icon (+ model),"Icon 128 px, inked, transparent",1,Z1,P3,Muted painted colors with a small warm glint on goofy items.,todo
+pine_tree,Pine tree,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Round painted trunk with bark fibers and tiered needle fans. 3 variants.,todo
+dead_tree,Dead tree,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Lit by fire and moon; no flat slabs.,todo
+campfire,Campfire,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,"Charred round sticks, ember ends, flame loop sheet.",todo
+stump,Stump,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,End-grain rings and moss.,todo
+fallen_log,Fallen log,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Round log with moss.,todo
+log_pile,Log pile,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Lit by fire and moon; no flat slabs.,todo
+berry_bush,Berry bush,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Lit by fire and moon; no flat slabs.,todo
+boulder,Boulder,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,3 variants with crack stages.,todo
+grass_tuft,Grass tuft,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Lit by fire and moon; no flat slabs.,todo
+twig_sapling,Twig sapling,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,S2,P1,Lit by fire and moon; no flat slabs.,todo
+oak_tree,Oak tree,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Lit by fire and moon; no flat slabs.,todo
+wild_carrot,Wild carrot,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Lit by fire and moon; no flat slabs.,todo
+gold_vein,Gold vein,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Lit by fire and moon; no flat slabs.,todo
+crystal_cluster,Crystal cluster,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Glows.,todo
+glow_mushroom,Glow mushroom,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Glows.,todo
+cactus,Cactus,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Lit by fire and moon; no flat slabs.,todo
+cattail_reeds,Cattail reeds,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Lit by fire and moon; no flat slabs.,todo
+fishing_pond,Fishing pond,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P2,Water surface plus lily pads.,todo
+banana_peel_patch,Banana peel patch,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P2,Funny shape language; the humor comes from the design.,todo
+suspicious_bush,Suspicious bush,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z0D,P2,Funny shape language; the humor comes from the design.,todo
+guardrail,Guardrail,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+traffic_cone,Traffic cone,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+road_barrier,Road barrier,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+road_sign,Road sign,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+billboard_ad,Billboard ad,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+parked_wreck,Parked wreck,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+toll_booth,Toll booth,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+railway_crossing,Railway crossing,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+bridge,Bridge,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+tunnel_portal,Tunnel portal,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+roundabout_sign,Roundabout sign,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+street_lamp,Street lamp,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+fence_chain_link,Fence chain link,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+mailbox,Mailbox,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+bus_stop,Bus stop,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+trash_bin,Trash bin,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+fire_hydrant,Fire hydrant,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+power_pole,Power pole,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+plank_bundle,Plank bundle,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+weak_bridge_sign,Weak bridge sign,World objects,3D model or sprite,Painted model or sprites; 2 variants; worn variant,2,Z2,P2,Road and street prop. Goofy signs may lie.,todo
+buzz_hive,Buzz hive,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P3,Lit by fire and moon; no flat slabs.,todo
+ice_lake,Ice lake,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P3,Lit by fire and moon; no flat slabs.,todo
+lava_vent,Lava vent,World objects,3D model or sprite,"Painted model or sprites; 2 to 3 variants; stage or damage states where relevant (hit, felled, regrown)",2 to 3,Z3,P3,Glow and ember fountain.,todo
+springy_stump,Springy stump,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+whoopee_boulder,Whoopee boulder,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+giant_duck_statue,Giant duck statue,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+garden_gnome_squad,Garden gnome squad,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+flush_teleporter,Flush teleporter,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+disco_stump,Disco stump,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+gong_of_regret,Gong of regret,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+fake_campfire,Fake campfire,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+sock_tree,Sock tree,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+leaning_log_tower,Leaning log tower,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+wishing_well_of_lies,Wishing well of lies,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+mystery_crate_pinata,Mystery crate pinata,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+tumbleweed_buddy,Tumbleweed buddy,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+ladder_to_nowhere,Ladder to nowhere,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+snowman_stalker,Snowman stalker,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+clam_of_chance,Clam of chance,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+mailbox_with_attitude,Mailbox with attitude,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+vending_machine_from_nowhere,Vending machine from nowhere,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+bouncy_mushroom,Bouncy mushroom,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+giant_pancake_pond,Giant pancake pond,World objects,3D model or sprite,"Painted model or sprites; reaction states (idle, hit, used); small warm glint",2 states,Z9,P3,Funny shape language; the humor comes from the design.,todo
+house_small,House small,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+house_two_story,House two story,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+cabin,Cabin,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+shop,Shop,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+supermarket,Supermarket,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+diner,Diner,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+garage,Garage,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+gas_station,Gas station,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+police_station,Police station,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+shed,Shed,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P2,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+interior_kitchen,Interior kitchen,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_bedroom,Interior bedroom,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_office,Interior office,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_storage,Interior storage,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_shop_shelves,Interior shop shelves,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_garage_tools,Interior garage tools,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_pharmacy,Interior pharmacy,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_wardrobe_hiding,Interior wardrobe hiding,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_under_bed,Interior under bed,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+interior_dumpster,Interior dumpster,Buildings and POIs,Prop kit,Furniture and clutter set for the room; 2 variants,2,Z3,P2,Hiding spots need a cramped-space look.,todo
+bungalow,Bungalow,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+apartment_block,Apartment block,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+pharmacy,Pharmacy,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+school,School,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+chapel,Chapel,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+town_hall,Town hall,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+clinic,Clinic,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+warehouse,Warehouse,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+barn,Barn,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+silo,Silo,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+water_tower,Water tower,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+motel,Motel,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+playground,Playground,Buildings and POIs,3D model kit,"Exterior model; painted textures; 3 conditions (burnt, collapsed, overgrown); lit-window variant",3 conditions,Z3,P3,"Chunky, tilted roofs, warm glowing windows at night. Emerges from ground fog (no pop-up fold).",todo
+drive_in_cinema,Drive in cinema,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+radio_tower,Radio tower,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+ranger_tower,Ranger tower,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+weather_station,Weather station,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+abandoned_bunker,Abandoned bunker,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+container_fort,Container fort,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+lighthouse_outpost,Lighthouse outpost,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+pancake_cult_compound,Pancake cult compound,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+abandoned_theme_park,Abandoned theme park,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+circus_camp,Circus camp,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+crashed_cargo_plane,Crashed cargo plane,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+hermit_cabin,Hermit cabin,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+sunken_bus,Sunken bus,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+evac_dock,Evac dock,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+animal_shelter,Animal shelter,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+volcano_observatory,Volcano observatory,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+logging_camp,Logging camp,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+mining_camp,Mining camp,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+ski_lodge,Ski lodge,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+stilt_house,Stilt house,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+desert_trading_post,Desert trading post,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+harbor_town_pier,Harbor town pier,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+helipad,Helipad,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+rail_depot,Rail depot,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+checkpoint_barricade,Checkpoint barricade,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+ice_cream_depot,Ice cream depot,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+lighthouse_diner,Lighthouse diner,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+bro_museum,Bro museum,Buildings and POIs,3D model kit,Landmark model; painted textures; 2 conditions; signature prop set,2 conditions,Z2,P3,Silhouette must read from far away.,todo
+claim_flag,Claim flag,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+bed,Bed,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+chest,Chest,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+workbench,Workbench,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+door_wood,Door wood,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+wall_wood,Wall wood,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+generator,Generator,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+tent_base,Tent base,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P2,Base piece.,todo
+window_boards,Window boards,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+rain_barrel,Rain barrel,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+stove,Stove,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+fridge,Fridge,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+bubblebro_cauldron,Bubblebro cauldron,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+drying_rack,Drying rack,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+garage_bay,Garage bay,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+garden_bed,Garden bed,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+chicken_coop,Chicken coop,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+radio_station,Radio station,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+trophy_shelf,Trophy shelf,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+solar_panel,Solar panel,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+door_metal,Door metal,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+wall_metal,Wall metal,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+fence_gate,Fence gate,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+spike_pit,Spike pit,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+alarm_cans,Alarm cans,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+sandbag_wall,Sandbag wall,Base and pet furniture,3D model or sprite,"Painted model or sprites; 2 tiers (wood, metal) where relevant; damage state",2,Z8,P3,Base piece.,todo
+pet_bed,Pet bed,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+food_bowl,Food bowl,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+water_bowl,Water bowl,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+kennel,Kennel,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+pet_door,Pet door,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+toy_chest,Toy chest,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+scratching_post,Scratching post,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+perch,Perch,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+vet_table,Vet table,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+training_post,Training post,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+treat_jar,Treat jar,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+pet_portrait_frame,Pet portrait frame,Base and pet furniture,3D model or sprite,Painted model or sprites,1,Z10C,P3,Pet furniture.,todo
+glove_box,Glove box,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+car_trunk,Car trunk,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+suitcase,Suitcase,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+locker,Locker,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+toolbox,Toolbox,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+fridge_container,Fridge container,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+medicine_cabinet,Medicine cabinet,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+cash_register,Cash register,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+piggy_bank,Piggy bank,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+supply_drop_crate,Supply drop crate,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+ammo_crate,Ammo crate,Containers,3D model or sprite,Painted model; closed and open states; lock variant,2 states,Z4,P2,Jackpot variants glow gold.,todo
+ground_bro_meadow,Ground bro meadow,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,S2,P1,No flat colors. Palette from section 94.,todo
+decals_bro_meadow,Decals bro meadow,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,S2,P1,"Alpha-clean, no halos.",todo
+ground_pinewood_thicket,Ground pinewood thicket,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,S2,P1,No flat colors. Palette from section 94.,todo
+decals_pinewood_thicket,Decals pinewood thicket,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,S2,P1,"Alpha-clean, no halos.",todo
+mat_water,Mat water,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P1,"Painted, never glossy.",todo
+mat_bark_pine,Mat bark pine,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P1,"Painted, never glossy.",todo
+mat_bark_dead,Mat bark dead,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P1,"Painted, never glossy.",todo
+mat_moss,Mat moss,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P1,"Painted, never glossy.",todo
+mat_end_grain,Mat end grain,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P1,"Painted, never glossy.",todo
+mat_wood_planks,Mat wood planks,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P1,"Painted, never glossy.",todo
+sky_dusk,Sky dusk,Textures and decals,Skydome,Painted sky 2048 x 1024; stars and cheese moon on the night sky,1,S1,P1,Palette from section 94.,todo
+sky_night,Sky night,Textures and decals,Skydome,Painted sky 2048 x 1024; stars and cheese moon on the night sky,1,S1,P1,Palette from section 94.,todo
+foreground_silhouettes,Foreground silhouettes,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P1,Foreground silhouettes are very dark and blurred in game.,todo
+treeline_layers,Treeline layers,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P1,Foreground silhouettes are very dark and blurred in game.,todo
+needle_fan_set,Needle fan set,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P1,Foreground silhouettes are very dark and blurred in game.,todo
+grass_variants,Grass variants,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P1,Foreground silhouettes are very dark and blurred in game.,todo
+rock_set,Rock set,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P1,Foreground silhouettes are very dark and blurred in game.,todo
+ground_squelchy_bog,Ground squelchy bog,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_squelchy_bog,Decals squelchy bog,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_rockbottom_ridge,Ground rockbottom ridge,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_rockbottom_ridge,Decals rockbottom ridge,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_sunburn_flats,Ground sunburn flats,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_sunburn_flats,Decals sunburn flats,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_brrington_tundra,Ground brrington tundra,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_brrington_tundra,Decals brrington tundra,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_scrapyard_gulch,Ground scrapyard gulch,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_scrapyard_gulch,Decals scrapyard gulch,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_the_hollow,Ground the hollow,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_the_hollow,Decals the hollow,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_splash_cove,Ground splash cove,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_splash_cove,Decals splash cove,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+ground_mount_grumbleguts,Ground mount grumbleguts,Textures and decals,Tileable texture,Seamless painted ground texture 1024 px + normal map; 2 variants,2,Z2,P2,No flat colors. Palette from section 94.,todo
+decals_mount_grumbleguts,Decals mount grumbleguts,Textures and decals,Decal sprite set,"Needles, twigs, pebbles, flowers, mushrooms or biome clutter; 12 decals on one atlas",12 decals,Z2,P2,"Alpha-clean, no halos.",todo
+road_highway,Road highway,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_country_lane,Road country lane,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_logging_track,Road logging track,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_boardwalk,Road boardwalk,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_switchback,Road switchback,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_ice,Road ice,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_service,Road service,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_cursed,Road cursed,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_coast,Road coast,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+road_lava_bridge,Road lava bridge,Textures and decals,Tileable texture,Road surface texture + normal; edge and center line decal; wear variant,2,Z2,P2,Asphalt and markings are dark and worn.,todo
+mat_mud,Mat mud,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_snow,Mat snow,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_sand,Mat sand,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_ice,Mat ice,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_lava,Mat lava,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_rust_metal,Mat rust metal,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_concrete,Mat concrete,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_brick,Mat brick,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+mat_roof_tiles,Mat roof tiles,Textures and decals,Tileable texture,Seamless painted texture 1024 px + normal map,1,S2,P2,"Painted, never glossy.",todo
+sky_day,Sky day,Textures and decals,Skydome,Painted sky 2048 x 1024; stars and cheese moon on the night sky,1,S1,P2,Palette from section 94.,todo
+sky_horde,Sky horde,Textures and decals,Skydome,Painted sky 2048 x 1024; stars and cheese moon on the night sky,1,S1,P2,Palette from section 94.,todo
+cheese_moon,Cheese moon,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P2,Foreground silhouettes are very dark and blurred in game.,todo
+cloud_set,Cloud set,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P2,Foreground silhouettes are very dark and blurred in game.,todo
+fern_set,Fern set,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P2,Foreground silhouettes are very dark and blurred in game.,todo
+flower_set,Flower set,Textures and decals,Sprite set,Alpha-clean sprite set (4 to 8 variants),4 to 8,S2,P2,Foreground silhouettes are very dark and blurred in game.,todo
+hud_hunger,Hud hunger,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,S4,P1,"Inked drumstick, 44 px",todo
+hud_health,Hud health,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,S4,P1,Inked heart,todo
+hud_sanity,Hud sanity,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,S4,P1,Inked brain,todo
+banner_strip,Banner strip,UI,UI texture,Dark ink-wash strip with brushed ragged edge; 6 variants; 9-slice friendly,6,S4,P1,No torn white paper.,todo
+prompt_strip,Prompt strip,UI,UI texture,Dark ink-wash strip with brushed ragged edge; 6 variants; 9-slice friendly,6,S4,P1,No torn white paper.,todo
+button_ring_action,Button ring action,UI,UI texture,Dark ink circle with thin ring and glow layer,1,S4,P1,Glow colors from section 98.,todo
+button_ring_use,Button ring use,UI,UI texture,Dark ink circle with thin ring and glow layer,1,S4,P1,Glow colors from section 98.,todo
+button_ring_throw,Button ring throw,UI,UI texture,Dark ink circle with thin ring and glow layer,1,S4,P1,Glow colors from section 98.,todo
+button_ring_secondary,Button ring secondary,UI,UI texture,Dark ink circle with thin ring and glow layer,1,S4,P1,Glow colors from section 98.,todo
+button_base_ink,Button base ink,UI,UI texture,Dark ink circle with thin ring and glow layer,1,S4,P1,Glow colors from section 98.,todo
+item_tile_frame,Item tile frame,UI,UI texture,9-slice texture,1,S4,P1,Dark ink or wood with a thin cream line.,todo
+item_tile_selected_ring,Item tile selected ring,UI,UI texture,9-slice texture,1,S4,P1,Dark ink or wood with a thin cream line.,todo
+bar_frame,Bar frame,UI,UI texture,9-slice texture,1,S4,P1,Dark ink or wood with a thin cream line.,todo
+icon_pause,Icon pause,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_map,Icon map,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_backpack,Icon backpack,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_chat,Icon chat,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_honk,Icon honk,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_sneak,Icon sneak,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_quick_use,Icon quick use,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_throw,Icon throw,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_interact,Icon interact,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+icon_action,Icon action,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P1,Readable at 24 px.,todo
+hud_infection,Hud infection,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z5,P2,,todo
+hud_weight,Hud weight,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z1,P2,,todo
+hud_noise,Hud noise,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z5,P2,,todo
+hud_fuel,Hud fuel,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z6,P2,,todo
+hud_speed_gauge,Hud speed gauge,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z6,P2,,todo
+panel_ink_wood,Panel ink wood,UI,UI texture,9-slice texture,1,S4,P2,Dark ink or wood with a thin cream line.,todo
+panel_parchment_note,Panel parchment note,UI,UI texture,9-slice texture,1,S4,P2,Dark ink or wood with a thin cream line.,todo
+bar_fill_paint,Bar fill paint,UI,UI texture,9-slice texture,1,S4,P2,Dark ink or wood with a thin cream line.,todo
+icon_camera_snap_left,Icon camera snap left,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_camera_snap_right,Icon camera snap right,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_exit,Icon exit,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_seat_switch,Icon seat switch,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_engine_key,Icon engine key,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_headlights,Icon headlights,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_radio,Icon radio,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_winch,Icon winch,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_searchlight,Icon searchlight,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_boost,Icon boost,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_land,Icon land,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_climb,Icon climb,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_descend,Icon descend,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_anchor,Icon anchor,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_drift,Icon drift,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_pet_paw,Icon pet paw,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_ping,Icon ping,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+icon_dance,Icon dance,UI,Icon,"Inked icon 48 px, cream on dark",1,S4,P2,Readable at 24 px.,todo
+map_town,Map town,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_village,Map village,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_outpost,Map outpost,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_base,Map base,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_gas_station,Map gas station,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_motel,Map motel,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_auto_garage,Map auto garage,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_police_station,Map police station,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_farmhouse,Map farmhouse,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_supermarket,Map supermarket,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_hospital,Map hospital,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_logging_camp,Map logging camp,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_radio_tower,Map radio tower,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_drive_in,Map drive in,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_ice_cream_depot,Map ice cream depot,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_checkpoint,Map checkpoint,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_lighthouse_diner,Map lighthouse diner,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_volcano_vault,Map volcano vault,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_evac_dock,Map evac dock,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+map_animal_shelter,Map animal shelter,UI,Icon,Minimap icon 32 px,1,Z6,P2,"Single color, readable at small size.",todo
+minimap_frame,Minimap frame,UI,UI texture,Texture or icon set,1,Z6,P2,,todo
+player_marker,Player marker,UI,UI texture,Texture or icon set,1,Z6,P2,,todo
+teammate_marker,Teammate marker,UI,UI texture,Texture or icon set,1,Z6,P2,,todo
+map_paper,Map paper,UI,UI texture,Texture or icon set,1,Z6,P2,,todo
+cursor_set,Cursor set,UI,UI texture,Texture or icon set,1,Z6,P2,,todo
+logo_wordmark,Logo wordmark,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P2,Dark storybook look.,todo
+menu_background,Menu background,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P2,Dark storybook look.,todo
+hud_hull,Hud hull,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z9C,P3,,todo
+hud_altitude_band,Hud altitude band,UI,Icon,"Inked painted icon 44 px with low-state variant (shaking, faded)",2 states,Z9D,P3,,todo
+loading_art_1,Loading art 1,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P3,Dark storybook look.,todo
+loading_art_2,Loading art 2,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P3,Dark storybook look.,todo
+loading_art_3,Loading art 3,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P3,Dark storybook look.,todo
+death_screen_art,Death screen art,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P3,Dark storybook look.,todo
+win_screen_art,Win screen art,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),1,Z13,P3,Dark storybook look.,todo
+title_card_biomes,Title card biomes,UI,Illustration,Painted illustration 1920 x 1080 (logo: transparent PNG),10,Z13,P3,Dark storybook look.,todo
+achievement_01,Achievement 01,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_02,Achievement 02,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_03,Achievement 03,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_04,Achievement 04,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_05,Achievement 05,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_06,Achievement 06,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_07,Achievement 07,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_08,Achievement 08,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_09,Achievement 09,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_10,Achievement 10,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_11,Achievement 11,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_12,Achievement 12,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_13,Achievement 13,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_14,Achievement 14,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+achievement_15,Achievement 15,UI,Icon,Inked achievement icon 96 px,1,Z13,P3,See section 30 for ideas.,todo
+emote_dance,Emote dance,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_wave,Emote wave,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_high_five,Emote high five,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_hug,Emote hug,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_point,Emote point,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_sit,Emote sit,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_laugh,Emote laugh,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_cry,Emote cry,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_cheer,Emote cheer,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_honk,Emote honk,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_sleep,Emote sleep,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+emote_salute,Emote salute,UI,Icon,Emote wheel icon 64 px,1,Z13,P3,,todo
+pet_cmd_follow,Pet cmd follow,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_stay,Pet cmd stay,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_guard,Pet cmd guard,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_fetch,Pet cmd fetch,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_search,Pet cmd search,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_distract,Pet cmd distract,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_hide,Pet cmd hide,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_ride,Pet cmd ride,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+pet_cmd_beg,Pet cmd beg,UI,Icon,Pet command icon 48 px,1,Z10B,P3,,todo
+fx_flame_loop,Fx flame loop,VFX sprites,VFX sprite set,"Flame loop sheet, 3 layers, 8 frames; soft painted, transparent",1,S2,P1,Muted palette; warm fire colors only for fire.,todo
+fx_ember,Fx ember,VFX sprites,VFX sprite set,"Ember sprites, 4; soft painted, transparent",1,S2,P1,Muted palette; warm fire colors only for fire.,todo
+fx_spark,Fx spark,VFX sprites,VFX sprite set,"Spark sprites, 4; soft painted, transparent",1,S2,P1,Muted palette; warm fire colors only for fire.,todo
+fx_firefly,Fx firefly,VFX sprites,VFX sprite set,"Soft glowing dot; soft painted, transparent",1,S1,P1,Muted palette; warm fire colors only for fire.,todo
+fx_smoke_puff,Fx smoke puff,VFX sprites,VFX sprite set,"Painted smoke puffs, 6; soft painted, transparent",1,S2,P1,Muted palette; warm fire colors only for fire.,todo
+fx_smoke_column,Fx smoke column,VFX sprites,VFX sprite set,"Thin smoke strip; soft painted, transparent",1,S2,P1,Muted palette; warm fire colors only for fire.,todo
+fx_dust_ring,Fx dust ring,VFX sprites,VFX sprite set,"Dust ring sheet; soft painted, transparent",1,S4,P1,Muted palette; warm fire colors only for fire.,todo
+fx_leaf_burst,Fx leaf burst,VFX sprites,VFX sprite set,"Leaf particles, 6; soft painted, transparent",1,S4,P1,Muted palette; warm fire colors only for fire.,todo
+fx_wood_chip,Fx wood chip,VFX sprites,VFX sprite set,"Wood chip particles, 6; soft painted, transparent",1,S4,P1,Muted palette; warm fire colors only for fire.,todo
+fx_spore_puff,Fx spore puff,VFX sprites,VFX sprite set,"Pale spore puff sheet (zombie pop); soft painted, transparent",1,S4,P1,Muted palette; warm fire colors only for fire.,todo
+fx_glowing_eyes,Fx glowing eyes,VFX sprites,VFX sprite set,"Eye pairs, 3 variants; soft painted, transparent",1,S1,P1,Muted palette; warm fire colors only for fire.,todo
+fx_light_shaft,Fx light shaft,VFX sprites,VFX sprite set,"Shaft cards, 3; soft painted, transparent",1,S1,P1,Muted palette; warm fire colors only for fire.,todo
+fx_ground_fog,Fx ground fog,VFX sprites,VFX sprite set,"Fog planes, 3 tileable; soft painted, transparent",1,S1,P1,Muted palette; warm fire colors only for fire.,todo
+fx_rain_streak,Fx rain streak,VFX sprites,VFX sprite set,"Rain streak and splash; soft painted, transparent",1,S1,P2,Muted palette; warm fire colors only for fire.,todo
+fx_snow_flake,Fx snow flake,VFX sprites,VFX sprite set,"Snow flakes, 4; soft painted, transparent",1,S1,P2,Muted palette; warm fire colors only for fire.,todo
+fx_star_burst,Fx star burst,VFX sprites,VFX sprite set,"Impact star, painted; soft painted, transparent",1,Z10,P2,Muted palette; warm fire colors only for fire.,todo
+fx_sound_ring,Fx sound ring,VFX sprites,VFX sprite set,"Sound wave ring; soft painted, transparent",1,Z5,P2,Muted palette; warm fire colors only for fire.,todo
+fx_steam,Fx steam,VFX sprites,VFX sprite set,"Steam puff; soft painted, transparent",1,Z7,P2,Muted palette; warm fire colors only for fire.,todo
+fx_tire_mark,Fx tire mark,VFX sprites,VFX sprite set,"Tire mark decals; soft painted, transparent",1,Z6,P2,Muted palette; warm fire colors only for fire.,todo
+fx_footprint_snow,Fx footprint snow,VFX sprites,VFX sprite set,"Footprint decals (snow, mud, sand); soft painted, transparent",1,Z2,P2,Muted palette; warm fire colors only for fire.,todo
+fx_water_ripple,Fx water ripple,VFX sprites,VFX sprite set,"Ripple ring; soft painted, transparent",1,S2,P2,Muted palette; warm fire colors only for fire.,todo
+fx_water_splash,Fx water splash,VFX sprites,VFX sprite set,"Splash sheet; soft painted, transparent",1,S2,P2,Muted palette; warm fire colors only for fire.,todo
+fx_loot_glint,Fx loot glint,VFX sprites,VFX sprite set,"Loot sparkle by tier (5); soft painted, transparent",1,Z4,P2,Muted palette; warm fire colors only for fire.,todo
+fx_jackpot_beam,Fx jackpot beam,VFX sprites,VFX sprite set,"Jackpot beam; soft painted, transparent",1,Z4,P2,Muted palette; warm fire colors only for fire.,todo
+fx_damage_smoke_fire,Fx damage smoke fire,VFX sprites,VFX sprite set,"Vehicle smoke and fire loops; soft painted, transparent",1,Z7,P2,Muted palette; warm fire colors only for fire.,todo
+fx_hit_stars_dizzy,Fx hit stars dizzy,VFX sprites,VFX sprite set,"Dizzy stars ring; soft painted, transparent",1,Z10,P2,Muted palette; warm fire colors only for fire.,todo
+fx_ash_flake,Fx ash flake,VFX sprites,VFX sprite set,"Ash flakes; soft painted, transparent",1,Z2,P3,Muted palette; warm fire colors only for fire.,todo
+fx_confetti,Fx confetti,VFX sprites,VFX sprite set,"Confetti pieces, dark-toned; soft painted, transparent",1,Z9,P3,Muted palette; warm fire colors only for fire.,todo
+fx_bubble,Fx bubble,VFX sprites,VFX sprite set,"Soap bubble; soft painted, transparent",1,Z9D,P3,Muted palette; warm fire colors only for fire.,todo
+fx_feather,Fx feather,VFX sprites,VFX sprite set,"Feathers, 4; soft painted, transparent",1,Z9,P3,Muted palette; warm fire colors only for fire.,todo
+fx_muzzle_puff,Fx muzzle puff,VFX sprites,VFX sprite set,"Muzzle puff; soft painted, transparent",1,Z10,P3,Muted palette; warm fire colors only for fire.,todo
+fx_lava_glow,Fx lava glow,VFX sprites,VFX sprite set,"Lava glow sheet; soft painted, transparent",1,Z2,P3,Muted palette; warm fire colors only for fire.,todo
+fx_siren_cone,Fx siren cone,VFX sprites,VFX sprite set,"Siren light cone; soft painted, transparent",1,Z9,P3,Muted palette; warm fire colors only for fire.,todo
+fx_rotor_blur,Fx rotor blur,VFX sprites,VFX sprite set,"Rotor blur disc; soft painted, transparent",1,Z9D,P3,Muted palette; warm fire colors only for fire.,todo
+fx_wake_trail,Fx wake trail,VFX sprites,VFX sprite set,"Boat wake; soft painted, transparent",1,Z9C,P3,Muted palette; warm fire colors only for fire.,todo
+fx_downwash_ring,Fx downwash ring,VFX sprites,VFX sprite set,"Downwash dust rings; soft painted, transparent",1,Z9D,P3,Muted palette; warm fire colors only for fire.,todo
+fx_fart_cloud,Fx fart cloud,VFX sprites,VFX sprite set,"Green puff (booster); soft painted, transparent",1,Z9,P3,Muted palette; warm fire colors only for fire.,todo
+fx_sleep_zzz,Fx sleep zzz,VFX sprites,VFX sprite set,"Pet sleep Zs; soft painted, transparent",1,Z10B,P3,Muted palette; warm fire colors only for fire.,todo
+fx_heart_boop,Fx heart boop,VFX sprites,VFX sprite set,"Pet heart pop; soft painted, transparent",1,Z10B,P3,Muted palette; warm fire colors only for fire.,todo
+sfx_chop_wood,Sfx chop wood,Sound effects,Sound effect pack,Axe chop on wood; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_tree_fall,Sfx tree fall,Sound effects,Sound effect pack,Tree falling and thud; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_mine_rock,Sfx mine rock,Sound effects,Sound effect pack,Pickaxe on rock; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_fire_crackle_loop,Sfx fire crackle loop,Sound effects,Sound effect pack,Campfire crackle loop; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_fire_ignite,Sfx fire ignite,Sound effects,Sound effect pack,Fire ignite; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_footstep_grass,Sfx footstep grass,Sound effects,Sound effect pack,Footsteps on grass; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_footstep_dirt,Sfx footstep dirt,Sound effects,Sound effect pack,Footsteps on dirt; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_footstep_wood,Sfx footstep wood,Sound effects,Sound effect pack,Footsteps on wood; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_pickup,Sfx pickup,Sound effects,Sound effect pack,Item pickup; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_craft_success,Sfx craft success,Sound effects,Sound effect pack,Craft success; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_eat,Sfx eat,Sound effects,Sound effect pack,Eating; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_hurt_bro,Sfx hurt bro,Sound effects,Sound effect pack,Player hurt; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_zombie_groan_shambler,Sfx zombie groan shambler,Sound effects,Sound effect pack,Shambler groan; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_zombie_pop,Sfx zombie pop,Sound effects,Sound effect pack,Cartoon pop into spores; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_goose_honk,Sfx goose honk,Sound effects,Sound effect pack,Honk; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_ui_click,Sfx ui click,Sound effects,Sound effect pack,UI click and hover; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_ui_panel,Sfx ui panel,Sound effects,Sound effect pack,Panel open and close; 3 to 5 variants,3 to 5,S4,P1,"Dark, close, dry mix.",todo
+sfx_amb_night_forest_loop,Sfx amb night forest loop,Sound effects,Sound effect pack,Night forest ambience loop; 3 to 5 variants,3 to 5,S1,P1,Seamless loops of 30 to 60 s.,todo
+sfx_amb_wind_loop,Sfx amb wind loop,Sound effects,Sound effect pack,Wind loop; 3 to 5 variants,3 to 5,S1,P1,Seamless loops of 30 to 60 s.,todo
+sfx_amb_day_forest_loop,Sfx amb day forest loop,Sound effects,Sound effect pack,Day forest ambience loop; 3 to 5 variants,3 to 5,S1,P1,Seamless loops of 30 to 60 s.,todo
+sfx_pet_bark,Sfx pet bark,Sound effects,Sound effect pack,Pet vocal pack: bark; 3 to 5 variants,3 to 5,Z10B,P1,,todo
+sfx_footstep_gravel,Sfx footstep gravel,Sound effects,Sound effect pack,Footsteps on gravel; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_footstep_metal,Sfx footstep metal,Sound effects,Sound effect pack,Footsteps on metal; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_footstep_snow,Sfx footstep snow,Sound effects,Sound effect pack,Footsteps on snow; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_footstep_mud,Sfx footstep mud,Sound effects,Sound effect pack,Footsteps in mud; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_footstep_sand,Sfx footstep sand,Sound effects,Sound effect pack,Footsteps on sand; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_footstep_water,Sfx footstep water,Sound effects,Sound effect pack,Wading splash; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_footstep_asphalt,Sfx footstep asphalt,Sound effects,Sound effect pack,Footsteps on asphalt; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_swing_light,Sfx swing light,Sound effects,Sound effect pack,Light weapon swing; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_swing_heavy,Sfx swing heavy,Sound effects,Sound effect pack,Heavy weapon swing; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_impact_wood,Sfx impact wood,Sound effects,Sound effect pack,"Melee impact, wood; 3 to 5 variants",3 to 5,Z1,P2,,todo
+sfx_impact_metal,Sfx impact metal,Sound effects,Sound effect pack,"Melee impact, metal; 3 to 5 variants",3 to 5,Z1,P2,,todo
+sfx_impact_soft,Sfx impact soft,Sound effects,Sound effect pack,Cartoon soft impact; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_hit_stop_thump,Sfx hit stop thump,Sound effects,Sound effect pack,Hit-stop thump; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_break_item,Sfx break item,Sound effects,Sound effect pack,Item breaks; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_door_open_close,Sfx door open close,Sound effects,Sound effect pack,Door open and close; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_window_climb,Sfx window climb,Sound effects,Sound effect pack,Climbing through a window; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_lock_pick,Sfx lock pick,Sound effects,Sound effect pack,Lockpicking; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_container_open,Sfx container open,Sound effects,Sound effect pack,Container open; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_jackpot_sting,Sfx jackpot sting,Sound effects,Sound effect pack,Jackpot siren sting; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_loot_chime_tiers,Sfx loot chime tiers,Sound effects,Sound effect pack,"Loot chimes, 5 tiers; 3 to 5 variants",3 to 5,Z1,P2,,todo
+sfx_drink,Sfx drink,Sound effects,Sound effect pack,Drinking; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_heal,Sfx heal,Sound effects,Sound effect pack,Bandage and healing; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_heartbeat,Sfx heartbeat,Sound effects,Sound effect pack,Low health heartbeat loop; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_sanity_whispers,Sfx sanity whispers,Sound effects,Sound effect pack,Sanity whispers loop; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_shiver,Sfx shiver,Sound effects,Sound effect pack,Shivering; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_pant,Sfx pant,Sound effects,Sound effect pack,Panting; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_hiccup,Sfx hiccup,Sound effects,Sound effect pack,Hiccups; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_giggle,Sfx giggle,Sound effects,Sound effect pack,Giggle; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_stomach_growl,Sfx stomach growl,Sound effects,Sound effect pack,Stomach growl; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_fire_extinguish,Sfx fire extinguish,Sound effects,Sound effect pack,Fire hiss; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_slingshot,Sfx slingshot,Sound effects,Sound effect pack,Slingshot; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_dart_blaster,Sfx dart blaster,Sound effects,Sound effect pack,Dart blaster; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_crossbow,Sfx crossbow,Sound effects,Sound effect pack,Crossbow of corks; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_nail_gun,Sfx nail gun,Sound effects,Sound effect pack,Nail gun; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_firework_launch,Sfx firework launch,Sound effects,Sound effect pack,Firework launch and boom; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_flare_gun,Sfx flare gun,Sound effects,Sound effect pack,Flare gun; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_explosion_cartoon,Sfx explosion cartoon,Sound effects,Sound effect pack,Cartoon explosion; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_trap_snap,Sfx trap snap,Sound effects,Sound effect pack,Trap snap; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_turret_pew,Sfx turret pew,Sound effects,Sound effect pack,Foam turret; 3 to 5 variants,3 to 5,Z1,P2,,todo
+sfx_amb_rain,Sfx amb rain,Sound effects,Sound effect pack,Rain loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_thunder,Sfx amb thunder,Sound effects,Sound effect pack,Thunder; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_snow_wind,Sfx amb snow wind,Sound effects,Sound effect pack,Snow wind loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_desert_wind,Sfx amb desert wind,Sound effects,Sound effect pack,Desert wind loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_bog,Sfx amb bog,Sound effects,Sound effect pack,Bog bubbles and frogs loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_cave,Sfx amb cave,Sound effects,Sound effect pack,Cave drips loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_hollow,Sfx amb hollow,Sound effects,Sound effect pack,Hollow whispers loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_sea,Sfx amb sea,Sound effects,Sound effect pack,Waves loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_lava,Sfx amb lava,Sound effects,Sound effect pack,Lava rumble loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_crickets,Sfx amb crickets,Sound effects,Sound effect pack,Crickets loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_owl,Sfx amb owl,Sound effects,Sound effect pack,Owl hoots; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_amb_town_night,Sfx amb town night,Sound effects,Sound effect pack,Empty town night loop; 3 to 5 variants,3 to 5,Z2,P2,Seamless loops.,todo
+sfx_zombie_jogger,Sfx zombie jogger,Sound effects,Sound effect pack,"Groan, attack and stagger for Jogger; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_clown,Sfx zombie clown,Sound effects,Sound effect pack,"Groan, attack and stagger for Clown; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_bloater,Sfx zombie bloater,Sound effects,Sound effect pack,"Groan, attack and stagger for Bloater; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_brute,Sfx zombie brute,Sound effects,Sound effect pack,"Groan, attack and stagger for Brute; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_screamer,Sfx zombie screamer,Sound effects,Sound effect pack,"Groan, attack and stagger for Screamer; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_crawler,Sfx zombie crawler,Sound effects,Sound effect pack,"Groan, attack and stagger for Crawler; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_zombie_goose,Sfx zombie zombie goose,Sound effects,Sound effect pack,"Groan, attack and stagger for Zombie goose; 3 to 5 variants",3 to 5,Z9,P2,,todo
+sfx_zombie_crowd_loop,Sfx zombie crowd loop,Sound effects,Sound effect pack,Crowd murmur loop; 3 to 5 variants,3 to 5,Z5,P2,,todo
+sfx_horde_siren,Sfx horde siren,Sound effects,Sound effect pack,Horde night siren; 3 to 5 variants,3 to 5,Z5,P2,,todo
+sfx_lurker_breath,Sfx lurker breath,Sound effects,Sound effect pack,Lurker stalking breath; 3 to 5 variants,3 to 5,Z5,P2,,todo
+sfx_infection_pulse,Sfx infection pulse,Sound effects,Sound effect pack,Infection pulse; 3 to 5 variants,3 to 5,Z5,P2,,todo
+sfx_zombie_trip_slip,Sfx zombie trip slip,Sound effects,Sound effect pack,Slip and stagger; 3 to 5 variants,3 to 5,Z5,P2,,todo
+sfx_zombie_dance_stun,Sfx zombie dance stun,Sound effects,Sound effect pack,Dance stun; 3 to 5 variants,3 to 5,Z5,P2,,todo
+sfx_engine_compact,Sfx engine compact,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for compact; 3 to 5 variants",3 to 5,Z6,P2,,todo
+sfx_engine_sedan,Sfx engine sedan,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for sedan; 3 to 5 variants",3 to 5,Z6,P2,,todo
+sfx_engine_van,Sfx engine van,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for van; 3 to 5 variants",3 to 5,Z6,P2,,todo
+sfx_engine_golf_cart_electric,Sfx engine golf cart electric,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for golf cart electric; 3 to 5 variants",3 to 5,Z6,P2,,todo
+sfx_engine_crank,Sfx engine crank,Sound effects,Sound effect pack,"Engine crank, success and flood fail; 3 to 5 variants",3 to 5,Z6,P2,,todo
+sfx_horn_standard,Sfx horn standard,Sound effects,Sound effect pack,Standard horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_horn_trombone,Sfx horn trombone,Sound effects,Sound effect pack,Sad trombone horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_horn_bike,Sfx horn bike,Sound effects,Sound effect pack,Bike horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_horn_duck,Sfx horn duck,Sound effects,Sound effect pack,Duck horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_horn_rooster,Sfx horn rooster,Sound effects,Sound effect pack,Rooster horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_horn_rubber_chicken,Sfx horn rubber chicken,Sound effects,Sound effect pack,Rubber chicken horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_horn_air,Sfx horn air,Sound effects,Sound effect pack,Air horn; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_tire_squeal,Sfx tire squeal,Sound effects,Sound effect pack,Tire squeal and skid; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_car_crash,Sfx car crash,Sound effects,Sound effect pack,Light and heavy crash; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_guardrail_scrape,Sfx guardrail scrape,Sound effects,Sound effect pack,Guardrail scrape; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_suspension_creak,Sfx suspension creak,Sound effects,Sound effect pack,Suspension creak; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_car_door,Sfx car door,Sound effects,Sound effect pack,Car door; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_radio_static,Sfx radio static,Sound effects,Sound effect pack,Radio tuning static; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_ice_cream_jingle,Sfx ice cream jingle,Sound effects,Sound effect pack,Ice cream truck jingle loop; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_siren_police,Sfx siren police,Sound effects,Sound effect pack,Police siren; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_siren_ambulance,Sfx siren ambulance,Sound effects,Sound effect pack,Ambulance siren; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_siren_fire,Sfx siren fire,Sound effects,Sound effect pack,Fire truck siren; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_backfire,Sfx backfire,Sound effects,Sound effect pack,Backfire pop; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_repair_wrench,Sfx repair wrench,Sound effects,Sound effect pack,Wrench and ratchet clicks; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_part_click_in,Sfx part click in,Sound effects,Sound effect pack,Part clicking in; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_steam_hiss,Sfx steam hiss,Sound effects,Sound effect pack,Steam hiss; 3 to 5 variants,3 to 5,Z6,P2,,todo
+sfx_ui_error,Sfx ui error,Sound effects,Sound effect pack,Error; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_notify,Sfx ui notify,Sound effects,Sound effect pack,Notification; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_tab,Sfx ui tab,Sound effects,Sound effect pack,Tab switch; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_inventory_move,Sfx ui inventory move,Sound effects,Sound effect pack,Inventory move; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_equip,Sfx ui equip,Sound effects,Sound effect pack,Equip; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_hotbar,Sfx ui hotbar,Sound effects,Sound effect pack,Hotbar select; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_slider,Sfx ui slider,Sound effects,Sound effect pack,Slider; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_achievement,Sfx ui achievement,Sound effects,Sound effect pack,Achievement; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_map_unfurl,Sfx ui map unfurl,Sound effects,Sound effect pack,Map unfurl; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_emote_wheel,Sfx ui emote wheel,Sound effects,Sound effect pack,Emote wheel; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_ping,Sfx ui ping,Sound effects,Sound effect pack,Ping; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_chat_pop,Sfx ui chat pop,Sound effects,Sound effect pack,Chat pop; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_death,Sfx ui death,Sound effects,Sound effect pack,Death sting; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_ui_respawn,Sfx ui respawn,Sound effects,Sound effect pack,Respawn; 3 to 5 variants,3 to 5,S4,P2,,todo
+sfx_zombie_frost,Sfx zombie frost,Sound effects,Sound effect pack,"Groan, attack and stagger for Frost; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_husk,Sfx zombie husk,Sound effects,Sound effect pack,"Groan, attack and stagger for Husk; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_mud,Sfx zombie mud,Sound effects,Sound effect pack,"Groan, attack and stagger for Mud; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_ember,Sfx zombie ember,Sound effects,Sound effect pack,"Groan, attack and stagger for Ember; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_ghost_sheet,Sfx zombie ghost sheet,Sound effects,Sound effect pack,"Groan, attack and stagger for Ghost sheet; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_gloomblob,Sfx zombie gloomblob,Sound effects,Sound effect pack,"Groan, attack and stagger for Gloomblob; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_pillow_bandit,Sfx zombie pillow bandit,Sound effects,Sound effect pack,"Groan, attack and stagger for Pillow bandit; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_highway_hulk,Sfx zombie highway hulk,Sound effects,Sound effect pack,"Groan, attack and stagger for Highway hulk; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_zombie_quackzilla,Sfx zombie quackzilla,Sound effects,Sound effect pack,"Groan, attack and stagger for Quackzilla; 3 to 5 variants",3 to 5,Z9,P3,,todo
+sfx_pet_meow,Sfx pet meow,Sound effects,Sound effect pack,Pet vocal pack: meow; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_oink,Sfx pet oink,Sound effects,Sound effect pack,Pet vocal pack: oink; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_cluck,Sfx pet cluck,Sound effects,Sound effect pack,Pet vocal pack: cluck; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_quack,Sfx pet quack,Sound effects,Sound effect pack,Pet vocal pack: quack; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_ribbit,Sfx pet ribbit,Sound effects,Sound effect pack,Pet vocal pack: ribbit; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_squeak_mouse,Sfx pet squeak mouse,Sound effects,Sound effect pack,Pet vocal pack: squeak mouse; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_chatter_monkey,Sfx pet chatter monkey,Sound effects,Sound effect pack,Pet vocal pack: chatter monkey; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_bleat,Sfx pet bleat,Sound effects,Sound effect pack,Pet vocal pack: bleat; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_yawn_sloth,Sfx pet yawn sloth,Sound effects,Sound effect pack,Pet vocal pack: yawn sloth; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_hoot_owl,Sfx pet hoot owl,Sound effects,Sound effect pack,Pet vocal pack: hoot owl; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_bloop_octopus,Sfx pet bloop octopus,Sound effects,Sound effect pack,Pet vocal pack: bloop octopus; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_grunt_camel,Sfx pet grunt camel,Sound effects,Sound effect pack,Pet vocal pack: grunt camel; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_buzz_bees,Sfx pet buzz bees,Sound effects,Sound effect pack,Pet vocal pack: buzz bees; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_beep_bots,Sfx pet beep bots,Sound effects,Sound effect pack,Pet vocal pack: beep bots; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_drone_buzz,Sfx pet drone buzz,Sound effects,Sound effect pack,Pet vocal pack: drone buzz; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_parrot_phrases,Sfx pet parrot phrases,Sound effects,Sound effect pack,Pet vocal pack: parrot phrases; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_howl_husky,Sfx pet howl husky,Sound effects,Sound effect pack,Pet vocal pack: howl husky; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_gecko_chirp,Sfx pet gecko chirp,Sound effects,Sound effect pack,Pet vocal pack: gecko chirp; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_pet_bat_chitter,Sfx pet bat chitter,Sound effects,Sound effect pack,Pet vocal pack: bat chitter; 3 to 5 variants,3 to 5,Z10B,P3,,todo
+sfx_engine_scooter,Sfx engine scooter,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for scooter; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_pickup,Sfx engine pickup,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for pickup; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_truck,Sfx engine truck,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for truck; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_bus,Sfx engine bus,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for bus; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_heavy,Sfx engine heavy,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for heavy; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_tractor,Sfx engine tractor,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for tractor; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_motorbike,Sfx engine motorbike,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for motorbike; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_engine_monster_truck,Sfx engine monster truck,Sound effects,Sound effect pack,"Engine loop set (idle, low, high) for monster truck; 3 to 5 variants",3 to 5,Z6,P3,,todo
+sfx_boat_engine,Sfx boat engine,Sound effects,Sound effect pack,Boat engine loop; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_water_wake,Sfx water wake,Sound effects,Sound effect pack,Water wake loop; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_hovercraft_fan,Sfx hovercraft fan,Sound effects,Sound effect pack,Hovercraft fan loop; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_snowmobile,Sfx snowmobile,Sound effects,Sound effect pack,Snowmobile loop; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_handcar_pump,Sfx handcar pump,Sound effects,Sound effect pack,Handcar pumping; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_rail_clack,Sfx rail clack,Sound effects,Sound effect pack,Rail clatter loop; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_heli_rotor_loop,Sfx heli rotor loop,Sound effects,Sound effect pack,Helicopter rotor loop; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_turbine_spool,Sfx turbine spool,Sound effects,Sound effect pack,Turbine spool-up; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_winch,Sfx winch,Sound effects,Sound effect pack,Winch; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_heli_landing,Sfx heli landing,Sound effects,Sound effect pack,Landing thump; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_balloon_burner,Sfx balloon burner,Sound effects,Sound effect pack,Balloon burner whoosh; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_paraglider_wind,Sfx paraglider wind,Sound effects,Sound effect pack,Paraglider wind; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_hull_leak,Sfx hull leak,Sound effects,Sound effect pack,Hull leak and bilge pump; 3 to 5 variants,3 to 5,Z9C,P3,,todo
+sfx_whoopee,Sfx whoopee,Sound effects,Sound effect pack,Whoopee cushion; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_boing,Sfx boing,Sound effects,Sound effect pack,Boing; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_bonk,Sfx bonk,Sound effects,Sound effect pack,Bonk; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_trombone_fail,Sfx trombone fail,Sound effects,Sound effect pack,Trombone fail; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_rubber_chicken_squeak,Sfx rubber chicken squeak,Sound effects,Sound effect pack,Rubber chicken squeak; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_flush,Sfx flush,Sound effects,Sound effect pack,Flush teleport; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_gong,Sfx gong,Sound effects,Sound effect pack,Gong of regret; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_vending_clunk,Sfx vending clunk,Sound effects,Sound effect pack,Vending machine clunk; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_banana_slip,Sfx banana slip,Sound effects,Sound effect pack,Banana slip; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_confetti_pop,Sfx confetti pop,Sound effects,Sound effect pack,Confetti pop; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_disco_loop,Sfx disco loop,Sound effects,Sound effect pack,Disco loop; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_party_horn,Sfx party horn,Sound effects,Sound effect pack,Party horn; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_pbbbt,Sfx pbbbt,Sound effects,Sound effect pack,Whoopee boulder; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_duck_squeak,Sfx duck squeak,Sound effects,Sound effect pack,Giant duck statue squeak; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+sfx_glitter,Sfx glitter,Sound effects,Sound effect pack,Glitter bomb; 3 to 5 variants,3 to 5,Z9,P3,"Cartoon, but dry and slightly dark to fit the world.",todo
+music_night_ambient,Music night ambient,Music,Music loop or cue,"Night exploration loop, sparse, low strings and distant pluck, 90 s seamless, stereo",1,S1,P1,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_day_explore,Music day explore,Music,Music loop or cue,"Day exploration loop, overcast and gentle, 90 s, stereo",1,Z13,P2,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_dusk_transition,Music dusk transition,Music,Music loop or cue,"Dusk transition cue, 30 s, stereo",1,Z13,P2,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_danger_loop,Music danger loop,Music,Music loop or cue,"Danger and chase loop, 60 s, stereo",1,Z13,P2,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_horde_night,Music horde night,Music,Music loop or cue,"Horde night loop, 90 s, stereo",1,Z13,P2,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_menu_theme,Music menu theme,Music,Music loop or cue,"Menu theme, stereo",1,Z13,P2,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_cheese_moon,Music cheese moon,Music,Music loop or cue,"Cheese moon theme, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_evac_finale,Music evac finale,Music,Music loop or cue,"Evac finale, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_boss_highway_hulk,Music boss highway hulk,Music,Music loop or cue,"Boss theme, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_boss_quackzilla,Music boss quackzilla,Music,Music loop or cue,"Boss theme, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_town_day,Music town day,Music,Music loop or cue,"Town day loop, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_town_night,Music town night,Music,Music loop or cue,"Town night loop, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_win_sting,Music win sting,Music,Music loop or cue,"Victory sting, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_defeat_sting,Music defeat sting,Music,Music loop or cue,"Defeat sting, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_credits,Music credits,Music,Music loop or cue,"Credits, stereo",1,Z13,P3,"Dark storybook; goofy touches through instrumentation, not bright synths.",todo
+music_stinger_bro_meadow,Music stinger bro meadow,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_pinewood_thicket,Music stinger pinewood thicket,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_squelchy_bog,Music stinger squelchy bog,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_rockbottom_ridge,Music stinger rockbottom ridge,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_sunburn_flats,Music stinger sunburn flats,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_brrington_tundra,Music stinger brrington tundra,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_scrapyard_gulch,Music stinger scrapyard gulch,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_the_hollow,Music stinger the hollow,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_splash_cove,Music stinger splash cove,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_stinger_mount_grumbleguts,Music stinger mount grumbleguts,Music,Music cue,"Biome entry stinger, 10 s",1,Z13,P3,,todo
+music_radio_station_a_1,Music radio station a 1,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_a_2,Music radio station a 2,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_a_3,Music radio station a 3,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_a_4,Music radio station a 4,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_b_1,Music radio station b 1,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_b_2,Music radio station b 2,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_b_3,Music radio station b 3,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_b_4,Music radio station b 4,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_c_1,Music radio station c 1,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_c_2,Music radio station c 2,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_c_3,Music radio station c 3,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+music_radio_station_c_4,Music radio station c 4,Music,Music track,"Goofy radio song, 90 s, original",1,Z13,P3,Car radio. Original compositions only.,todo
+voice_bro_1,Voice bro 1,Voice,Voice blips,"Effort, hurt, laugh, whoop, dance cheer; 20 short clips",20 clips,Z13,P2,Gibberish or short non-word sounds.,todo
+voice_bro_2,Voice bro 2,Voice,Voice blips,"Effort, hurt, laugh, whoop, dance cheer; 20 short clips",20 clips,Z13,P3,Gibberish or short non-word sounds.,todo
+voice_bro_3,Voice bro 3,Voice,Voice blips,"Effort, hurt, laugh, whoop, dance cheer; 20 short clips",20 clips,Z13,P3,Gibberish or short non-word sounds.,todo
+voice_bro_4,Voice bro 4,Voice,Voice blips,"Effort, hurt, laugh, whoop, dance cheer; 20 short clips",20 clips,Z13,P3,Gibberish or short non-word sounds.,todo
+voice_old_stuffins,Voice old stuffins,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_traveling_salesbro,Voice traveling salesbro,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_grumpy_shopkeeper,Voice grumpy shopkeeper,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_jumpy_mechanic,Voice jumpy mechanic,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_nervous_nurse,Voice nervous nurse,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_retired_general_of_nothing,Voice retired general of nothing,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_hermit_hank,Voice hermit hank,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_lost_tourist,Voice lost tourist,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_narrator_wishing_well,Voice narrator wishing well,Voice,Voice blips,"Gibberish blip voice (0.1 to 0.4 s, 8 pitches) for dialogue",8 pitches,Z10,P3,Subtitles carry the words.,todo
+voice_radio_dj_midnight,Voice radio dj midnight,Voice,Spoken lines,"About 20 spoken lines: horde warnings, supply drops, jokes",20 lines,Z10,P3,Script needed first.,todo
