@@ -3,7 +3,7 @@
 # Core dependencies (required)
 requests>=2.31.0
 duckdb>=0.10.0
-PyYAML>=6.0
+PyYAML>=6.0.3
 
 # Optional: For Academic Torrents downloads
 academictorrents>=2.0.0
