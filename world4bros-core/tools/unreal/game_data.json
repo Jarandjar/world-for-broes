@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "units": "metres, seconds, radians (spreadAngle, aimSpread); projectileSpeed in m/s; fireRate in shots per second",
+  "sources": [
+    "src/data/items.ts",
+    "src/data/arenaBots.ts",
+    "src/data/arenaRules.ts"
+  ],
+  "guns": {
+    "slingshot": {
+      "name": "Forked Slingshot",
+      "damage": 8,
+      "ammoItem": "pebbles",
+      "ammoName": "River Pebbles",
+      "ammoPerShot": 1,
+      "aimSystem": "bloom",
+      "projectileSpeed": 16,
+      "maxRange": 16,
+      "baseDamage": 8,
+      "minDamage": 4,
+      "falloffStartDist": 6,
+      "spreadAngle": 0.08,
+      "fireRate": 1.6,
+      "noiseRadius": 3,
+      "bulletColor": "#94a3b8",
+      "bulletRadius": 0.12
+    },
+    "potato_cannon": {
+      "name": "Pressurized Potato Cannon",
+      "damage": 32,
+      "ammoItem": "wild_carrot",
+      "ammoName": "Wild Carrots / Beans",
+      "ammoPerShot": 1,
+      "aimSystem": "arc",
+      "projectileSpeed": 13,
+      "maxRange": 22,
+      "baseDamage": 32,
+      "minDamage": 16,
+      "falloffStartDist": 14,
+      "spreadAngle": 0.05,
+      "fireRate": 0.85,
+      "noiseRadius": 16,
+      "arced": true,
+      "bulletColor": "#ea580c",
+      "bulletRadius": 0.18
+    },
+    "hunting_rifle": {
+      "name": "Precision Hunting Rifle",
+      "damage": 55,
+      "ammoItem": "rifle_ammo",
+      "ammoName": "Rifle Cartridges",
+      "ammoPerShot": 1,
+      "aimSystem": "laser",
+      "projectileSpeed": 45,
+      "maxRange": 48,
+      "baseDamage": 55,
+      "minDamage": 28,
+      "falloffStartDist": 22,
+      "spreadAngle": 0.015,
+      "fireRate": 0.75,
+      "noiseRadius": 28,
+      "penetration": 2,
+      "bulletColor": "#facc15",
+      "bulletRadius": 0.1
+    },
+    "pump_shotgun": {
+      "name": "Heavy Pump Shotgun",
+      "damage": 16,
+      "ammoItem": "shotgun_shells",
+      "ammoName": "12-Gauge Buckshot",
+      "ammoPerShot": 1,
+      "aimSystem": "bloom",
+      "projectileSpeed": 22,
+      "maxRange": 16,
+      "baseDamage": 16,
+      "minDamage": 5,
+      "falloffStartDist": 6,
+      "spreadAngle": 0.24,
+      "fireRate": 0.9,
+      "noiseRadius": 26,
+      "pelletCount": 6,
+      "bulletColor": "#fdba74",
+      "bulletRadius": 0.08
+    },
+    "nailgun_smg": {
+      "name": "Scrap Pneumatic SMG",
+      "damage": 14,
+      "ammoItem": "scrap_nails",
+      "ammoName": "Scrap Nails",
+      "ammoPerShot": 1,
+      "aimSystem": "burst",
+      "projectileSpeed": 24,
+      "maxRange": 20,
+      "baseDamage": 14,
+      "minDamage": 7,
+      "falloffStartDist": 10,
+      "spreadAngle": 0.11,
+      "fireRate": 5,
+      "noiseRadius": 14,
+      "bulletColor": "#94a3b8",
+      "bulletRadius": 0.09
+    },
+    "recon_rifle": {
+      "name": "Recon Marksman DMR",
+      "damage": 68,
+      "ammoItem": "rifle_ammo",
+      "ammoName": "Rifle Cartridges",
+      "ammoPerShot": 1,
+      "aimSystem": "laser",
+      "projectileSpeed": 52,
+      "maxRange": 55,
+      "baseDamage": 68,
+      "minDamage": 40,
+      "falloffStartDist": 30,
+      "spreadAngle": 0.008,
+      "fireRate": 1.2,
+      "noiseRadius": 32,
+      "penetration": 3,
+      "bulletColor": "#38bdf8",
+      "bulletRadius": 0.11
+    },
+    "scrap_nailgun": {
+      "name": "Pneumatic Scrap Nail Driver",
+      "damage": 18,
+      "ammoItem": "scrap_nails",
+      "ammoName": "Scrap Nails",
+      "ammoPerShot": 1,
+      "aimSystem": "bloom",
+      "projectileSpeed": 28,
+      "maxRange": 22,
+      "baseDamage": 18,
+      "minDamage": 9,
+      "falloffStartDist": 12,
+      "spreadAngle": 0.08,
+      "fireRate": 6.5,
+      "noiseRadius": 12,
+      "bulletColor": "#facc15",
+      "bulletRadius": 0.09
+    }
+  },
+  "botLevels": {
+    "scarecrow": {
+      "reaction": 0.9,
+      "sight": 16,
+      "aimSpread": 0.21,
+      "shotInterval": 1.2,
+      "speed": 2.2,
+      "hp": 50
+    },
+    "regular": {
+      "reaction": 0.6,
+      "sight": 20,
+      "aimSpread": 0.12,
+      "shotInterval": 0.8,
+      "speed": 2.8,
+      "hp": 65
+    },
+    "sharp": {
+      "reaction": 0.35,
+      "sight": 25,
+      "aimSpread": 0.06,
+      "shotInterval": 0.55,
+      "speed": 3.1,
+      "hp": 80
+    },
+    "menace": {
+      "reaction": 0.2,
+      "sight": 30,
+      "aimSpread": 0.026,
+      "shotInterval": 0.35,
+      "speed": 3.5,
+      "hp": 100
+    }
+  },
+  "matchRules": {
+    "duel": {
+      "roundTargets": [
+        3,
+        5,
+        7,
+        10
+      ],
+      "defaultRoundTarget": 5,
+      "roundPause": 2,
+      "drawAfter": 30,
+      "matchTimeLimit": 480
+    },
+    "ffa": {
+      "minPlayers": 4,
+      "maxPlayers": 8,
+      "killLimits": [
+        10,
+        15,
+        25
+      ],
+      "defaultKillLimit": 15,
+      "timeLimitsMinutes": [
+        4,
+        6,
+        8
+      ],
+      "defaultTimeLimitMinutes": 6,
+      "respawnDelay": 3,
+      "safeSpawnDistance": 12,
+      "spawnProtection": 2
+    },
+    "pickups": {
+      "pieHeal": 25,
+      "pieRespawn": 20
+    },
+    "loadout": [
+      "hunting_rifle",
+      "pump_shotgun",
+      "nailgun_smg",
+      "potato_cannon",
+      "slingshot"
+    ]
+  }
+}

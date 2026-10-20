@@ -14,7 +14,7 @@ Reference: a hand-inked storybook forest. Heavy ink outlines with a thinner doub
 Top-down rig, facing +x in local space: shadow, legs and feet (stride), torso, belt, back item (pack and bedroll), scarf, arms with hands and held items, head, hair, headwear, face gear. Parts are separate cached sprites so every slot can change independently. All items accept primary, secondary and accent colors. Hair has 10 styles and any color.
 
 ## Status effects (planned, Z26)
-Each effect gets its own icon shape and sound word as well as a colour, drawn in comic form (drips, flames, starbursts, soot). Colours and shapes: World Bible §115 and `docs/STYLE.md` §4.2 at the repo root; target look in `../docs/design/index.html`. Put the colours in `src/render/ink.ts` or effect data, not in logic.
+Each effect gets its own icon shape and sound word as well as a colour, drawn in comic form (drips, flames, starbursts, soot). Colours and shapes: World Bible §115 and `STYLE_BIBLE.md` §4.2; target look in `design/index.html`. Put the colours in `src/render/ink.ts` or effect data, not in logic.
 
 ## Adding art
 Add a drawer to `PARTS` (`src/render/parts.ts`) named `slot:itemId`, then add the item to `src/data/items.ts`. Use the helpers (`ik`, `cap`, `ell`, `rrect`, `lumpy`, `stroke`). Check it in `dev/sheet.html`.

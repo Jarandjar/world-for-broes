@@ -2,6 +2,8 @@
 
 Save as `docs/ARENA.md`. **Claude designed this; Antigravity builds it.** Every screen is drawn on the design canvas "World 4 Bro's: Aim Arena" (https://claude.ai/artifact/8zwMs4m3fmyA2pCy5vgULq): Pick a match, Online lobby, The two arenas, In a match (desktop and phone), Results, Bots and fair play, and Test Bench. Build to those boards. This brief has no code on purpose. Earlier prototypes (`swarm-sim-reference.html`, `terrain-lab.html`) are reference material only; do not copy their code.
 
+> **Update 2026-10-20 (owner decision):** the arena is now built in **Unreal Engine 5.7** (phase Z34) on Unreal's First Person C++ template, Arena Shooter variant (not Lyra; reasons in [UE_PIPELINE.md](UE_PIPELINE.md) §1). Step-by-step to a finished demo: [UE_ARENA_PLAN.md](UE_ARENA_PLAN.md). This file stays the design source (maps, rules, bot levels, Test Bench): maps export from `src/sim/arena.ts`, bot levels from `src/data/arenaBots.ts` and the §4 numbers from `src/data/arenaRules.ts` through `npm run ue:export`. Unreal is not fully deterministic, so the Unreal Test Bench records seeds and the spread of repeated runs (UE_PIPELINE.md §4.5). The tone rule changed too: **mild blood is allowed**, so the "no blood, green puff" line in §4 is replaced by small blood splats and decals.
+
 ## 1. What the owner asked for
 
 1. A place to **aim and shoot**: a 1v1 against a bot, and a free-for-all with several players (bots stand in for real players when testing).

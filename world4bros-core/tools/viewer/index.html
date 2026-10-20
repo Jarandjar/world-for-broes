@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Viewer · World 4 Bro's</title>
+<style>
+  :root { --bg: #1b1d20; --panel: #26292d; --text: #e2ded4; --muted: #a9a294; --accent: #d9b54a; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font: 14px system-ui, sans-serif; }
+  #view { position: fixed; inset: 0; }
+  #ui { position: fixed; left: 12px; right: 12px; bottom: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+        background: var(--panel); border-radius: 10px; padding: 10px 12px; }
+  #ui select, #ui button { background: #34383d; color: var(--text); border: 1px solid #44484e; border-radius: 6px; padding: 6px 10px; font: inherit; min-height: 36px; }
+  #ui button:hover { border-color: var(--accent); }
+  #time { flex: 1 1 200px; accent-color: var(--accent); }
+  #label { color: var(--muted); min-width: 110px; }
+  #help { position: fixed; top: 12px; left: 12px; color: var(--muted); background: rgba(38,41,45,.85); padding: 6px 10px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div id="view"></div>
+<div id="help">Drag to orbit · right-drag to pan · wheel to zoom</div>
+<div id="ui">
+  <select id="model" aria-label="Model"></select>
+  <button id="play">Play</button>
+  <button id="restart">Restart</button>
+  <button id="iso">Iso view</button>
+  <input id="time" type="range" min="0" max="1" step="0.001" value="0" aria-label="Animation time">
+  <span id="label">0.00 s</span>
+</div>
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+// Full URLs: the Vite dev server rewrites bare imports and would ignore the import map above
+// (the add-ons themselves still use the import map to find "three").
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+
+// Models made by tools/blender/*.py; add new .glb files here.
+const MODELS = [
+  { file: 'models/house_destruction.glb', name: 'House: truck through wall, roof collapse' },
+];
+
+const view = document.getElementById('view');
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+view.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#1b1d20');
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 500);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.target.set(0, 1.2, -1.5);
+
+// Same light as STYLE_BIBLE.md §0.2: sun from the north-west (game -X in Blender = here -X), 45° up.
+scene.add(new THREE.HemisphereLight('#c9cfd2', '#47533a', 0.6));
+const sun = new THREE.DirectionalLight('#fff4e0', 2.4);
+sun.position.set(-20, 20, 0);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.bias = -0.0005;
+sun.shadow.normalBias = 0.03;
+Object.assign(sun.shadow.camera, { left: -20, right: 20, top: 20, bottom: -20 });
+scene.add(sun);
+
+const isoView = () => {
+  // Blender camera: 30° elevation, 45° turn (STYLE_BIBLE.md §0.8). Blender Z-up becomes three.js Y-up.
+  const d = 30, e = Math.PI / 6;
+  camera.position.set(controls.target.x + d * Math.cos(e) / Math.SQRT2, controls.target.y + d * Math.sin(e), controls.target.z + d * Math.cos(e) / Math.SQRT2);
+  controls.update();
+};
+isoView();
+
+const loader = new GLTFLoader();
+let current = null, mixer = null, actions = [], clipLen = 0, playing = false;
+// The Blender export may hold one clip per object; all clips play together on one timeline.
+const action = { get time() { return actions[0]?.time ?? 0; } };
+const timeEl = document.getElementById('time'), label = document.getElementById('label'), playBtn = document.getElementById('play');
+
+function load(file) {
+  if (current) scene.remove(current);
+  loader.load(file, (gltf) => {
+    current = gltf.scene;
+    current.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+    scene.add(current);
+    mixer = new THREE.AnimationMixer(current);
+    actions = gltf.animations.map((clip) => {
+      const a = mixer.clipAction(clip);
+      a.setLoop(THREE.LoopOnce); a.clampWhenFinished = true; a.play(); a.paused = true;
+      return a;
+    });
+    clipLen = Math.max(0, ...gltf.animations.map((c) => c.duration));
+    setTime(0);
+  });
+}
+function setTime(t) {
+  if (!mixer || !actions.length) return;
+  for (const a of actions) a.time = Math.min(t, a.getClip().duration);
+  mixer.update(0);
+  timeEl.value = clipLen ? t / clipLen : 0;
+  label.textContent = `${t.toFixed(2)} s`;
+}
+
+const sel = document.getElementById('model');
+for (const m of MODELS) sel.add(new Option(m.name, m.file));
+sel.onchange = () => load(sel.value);
+playBtn.onclick = () => { playing = !playing; playBtn.textContent = playing ? 'Pause' : 'Play'; };
+document.getElementById('restart').onclick = () => { setTime(0); playing = true; playBtn.textContent = 'Pause'; };
+document.getElementById('iso').onclick = isoView;
+timeEl.oninput = () => { playing = false; playBtn.textContent = 'Play'; setTime(Number(timeEl.value) * clipLen); };
+load(MODELS[0].file);
+
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => {
+  const dt = clock.getDelta();
+  if (playing && actions.length) {
+    let t = action.time + dt;
+    if (t >= clipLen) { t = clipLen; playing = false; playBtn.textContent = 'Play'; }
+    setTime(t);
+  }
+  controls.update();
+  renderer.render(scene, camera);
+});
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+</script>
+</body>
+</html>

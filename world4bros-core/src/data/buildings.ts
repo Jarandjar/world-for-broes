@@ -5,7 +5,7 @@ import { hash2 } from '../engine/rng';
 export const BUILDINGS: BuildingDef[] = [
   {
     id: 'cottage', name: 'Cozy Cottage', kind: 'house', weight: 4,
-    minW: 5, maxW: 7, minH: 5, maxH: 6,
+    minW: 7, maxW: 9, minH: 6, maxH: 8,
     roof: 'gable', walls: 'plank', door: 'single', layout: 'split',
     features: ['porch', 'chimney', 'flowerBoxes', 'mailbox', 'fence'],
     colors: { wall: '#b08a63', roof: '#a8432f', floor: '#7a5a3b', trim: '#e9dcc0' },
@@ -19,7 +19,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'log_cabin', name: 'Log Cabin', kind: 'house', weight: 3, zone: 'outskirts',
-    minW: 6, maxW: 8, minH: 5, maxH: 7,
+    minW: 8, maxW: 10, minH: 7, maxH: 9,
     roof: 'hip', walls: 'log', door: 'single', layout: 'split',
     features: ['porch', 'chimney', 'garden', 'fence'],
     colors: { wall: '#7d5836', roof: '#4d6b34', floor: '#5c4028', trim: '#cbb69d' },
@@ -31,7 +31,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'townhouse', name: 'Brick Townhouse', kind: 'house', weight: 3, zone: 'core',
-    minW: 6, maxW: 8, minH: 6, maxH: 8,
+    minW: 7, maxW: 9, minH: 8, maxH: 10,
     roof: 'hip', walls: 'brick', door: 'single', layout: 'split',
     features: ['balcony', 'porch', 'flowerBoxes', 'mailbox', 'fence', 'garden'],
     colors: { wall: '#a85848', roof: '#3d4f6e', floor: '#8a6d4a', trim: '#f1ead8' },
@@ -43,7 +43,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'corner_shop', name: 'Corner Grocery Store', kind: 'shop', weight: 4, zone: 'core',
-    minW: 6, maxW: 9, minH: 5, maxH: 7,
+    minW: 8, maxW: 11, minH: 7, maxH: 9,
     roof: 'gable', walls: 'plaster', door: 'double', layout: 'backroom',
     features: ['awning', 'sign', 'glassFront'],
     colors: { wall: '#9aa8a0', roof: '#2f6f73', floor: '#b9b3a2', trim: '#f4f1e6' },
@@ -61,7 +61,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'auto_garage', name: 'Auto Repair Garage', kind: 'garage', weight: 2,
-    minW: 7, maxW: 10, minH: 6, maxH: 8,
+    minW: 8, maxW: 11, minH: 8, maxH: 10,
     roof: 'tin', walls: 'concrete', door: 'rollup', layout: 'none',
     features: ['sign', 'tarp'],
     colors: { wall: '#7a7d85', roof: '#4b4f58', floor: '#5d6068', trim: '#d9a441' },
@@ -71,7 +71,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'clinic', name: 'Emergency Clinic', kind: 'clinic', weight: 1, zone: 'core',
-    minW: 7, maxW: 9, minH: 6, maxH: 8,
+    minW: 8, maxW: 10, minH: 8, maxH: 10,
     roof: 'hip', walls: 'plaster', door: 'double', layout: 'apartment',
     features: ['sign', 'awning'],
     colors: { wall: '#e3e6e8', roof: '#b83b3b', floor: '#cfd8dc', trim: '#ffffff' },
@@ -85,7 +85,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'tool_shed', name: 'Tool & Storage Shed', kind: 'shed', weight: 4, zone: 'outskirts',
-    minW: 4, maxW: 5, minH: 4, maxH: 5,
+    minW: 5, maxW: 6, minH: 5, maxH: 6,
     roof: 'tin', walls: 'plank', door: 'single', layout: 'none',
     features: ['garden', 'tarp'],
     colors: { wall: '#6e5d4e', roof: '#50565e', floor: '#4a3f35', trim: '#a89882' },
@@ -96,7 +96,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'survivor_shack', name: 'Survivor Barricaded Shack', kind: 'house', weight: 3, zone: 'outskirts',
-    minW: 5, maxW: 7, minH: 4, maxH: 6,
+    minW: 6, maxW: 8, minH: 5, maxH: 7,
     roof: 'broken', walls: 'scrap', door: 'single', layout: 'none',
     features: ['boarded', 'tarp', 'chimney', 'vines'],
     colors: { wall: '#594d42', roof: '#5e4a3c', floor: '#453c35', trim: '#826f5d' },
@@ -107,7 +107,7 @@ export const BUILDINGS: BuildingDef[] = [
   },
   {
     id: 'apartment_block', name: 'Residential Apartments', kind: 'apartment', weight: 2, zone: 'core',
-    minW: 8, maxW: 11, minH: 7, maxH: 9,
+    minW: 9, maxW: 11, minH: 9, maxH: 12,
     roof: 'flat', walls: 'brick', door: 'double', layout: 'apartment',
     features: ['balcony', 'hvac', 'awning'],
     colors: { wall: '#8b5a45', roof: '#2e333d', floor: '#827464', trim: '#e8dcce' },

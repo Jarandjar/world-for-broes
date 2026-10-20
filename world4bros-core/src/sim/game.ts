@@ -3,6 +3,7 @@ import { Events } from '../engine/events';
 import { makeRng, type Rng } from '../engine/rng';
 import { clamp, damp, lerpAngle } from '../engine/math';
 import { buildContent, type ContentPack } from '../data/content';
+import { ARENA_BOT_LEVELS, type ArenaBotLevel } from '../data/arenaBots';
 import type { Content, Id, Slot, StructureDef, ToolKind, AnimalKind, AttachmentSlot, GunAttachments, VisualInfoMods, GunDef } from '../data/schema';
 import { Comp, newAnim } from './components';
 import { GameWorld, type ObjectMod } from './world';
@@ -53,6 +54,7 @@ export interface SimInput {
   shootPressed?: boolean;
 }
 export const NO_INPUT: SimInput = { move: { x: 0, y: 0 }, sprint: false, actionPressed: false, interactPressed: false };
+export type TownDistrict = 'plaza' | 'residential' | 'commercial' | 'industrial';
 
 export type Target =
   | { kind: 'object'; id: string; obj: WorldObject; prompt: string; key: 'SPACE'; ok: boolean; need?: ToolKind }
@@ -130,11 +132,12 @@ export class Game {
     this.spawnNpcs(3);
     this.spawnShootingRangeTargets();
     this.revealArea(this.world.spawn.x, this.world.spawn.y, 52);
+    const starterSlots = this.townCompanionSlots('plaza');
     if (spawnStarterVehicle) {
-      this.spawnVehicle(this.world.spawn.x + 1.6, this.world.spawn.y + 0.4);
+      this.spawnVehicle(starterSlots.vehicle.x, starterSlots.vehicle.y);
     }
     if (spawnStarterPet) {
-      this.spawnPet(this.world.spawn.x - 0.9, this.world.spawn.y + 0.6, 'Barkley', 'hunting_dog');
+      this.spawnPet(starterSlots.pet.x, starterSlots.pet.y, 'Barkley', 'hunting_dog');
     }
     if (spawnStarterAnimals) {
       this.spawnAnimal(this.world.spawn.x + 3.2, this.world.spawn.y + 1.8, 'cow', 'Daisy');
@@ -164,8 +167,8 @@ export class Game {
   // ---------------------------------------------------------------- spawning
   private spawnPlayer(): Entity {
     const e = this.ecs.create();
-    const sp = this.world.spawn;
-    this.ecs.add(e, Comp.Transform, { x: sp.x, y: sp.y, angle: 0 });
+    const sp = this.townAnchor('plaza');
+    this.ecs.add(e, Comp.Transform, { x: sp.x, y: sp.y, angle: sp.angle });
     this.ecs.add(e, Comp.Body, { radius: 0.28, speed: 3.2, vx: 0, vy: 0 });
     this.ecs.add(e, Comp.Character, { name: 'You', look: defaultLook(), anim: newAnim() });
     this.ecs.add(e, Comp.Needs, { hunger: 85, health: 100, sanity: 100, maxHunger: 100, maxHealth: 100, maxSanity: 100, darkTimer: 0 });
@@ -211,6 +214,22 @@ export class Game {
   aimActive = false;
   aimWorld: { x: number; y: number } | null = null;
   get shootingRangePos() { return { x: this.world.spawn.x - 23.5, y: this.world.spawn.y - 12 }; }
+
+  private townAnchor(district: TownDistrict = 'plaza'): { x: number; y: number; angle: number } {
+    const sp = this.world.spawn;
+    if (district === 'commercial') return { x: sp.x + 16, y: sp.y, angle: Math.PI };
+    if (district === 'industrial') return { x: sp.x - 16, y: sp.y, angle: 0 };
+    if (district === 'residential') return { x: sp.x, y: sp.y + 16, angle: -Math.PI / 2 };
+    return { x: sp.x, y: sp.y, angle: 0 };
+  }
+
+  private townCompanionSlots(district: TownDistrict = 'plaza'): { vehicle: { x: number; y: number; angle: number }; pet: { x: number; y: number; angle: number } } {
+    const a = this.townAnchor(district);
+    return {
+      vehicle: { x: a.x + 1.9, y: a.y + 0.3, angle: a.angle },
+      pet: { x: a.x - 1.1, y: a.y + 0.8, angle: a.angle },
+    };
+  }
 
   gunMods: Record<string, GunAttachments> = {
     hunting_rifle: { optic: 'optic_rangefinder', muzzle: null, underbarrel: null, magazine: null, goofy: null },
@@ -865,7 +884,7 @@ export class Game {
         }
       }
 
-      // Detection: player or nearby wildlife
+      // Detection: player, nearby wildlife, or raider bots
       let nearestTarget = this.player;
       let nearestDist = Math.hypot(pt.x - zt.x, pt.y - zt.y);
 
@@ -875,6 +894,15 @@ export class Game {
         if (ad < nearestDist) {
           nearestDist = ad;
           nearestTarget = ae;
+        }
+      }
+
+      for (const re of this.ecs.query(Comp.Raider, Comp.Transform)) {
+        const rt = this.ecs.get(re, Comp.Transform)!;
+        const rd = Math.hypot(rt.x - zt.x, rt.y - zt.y);
+        if (rd < nearestDist) {
+          nearestDist = rd;
+          nearestTarget = re;
         }
       }
 
@@ -908,6 +936,19 @@ export class Game {
               const a = this.ecs.get(z.target, Comp.Animal)!;
               this.damageAnimal(z.target, z.def.damage);
               this.events.emit('toast', { text: `🧟 ${z.def.name} attacked ${a.name}!` });
+            } else if (this.ecs.has(z.target, Comp.Raider)) {
+              const r = this.ecs.get(z.target, Comp.Raider)!;
+              const ch = this.ecs.get(z.target, Comp.Character);
+              r.hp = Math.max(0, r.hp - z.def.damage);
+              if (ch) ch.anim.hitFlash = 0.35;
+              this.events.emit('hit', { kind: 'flesh', x: targetT.x, y: targetT.y });
+              this.events.emit('toast', { text: `🧟 ${z.def.name} mauled ${ch?.name ?? 'Bot'}! (-${z.def.damage} HP)` });
+              if (r.hp <= 0) {
+                this.events.emit('toast', { text: `💀 ${ch?.name ?? 'Bot'} was killed by ${z.def.name}!` });
+                this.ecs.destroy(z.target);
+                z.target = null;
+                z.state = 'idle';
+              }
             } else {
               const drivingVeh = this.drivingVehicle();
               if (drivingVeh) {
@@ -1085,17 +1126,31 @@ export class Game {
       if (r.reactionTimer > 0) r.reactionTimer -= dt;
 
       // Find target:
-      // - Friendly bots focus zombies
-      // - Hostile raiders prefer player but can switch to closer zombies
+      // - If in active arena or hostile: bots can target player, other bots (cross-fire / free-for-all), and zombies!
+      // - Friendly/patrol bots outside arena prioritize zombies
       let targetPos: { x: number; y: number } | null = null;
       const pt = this.playerT;
       let nearestDist = Number.POSITIVE_INFINITY;
 
-      if (r.team !== 'bot') {
-        nearestDist = Math.hypot(pt.x - rt.x, pt.y - rt.y);
+      // 1. Target other bots / raiders (arena bots engage other bots in free-for-all)
+      for (const otherRe of this.ecs.query(Comp.Raider, Comp.Transform)) {
+        if (otherRe === re) continue;
+        const otherT = this.ecs.get(otherRe, Comp.Transform)!;
+        const distOther = Math.hypot(otherT.x - rt.x, otherT.y - rt.y);
+        if (distOther < r.sight && distOther < nearestDist) {
+          nearestDist = distOther;
+          targetPos = { x: otherT.x, y: otherT.y };
+        }
+      }
+
+      // 2. Target player if hostile or inside active combat arena
+      const distPlayer = Math.hypot(pt.x - rt.x, pt.y - rt.y);
+      if ((r.team !== 'bot' || this.activeArena) && distPlayer < r.sight && distPlayer < nearestDist) {
+        nearestDist = distPlayer;
         targetPos = { x: pt.x, y: pt.y };
       }
 
+      // 3. Target zombies (high priority survival defense)
       for (const ze of this.ecs.query(Comp.Zombie, Comp.Transform)) {
         const zt = this.ecs.get(ze, Comp.Transform)!;
         const dz = Math.hypot(zt.x - rt.x, zt.y - rt.y);
@@ -1850,7 +1905,7 @@ export class Game {
   }
 
   /** Spawns an armed combat bot inside the arena */
-  spawnArenaBot(level: 'scarecrow' | 'regular' | 'sharp' | 'menace' = 'regular', weapon = 'nailgun_smg', spawnIndex = 1): Entity | null {
+  spawnArenaBot(level: ArenaBotLevel = 'regular', weapon = 'nailgun_smg', spawnIndex = 1): Entity | null {
     if (!this.activeArena) this.teleportToArena('duel_pit');
     const ar = this.activeArena!;
     const def = ar.def;
@@ -1868,12 +1923,7 @@ export class Game {
     botLook.outfit.mainHand = { item: weapon as never };
     this.ecs.add(e, Comp.Character, { name: `Bot (${level.toUpperCase()})`, look: botLook, anim: newAnim() });
 
-    const specs = {
-      scarecrow: { sight: 16, aimSpread: 0.21, shotInterval: 1.2, speed: 2.2, hp: 50 },
-      regular: { sight: 20, aimSpread: 0.12, shotInterval: 0.8, speed: 2.8, hp: 65 },
-      sharp: { sight: 25, aimSpread: 0.06, shotInterval: 0.55, speed: 3.1, hp: 80 },
-      menace: { sight: 30, aimSpread: 0.026, shotInterval: 0.35, speed: 3.5, hp: 100 },
-    }[level];
+    const specs = ARENA_BOT_LEVELS[level];
 
     this.ecs.add(e, Comp.Raider, {
       kind: weapon === 'pump_shotgun' ? 'heavy' : weapon === 'hunting_rifle' ? 'marksman' : 'raider',
@@ -1887,7 +1937,7 @@ export class Game {
       target: this.player,
       state: 'engage',
       cooldown: 0.5,
-      reactionTimer: level === 'scarecrow' ? 0.9 : level === 'regular' ? 0.6 : level === 'sharp' ? 0.35 : 0.2,
+      reactionTimer: specs.reaction,
       heardPos: null,
       heardTimer: 0,
       coverPos: null,
@@ -2281,7 +2331,10 @@ export class Game {
     if (n.hunger <= 0) n.health -= dt * 0.8;
     else if (n.hunger > 40 && !dark) n.health = clamp(n.health + dt * 0.25, 0, n.maxHealth);
     if (n.health <= 0) {
-      const sp = this.world.spawn; t.x = sp.x; t.y = sp.y;
+      const plaza = this.townAnchor('plaza');
+      t.x = plaza.x;
+      t.y = plaza.y;
+      t.angle = plaza.angle;
       n.health = n.maxHealth * 0.6; n.hunger = 60; n.sanity = 70; n.darkTimer = 0;
       this.events.emit('death', {}); this.events.emit('toast', { text: 'You wake up in the town' });
     }
@@ -2325,23 +2378,34 @@ export class Game {
   }
 
   teleportToTown(): void {
-    const sp = this.world.spawn;
+    this.teleportToTownDistrict('plaza');
+  }
+
+  teleportToTownDistrict(district: TownDistrict = 'plaza'): void {
+    const a = this.townAnchor(district);
+    const slots = this.townCompanionSlots(district);
+
     const t = this.playerT;
-    t.x = sp.x;
-    t.y = sp.y;
+    t.x = a.x;
+    t.y = a.y;
+    t.angle = a.angle;
+
     for (const ve of this.ecs.query(Comp.Vehicle, Comp.Transform)) {
       const vt = this.ecs.get(ve, Comp.Transform)!;
-      vt.x = sp.x + 1.8;
-      vt.y = sp.y + 0.4;
-      vt.angle = 0;
+      vt.x = slots.vehicle.x;
+      vt.y = slots.vehicle.y;
+      vt.angle = slots.vehicle.angle;
     }
     for (const pe of this.ecs.query(Comp.Pet, Comp.Transform)) {
       const pt = this.ecs.get(pe, Comp.Transform)!;
-      pt.x = sp.x - 1.0;
-      pt.y = sp.y + 0.6;
+      pt.x = slots.pet.x;
+      pt.y = slots.pet.y;
+      pt.angle = slots.pet.angle;
     }
-    this.revealArea(sp.x, sp.y, 60);
-    this.events.emit('toast', { text: 'Arrived at Abandoned Town' });
+
+    this.revealArea(a.x, a.y, district === 'plaza' ? 60 : 48);
+    const label = district === 'plaza' ? 'Town Plaza' : district === 'residential' ? 'Residential Quarter' : district === 'commercial' ? 'Commercial High Street' : 'Industrial Auto Garage';
+    this.events.emit('toast', { text: `Arrived at ${label}` });
   }
 
   private updateAutomation(dt: number): void {
@@ -2758,7 +2822,8 @@ export class Game {
         vt.angle = vData.angle;
       }
     } else {
-      g.spawnVehicle(g.world.spawn.x + 1.6, g.world.spawn.y + 0.4);
+      const slots = g.townCompanionSlots('plaza');
+      g.spawnVehicle(slots.vehicle.x, slots.vehicle.y);
     }
     if (data.zombies && data.zombies.length > 0) {
       for (const zData of data.zombies) {
@@ -2778,7 +2843,8 @@ export class Game {
         pt.angle = pData.angle;
       }
     } else if (data.pets === undefined) {
-      g.spawnPet(g.world.spawn.x - 0.9, g.world.spawn.y + 0.6, 'Barkley', 'hunting_dog');
+      const slots = g.townCompanionSlots('plaza');
+      g.spawnPet(slots.pet.x, slots.pet.y, 'Barkley', 'hunting_dog');
     }
     if (data.animals && data.animals.length > 0) {
       for (const aData of data.animals) {

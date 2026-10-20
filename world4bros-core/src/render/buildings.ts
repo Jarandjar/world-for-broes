@@ -1,6 +1,7 @@
 import type { Content, BuildingDef, BuildingFeature } from '../data/schema';
 import { buildingColors } from '../data/buildings';
 import { WALL_T, DOOR_W, wallRects, insideBuilding, type Building } from '../sim/worldgen';
+import { hash2 } from '../engine/rng';
 import { SpriteCache, blit } from './sprites';
 import { type G, INK, TAU, alpha, shade, wash, poly, rrect, ell, stroke } from './ink';
 
@@ -51,7 +52,9 @@ export class BuildingRenderer {
     this.roofAlpha.set(b.id, a);
     if (a <= 0.02) return;
     const p = Math.min(ppu, MAX_PPU);
-    const spr = this.cache.get(this.key(b, d.colors, 'roof'), p, -1.2, -1.2, b.w + 1.2, b.h + 1.2, (gg) => paintRoof(gg, b, d));
+    const tarp = has(d, 'tarp') ? tinRoofTarp(b) : null;
+    const roofKey = tarp ? `roof:tarp${tarp.x.toFixed(2)},${tarp.y.toFixed(2)},${tarp.w.toFixed(2)},${tarp.rot.toFixed(2)}` : 'roof';
+    const spr = this.cache.get(this.key(b, d.colors, roofKey), p, -1.2, -1.2, b.w + 1.2, b.h + 1.2, (gg) => paintRoof(gg, b, d));
     blit(g, spr, b.x, b.y, 0, 1, 1, a);
   }
 }
@@ -925,10 +928,9 @@ function paintRoof(g: G, b: Building, d: BuildingDef): void {
       g.fillRect(rx - 0.06, -o + 0.2, 0.12, h * 0.85);
     }
 
-    // Emergency poly-tarp patch on weathered tin roofs
-    if (has(d, 'tarp')) {
-      paintRoofTarp(g, w * 0.55, h * 0.45, 1.8, 1.4);
-    }
+    // Emergency poly-tarp patch on some weathered tin roofs
+    const tarp = has(d, 'tarp') ? tinRoofTarp(b) : null;
+    if (tarp) paintRoofTarp(g, tarp.x, tarp.y, tarp.w, tarp.h, tarp.rot);
 
   } else if (d.roof === 'flat') {
     // Raised parapet wall with metal flashing and gravel membrane
@@ -1001,8 +1003,8 @@ function paintRoof(g: G, b: Building, d: BuildingDef): void {
     }
     g.stroke();
 
-    // Blue emergency ripstop poly-tarp tied across half the hole
-    paintRoofTarp(g, w / 2 - 0.4, h / 2 - 0.3, 1.9, 1.5);
+    // Faded poly-tarp tied across half the hole
+    paintRoofTarp(g, w / 2 - 0.4, h / 2 - 0.3, 1.9, 1.5, 0.12);
 
   } else if (d.roof === 'hip') {
     // 4-way polygonal Hip Roof with distinct facet lighting
@@ -1258,35 +1260,45 @@ function paintChimney(g: G, chx: number, chy: number, trimCol: string): void {
   g.beginPath(); g.arc(chx - 0.08, chy + 0.68, 0.08, 0, TAU); g.fill();
 }
 
-/** Rooftop emergency blue poly-tarp tied down by cords and concrete blocks. */
-function paintRoofTarp(g: G, x: number, y: number, tw: number, th: number): void {
-  // Blue tarp body
-  g.fillStyle = '#2563eb';
-  g.fillRect(x, y, tw, th);
+/** Faded tarp colours: weathered enough to read as a patch, not a missing texture. */
+const TARP = { body: '#5d7891', fold: '#4a6278', hem: '#3b4f62', rope: '#b9a57a', block: '#8a8f96' };
 
-  // Ripstop woven grid
-  g.strokeStyle = alpha('#1d4ed8', 0.6); g.lineWidth = 0.015;
+/** Where (if anywhere) a tin roof carries a tarp: about 1 roof in 6, placed and turned by the building's position. */
+export function tinRoofTarp(b: Building): { x: number; y: number; w: number; h: number; rot: number } | null {
+  const hv = hash2(0x7a29, b.x, b.y);
+  if (hv % 6 !== 0) return null;
+  const tw = 1.3 + ((hv >>> 3) % 5) * 0.12, th = 1.0 + ((hv >>> 6) % 4) * 0.12;
+  const fx = 0.15 + ((hv >>> 9) % 7) / 10, fy = 0.15 + ((hv >>> 12) % 7) / 10;
+  return { x: (b.w - tw) * fx, y: (b.h - th) * fy, w: tw, h: th, rot: (((hv >>> 15) % 9) - 4) * 0.06 };
+}
+
+/** Rooftop emergency poly-tarp: faded, creased, held down at the corners. */
+function paintRoofTarp(g: G, x: number, y: number, tw: number, th: number, rot = 0): void {
+  g.save();
+  g.translate(x + tw / 2, y + th / 2); g.rotate(rot); g.translate(-tw / 2, -th / 2);
+  g.fillStyle = 'rgba(8,9,12,0.22)';
+  g.fillRect(0.06, 0.08, tw, th);
+  g.fillStyle = TARP.body;
+  g.fillRect(0, 0, tw, th);
+  // Soft creases instead of a bright grid
+  g.strokeStyle = alpha(TARP.fold, 0.7); g.lineWidth = 0.03;
   g.beginPath();
-  for (let gx = x + 0.18; gx < x + tw; gx += 0.18) { g.moveTo(gx, y); g.lineTo(gx, y + th); }
-  for (let gy = y + 0.18; gy < y + th; gy += 0.18) { g.moveTo(x, gy); g.lineTo(x + tw, gy); }
+  g.moveTo(tw * 0.3, 0); g.lineTo(tw * 0.38, th);
+  g.moveTo(tw * 0.68, 0); g.lineTo(tw * 0.62, th);
   g.stroke();
-
-  // Grommet hem border
-  g.strokeStyle = '#1e40af'; g.lineWidth = 0.035; g.strokeRect(x, y, tw, th);
-
-  // Yellow tie-down ropes
-  g.strokeStyle = '#facc15'; g.lineWidth = 0.022;
+  g.strokeStyle = TARP.hem; g.lineWidth = 0.03; g.strokeRect(0, 0, tw, th);
+  // Thin tie-downs along the edges only
+  g.strokeStyle = alpha(TARP.rope, 0.8); g.lineWidth = 0.014;
   g.beginPath();
-  g.moveTo(x, y); g.lineTo(x + tw, y + th);
-  g.moveTo(x + tw, y); g.lineTo(x, y + th);
+  g.moveTo(-0.15, th * 0.25); g.lineTo(tw + 0.15, th * 0.25);
+  g.moveTo(-0.15, th * 0.75); g.lineTo(tw + 0.15, th * 0.75);
   g.stroke();
-
-  // Concrete cinderblocks holding down corners
-  g.fillStyle = '#94a3b8'; g.strokeStyle = INK; g.lineWidth = 0.02;
-  for (const [bx, by] of [[x - 0.06, y - 0.06], [x + tw - 0.18, y - 0.06], [x - 0.06, y + th - 0.14], [x + tw - 0.18, y + th - 0.14]]) {
-    g.fillRect(bx, by, 0.24, 0.16);
-    g.strokeRect(bx, by, 0.24, 0.16);
+  g.fillStyle = TARP.block; g.strokeStyle = INK; g.lineWidth = 0.02;
+  for (const [bx, by] of [[-0.05, -0.05], [tw - 0.17, th - 0.13]]) {
+    g.fillRect(bx, by, 0.22, 0.15);
+    g.strokeRect(bx, by, 0.22, 0.15);
   }
+  g.restore();
 }
 
 /** Decorative wrought-iron rooftop weather vane. */

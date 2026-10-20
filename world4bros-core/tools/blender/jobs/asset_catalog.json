@@ -1,0 +1,3655 @@
+{
+  "version": 1,
+  "generated": "npm run art:catalog",
+  "count": 456,
+  "assets": [
+    {
+      "category": "Ground tiles",
+      "id": "grass",
+      "name": "grass",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "moss",
+      "name": "moss",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "dirt",
+      "name": "dirt",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "needles",
+      "name": "needles",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "mud",
+      "name": "mud",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "rock",
+      "name": "rock",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "sand",
+      "name": "sand",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "snow",
+      "name": "snow",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "ash",
+      "name": "ash",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "shallow",
+      "name": "shallow",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Ground tiles",
+      "id": "deep",
+      "name": "deep",
+      "make": "base diamond tile ×4 variants + 16/47 blob transitions + detail decals",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "pine",
+      "name": "Pine Tree",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "snow_pine",
+      "name": "Snowy Pine",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "oak",
+      "name": "Oak Tree",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "dead_tree",
+      "name": "Dead Tree",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "bush",
+      "name": "Bush",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "done"
+    },
+    {
+      "category": "Vegetation",
+      "id": "berry_bush",
+      "name": "Berry Bush",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "Rocks & resources",
+      "id": "rock",
+      "name": "Rock",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Blender procedural rock (displace + decimate) or Poly Haven CC0 scan",
+      "status": "placeholder"
+    },
+    {
+      "category": "Rocks & resources",
+      "id": "boulder",
+      "name": "Boulder",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Blender procedural rock (displace + decimate) or Poly Haven CC0 scan",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "log",
+      "name": "Fallen Log",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "stump",
+      "name": "Stump",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "mushroom",
+      "name": "Mushrooms",
+      "make": "1 view",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "reeds",
+      "name": "Reeds",
+      "make": "1 view",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "cactus",
+      "name": "Cactus",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "crate",
+      "name": "Old Crate",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "tent",
+      "name": "Abandoned Tent",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "fuel_pump",
+      "name": "Fuel Pump",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "radio_tower",
+      "name": "Radio Tower",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "sandbags",
+      "name": "Sandbag Barrier",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "wrecked_car",
+      "name": "Wrecked Car",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "Rocks & resources",
+      "id": "iron_node",
+      "name": "Iron Mineral Node",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Blender procedural rock (displace + decimate) or Poly Haven CC0 scan",
+      "status": "placeholder"
+    },
+    {
+      "category": "Rocks & resources",
+      "id": "copper_node",
+      "name": "Copper Mineral Node",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Blender procedural rock (displace + decimate) or Poly Haven CC0 scan",
+      "status": "placeholder"
+    },
+    {
+      "category": "Rocks & resources",
+      "id": "coal_node",
+      "name": "Coal Seam",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Blender procedural rock (displace + decimate) or Poly Haven CC0 scan",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "oil_seam",
+      "name": "Crude Oil Seam",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "Rocks & resources",
+      "id": "crystal_geode",
+      "name": "Glow Crystal Geode",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Blender procedural rock (displace + decimate) or Poly Haven CC0 scan",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "town_fountain",
+      "name": "Town Square Fountain",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "street_light",
+      "name": "Street Lamppost",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "done"
+    },
+    {
+      "category": "World props",
+      "id": "guardrail",
+      "name": "Highway Guardrail",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "picket_fence",
+      "name": "Picket Fence",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "park_bench",
+      "name": "Park Bench",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "fire_hydrant",
+      "name": "Fire Hydrant",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "dumpster",
+      "name": "Alley Dumpster",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "done"
+    },
+    {
+      "category": "World props",
+      "id": "traffic_cone",
+      "name": "Traffic Warning Cone",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "target_dummy",
+      "name": "Ballistic Target Dummy",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "steel_target",
+      "name": "Steel Pop-Up Plate",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "slime_drum",
+      "name": "Bio-Slime Pressure Drum",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "scrap_wall",
+      "name": "Corrugated Scrap Barricade",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "tactical_shield",
+      "name": "Aegis Deploy Shield",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "stop_sign",
+      "name": "Stop Sign",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vegetation",
+      "id": "street_sign",
+      "name": "Street Name Sign",
+      "make": "trunk + canopy (canopy fades when behind), wind-sway frames, cut/stump state",
+      "source": "Sapling Tree Gen or tree-gen in Blender (tool GPL, output ours) → trunk + canopy split",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "bus_stop",
+      "name": "Bus Stop Shelter",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "trash_can",
+      "name": "Trash Can",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "done"
+    },
+    {
+      "category": "World props",
+      "id": "power_pole",
+      "name": "Power Pole",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "abandoned_car",
+      "name": "Abandoned Car",
+      "make": "1 view, states: intact / damaged / destroyed",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "World props",
+      "id": "litter",
+      "name": "Street Litter",
+      "make": "1 view",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "claim_flag",
+      "name": "Claim Flag",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "campfire",
+      "name": "Campfire",
+      "make": "4 rotations, states: intact / damaged / destroyed, light sprite",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "wall_wood",
+      "name": "Wooden Wall",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "door_wood",
+      "name": "Wooden Door",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "floor_wood",
+      "name": "Wooden Floor",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Player buildables",
+      "id": "chest",
+      "name": "Storage Chest",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "bed",
+      "name": "Bedroll Bed",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Player buildables",
+      "id": "workbench",
+      "name": "Workbench",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "torch_post",
+      "name": "Torch Post",
+      "make": "4 rotations, states: intact / damaged / destroyed, light sprite",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "conveyor_belt",
+      "name": "Conveyor Belt",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "spring_inserter",
+      "name": "Spring Inserter",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "burner_drill",
+      "name": "Burner Mining Drill",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "stone_furnace",
+      "name": "Smelting Furnace",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "grand_banquet_table",
+      "name": "Grand Dining Table",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "medical_triage_cot",
+      "name": "Medical Triage Cot",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "horseshoe_pin_post",
+      "name": "Horseshoe Pin Game",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "colony_overseer_desk",
+      "name": "Colony Overseer Desk",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "belt_bolter",
+      "name": "Belt-Fed Bolter Turret",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "flame_turret",
+      "name": "Pressurized Flame Turret",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "zap_fence",
+      "name": "Electrified Zap-Fence",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "mallet_catapult",
+      "name": "Spring Mallet Catapult",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "repair_drone_bay",
+      "name": "Autonomous Repair Drone Bay",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "clan_territory_totem",
+      "name": "Clan Territory Totem",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Player buildables",
+      "id": "gunsmith_bench",
+      "name": "Gunsmith Mod Workbench",
+      "make": "4 rotations, states: intact / damaged / destroyed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "cottage",
+      "name": "Cozy Cottage",
+      "make": "kit pieces in this style; roof gable, walls plank; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "log_cabin",
+      "name": "Log Cabin",
+      "make": "kit pieces in this style; roof hip, walls log; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "townhouse",
+      "name": "Brick Townhouse",
+      "make": "kit pieces in this style; roof hip, walls brick; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "corner_shop",
+      "name": "Corner Grocery Store",
+      "make": "kit pieces in this style; roof gable, walls plaster; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "supermarket",
+      "name": "Supermarket Megastore",
+      "make": "kit pieces in this style; roof flat, walls concrete; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "auto_garage",
+      "name": "Auto Repair Garage",
+      "make": "kit pieces in this style; roof tin, walls concrete; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "clinic",
+      "name": "Emergency Clinic",
+      "make": "kit pieces in this style; roof hip, walls plaster; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "warehouse",
+      "name": "Industrial Warehouse",
+      "make": "kit pieces in this style; roof tin, walls scrap; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "tool_shed",
+      "name": "Tool & Storage Shed",
+      "make": "kit pieces in this style; roof tin, walls plank; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "survivor_shack",
+      "name": "Survivor Barricaded Shack",
+      "make": "kit pieces in this style; roof broken, walls scrap; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Building types (assembled from the snap kit)",
+      "id": "apartment_block",
+      "name": "Residential Apartments",
+      "make": "kit pieces in this style; roof flat, walls brick; interior room templates",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "rusty_hatchback",
+      "name": "Rusty Hatchback",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "clown_car",
+      "name": "Clown Car of Wonders",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "ice_cream_truck",
+      "name": "Chilly Chimes Ice Cream Truck",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "golf_cart",
+      "name": "Golf Cart Deluxe",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "bathtub_buggy",
+      "name": "Bathtub Buggy",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "hot_dog_van",
+      "name": "Frankfurter Cruiser",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Vehicles",
+      "id": "tesla_roadster",
+      "name": "Cyber Roadster",
+      "make": "16 directions × clean/dented/wrecked; part layers (doors, hood, wheels, glass, lights)",
+      "source": "Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "walker",
+      "name": "Shambling Infected",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "runner",
+      "name": "Frenzied Sprinter",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "brute",
+      "name": "Armored Hulking Brute",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "sapper",
+      "name": "Powder-Keg Sapper",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "spitter",
+      "name": "Corrosive Acid Spitter",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "burrower",
+      "name": "Tunnel Burrower",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "screamer",
+      "name": "Siren Screamer Queen",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Zombies",
+      "id": "goliath",
+      "name": "Highway Goliath Demolisher",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "cow",
+      "name": "Spotted Meadow Cow",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "sheep",
+      "name": "Fluffy Cloud Sheep",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "pig",
+      "name": "Mud Snout Pig",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "chicken",
+      "name": "Clucking Farm Hen",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "deer",
+      "name": "Forest Antlered Deer",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "rabbit",
+      "name": "Hop-Bun Hare",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Animals",
+      "id": "goose",
+      "name": "Mischief Honk Goose",
+      "make": "8 directions × idle, walk, run, eat, hit, die",
+      "source": "Quaternius animated animals (CC0, check pack) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "wood",
+      "name": "Wood",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "twig",
+      "name": "Twig",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "stone",
+      "name": "Stone",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "flint",
+      "name": "Flint",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "pine_cone",
+      "name": "Pine Cone",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "acorn",
+      "name": "Acorn",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "fiber",
+      "name": "Plant Fiber",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "scrap_metal",
+      "name": "Scrap Metal",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "cloth",
+      "name": "Cloth",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "fuel_canister",
+      "name": "Fuel Canister",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "car_battery",
+      "name": "Car Battery",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "scrap_tire",
+      "name": "Scrap Tire",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "iron_ore",
+      "name": "Iron Ore",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "copper_ore",
+      "name": "Copper Ore",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "coal_chunk",
+      "name": "Coal Chunk",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "crude_oil_canister",
+      "name": "Crude Oil",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "energetic_crystal",
+      "name": "Energetic Crystal",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "iron_plate",
+      "name": "Iron Plate",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "copper_wire",
+      "name": "Copper Wire",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "heavy_gear",
+      "name": "Heavy Gear",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "conveyor_belt",
+      "name": "Conveyor Belt",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "spring_inserter",
+      "name": "Spring Inserter",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "burner_drill",
+      "name": "Burner Drill",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "stone_furnace",
+      "name": "Smelting Furnace",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "turret_ammo",
+      "name": "Turret Bolt Ammo",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "flame_fuel",
+      "name": "Pressurized Flame Fuel",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "c4_plunger_charge",
+      "name": "C4 Plunger Breaching Charge",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "repair_drone_kit",
+      "name": "Micro Repair Drone",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "clan_totem_crest",
+      "name": "Faction Clan Crest",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "bandage",
+      "name": "Bandage",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "rotten_meat",
+      "name": "Rotten Meat",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "berries",
+      "name": "Berries",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "mushroom",
+      "name": "Mushroom",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "cactus_pulp",
+      "name": "Cactus Pulp",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "jerky",
+      "name": "Mushroom Jerky",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "canned_beans",
+      "name": "Canned Beans",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "wild_carrot",
+      "name": "Wild Carrot",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "hiccup_berries",
+      "name": "Hiccup Berries",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "giggle_mushroom",
+      "name": "Giggle Mushroom",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "chili_of_regret",
+      "name": "Chili of Regret",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "pancake_stack",
+      "name": "Fluffy Pancake Stack",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "rainbow_soup",
+      "name": "Iridescent Rainbow Soup",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "crispy_sock_chips",
+      "name": "Crispy Sock Chips",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "bubble_tea_of_buoyancy",
+      "name": "Bubble Tea of Buoyancy",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "antidote_gel",
+      "name": "Bio-Antidote Gel",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "raw_beef",
+      "name": "Raw Prime Beef",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "raw_mutton",
+      "name": "Raw Mutton",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "raw_pork",
+      "name": "Raw Pork Chop",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "raw_poultry",
+      "name": "Raw Poultry",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "raw_venison",
+      "name": "Raw Venison Steak",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "rabbit_meat",
+      "name": "Tender Rabbit Cut",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "leather",
+      "name": "Tanned Leather Hide",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "wool_bundle",
+      "name": "Fluffy Wool Bundle",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "feather",
+      "name": "Soft Down Feather",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "deer_antlers",
+      "name": "Branching Antlers",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "lucky_rabbit_foot",
+      "name": "Lucky Rabbit Foot Charm",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "animal_feed",
+      "name": "Golden Grain Feed",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "fresh_milk",
+      "name": "Fresh Creamy Milk",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "fresh_egg",
+      "name": "Fresh Farm Egg",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "cooked_steak",
+      "name": "Sizzling Beef Steak",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "cooked_bacon",
+      "name": "Crispy Country Bacon",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "roast_chicken",
+      "name": "Golden Roast Chicken",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "cooked_venison",
+      "name": "Campfire Roast Venison",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: food",
+      "id": "fluffy_omelet",
+      "name": "Country Herb Omelet",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "pebbles",
+      "name": "Smooth River Pebbles",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "rifle_ammo",
+      "name": "Precision Rifle Cartridges",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "shotgun_shells",
+      "name": "Heavy 12-Gauge Buckshot",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "scrap_nails",
+      "name": "Box of Scrap Nails",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "foam_darts",
+      "name": "Foam Suction Darts",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "cream_pie",
+      "name": "Custard Cream Pie",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "water_balloon",
+      "name": "Water Balloon",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "road_flare",
+      "name": "Handheld Road Flare",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "stink_sock_bomb",
+      "name": "Stink Sock Bomb",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "whoopee_cushion_trap",
+      "name": "Whoopee Cushion Trap",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: material",
+      "id": "googly_eyes",
+      "name": "Self-Adhesive Googly Eyes",
+      "make": "inventory icon + ground drop sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "axe",
+      "name": "Axe",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "pickaxe",
+      "name": "Pickaxe",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "shovel",
+      "name": "Shovel",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "torch",
+      "name": "Torch",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "nail_bat",
+      "name": "Nail Bat",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "crowbar",
+      "name": "Crowbar",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "rubber_chicken",
+      "name": "Rubber Chicken",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "fishing_rod",
+      "name": "Fishing Rod",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "pool_noodle_of_justice",
+      "name": "Pool Noodle of Justice",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "chainsaw_of_regret",
+      "name": "Chainsaw of Regret",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "traffic_sign_axe",
+      "name": "Traffic Sign Great-Axe",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "frying_pan",
+      "name": "Cast Iron Frying Pan",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "stale_baguette",
+      "name": "Stale Baguette",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "slingshot",
+      "name": "Forked Slingshot",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "potato_cannon",
+      "name": "Pressurized Potato Cannon",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "hunting_rifle",
+      "name": "Precision Hunting Rifle",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "pump_shotgun",
+      "name": "Heavy Pump Shotgun",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "nailgun_smg",
+      "name": "Scrap Pneumatic SMG",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "air_horn",
+      "name": "Canister Air Horn",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "lantern",
+      "name": "Lantern",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (offHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "torch_off",
+      "name": "Torch (off hand)",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (offHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "pot_lid",
+      "name": "Pot Lid Shield",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (offHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "beanie",
+      "name": "Beanie",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "hood",
+      "name": "Hood",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "cap",
+      "name": "Baseball Cap",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "bucket_hat",
+      "name": "Bucket Hat",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "cone_hat",
+      "name": "Traffic Cone Hat",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "straw_hat",
+      "name": "Straw Hat",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "pot_helmet",
+      "name": "Pot Helmet",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "bandana",
+      "name": "Bandana",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "propeller_beanie",
+      "name": "Propeller Beanie",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "goggles",
+      "name": "Goggles",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (face, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "round_glasses",
+      "name": "Round Glasses",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (face, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "fake_mustache",
+      "name": "Fake Mustache",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (face, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "scarf",
+      "name": "Scarf",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (neck, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "hoodie",
+      "name": "Hoodie Jacket",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "tshirt",
+      "name": "T-Shirt",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "trench_coat",
+      "name": "Trench Coat",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "poncho",
+      "name": "Rain Poncho",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "hivis_vest",
+      "name": "Hi-Vis Vest",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "sweater",
+      "name": "Knit Sweater",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "pillow_vest",
+      "name": "Feather Pillow Vest",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "jeans",
+      "name": "Jeans",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (legs, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "cargo_pants",
+      "name": "Cargo Pants",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (legs, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "shorts",
+      "name": "Shorts",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (legs, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "overalls",
+      "name": "Overalls",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (legs, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "boots",
+      "name": "Work Boots",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (feet, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "sneakers",
+      "name": "Sneakers",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (feet, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "wellies",
+      "name": "Wellies",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (feet, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "boing_boots",
+      "name": "Spring Boing Boots",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (feet, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "leather_gloves",
+      "name": "Leather Gloves",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (hands, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "mittens",
+      "name": "Mittens",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (hands, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "hiker_pack",
+      "name": "Hiker Pack",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (back, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "school_pack",
+      "name": "School Backpack",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (back, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "satchel",
+      "name": "Satchel",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (back, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "tool_belt",
+      "name": "Tool Belt",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (belt, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "fanny_pack_of_holding",
+      "name": "Fanny Pack of Holding",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (belt, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "breacher_helmet",
+      "name": "Tactical Breacher Helmet",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "breacher_vest",
+      "name": "Heavy Breacher Plate Carrier",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "welder_mask",
+      "name": "Industrial Welder Mask",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "welder_apron",
+      "name": "Heavy Leather Welder Apron",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "hazmat_hood",
+      "name": "Duck Hazmat Filter Hood",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (head, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "hazmat_suit",
+      "name": "Sealed Duck Hazmat Suit",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (torso, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: gear",
+      "id": "quack_pak",
+      "name": "Pressurized Quack-Pak",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (back, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "recon_rifle",
+      "name": "Recon Marksman DMR",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Items: tool",
+      "id": "scrap_nailgun",
+      "name": "Pneumatic Scrap Nail Driver",
+      "make": "inventory icon + ground drop sprite; worn/held layer on the character (mainHand, 8 directions)",
+      "source": "Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender; Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "optic_rangefinder",
+      "name": "Tactical Rangefinder HUD",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "optic_camcorder",
+      "name": "Taped Handycam CRT Night Sight",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "optic_googly",
+      "name": "Googly Eye Smart Reticle",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "optic_magnifier",
+      "name": "Taped Glass Magnifier",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "optic_toilet_roll",
+      "name": "Cardboard TP Tube Red-Dot",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "muzzle_potato_silencer",
+      "name": "Russet Potato Silencer",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "muzzle_soup_can",
+      "name": "Campbell Soup Can Choke",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "muzzle_car_horn",
+      "name": "Car Horn Blast Shroud",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "muzzle_copper_pipe",
+      "name": "Extended Copper Pipe Rifled Barrel",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "muzzle_kazoo",
+      "name": "Party Kazoo Muzzle Brake",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "under_cat_laser",
+      "name": "Kitty Cat Toy Laser Sight",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "under_plunger_bayonet",
+      "name": "Toilet Plunger Melee Bayonet",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "under_kitchen_fork",
+      "name": "Kitchen Meat Fork Bayonet",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "under_flashlight",
+      "name": "Duct-Taped Tactical Flashlight",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "under_salad_spoon",
+      "name": "Salad Tongs Ergonomic Foregrip",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "mag_twin_soda",
+      "name": "Twin Soda Bottles Mag Extension",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "mag_rubber_band",
+      "name": "Rubber Band Speedloader",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "mag_hopper_funnel",
+      "name": "Gravitational Hopper Funnel",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "goofy_rubber_duck",
+      "name": "Rubber Duck Trigger Squeaker",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "goofy_fuzzy_dice",
+      "name": "Lucky Fuzzy Dice Charm",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "goofy_whoopee",
+      "name": "Whoopee Cushion Recoil Buffer",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Weapon attachments",
+      "id": "goofy_windup_clock",
+      "name": "Wind-Up Clock Heartbeat Monitor",
+      "make": "icon + layer on the weapon sprite",
+      "source": "Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "acid",
+      "name": "Acid",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "burn",
+      "name": "Burn",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "explosion",
+      "name": "Explosion",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "stagger",
+      "name": "Stagger",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "electricity",
+      "name": "Electricity",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "cold",
+      "name": "Cold",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "spores",
+      "name": "Spores",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "goo",
+      "name": "Goo",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "wet",
+      "name": "Wet",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "oil_slick",
+      "name": "Oil Slick",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "blind",
+      "name": "Blind",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Status effects",
+      "id": "smoke",
+      "name": "Smoke",
+      "make": "HUD icon + world FX frames (loop) + sound word",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "bald",
+      "name": "Bald",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "buzz",
+      "name": "Buzz cut",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "messy",
+      "name": "Messy",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "side_part",
+      "name": "Side part",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "long",
+      "name": "Long",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "ponytail",
+      "name": "Ponytail",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "bun",
+      "name": "Top bun",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "mohawk",
+      "name": "Mohawk",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "afro",
+      "name": "Afro",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Character: hair",
+      "id": "braids",
+      "name": "Braids",
+      "make": "8 directions layer, recolourable",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "placeholder"
+    },
+    {
+      "category": "Snap kit: floors",
+      "id": "floor_wood",
+      "name": "floor wood",
+      "make": "1×1 diamond, clean/dirty/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: floors",
+      "id": "floor_tile",
+      "name": "floor tile",
+      "make": "1×1 diamond, clean/dirty/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: floors",
+      "id": "floor_carpet",
+      "name": "floor carpet",
+      "make": "1×1 diamond, clean/dirty/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: floors",
+      "id": "floor_concrete",
+      "name": "floor concrete",
+      "make": "1×1 diamond, clean/dirty/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: floors",
+      "id": "floor_linoleum",
+      "name": "floor linoleum",
+      "make": "1×1 diamond, clean/dirty/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: floors",
+      "id": "floor_dirt",
+      "name": "floor dirt",
+      "make": "1×1 diamond, clean/dirty/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_siding",
+      "name": "wall siding",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_siding_window",
+      "name": "wall siding window",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_siding_door",
+      "name": "wall siding door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_siding_double_door",
+      "name": "wall siding double door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_siding_broken",
+      "name": "wall siding broken",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_siding_boarded",
+      "name": "wall siding boarded",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_brick",
+      "name": "wall brick",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_brick_window",
+      "name": "wall brick window",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_brick_door",
+      "name": "wall brick door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_brick_double_door",
+      "name": "wall brick double door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_brick_broken",
+      "name": "wall brick broken",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_brick_boarded",
+      "name": "wall brick boarded",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_plaster",
+      "name": "wall plaster",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_plaster_window",
+      "name": "wall plaster window",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_plaster_door",
+      "name": "wall plaster door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_plaster_double_door",
+      "name": "wall plaster double door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_plaster_broken",
+      "name": "wall plaster broken",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_plaster_boarded",
+      "name": "wall plaster boarded",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_concrete",
+      "name": "wall concrete",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_concrete_window",
+      "name": "wall concrete window",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_concrete_door",
+      "name": "wall concrete door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_concrete_double_door",
+      "name": "wall concrete double door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_concrete_broken",
+      "name": "wall concrete broken",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_concrete_boarded",
+      "name": "wall concrete boarded",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_wood_log",
+      "name": "wall wood log",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_wood_log_window",
+      "name": "wall wood log window",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_wood_log_door",
+      "name": "wall wood log door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_wood_log_double_door",
+      "name": "wall wood log double door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_wood_log_broken",
+      "name": "wall wood log broken",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_wood_log_boarded",
+      "name": "wall wood log boarded",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_scrap",
+      "name": "wall scrap",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_scrap_window",
+      "name": "wall scrap window",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_scrap_door",
+      "name": "wall scrap door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_scrap_double_door",
+      "name": "wall scrap double door",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_scrap_broken",
+      "name": "wall scrap broken",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: walls",
+      "id": "wall_scrap_boarded",
+      "name": "wall scrap boarded",
+      "make": "2 orientations × intact/cracked/breached/rubble; cut-away (knee-high) variant",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "door_wood",
+      "name": "door wood",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "door_metal",
+      "name": "door metal",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "door_glass",
+      "name": "door glass",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "garage_door",
+      "name": "garage door",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "window_glass",
+      "name": "window glass",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "window_broken",
+      "name": "window broken",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "window_boarded",
+      "name": "window boarded",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: openings",
+      "id": "curtains",
+      "name": "curtains",
+      "make": "2 orientations × open/closed/broken",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_gable_slope",
+      "name": "roof gable slope",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_ridge",
+      "name": "roof ridge",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_hip_corner",
+      "name": "roof hip corner",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_flat_parapet",
+      "name": "roof flat parapet",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_edge",
+      "name": "roof edge",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_tin",
+      "name": "roof tin",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: roofs",
+      "id": "roof_broken",
+      "name": "roof broken",
+      "make": "pieces per material (shingle, tin, tar), intact/sagging/collapsed",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "stairs",
+      "name": "stairs",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "railing",
+      "name": "railing",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "porch_post",
+      "name": "porch post",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "column",
+      "name": "column",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "chimney",
+      "name": "chimney",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "fence_picket",
+      "name": "fence picket",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "fence_chainlink",
+      "name": "fence chainlink",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "done"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "gate",
+      "name": "gate",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Snap kit: structure",
+      "id": "hedge",
+      "name": "hedge",
+      "make": "2 orientations, intact/damaged",
+      "source": "Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "bed",
+      "name": "bed",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "wardrobe",
+      "name": "wardrobe",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "dresser",
+      "name": "dresser",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "nightstand",
+      "name": "nightstand",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "fridge",
+      "name": "fridge",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "stove",
+      "name": "stove",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "kitchen_counter",
+      "name": "kitchen counter",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "sink",
+      "name": "sink",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "toilet",
+      "name": "toilet",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "bathtub",
+      "name": "bathtub",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "shower",
+      "name": "shower",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "sofa",
+      "name": "sofa",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "armchair",
+      "name": "armchair",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "tv",
+      "name": "tv",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "dining_table",
+      "name": "dining table",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "chair",
+      "name": "chair",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "desk",
+      "name": "desk",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "bookshelf",
+      "name": "bookshelf",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "cupboard",
+      "name": "cupboard",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "done"
+    },
+    {
+      "category": "Furniture",
+      "id": "washing_machine",
+      "name": "washing machine",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "workbench",
+      "name": "workbench",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "toolbox",
+      "name": "toolbox",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "safe",
+      "name": "safe",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "gun_cabinet",
+      "name": "gun cabinet",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "shop_shelf",
+      "name": "shop shelf",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "shop_counter",
+      "name": "shop counter",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "cash_register",
+      "name": "cash register",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "freezer_chest",
+      "name": "freezer chest",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "hospital_bed",
+      "name": "hospital bed",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "locker",
+      "name": "locker",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "filing_cabinet",
+      "name": "filing cabinet",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "crib",
+      "name": "crib",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "piano",
+      "name": "piano",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Furniture",
+      "id": "fireplace",
+      "name": "fireplace",
+      "make": "4 rotations, intact/looted/broken; container open/closed",
+      "source": "Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "asphalt",
+      "name": "asphalt",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "asphalt_cracked",
+      "name": "asphalt cracked",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "lane_line_white",
+      "name": "lane line white",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "lane_line_yellow",
+      "name": "lane line yellow",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "kerb",
+      "name": "kerb",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "sidewalk",
+      "name": "sidewalk",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "crosswalk",
+      "name": "crosswalk",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "done"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "driveway",
+      "name": "driveway",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "dirt_track",
+      "name": "dirt track",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "gravel_shoulder",
+      "name": "gravel shoulder",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "manhole",
+      "name": "manhole",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "storm_drain",
+      "name": "storm drain",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "pothole",
+      "name": "pothole",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "oil_stain",
+      "name": "oil stain",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "parking_bay",
+      "name": "parking bay",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "road_barrier",
+      "name": "road barrier",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "traffic_light",
+      "name": "traffic light",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "stop_sign",
+      "name": "stop sign",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Roads & streets",
+      "id": "street_sign",
+      "name": "street sign",
+      "make": "tiles / decals / props following the road ribbons",
+      "source": "CC0 texture (ambientCG / Poly Haven) → tileable 2:1 diamond in Blender, tinted to the palette",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "body_base",
+      "name": "body base",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "done"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "head_base",
+      "name": "head base",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "torso_shirt",
+      "name": "torso shirt",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "torso_jacket",
+      "name": "torso jacket",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "torso_hoodie",
+      "name": "torso hoodie",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "legs_jeans",
+      "name": "legs jeans",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "legs_cargo",
+      "name": "legs cargo",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "feet_boots",
+      "name": "feet boots",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "feet_sneakers",
+      "name": "feet sneakers",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "headwear_cap",
+      "name": "headwear cap",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "headwear_helmet",
+      "name": "headwear helmet",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "backpack",
+      "name": "backpack",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Characters: body & clothing",
+      "id": "face_mask",
+      "name": "face mask",
+      "make": "8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers",
+      "source": "MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "blood_splat_small",
+      "name": "blood splat small",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "done"
+    },
+    {
+      "category": "Decals",
+      "id": "blood_drip_wall",
+      "name": "blood drip wall",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "crack_ground",
+      "name": "crack ground",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "done"
+    },
+    {
+      "category": "Decals",
+      "id": "leaves",
+      "name": "leaves",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "done"
+    },
+    {
+      "category": "Decals",
+      "id": "litter",
+      "name": "litter",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "puddle",
+      "name": "puddle",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "graffiti",
+      "name": "graffiti",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "poster",
+      "name": "poster",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "scorch_mark",
+      "name": "scorch mark",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "tyre_tracks",
+      "name": "tyre tracks",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "Decals",
+      "id": "footprints",
+      "name": "footprints",
+      "make": "3–6 variants each, alpha, fade over time",
+      "source": "Gemini 2D or Blender bake, alpha decal on the ground plane",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "muzzle_flash",
+      "name": "muzzle flash",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "bullet_impact",
+      "name": "bullet impact",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "smoke_puff",
+      "name": "smoke puff",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "fire_loop",
+      "name": "fire loop",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "explosion",
+      "name": "explosion",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "dust_burst",
+      "name": "dust burst",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "glass_shatter",
+      "name": "glass shatter",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "sparks",
+      "name": "sparks",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "rain",
+      "name": "rain",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "snow",
+      "name": "snow",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "FX",
+      "id": "fog_layer",
+      "name": "fog layer",
+      "make": "frame sequences, additive where light",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "Lights",
+      "id": "street_light_pool",
+      "name": "street light pool",
+      "make": "light sprites for the night pass",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "Lights",
+      "id": "window_glow",
+      "name": "window glow",
+      "make": "light sprites for the night pass",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "Lights",
+      "id": "headlight_cone",
+      "name": "headlight cone",
+      "make": "light sprites for the night pass",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "Lights",
+      "id": "torch_pool",
+      "name": "torch pool",
+      "make": "light sprites for the night pass",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    },
+    {
+      "category": "Lights",
+      "id": "fire_glow",
+      "name": "fire glow",
+      "make": "light sprites for the night pass",
+      "source": "Blender particles / simulation rendered to frames, or hand-painted sprite frames",
+      "status": "todo"
+    }
+  ]
+}

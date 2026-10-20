@@ -12,7 +12,8 @@ export class Camera {
   drivingSpeedOffset = 0;
 
   update(tx: number, ty: number, dt: number): void {
-    this.x = damp(this.x, tx, 7, dt); this.y = damp(this.y, ty, 7, dt);
+    // Keep player centered on screen at all times.
+    this.x = tx; this.y = ty;
     const effectiveTarget = clamp(this.targetZoom - this.drivingSpeedOffset, MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM);
     this.zoom = damp(this.zoom, effectiveTarget, 8, dt);
     this.shake = Math.max(0, this.shake - dt * 3);

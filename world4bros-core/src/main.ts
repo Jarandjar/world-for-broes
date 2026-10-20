@@ -38,6 +38,23 @@ if (qs.has('demo')) demoBase(game);
 if (qs.has('town')) game.teleportToTown();
 if (qs.has('range') || qs.has('shooting')) game.teleportToShootingRange();
 if (qs.has('fleet') || qs.has('vehicles')) game.spawnFleet();
+if (qs.has('arena')) {
+  const arenaId = (qs.get('arena') || 'duel_pit') as 'duel_pit' | 'ffa_yard';
+  game.teleportToArena(arenaId, 0);
+  if (qs.has('bots') || qs.has('duel')) {
+    const count = parseInt(qs.get('bots') || '1', 10);
+    const lvl = (qs.get('level') || 'regular') as any;
+    const gun = (qs.get('gun') || 'nailgun_smg') as any;
+    for (let i = 0; i < count; i++) {
+      game.spawnArenaBot(lvl, gun, i + 1);
+    }
+  }
+  if (qs.has('zombies') || qs.has('swarm')) {
+    const zCount = parseInt(qs.get('zombies') || '6', 10);
+    const zKind = (qs.get('zkind') || 'runner') as any;
+    game.spawnArenaZombies(zCount, zKind);
+  }
+}
 
 const input = new Input(canvas);
 const renderer = new Renderer(canvas, game);

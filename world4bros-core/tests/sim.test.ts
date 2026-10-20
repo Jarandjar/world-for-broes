@@ -80,12 +80,17 @@ test('equipment: slot rules, colors and signatures', () => {
   const sig1 = lookSignature(look);
   look.appearance.hairColor = '#a8456f';
   assert.notEqual(lookSignature(look), sig1);                              // hair color changes the signature
+  const sig2 = lookSignature(look);
+  look.appearance.wheelchair = true;
+  assert.notEqual(lookSignature(look), sig2);                              // wheelchair state changes the signature
   equip(look, content, 'head', null); assert.equal(look.outfit.head, undefined);
 });
 
 test('sanitizeLook rejects bad data and keeps good data', () => {
-  const l = sanitizeLook(content, { appearance: { hairColor: 'red', hairStyle: 'nope', build: 9 }, outfit: { head: { item: 'axe' }, torso: { item: 'sweater', colors: { primary: '#abcdef', secondary: 'bad' } } } });
-  assert.match(l.appearance.hairColor, /^#[0-9a-f]{6}$/i); assert.equal(l.appearance.hairStyle, 'messy'); assert.equal(l.appearance.build, 1.2);
+  const l = sanitizeLook(content, { appearance: { hairColor: 'red', hairStyle: 'nope', build: 9, wheelchair: 'yes' as unknown as boolean }, outfit: { head: { item: 'axe' }, torso: { item: 'sweater', colors: { primary: '#abcdef', secondary: 'bad' } } } });
+  assert.match(l.appearance.hairColor, /^#[0-9a-f]{6}$/i); assert.equal(l.appearance.hairStyle, 'messy'); assert.equal(l.appearance.build, 1.2); assert.equal(l.appearance.wheelchair, false);
+  const valid = sanitizeLook(content, { appearance: { wheelchair: true } });
+  assert.equal(valid.appearance.wheelchair, true);
   assert.equal(l.outfit.head, undefined); assert.equal(l.outfit.torso?.colors?.primary, '#abcdef'); assert.equal(l.outfit.torso?.colors?.secondary, undefined);
 });
 

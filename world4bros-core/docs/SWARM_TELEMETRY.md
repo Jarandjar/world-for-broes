@@ -54,7 +54,44 @@ Determinism (same seed, same summary; different seed differs). Accuracy never ab
 - Do you want ammo and reload added before gun comparisons, since a big magazine changes everything?
 - Which scenario is the standard benchmark (suggest: PvE, 120 zombies, waves, 60 s, 10 seeds)?
 
-## 10. Paste-ready prompt
+## 10. Codespaces + Spark implementation notes
+
+### Codespaces
+
+- Dev container file: `.devcontainer/devcontainer.json`
+- Post-create bootstrap: `.devcontainer/postCreate.sh`
+- Forward port `5173`, then run:
+
+```bash
+npm run dev -- --host
+```
+
+Set forwarded port visibility to **Public** for remote playtests.
+
+### Spark telemetry analysis
+
+A local Spark batch analyzer is included:
+
+- Script: `tools/spark/analyze_swarm.py`
+- Python deps: `tools/spark/requirements.txt`
+- NPM wrapper:
+
+```bash
+npm run telemetry:spark
+```
+
+This reads event CSV files (`tools/spark/input/*.csv`) and writes aggregate parquet outputs:
+
+- `tools/spark/out/per_weapon`
+- `tools/spark/out/per_band`
+- `tools/spark/out/run_summary`
+
+### CI verification
+
+- GitHub Actions workflow: `.github/workflows/verify.yml`
+- Runs `npm run verify` on push/PR to `main`.
+
+## 11. Paste-ready prompt
 
 ```
 Read docs/SWARM_TELEMETRY.md and open swarm-sim-reference.html (the Sim section is the reference). Build a headless test harness in the game repo:

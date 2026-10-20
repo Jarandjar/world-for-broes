@@ -1,4 +1,4 @@
-import { WorldGen, CHUNK, getRoadType, circleHitsWalls, type Building, type Side, type ChunkData, type WorldObject, type GenStage, DEFAULT_STAGES } from './worldgen';
+import { WorldGen, CHUNK, getRoadType, circleHitsWalls, buildSnapPieces, type Building, type Side, type ChunkData, type WorldObject, type GenStage, DEFAULT_STAGES } from './worldgen';
 import { StaticMap, type StaticMapSave } from './staticmap';
 import type { Content, ObjectKind, Terrain, TerrainDef } from '../data/schema';
 
@@ -100,7 +100,9 @@ export class GameWorld {
     const cx0 = x + w / 2, cy0 = y + h / 2;
     const c = this.editable(cx0, cy0);
     if (!c || !this.staticMap) return null;
-    const b: Building = { id: `${c.cx},${c.cy}:bld_e${this.staticMap.nextId++}`, def, x: Math.round(x), y: Math.round(y), w, h, door, doorAt: door === 'N' || door === 'S' ? w / 2 : h / 2 };
+    const doorAt = door === 'N' || door === 'S' ? w / 2 : h / 2;
+    const layout = this.content.buildings.find((d) => d.id === def)?.layout ?? 'none';
+    const b: Building = { id: `${c.cx},${c.cy}:bld_e${this.staticMap.nextId++}`, def, x: Math.round(x), y: Math.round(y), w, h, door, doorAt, pieces: buildSnapPieces({ x: Math.round(x), y: Math.round(y), w, h, door, doorAt }, layout) };
     c.buildings.push(b);
     for (let ty = b.y - 1; ty <= b.y + h + 1; ty += CHUNK) this.markTile(b.x, ty);
     return b;

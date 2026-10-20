@@ -1,0 +1,11 @@
+{
+  "seed": 888,
+  "mode": "both",
+  "layout": "standard",
+  "height_profile": "mixed",
+  "enable_setbacks": true,
+  "roof_clutter": true,
+  "trees": true,
+  "streetlamps": true,
+  "tactical_cover": true
+}

@@ -21,6 +21,9 @@ import { BuildingRenderer } from './buildings';
 import { type G, INK, TAU, alpha, inked, poly, smooth } from './ink';
 import type { ArenaDef } from '../sim/arena';
 
+/** Player marker colours: a warm glow on the ground and a light cream ring. */
+const PLAYER_MARK = { glow: '#fff1c4', ring: '#f6e7b8' };
+
 export interface BuildGhost { id: string; tx: number; ty: number; ok: boolean }
 export interface AimRenderState {
   active: boolean;
@@ -95,6 +98,7 @@ export class Renderer {
   private g: G;
   private t = 0;
   W = 0; H = 0; dpr = 1;
+  renderScale = 1.0;
   stats = { chunks: 0, drawn: 0 };
 
   constructor(readonly canvas: HTMLCanvasElement, private game: Game) {
@@ -117,7 +121,9 @@ export class Renderer {
   }
 
   resize(): void {
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
+    const scale = clamp(this.renderScale, 0.5, 1.0);
+    this.dpr = Math.max(0.5, baseDpr * scale);
     const w = Math.max(2, Math.floor(this.canvas.clientWidth * this.dpr)), h = Math.max(2, Math.floor(this.canvas.clientHeight * this.dpr));
     if (this.canvas.width !== w || this.canvas.height !== h) { this.canvas.width = w; this.canvas.height = h; }
     this.W = w; this.H = h;
@@ -427,6 +433,7 @@ export class Renderer {
       const ch = game.ecs.get(e, Comp.Character)!, t = game.ecs.get(e, Comp.Transform)!;
       const pose: Pose = { phase: ch.anim.phase, walk: ch.anim.walkBlend, swing: ch.anim.state === 'swing' ? clamp(ch.anim.swingT / ch.anim.swingDur, 0, 1) : -1, time: this.t + e };
       items.push({ y: t.y + 0.2, draw: () => {
+        if (e === game.player) this.playerMarker(t.x, t.y, ppu);
         g.save(); g.translate(t.x, t.y); g.rotate(t.angle);
         this.chars.draw(g, ch.look, pose, ppu);
         if (game.content.items.get(ch.look.outfit.mainHand?.item ?? '')?.equip?.lightRadius) this.flame(0.66, 0.22, 0.45, true);
@@ -968,6 +975,21 @@ export class Renderer {
   }
 
   /** Animated ink-style flame at (x,y) in the current unit space. */
+  /** Soft light pool and a slow-breathing ring under the player, so they are the first thing you see (HD plan G0). */
+  private playerMarker(x: number, y: number, ppu: number): void {
+    const g = this.g;
+    const r = Math.max(0.85, 14 / ppu); // never smaller than ~14 px on screen
+    const pool = g.createRadialGradient(x, y, 0, x, y, r * 1.35);
+    pool.addColorStop(0, alpha(PLAYER_MARK.glow, 0.34));
+    pool.addColorStop(1, alpha(PLAYER_MARK.glow, 0));
+    g.fillStyle = pool;
+    g.beginPath(); g.arc(x, y, r * 1.35, 0, TAU); g.fill();
+    const breathe = 0.5 + 0.5 * Math.sin(this.t * 2.4);
+    g.strokeStyle = alpha(PLAYER_MARK.ring, 0.55 + 0.25 * breathe);
+    g.lineWidth = Math.max(0.035, 2 / ppu);
+    g.beginPath(); g.arc(x, y, r * (0.92 + 0.06 * breathe), 0, TAU); g.stroke();
+  }
+
   private flame(x: number, y: number, s: number, local = false): void {
     const g = this.g, t = this.t * 9 + x * 3 + y;
     g.save(); g.translate(x, y); g.scale(s, s); if (local) g.scale(1, 1);

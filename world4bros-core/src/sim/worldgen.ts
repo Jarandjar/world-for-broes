@@ -2,6 +2,8 @@ import { makeNoise, fbm } from '../engine/noise';
 import { makeRng, rand2, hash2, type Rng } from '../engine/rng';
 import { clamp } from '../engine/math';
 import type { BiomeDef, Content, ObjectKind, Terrain } from '../data/schema';
+import { buildRoadNet, roadHit, roadNet, roadsInBox, type RoadNode, type RoadPath } from './roads';
+export type { RoadPath } from './roads';
 
 export const CHUNK = 16;
 export const POWER_POLE_SPACING = 6;
@@ -9,9 +11,19 @@ export const POWER_POLE_SPACING = 6;
 export interface WorldObject { id: string; kind: ObjectKind; x: number; y: number; variant: number; hp: number; removed?: boolean }
 export interface Feature { type: string; x: number; y: number; name?: string }
 export type Side = 'N' | 'E' | 'S' | 'W';
+export type BuildingPieceKind = 'wall' | 'door' | 'floor';
+/** One snap-kit piece expressed in world tile units. */
+export interface BuildingPiece {
+  kind: BuildingPieceKind;
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+  exterior?: boolean;
+}
 /** A walled building. (x,y) is the top-left tile, w/h are outer size in tiles. `doorAt` is the door centre measured along the door's wall. */
 /** A placed building. `yard`/`front` (town lots only): free tiles behind the back wall and from the front wall to the street edge. */
-export interface Building { id: string; def: string; x: number; y: number; w: number; h: number; door: Side; doorAt: number; yard?: number; front?: number }
+export interface Building { id: string; def: string; x: number; y: number; w: number; h: number; door: Side; doorAt: number; yard?: number; front?: number; pieces?: BuildingPiece[] }
 export interface ChunkData { cx: number; cy: number; terrain: Uint8Array; biome: Uint8Array; elevation: Uint8Array; objects: WorldObject[]; features: Feature[]; buildings: Building[] }
 export interface Sample { height: number; temp: number; moist: number; biome: number; terrain: Terrain }
 
@@ -24,7 +36,9 @@ export interface GenContext {
 /** A generation stage fills or modifies a chunk. Add stages (roads, settlements, ...) without touching existing ones. */
 export interface GenStage { name: string; run(ctx: GenContext, chunk: ChunkData): void }
 
-const WATER_DEEP = 0.17, WATER_SHALLOW = 0.215;
+export const WATER_DEEP = 0.17, WATER_SHALLOW = 0.215;
+/** Climate noise frequency (lower = bigger biomes), how much height sways the biome pick, and the size of in-biome ground patches. */
+const BIOME_FREQ = 0.0024, BIOME_ELEV_WEIGHT = 0.35, PATCH_FREQ = 0.045;
 
 /** Stage 1: terrain and biome per tile. */
 export const terrainStage: GenStage = {
@@ -70,6 +84,11 @@ export const scatterStage: GenStage = {
 };
 
 export type RoadKind = 'highway' | 'dirt_road' | 'small_road' | 'none';
+/**
+ * Town street half-widths in tiles (1 tile = 1 m), HD plan G2 scale pass:
+ * main streets are 7 m (two lanes plus 0.9 m sidewalks each side), side streets 4 m.
+ */
+const MAIN_HALF = 3.5, SIDE_HALF = 2.0, SIDEWALK = 0.9;
 
 export interface StreetDetails {
   kind: RoadKind;
@@ -80,41 +99,137 @@ export interface StreetDetails {
   axis: 'x' | 'y' | 'both';
 }
 
-export const REGIONAL_TOWNS = [
-  { name: 'Rust Creek Junction', x: -72, y: 80 },
-  { name: 'Port Seagull Harbor', x: 80, y: -96 },
-  { name: 'Pine Ridge Outpost', x: 96, y: 64 },
-  { name: 'Deadwood Oasis Hub', x: -88, y: -80 },
-  { name: 'Copperfield Metropolis', x: 120, y: -32 },
+export type TownSize = 'small' | 'big' | 'metro';
+export interface TownCenter { name: string; x: number; y: number; size: TownSize; spawn?: boolean }
+
+/** Regional towns, spread 1.35x wider than the first layout so the larger G2 town footprints never overlap. */
+export const REGIONAL_TOWNS: TownCenter[] = [
+  { name: 'Rust Creek Junction', x: -97, y: 108, size: 'small' },
+  { name: 'Port Seagull Harbor', x: 108, y: -130, size: 'big' },
+  { name: 'Pine Ridge Outpost', x: 130, y: 86, size: 'small' },
+  { name: 'Deadwood Oasis Hub', x: -119, y: -108, size: 'big' },
+  { name: 'Copperfield Metropolis', x: 162, y: -43, size: 'metro' },
+  { name: 'Ashfield Hamlet', x: -194, y: 65, size: 'small' },
+  { name: 'Ironvale Borough', x: 205, y: 151, size: 'big' },
 ];
 
-export function getStreetDetails(seed: number, x: number, y: number, spawn?: { x: number; y: number }): StreetDetails {
+interface TownProfile {
+  radius: number;
+  mainSpan: number;
+  crossSpan: number;
+  lines: number[];
+  plazaRadius: number;
+  plazaOffset: { x: number; y: number };
+}
+
+type TownDistrict = 'plaza' | 'residential' | 'commercial' | 'industrial';
+interface CarSpawnRule {
+  every: number;
+  chance: number;
+  wreckBias: number;
+  minSpacing: number;
+}
+
+/** Town footprints by size, about 1.3x the first pass so streets and lots fit real house sizes (HD plan G2). */
+const TOWN_PROFILES: Record<TownSize, TownProfile> = {
+  small: { radius: 39, mainSpan: 32, crossSpan: 29, lines: [0, 17], plazaRadius: 4.0, plazaOffset: { x: -2.6, y: -1.9 } },
+  big: { radius: 52, mainSpan: 47, crossSpan: 44, lines: [0, 22, 40], plazaRadius: 4.6, plazaOffset: { x: -3.1, y: -2.2 } },
+  metro: { radius: 60, mainSpan: 57, crossSpan: 52, lines: [0, 22, 43], plazaRadius: 5.0, plazaOffset: { x: -3.6, y: -2.4 } },
+};
+
+const CAR_SPAWN_RULES: Record<TownDistrict, CarSpawnRule> = {
+  plaza: { every: 11, chance: 0.18, wreckBias: 0.35, minSpacing: 3.6 },
+  residential: { every: 9, chance: 0.34, wreckBias: 0.25, minSpacing: 3.2 },
+  commercial: { every: 8, chance: 0.42, wreckBias: 0.4, minSpacing: 3.0 },
+  industrial: { every: 7, chance: 0.46, wreckBias: 0.7, minSpacing: 2.8 },
+};
+
+const townCenters = (spawn?: { x: number; y: number }): TownCenter[] => {
   const spX = spawn ? spawn.x : 0;
   const spY = spawn ? spawn.y : 0;
+  return [{ name: 'Metropolis Oakhaven', x: spX, y: spY, size: 'metro', spawn: true }, ...REGIONAL_TOWNS];
+};
 
-  // 1. Check Town Centers (Metropolis Oakhaven at spawn & Regional Town hubs)
-  const townCenters = [{ x: spX, y: spY }, ...REGIONAL_TOWNS];
-  for (const t of townCenters) {
+const centerStreetLines = (seed: number, center: TownCenter): number[] => {
+  const base = TOWN_PROFILES[center.size].lines;
+  if (center.spawn) return [...base];
+  return base.map((l, i) => {
+    if (l === 0) return 0;
+    const n = (hash2(seed + 1201 + i * 17, Math.round(center.x), Math.round(center.y)) % 3) - 1;
+    return Math.max(6, l + n);
+  }).sort((a, b) => a - b);
+};
+
+const centerCurves = (seed: number, center: TownCenter, x: number, y: number): { xBend: number; yBend: number } => {
+  if (center.spawn) return { xBend: 0, yBend: 0 };
+  const amp = center.size === 'small' ? 0.16 : center.size === 'big' ? 0.22 : 0.28;
+  const f = 0.085;
+  const xBend = Math.sin((y - center.y) * f + seed * 0.0013 + center.x * 0.03) * amp;
+  const yBend = Math.cos((x - center.x) * f + seed * 0.0011 + center.y * 0.03) * amp;
+  return { xBend, yBend };
+};
+
+const districtAt = (center: TownCenter, wx: number, wy: number): TownDistrict => {
+  const profile = TOWN_PROFILES[center.size];
+  const dx = wx - center.x, dy = wy - center.y;
+  if (Math.hypot(dx - profile.plazaOffset.x, dy - profile.plazaOffset.y) < profile.plazaRadius + 1.2) return 'plaza';
+  if (Math.abs(dx) >= Math.abs(dy)) return dx >= 0 ? 'commercial' : 'industrial';
+  return dy >= 0 ? 'residential' : 'plaza';
+};
+
+const centerAt = (seed: number, spawn: { x: number; y: number }, x: number, y: number): TownCenter | null => {
+  for (const t of townCenters(spawn)) {
+    const p = TOWN_PROFILES[t.size];
+    if (Math.hypot(x - t.x, y - t.y) <= p.radius) return t;
+  }
+  return null;
+};
+
+const townBlockSpans = (p: TownProfile, linesOverride?: number[]): [number, number][] => {
+  const out: [number, number][] = [];
+  const lines = [...(linesOverride ?? p.lines)].sort((a, b) => a - b);
+  for (let i = 0; i < lines.length - 1; i++) {
+    const a = lines[i] ?? 0;
+    const b = lines[i + 1] ?? 0;
+    const start = a + streetHalf(a) + 1.1;
+    const end = b - SIDE_HALF - 1.1;
+    if (end - start > 2.2) out.push([start, end]);
+  }
+  const last = lines[lines.length - 1] ?? 0;
+  const outerStart = last + streetHalf(last) + 1.1;
+  const outerEnd = p.radius - 2.2;
+  if (outerEnd - outerStart > 2.2) out.push([outerStart, outerEnd]);
+  return out;
+};
+
+export function getStreetDetails(seed: number, x: number, y: number, spawn?: { x: number; y: number }): StreetDetails {
+  // 1. Check Town Centers (spawn metro + regional centers with varied sizes)
+  for (const t of townCenters(spawn)) {
+    const profile = TOWN_PROFILES[t.size];
+    const lines = centerStreetLines(seed, t);
+    const { xBend, yBend } = centerCurves(seed, t, x, y);
     const dx = x - t.x, dy = y - t.y;
     const dist = Math.hypot(dx, dy);
-    if (dist <= 46) {
+    if (dist <= profile.radius) {
       // Civic Plaza around fountain
-      const plazaDist = Math.hypot(dx + 3.0, dy + 2.0);
-      if (plazaDist < 4.2 && dx < -1.0) {
+      const plazaDist = Math.hypot(dx - profile.plazaOffset.x, dy - profile.plazaOffset.y);
+      if (plazaDist < profile.plazaRadius && dx < -0.8) {
         return { kind: 'small_road', isTown: true, isSidewalk: false, isCrosswalk: false, isPlaza: true, axis: 'both' };
       }
 
-      // Town Main Street (East-West Arterial Avenue)
-      const onMainSt = Math.abs(dy) < 2.3 && Math.abs(dx) <= 44;
-      // Town Central Boulevard (North-South Arterial Avenue)
-      const onCentralBlvd = Math.abs(dx) < 2.3 && Math.abs(dy) <= 44;
+      const crossLines = lines.filter((l) => l > 0);
+      // Town Main Street (East-West Arterial Avenue), softly curved
+      const onMainSt = Math.abs(dy - yBend) < MAIN_HALF && Math.abs(dx) <= profile.mainSpan;
+      // Town Central Boulevard (North-South Arterial Avenue), softly curved
+      const onCentralBlvd = Math.abs(dx - xBend) < MAIN_HALF && Math.abs(dy) <= profile.mainSpan;
 
       if (onMainSt || onCentralBlvd) {
-        const isSidewalk = onMainSt && !onCentralBlvd ? Math.abs(dy) >= 1.55 : onCentralBlvd && !onMainSt ? Math.abs(dx) >= 1.55 : false;
-        // Pedestrian Zebra Crosswalk at intersections
-        const isCrosswalk = (Math.abs(dx) < 2.3 && Math.abs(dy) < 2.3) ||
-          (onMainSt && (Math.abs(Math.abs(dx) - 16) < 1.2 || Math.abs(Math.abs(dx) - 32) < 1.2)) ||
-          (onCentralBlvd && (Math.abs(Math.abs(dy) - 16) < 1.2 || Math.abs(Math.abs(dy) - 32) < 1.2));
+        const kerb = MAIN_HALF - SIDEWALK;
+        const isSidewalk = onMainSt && !onCentralBlvd ? Math.abs(dy - yBend) >= kerb : onCentralBlvd && !onMainSt ? Math.abs(dx - xBend) >= kerb : false;
+        // Pedestrian Zebra Crosswalk at intersections and cross-street junctions
+        const isCrosswalk = (Math.abs(dx - xBend) < MAIN_HALF && Math.abs(dy - yBend) < MAIN_HALF)
+          || (onMainSt && crossLines.some((l) => Math.abs(Math.abs(dx - xBend) - l) < SIDE_HALF))
+          || (onCentralBlvd && crossLines.some((l) => Math.abs(Math.abs(dy - yBend) - l) < SIDE_HALF));
 
         return {
           kind: 'highway',
@@ -127,8 +242,8 @@ export function getStreetDetails(seed: number, x: number, y: number, spawn?: { x
       }
 
       // Secondary Town Cross-Streets & Cobblestone Alleys
-      const onCrossX = (Math.abs(Math.abs(dx) - 16) < 1.2 || Math.abs(Math.abs(dx) - 32) < 1.2) && Math.abs(dy) <= 40;
-      const onCrossY = (Math.abs(Math.abs(dy) - 16) < 1.2 || Math.abs(Math.abs(dy) - 32) < 1.2) && Math.abs(dx) <= 40;
+      const onCrossX = crossLines.some((l) => Math.abs(Math.abs(dx - xBend) - l) < SIDE_HALF) && Math.abs(dy - yBend) <= profile.crossSpan;
+      const onCrossY = crossLines.some((l) => Math.abs(Math.abs(dy - yBend) - l) < SIDE_HALF) && Math.abs(dx - xBend) <= profile.crossSpan;
       if (onCrossX || onCrossY) {
         return {
           kind: 'small_road',
@@ -142,53 +257,38 @@ export function getStreetDetails(seed: number, x: number, y: number, spawn?: { x
     }
   }
 
-  // 2. Continental Organic Highways (Primary Arterial Corridors)
-  const sx = Math.sin(x * 0.025 + (seed % 100) * 0.1) * 3.8;
-  const sy = Math.cos(y * 0.025 + (seed % 100) * 0.15) * 3.8;
-  const modY = Math.abs(((y + sx) % 96 + 96) % 96 - 48);
-  const modX = Math.abs(((x + sy) % 96 + 96) % 96 - 48);
-  if (modY < 1.7 || modX < 1.7) {
-    return {
-      kind: 'highway',
-      isTown: false,
-      isSidewalk: false,
-      isCrosswalk: false,
-      isPlaza: false,
-      axis: modY < 1.7 && modX < 1.7 ? 'both' : modY < 1.7 ? 'x' : 'y'
-    };
-  }
-
-  // 3. Rural Dirt Roads (Secondary Connectors & Country Byways)
-  const dCurveX = Math.sin(x * 0.04 + (seed % 50) * 0.12) * 3.2;
-  const dCurveY = Math.cos(y * 0.04 + (seed % 50) * 0.12) * 3.2;
-  const dModY = Math.abs(((y + 48 + dCurveX) % 96 + 96) % 96 - 48);
-  const dModX = Math.abs(((x + 48 + dCurveY) % 96 + 96) % 96 - 48);
-  if (dModY < 1.3 || dModX < 1.3) {
-    return {
-      kind: 'dirt_road',
-      isTown: false,
-      isSidewalk: false,
-      isCrosswalk: false,
-      isPlaza: false,
-      axis: dModY < 1.3 && dModX < 1.3 ? 'both' : dModY < 1.3 ? 'x' : 'y'
-    };
-  }
-
-  // 4. Wilderness Nature Trails & Cobblestone Byways
-  const trailCurve = Math.sin(x * 0.05 + y * 0.03 + (seed % 70) * 0.1) * 2.6;
-  const trailMod = Math.abs(((x - y + trailCurve) % 96 + 96) % 96 - 48);
-  if (trailMod < 0.95) {
-    return {
-      kind: 'small_road',
-      isTown: false,
-      isSidewalk: false,
-      isCrosswalk: false,
-      isPlaza: false,
-      axis: 'both'
-    };
-  }
+  // 2. Highways between towns and dirt tracks into the countryside: smooth curves from the road graph.
+  const hit = roadHit(worldRoadNet(seed, spawn), x, y);
+  if (hit) return { kind: hit.kind, isTown: false, isSidewalk: false, isCrosswalk: false, isPlaza: false, axis: hit.axis };
 
   return { kind: 'none', isTown: false, isSidewalk: false, isCrosswalk: false, isPlaza: false, axis: 'both' };
+}
+
+/** Deep-water tests per seed, registered by WorldGen so roads can bend around lakes. */
+const waterBySeed = new Map<number, (x: number, y: number) => boolean>();
+
+/** Town exits (main-street ends) and spur starts (side-street ends) feed the road graph. */
+function roadNodes(seed: number, spawn?: { x: number; y: number }): RoadNode[] {
+  return townCenters(spawn).map((t) => {
+    const p = TOWN_PROFILES[t.size];
+    const exits: RoadNode['exits'] = [[t.x + p.mainSpan, t.y, 1, 0], [t.x - p.mainSpan, t.y, -1, 0], [t.x, t.y + p.mainSpan, 0, 1], [t.x, t.y - p.mainSpan, 0, -1]];
+    const spurs: RoadNode['spurs'] = [];
+    for (const l of centerStreetLines(seed, t).filter((v) => v > 0)) for (const s of [-1, 1]) {
+      spurs.push([t.x + s * l, t.y + p.crossSpan, 0, 1], [t.x + s * l, t.y - p.crossSpan, 0, -1]);
+      spurs.push([t.x + p.crossSpan, t.y + s * l, 1, 0], [t.x - p.crossSpan, t.y + s * l, -1, 0]);
+    }
+    return { x: t.x, y: t.y, radius: p.radius, exits, spurs };
+  });
+}
+
+function worldRoadNet(seed: number, spawn?: { x: number; y: number }): ReturnType<typeof roadNet> {
+  const sp = spawn ?? { x: 0, y: 0 };
+  return roadNet(`${seed}:${sp.x},${sp.y}`, () => buildRoadNet(seed, roadNodes(seed, spawn), waterBySeed.get(seed) ?? (() => false)));
+}
+
+/** Highway and dirt-road polylines near a box, for drawing them as smooth ribbons. */
+export function roadPathsNear(seed: number, spawn: { x: number; y: number }, x0: number, y0: number, x1: number, y1: number, margin: number): RoadPath[] {
+  return roadsInBox(worldRoadNet(seed, spawn), x0, y0, x1, y1, margin);
 }
 
 export function getRoadType(seed: number, x: number, y: number, spawn?: { x: number; y: number }): RoadKind {
@@ -199,22 +299,11 @@ export function isRoad(seed: number, x: number, y: number, spawn?: { x: number; 
   return getRoadType(seed, x, y, spawn) !== 'none';
 }
 
-/** Stage: Road network carving. Sets dirt terrain and connects regions. */
+/** Stage: road carving disabled to keep terrain fully natural (no asphalt/dirt road painting). */
 export const roadStage: GenStage = {
   name: 'roads',
-  run(ctx, chunk) {
-    const dirtIdx = ctx.terrainOrder.indexOf('dirt');
-    if (dirtIdx < 0) return;
-    for (let ty = 0; ty < CHUNK; ty++) {
-      for (let tx = 0; tx < CHUNK; tx++) {
-        const wx = chunk.cx * CHUNK + tx + 0.5, wy = chunk.cy * CHUNK + ty + 0.5;
-        const curTerrain = ctx.terrainOrder[chunk.terrain[ty * CHUNK + tx] ?? 0];
-        if (curTerrain === 'deep' || curTerrain === 'shallow') continue;
-        if (isRoad(ctx.seed, wx, wy, ctx.spawn)) {
-          chunk.terrain[ty * CHUNK + tx] = dirtIdx;
-        }
-      }
-    }
+  run() {
+    // Intentionally no-op: roads are removed visually and terrain remains biome-native.
   },
 };
 
@@ -329,44 +418,15 @@ export const radioTowerStage: GenStage = {
   },
 };
 
-/** Stage 7: Abandoned Big Towns & Metropolis Hubs with streets, squares, cars, and districts. */
+/** Stage 7: Tiered town centers (small, big, metro) with deterministic placement and districts. */
 export const townStage: GenStage = {
   name: 'towns',
   run(ctx, chunk) {
     const scx = Math.floor(ctx.spawn.x / CHUNK), scy = Math.floor(ctx.spawn.y / CHUNK);
-    const isSpawnChunk = (chunk.cx === scx && chunk.cy === scy);
+    const isSpawnChunk = chunk.cx === scx && chunk.cy === scy;
     const isSpawnDistrict = Math.abs(chunk.cx - scx) <= 1 && Math.abs(chunk.cy - scy) <= 1;
 
-    // 1. Capitol Big Town at Spawn (Metropolis Oakhaven - 3x3 Chunks)
-    if (isSpawnChunk) {
-      const tx = ctx.spawn.x, ty = ctx.spawn.y;
-      chunk.objects = chunk.objects.filter((o) => Math.hypot(o.x - tx, o.y - ty) > 7.2);
-      const r = ctx.rng(chunk.cx, chunk.cy, 'town_spawn');
-      const add = (kind: ObjectKind, dx: number, dy: number): void => {
-        const def = ctx.content.objects.get(kind);
-        chunk.objects.push({ id: `${chunk.cx},${chunk.cy}:tw${chunk.objects.length}`, kind, x: tx + dx, y: ty + dy, variant: r.int(0, 3), hp: def?.hp ?? 1 });
-      };
-      // Historic town items & natural nodes strictly within chunk bounds and within 10m
-      add('pine', 4.0, 3.0);
-      add('rock', 5.0, 3.0);
-      add('wrecked_car', 4.5, 4.0);
-      add('crate', 4.0, 3.5);
-      add('fuel_pump', 5.5, 5.0);
-      add('tent', 6.0, 4.0);
-      add('log', 5.0, 4.2);
-      // Municipal & road infrastructure in the civic plaza within 10m
-      add('town_fountain', 5.0, 5.5);
-      add('park_bench', 4.2, 5.5);
-      add('street_light', 5.0, 7.0);
-      add('dumpster', 6.0, 6.0);
-      add('fire_hydrant', 3.5, 5.0);
-      add('guardrail', 3.2, 6.0);
-      add('traffic_cone', 4.2, 6.5);
-      chunk.features.push({ type: 'town', x: tx, y: ty, name: 'Metropolis Oakhaven' });
-      return;
-    }
-
-    if (isSpawnDistrict) {
+    if (isSpawnDistrict && !isSpawnChunk) {
       const cx = chunk.cx * CHUNK + 8, cy = chunk.cy * CHUNK + 8;
       const dx = chunk.cx - scx, dy = chunk.cy - scy;
       const names: Record<string, string> = {
@@ -380,47 +440,145 @@ export const townStage: GenStage = {
       return;
     }
 
-    // 2. Distant Continental Big Towns & Themed Settlements
-    const R = 20;
-    const rx = Math.floor(chunk.cx / R), ry = Math.floor(chunk.cy / R);
-    if (rand2(ctx.seed + 61, rx, ry * 43 + 23) > 0.52) return;
-    const ccx = rx * R + (hash2(ctx.seed + 67, rx, ry) % R);
-    const ccy = ry * R + (hash2(ctx.seed + 71, rx, ry) % R);
-    if (chunk.cx !== ccx || chunk.cy !== ccy) return;
-    const x = chunk.cx * CHUNK + 8, y = chunk.cy * CHUNK + 8;
+    const center = townCenters(ctx.spawn).find((t) => Math.floor(t.x / CHUNK) === chunk.cx && Math.floor(t.y / CHUNK) === chunk.cy);
+    if (!center) return;
+
+    const x = center.x, y = center.y;
     const s = ctx.sample(x, y);
     if (s.terrain === 'deep' || s.terrain === 'shallow') return;
-    if (Math.hypot(x - ctx.spawn.x, y - ctx.spawn.y) < 22) return;
+    if (!center.spawn && Math.hypot(x - ctx.spawn.x, y - ctx.spawn.y) < 22) return;
 
-    chunk.objects = chunk.objects.filter((o) => Math.hypot(o.x - x, o.y - y) > 7.5);
-    const r = ctx.rng(chunk.cx, chunk.cy, 'town');
+    const clearR = center.size === 'small' ? 6.0 : center.size === 'big' ? 7.2 : 8.0;
+    chunk.objects = chunk.objects.filter((o) => Math.hypot(o.x - x, o.y - y) > clearR);
+
+    const r = ctx.rng(chunk.cx, chunk.cy, `town_${center.size}`);
     const add = (kind: ObjectKind, dx: number, dy: number): void => {
       const def = ctx.content.objects.get(kind);
       chunk.objects.push({ id: `${chunk.cx},${chunk.cy}:tw${chunk.objects.length}`, kind, x: x + dx, y: y + dy, variant: r.int(0, 3), hp: def?.hp ?? 1 });
     };
 
-    const townNames = ['Rust Creek Junction', 'Port Seagull Harbor', 'Pine Ridge Outpost', 'Deadwood Oasis Hub', 'Copperfield Metropolis'];
-    const townName = townNames[hash2(ctx.seed, rx, ry) % townNames.length] ?? 'Regional Big Town';
+    if (center.spawn) {
+      // Keep spawn plaza clear around player start while still feeling like a metro hub.
+      add('pine', 4.0, 3.0);
+      add('rock', 5.0, 3.0);
+      add('wrecked_car', 4.5, 4.0);
+      add('crate', 4.0, 3.5);
+      add('fuel_pump', 5.5, 5.0);
+      add('tent', 6.0, 4.0);
+      add('log', 5.0, 4.2);
+      add('town_fountain', 5.0, 5.5);
+      add('park_bench', 4.2, 5.5);
+      add('street_light', 5.0, 7.0);
+      add('dumpster', 6.0, 6.0);
+      add('fire_hydrant', 3.5, 5.0);
+      add('guardrail', 3.2, 6.0);
+      add('traffic_cone', 4.2, 6.5);
+    } else if (center.size === 'small') {
+      add('town_fountain', 0, 0);
+      add('street_light', -1.8, -1.8);
+      add('park_bench', 1.4, 0.2);
+      add('crate', -1.0, 1.0);
+      add('traffic_cone', 0.8, 1.5);
+      add('tent', -1.6, 2.1);
+      add('wrecked_car', -2.2, -0.9);
+    } else if (center.size === 'big') {
+      add('town_fountain', 0, 0);
+      add('street_light', -2.5, -2.5);
+      add('street_light', 2.5, 2.5);
+      add('park_bench', -1.8, 0);
+      add('park_bench', 1.8, 0);
+      add('wrecked_car', -3.2, -1.8);
+      add('fuel_pump', 3.2, -1.8);
+      add('dumpster', -2.8, 2.2);
+      add('fire_hydrant', 2.6, -2.4);
+      add('traffic_cone', 1.2, 1.8);
+      add('tent', -2.2, 3.2);
+      add('crate', -1.2, 1.4);
+      add('crate', 1.4, 0.6);
+      add('guardrail', 0, 3.5);
+    } else {
+      add('town_fountain', 0, 0);
+      add('street_light', -3.0, -3.0);
+      add('street_light', 3.0, -3.0);
+      add('street_light', -3.0, 3.0);
+      add('street_light', 3.0, 3.0);
+      add('park_bench', -2.2, 0.2);
+      add('park_bench', 2.2, -0.2);
+      add('wrecked_car', -3.4, -2.1);
+      add('wrecked_car', 3.3, 1.8);
+      add('fuel_pump', 3.4, -1.8);
+      add('dumpster', -3.2, 2.2);
+      add('fire_hydrant', 2.8, -2.6);
+      add('traffic_cone', 1.3, 2.0);
+      add('tent', -2.4, 3.3);
+      add('crate', -1.3, 1.5);
+      add('crate', 1.5, 0.7);
+      add('guardrail', 0, 3.6);
+      add('pine', 4.0, 3.0);
+      add('rock', 5.0, 3.0);
+      add('log', 5.0, 4.2);
+    }
 
-    add('town_fountain', 0, 0);
-    add('street_light', -2.5, -2.5);
-    add('street_light', 2.5, 2.5);
-    add('park_bench', -1.8, 0);
-    add('park_bench', 1.8, 0);
-    add('wrecked_car', -3.2, -1.8);
-    add('fuel_pump', 3.2, -1.8);
-    add('dumpster', -2.8, 2.2);
-    add('fire_hydrant', 2.6, -2.4);
-    add('traffic_cone', 1.2, 1.8);
-    add('tent', -2.2, 3.2);
-    add('crate', -1.2, 1.4);
-    add('crate', 1.4, 0.6);
-    add('guardrail', 0, 3.5);
-    chunk.features.push({ type: 'town', x, y, name: townName });
+    chunk.features.push({ type: 'town', x, y, name: center.name });
   },
 };
 
-/** Stage 8: Fortified military checkpoints and outposts. */
+/** Stage 8: District-aware parked cars along town curbs, deterministic per chunk. */
+export const parkedCarsStage: GenStage = {
+  name: 'parked_cars',
+  run(ctx, chunk) {
+    const x0 = chunk.cx * CHUNK, y0 = chunk.cy * CHUNK;
+    const x1 = x0 + CHUNK, y1 = y0 + CHUNK;
+    const touching = townBuildings(ctx).filter((b) => b.x - 0.9 < x1 && b.x + b.w + 0.9 > x0 && b.y - 0.9 < y1 && b.y + b.h + 0.9 > y0);
+    const rng = ctx.rng(chunk.cx, chunk.cy, 'parked_cars');
+
+    const blockedByBuilding = (x: number, y: number): boolean => touching.some((b) => x > b.x - 0.8 && x < b.x + b.w + 0.8 && y > b.y - 0.8 && y < b.y + b.h + 0.8);
+
+    const nearObj = (x: number, y: number, r: number): boolean => chunk.objects.some((o) => Math.hypot(o.x - x, o.y - y) < r);
+
+    for (let ty = 1; ty < CHUNK - 1; ty += 2) {
+      for (let tx = 1; tx < CHUNK - 1; tx += 2) {
+        const wx = chunk.cx * CHUNK + tx + 0.5;
+        const wy = chunk.cy * CHUNK + ty + 0.5;
+
+        const center = centerAt(ctx.seed, ctx.spawn, wx, wy);
+        if (!center) continue;
+
+        // Park just off the kerb, lined up with the street.
+        let roadAxis: 'x' | 'y' | null = null;
+        const here = getStreetDetails(ctx.seed, wx, wy, ctx.spawn);
+        if (here.kind !== 'none') continue;
+        const east = getStreetDetails(ctx.seed, wx + 1.2, wy, ctx.spawn);
+        const west = getStreetDetails(ctx.seed, wx - 1.2, wy, ctx.spawn);
+        const north = getStreetDetails(ctx.seed, wx, wy - 1.2, ctx.spawn);
+        const south = getStreetDetails(ctx.seed, wx, wy + 1.2, ctx.spawn);
+        const roadInfo = east.kind !== 'none' ? east : west.kind !== 'none' ? west : north.kind !== 'none' ? north : south.kind !== 'none' ? south : null;
+        if (!roadInfo || !roadInfo.isTown || roadInfo.isPlaza || roadInfo.isCrosswalk) continue;
+        if (east.kind !== 'none' || west.kind !== 'none') roadAxis = 'y';
+        else if (north.kind !== 'none' || south.kind !== 'none') roadAxis = 'x';
+        if (!roadAxis) continue;
+
+        const district = districtAt(center, wx, wy);
+        const rule = CAR_SPAWN_RULES[district];
+        if (((Math.floor(wx * 2) + Math.floor(wy * 3) + hash2(ctx.seed + 7001, chunk.cx, chunk.cy)) % rule.every) !== 0) continue;
+        if (rng.next() > rule.chance) continue;
+
+        const sample = ctx.sample(wx, wy);
+        if (sample.terrain === 'deep' || sample.terrain === 'shallow') continue;
+        if (Math.hypot(wx - ctx.spawn.x, wy - ctx.spawn.y) < 5.5) continue;
+        if (blockedByBuilding(wx, wy)) continue;
+        if (nearObj(wx, wy, rule.minSpacing)) continue;
+
+        const kind: ObjectKind = rng.next() < rule.wreckBias ? 'wrecked_car' : 'abandoned_car';
+        const def = ctx.content.objects.get(kind);
+        const facing = roadAxis === 'x' ? (rng.next() < 0.5 ? 0 : 2) : (rng.next() < 0.5 ? 1 : 3);
+        chunk.objects.push({ id: `${chunk.cx},${chunk.cy}:pc${chunk.objects.length}`, kind, x: wx, y: wy, variant: facing, hp: def?.hp ?? 1 });
+      }
+    }
+  },
+};
+
+/** Stage 9: Fortified military checkpoints and outposts. */
 export const militaryStage: GenStage = {
   name: 'military',
   run(ctx, chunk) {
@@ -514,22 +672,95 @@ export type Rect = [number, number, number, number];
 export const WALL_T = 0.35, DOOR_W = 1.8;
 const wallCache = new WeakMap<Building, Rect[]>();
 
+const doorSegment = (b: Pick<Building, 'x' | 'y' | 'w' | 'h' | 'door' | 'doorAt'>): BuildingPiece => {
+  const half = DOOR_W / 2;
+  if (b.door === 'N') return { kind: 'door', x0: b.x + b.doorAt - half, y0: b.y, x1: b.x + b.doorAt + half, y1: b.y, exterior: true };
+  if (b.door === 'S') return { kind: 'door', x0: b.x + b.doorAt - half, y0: b.y + b.h, x1: b.x + b.doorAt + half, y1: b.y + b.h, exterior: true };
+  if (b.door === 'W') return { kind: 'door', x0: b.x, y0: b.y + b.doorAt - half, x1: b.x, y1: b.y + b.doorAt + half, exterior: true };
+  return { kind: 'door', x0: b.x + b.w, y0: b.y + b.doorAt - half, x1: b.x + b.w, y1: b.y + b.doorAt + half, exterior: true };
+};
+
+const wallRectFromPiece = (p: BuildingPiece): Rect => {
+  if (Math.abs(p.x1 - p.x0) >= Math.abs(p.y1 - p.y0)) {
+    const x0 = Math.min(p.x0, p.x1), x1 = Math.max(p.x0, p.x1), y = p.y0;
+    return [x0, y - WALL_T / 2, x1, y + WALL_T / 2];
+  }
+  const y0 = Math.min(p.y0, p.y1), y1 = Math.max(p.y0, p.y1), x = p.x0;
+  return [x - WALL_T / 2, y0, x + WALL_T / 2, y1];
+};
+
+/** Build modular snap pieces for a building footprint and layout. */
+export function buildSnapPieces(b: Pick<Building, 'x' | 'y' | 'w' | 'h' | 'door' | 'doorAt'>, layout: string = 'none'): BuildingPiece[] {
+  const pieces: BuildingPiece[] = [];
+  const half = DOOR_W / 2;
+  const addSplit = (x0: number, y0: number, x1: number, y1: number, ext = false): void => {
+    pieces.push({ kind: 'wall', x0, y0, x1, y1, exterior: ext });
+  };
+  const addSide = (side: Side): void => {
+    if (side === 'N' || side === 'S') {
+      const y = side === 'N' ? b.y : b.y + b.h;
+      const x0 = b.x, x1 = b.x + b.w;
+      if (b.door !== side) addSplit(x0, y, x1, y, true);
+      else {
+        addSplit(x0, y, b.x + b.doorAt - half, y, true);
+        addSplit(b.x + b.doorAt + half, y, x1, y, true);
+      }
+    } else {
+      const x = side === 'W' ? b.x : b.x + b.w;
+      const y0 = b.y, y1 = b.y + b.h;
+      if (b.door !== side) addSplit(x, y0, x, y1, true);
+      else {
+        addSplit(x, y0, x, b.y + b.doorAt - half, true);
+        addSplit(x, b.y + b.doorAt + half, x, y1, true);
+      }
+    }
+  };
+  addSide('N'); addSide('S'); addSide('W'); addSide('E');
+  pieces.push(doorSegment(b));
+
+  const makeInteriorDivider = (ratio: number): void => {
+    const clamped = clamp(ratio, 0.35, 0.72);
+    if (b.door === 'N' || b.door === 'S') {
+      const y = b.door === 'N' ? b.y + b.h * clamped : b.y + b.h * (1 - clamped);
+      const g0 = clamp(b.x + b.doorAt - half, b.x + 1.0, b.x + b.w - 1.0), g1 = clamp(b.x + b.doorAt + half, b.x + 1.0, b.x + b.w - 1.0);
+      addSplit(b.x + WALL_T, y, g0, y);
+      addSplit(g1, y, b.x + b.w - WALL_T, y);
+      pieces.push({ kind: 'door', x0: g0, y0: y, x1: g1, y1: y, exterior: false });
+    } else {
+      const x = b.door === 'W' ? b.x + b.w * clamped : b.x + b.w * (1 - clamped);
+      const g0 = clamp(b.y + b.doorAt - half, b.y + 1.0, b.y + b.h - 1.0), g1 = clamp(b.y + b.doorAt + half, b.y + 1.0, b.y + b.h - 1.0);
+      addSplit(x, b.y + WALL_T, x, g0);
+      addSplit(x, g1, x, b.y + b.h - WALL_T);
+      pieces.push({ kind: 'door', x0: x, y0: g0, x1: x, y1: g1, exterior: false });
+    }
+  };
+
+  if (layout === 'split' || layout === 'apartment') makeInteriorDivider(0.5);
+  else if (layout === 'backroom') makeInteriorDivider(0.62);
+
+  return pieces;
+}
+
 /** Solid wall rectangles [x0,y0,x1,y1] of a building (the door is a gap). */
 export function wallRects(b: Building): Rect[] {
   let r = wallCache.get(b);
   if (r) return r;
-  const out: Rect[] = [];
-  const side = (s: Side, len: number, mk: (a0: number, a1: number) => Rect): void => {
-    if (b.door !== s) { out.push(mk(0, len)); return; }
-    const g0 = Math.max(0, b.doorAt - DOOR_W / 2), g1 = Math.min(len, b.doorAt + DOOR_W / 2);
-    if (g0 > 0) out.push(mk(0, g0));
-    if (g1 < len) out.push(mk(g1, len));
-  };
-  side('N', b.w, (a0, a1) => [b.x + a0, b.y, b.x + a1, b.y + WALL_T]);
-  side('S', b.w, (a0, a1) => [b.x + a0, b.y + b.h - WALL_T, b.x + a1, b.y + b.h]);
-  side('W', b.h, (a0, a1) => [b.x, b.y + a0, b.x + WALL_T, b.y + a1]);
-  side('E', b.h, (a0, a1) => [b.x + b.w - WALL_T, b.y + a0, b.x + b.w, b.y + a1]);
-  r = out;
+  const walls = b.pieces?.filter((p) => p.kind === 'wall');
+  if (walls?.length) r = walls.map(wallRectFromPiece);
+  else {
+    const out: Rect[] = [];
+    const side = (s: Side, len: number, mk: (a0: number, a1: number) => Rect): void => {
+      if (b.door !== s) { out.push(mk(0, len)); return; }
+      const g0 = Math.max(0, b.doorAt - DOOR_W / 2), g1 = Math.min(len, b.doorAt + DOOR_W / 2);
+      if (g0 > 0) out.push(mk(0, g0));
+      if (g1 < len) out.push(mk(g1, len));
+    };
+    side('N', b.w, (a0, a1) => [b.x + a0, b.y, b.x + a1, b.y + WALL_T]);
+    side('S', b.w, (a0, a1) => [b.x + a0, b.y + b.h - WALL_T, b.x + a1, b.y + b.h]);
+    side('W', b.h, (a0, a1) => [b.x, b.y + a0, b.x + WALL_T, b.y + a1]);
+    side('E', b.h, (a0, a1) => [b.x + b.w - WALL_T, b.y + a0, b.x + b.w, b.y + a1]);
+    r = out;
+  }
   wallCache.set(b, r);
   return r;
 }
@@ -553,13 +784,13 @@ export function circleHitsWalls(b: Building, x: number, y: number, r: number): b
   return false;
 }
 
-/** Lot blocks between town streets (local coords, one quadrant; mirrored by sign). Matches getStreetDetails. */
-const BLOCK_SPANS: [number, number][] = [[3.4, 14.0], [18.0, 30.0], [34.0, 43.5]];
-const STREET_LINES = [0, 16, 32];
+/** Lot blocks between town streets are derived per-town-size from the same profile used by getStreetDetails. */
 const townCache = new WeakMap<GenContext, Building[]>();
 
 /** Half-width of a town street line (Main Street / Central Blvd are wider). Matches getStreetDetails. */
-const streetHalf = (line: number): number => (line === 0 ? 2.3 : 1.2);
+const streetHalf = (line: number): number => (line === 0 ? MAIN_HALF : SIDE_HALF);
+/** Target lot frontage along a block (tiles); sized for 8–12 m houses with side gaps. */
+const LOT_SIZE = 11;
 /** Houses sit this far inside the street edge of their lot, so fronts line up along the block. */
 const FRONT_SETBACK = 1.0;
 interface LotFront { axis: 'x' | 'y'; edge: number; back: number; dir: number; gap: number; score: number }
@@ -571,12 +802,15 @@ export function townBuildings(ctx: GenContext): Building[] {
   const out: Building[] = [];
   const defs = ctx.content.buildings;
   const total = defs.reduce((s, d) => s + d.weight, 0);
-  const towns = [{ x: ctx.spawn.x, y: ctx.spawn.y, spawn: true }, ...REGIONAL_TOWNS.map((t) => ({ x: t.x, y: t.y, spawn: false }))];
+  const towns = townCenters(ctx.spawn);
   if (defs.length) towns.forEach((t, ti) => {
     let n = 0;
-    for (const sx of [-1, 1]) for (const sy of [-1, 1]) for (const [a0, a1] of BLOCK_SPANS) for (const [b0, b1] of BLOCK_SPANS) {
+    const profile = TOWN_PROFILES[t.size];
+    const lines = centerStreetLines(ctx.seed, t);
+    const blockSpans = townBlockSpans(profile, lines);
+    for (const sx of [-1, 1]) for (const sy of [-1, 1]) for (const [a0, a1] of blockSpans) for (const [b0, b1] of blockSpans) {
       const bx0 = sx > 0 ? a0 : -a1, bx1 = sx > 0 ? a1 : -a0, by0 = sy > 0 ? b0 : -b1, by1 = sy > 0 ? b1 : -b0;
-      const nx = Math.max(1, Math.round((bx1 - bx0) / 7.5)), ny = Math.max(1, Math.round((by1 - by0) / 7.5));
+      const nx = Math.max(1, Math.round((bx1 - bx0) / LOT_SIZE)), ny = Math.max(1, Math.round((by1 - by0) / LOT_SIZE));
       for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) {
         const lx0 = bx0 + ((bx1 - bx0) * i) / nx, lx1 = bx0 + ((bx1 - bx0) * (i + 1)) / nx;
         const ly0 = by0 + ((by1 - by0) * j) / ny, ly1 = by0 + ((by1 - by0) * (j + 1)) / ny;
@@ -589,10 +823,10 @@ export function townBuildings(ctx: GenContext): Building[] {
         for (const axis of ['x', 'y'] as const) {
           const s = axis === 'x' ? sx : sy, l0 = axis === 'x' ? lx0 : ly0, l1 = axis === 'x' ? lx1 : ly1;
           const inner = s > 0 ? l0 : l1, outer = s > 0 ? l1 : l0;
-          const lin = Math.max(...STREET_LINES.filter((l) => l <= Math.abs(inner)));
+          const lin = Math.max(...lines.filter((l) => l <= Math.abs(inner)));
           const gin = Math.abs(inner) - lin - streetHalf(lin);
           const cands: LotFront[] = [{ axis, edge: inner, back: outer, dir: s, gap: gin, score: gin - (lin === 0 ? 0.6 : 0) }];
-          const lout = STREET_LINES.find((l) => l > 0 && l >= Math.abs(outer));
+          const lout = lines.find((l) => l > 0 && l >= Math.abs(outer));
           if (lout !== undefined) { const gap = lout - streetHalf(lout) - Math.abs(outer); cands.push({ axis, edge: outer, back: inner, dir: -s, gap, score: gap }); }
           for (const c of cands) {
             const tie = front && Math.abs(c.score - front.score) < 0.05;
@@ -633,7 +867,7 @@ export function townBuildings(ctx: GenContext): Building[] {
         }
         if (!ok) continue;
         if (out.some((o) => x < o.x + o.w + 1 && x + w + 1 > o.x && y < o.y + o.h + 1 && y + h + 1 > o.y)) continue; // overlapping town grids
-        out.push({ id: `b:${ti}:${n++}`, def: def.id, x, y, w, h, door, doorAt, yard, front: frontGap });
+        out.push({ id: `b:${ti}:${n++}`, def: def.id, x, y, w, h, door, doorAt, yard, front: frontGap, pieces: buildSnapPieces({ x, y, w, h, door, doorAt }, def.layout) });
       }
     }
   });
@@ -808,7 +1042,7 @@ export const shootingRangeStage: GenStage = {
   },
 };
 
-export const DEFAULT_STAGES: GenStage[] = [terrainStage, roadStage, scatterStage, campStage, settlementStage, gasStationStage, radioTowerStage, townStage, militaryStage, mineralGeodeStage, buildingStage, shootingRangeStage];
+export const DEFAULT_STAGES: GenStage[] = [terrainStage, roadStage, scatterStage, campStage, settlementStage, gasStationStage, radioTowerStage, townStage, militaryStage, mineralGeodeStage, buildingStage, parkedCarsStage, shootingRangeStage];
 
 export class WorldGen {
   readonly seed: number;
@@ -826,6 +1060,7 @@ export class WorldGen {
     this.nElev = makeNoise(seed ^ 0x1111); this.nTemp = makeNoise(seed ^ 0x2222);
     this.nMoist = makeNoise(seed ^ 0x3333); this.nPatch = makeNoise(seed ^ 0x4444);
     this.spawn = { x: 0, y: 0 };
+    waterBySeed.set(seed, (x, y) => this.sample(x, y).terrain === 'deep');
     this.ctx = { seed, content, terrainOrder: this.terrainOrder, sample: (x, y) => this.sample(x, y), rng: (cx, cy, label) => makeRng(hash2(seed, cx * 7919 + label.length, cy * 104729 + label.charCodeAt(0))), spawn: this.spawn };
     const sp = this.findSpawn();
     this.spawn.x = sp.x; this.spawn.y = sp.y;
@@ -834,11 +1069,12 @@ export class WorldGen {
   sample(x: number, y: number): Sample {
     const e = fbm(this.nElev, x * 0.0075, y * 0.0075, 4);
     const height = clamp((e - 0.5) * 1.7 + 0.5, 0, 1);
-    const temp = clamp((fbm(this.nTemp, x * 0.0038 + 40, y * 0.0038 + 40, 3) - 0.5) * 1.9 + 0.5, 0, 1);
-    const moist = clamp((fbm(this.nMoist, x * 0.0042 - 80, y * 0.0042 - 80, 3) - 0.5) * 1.9 + 0.5, 0, 1);
+    // Large climate zones (HD plan G1): biomes span hundreds of tiles; height only nudges the pick.
+    const temp = clamp((fbm(this.nTemp, x * BIOME_FREQ + 40, y * BIOME_FREQ + 40, 3) - 0.5) * 1.9 + 0.5, 0, 1);
+    const moist = clamp((fbm(this.nMoist, x * BIOME_FREQ * 1.1 - 80, y * BIOME_FREQ * 1.1 - 80, 3) - 0.5) * 1.9 + 0.5, 0, 1);
     let best = 0, bestD = Infinity;
     this.content.biomes.forEach((b, i) => {
-      const d = (b.climate.temp - temp) ** 2 + (b.climate.moist - moist) ** 2 + 0.8 * (b.climate.elev - height) ** 2;
+      const d = (b.climate.temp - temp) ** 2 + (b.climate.moist - moist) ** 2 + BIOME_ELEV_WEIGHT * (b.climate.elev - height) ** 2;
       if (d < bestD) { bestD = d; best = i; }
     });
     const biome = this.content.biomes[best] as BiomeDef;
@@ -846,7 +1082,8 @@ export class WorldGen {
     if (height < WATER_DEEP) terrain = 'deep';
     else if (height < WATER_SHALLOW) terrain = 'shallow';
     else {
-      const p = this.nPatch(x * 0.09, y * 0.09);
+      // fbm keeps big patches but gives them curvy, organic edges.
+      const p = clamp((fbm(this.nPatch, x * PATCH_FREQ, y * PATCH_FREQ, 3) - 0.5) * 1.8 + 0.5, 0, 1);
       terrain = p > 1 - biome.terrain.patchAmount * 1.6 ? biome.terrain.patch : biome.terrain.base;
       if (terrain === 'deep' || terrain === 'shallow') terrain = biome.terrain.base;
     }

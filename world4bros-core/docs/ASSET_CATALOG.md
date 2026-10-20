@@ -46,9 +46,9 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `grass` | grass | placeholder |
+| `grass` | grass | done |
 | `moss` | moss | placeholder |
-| `dirt` | dirt | placeholder |
+| `dirt` | dirt | done |
 | `needles` | needles | placeholder |
 | `mud` | mud | placeholder |
 | `rock` | rock | placeholder |
@@ -69,11 +69,11 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 | `snow_pine` | Snowy Pine | placeholder |
 | `oak` | Oak Tree | placeholder |
 | `dead_tree` | Dead Tree | placeholder |
-| `bush` | Bush | placeholder |
+| `bush` | Bush | done |
 | `berry_bush` | Berry Bush | placeholder |
 | `log` | Fallen Log | placeholder |
 | `stump` | Stump | placeholder |
-| `street_light` | Street Lamppost | placeholder |
+| `street_light` | Street Lamppost | done |
 | `street_sign` | Street Name Sign | placeholder |
 
 ## Rocks & resources (6)
@@ -109,7 +109,7 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 | `picket_fence` | Picket Fence | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `park_bench` | Park Bench | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `fire_hydrant` | Fire Hydrant | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
-| `dumpster` | Alley Dumpster | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
+| `dumpster` | Alley Dumpster | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | done |
 | `traffic_cone` | Traffic Warning Cone | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `target_dummy` | Ballistic Target Dummy | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `steel_target` | Steel Pop-Up Plate | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
@@ -118,7 +118,7 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 | `tactical_shield` | Aegis Deploy Shield | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `stop_sign` | Stop Sign | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `bus_stop` | Bus Stop Shelter | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
-| `trash_can` | Trash Can | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
+| `trash_can` | Trash Can | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | done |
 | `power_pole` | Power Pole | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `abandoned_car` | Abandoned Car | 1 view, states: intact / damaged / destroyed | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
 | `litter` | Street Litter | 1 view | Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender | placeholder |
@@ -131,9 +131,9 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 | `campfire` | Campfire | 4 rotations, states: intact / damaged / destroyed, light sprite | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
 | `wall_wood` | Wooden Wall | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
 | `door_wood` | Wooden Door | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
-| `floor_wood` | Wooden Floor | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
+| `floor_wood` | Wooden Floor | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | done |
 | `chest` | Storage Chest | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
-| `bed` | Bedroll Bed | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
+| `bed` | Bedroll Bed | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | done |
 | `workbench` | Workbench | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
 | `torch_post` | Torch Post | 4 rotations, states: intact / damaged / destroyed, light sprite | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
 | `conveyor_belt` | Conveyor Belt | 4 rotations, states: intact / damaged / destroyed | Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials | placeholder |
@@ -186,7 +186,7 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 ## Zombies (8)
 
 - **Make**: 8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps; mild blood variants
-- **Source**: MPFB 2 body (CC0 assets) or Unreal Lyra mannequin + Mixamo / Lyra animations → render
+- **Source**: MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render
 
 | id | name | status |
 | :--- | :--- | :--- |
@@ -434,7 +434,7 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 ## Character: hair (10)
 
 - **Make**: 8 directions layer, recolourable
-- **Source**: MPFB 2 body (CC0 assets) or Unreal Lyra mannequin + Mixamo / Lyra animations → render
+- **Source**: MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render
 
 | id | name | status |
 | :--- | :--- | :--- |
@@ -456,10 +456,10 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `floor_wood` | floor wood | todo |
+| `floor_wood` | floor wood | done |
 | `floor_tile` | floor tile | todo |
 | `floor_carpet` | floor carpet | todo |
-| `floor_concrete` | floor concrete | todo |
+| `floor_concrete` | floor concrete | done |
 | `floor_linoleum` | floor linoleum | todo |
 | `floor_dirt` | floor dirt | todo |
 
@@ -470,15 +470,15 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `wall_siding` | wall siding | todo |
-| `wall_siding_window` | wall siding window | todo |
-| `wall_siding_door` | wall siding door | todo |
+| `wall_siding` | wall siding | done |
+| `wall_siding_window` | wall siding window | done |
+| `wall_siding_door` | wall siding door | done |
 | `wall_siding_double_door` | wall siding double door | todo |
 | `wall_siding_broken` | wall siding broken | todo |
 | `wall_siding_boarded` | wall siding boarded | todo |
-| `wall_brick` | wall brick | todo |
-| `wall_brick_window` | wall brick window | todo |
-| `wall_brick_door` | wall brick door | todo |
+| `wall_brick` | wall brick | done |
+| `wall_brick_window` | wall brick window | done |
+| `wall_brick_door` | wall brick door | done |
 | `wall_brick_double_door` | wall brick double door | todo |
 | `wall_brick_broken` | wall brick broken | todo |
 | `wall_brick_boarded` | wall brick boarded | todo |
@@ -530,7 +530,7 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `roof_gable_slope` | roof gable slope | todo |
+| `roof_gable_slope` | roof gable slope | done |
 | `roof_ridge` | roof ridge | todo |
 | `roof_hip_corner` | roof hip corner | todo |
 | `roof_flat_parapet` | roof flat parapet | todo |
@@ -551,7 +551,7 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 | `column` | column | todo |
 | `chimney` | chimney | todo |
 | `fence_picket` | fence picket | todo |
-| `fence_chainlink` | fence chainlink | todo |
+| `fence_chainlink` | fence chainlink | done |
 | `gate` | gate | todo |
 | `hedge` | hedge | todo |
 
@@ -562,25 +562,25 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `bed` | bed | todo |
-| `wardrobe` | wardrobe | todo |
+| `bed` | bed | done |
+| `wardrobe` | wardrobe | done |
 | `dresser` | dresser | todo |
 | `nightstand` | nightstand | todo |
-| `fridge` | fridge | todo |
-| `stove` | stove | todo |
+| `fridge` | fridge | done |
+| `stove` | stove | done |
 | `kitchen_counter` | kitchen counter | todo |
-| `sink` | sink | todo |
-| `toilet` | toilet | todo |
+| `sink` | sink | done |
+| `toilet` | toilet | done |
 | `bathtub` | bathtub | todo |
 | `shower` | shower | todo |
-| `sofa` | sofa | todo |
+| `sofa` | sofa | done |
 | `armchair` | armchair | todo |
 | `tv` | tv | todo |
-| `dining_table` | dining table | todo |
-| `chair` | chair | todo |
+| `dining_table` | dining table | done |
+| `chair` | chair | done |
 | `desk` | desk | todo |
 | `bookshelf` | bookshelf | todo |
-| `cupboard` | cupboard | todo |
+| `cupboard` | cupboard | done |
 | `washing_machine` | washing machine | todo |
 | `workbench` | workbench | todo |
 | `toolbox` | toolbox | todo |
@@ -604,13 +604,13 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `asphalt` | asphalt | todo |
+| `asphalt` | asphalt | done |
 | `asphalt_cracked` | asphalt cracked | todo |
-| `lane_line_white` | lane line white | todo |
+| `lane_line_white` | lane line white | done |
 | `lane_line_yellow` | lane line yellow | todo |
-| `kerb` | kerb | todo |
-| `sidewalk` | sidewalk | todo |
-| `crosswalk` | crosswalk | todo |
+| `kerb` | kerb | done |
+| `sidewalk` | sidewalk | done |
+| `crosswalk` | crosswalk | done |
 | `driveway` | driveway | todo |
 | `dirt_track` | dirt track | todo |
 | `gravel_shoulder` | gravel shoulder | todo |
@@ -627,11 +627,11 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 ## Characters: body & clothing (13)
 
 - **Make**: 8 directions × idle 8f, walk 8f, run 8f, attack 6f, hit 4f, die 8f @12 fps, recolourable layers
-- **Source**: MPFB 2 body (CC0 assets) or Unreal Lyra mannequin + Mixamo / Lyra animations → render
+- **Source**: MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `body_base` | body base | todo |
+| `body_base` | body base | done |
 | `head_base` | head base | todo |
 | `torso_shirt` | torso shirt | todo |
 | `torso_jacket` | torso jacket | todo |
@@ -652,10 +652,10 @@ Status: `placeholder` = exists in the game as code-drawn art, needs the HD sprit
 
 | id | name | status |
 | :--- | :--- | :--- |
-| `blood_splat_small` | blood splat small | todo |
+| `blood_splat_small` | blood splat small | done |
 | `blood_drip_wall` | blood drip wall | todo |
-| `crack_ground` | crack ground | todo |
-| `leaves` | leaves | todo |
+| `crack_ground` | crack ground | done |
+| `leaves` | leaves | done |
 | `litter` | litter | todo |
 | `puddle` | puddle | todo |
 | `graffiti` | graffiti | todo |

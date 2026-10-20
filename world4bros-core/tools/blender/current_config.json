@@ -1,0 +1,25 @@
+{
+  "seed": 34904,
+  "layout": "standard",
+  "district": "mixed",
+  "damage_state": "pristine",
+  "interior_mode": "dollhouse",
+  "lighting_mood": "midday_clear",
+  "height_profile": "low_rise",
+  "enable_setbacks": true,
+  "roof_clutter": true,
+  "trees": true,
+  "streetlamps": true,
+  "tactical_cover": true,
+  "dummy_character": true,
+  "metrics": {
+    "plot_width_m": 11.5,
+    "plot_depth_m": 13,
+    "road_width_m": 11,
+    "sidewalk_pad_m": 3.2,
+    "plot_gap_x_m": 2.4,
+    "plot_gap_y_m": 3.2,
+    "curb_height_m": 0.22,
+    "floor_height_m": 2.8
+  }
+}

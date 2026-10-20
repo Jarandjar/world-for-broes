@@ -580,6 +580,51 @@ function getDashboardHtml() {
           </select>
         </div>
 
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>District / Biome Theme</label>
+          <select id="selDistrict">
+            <option value="mixed" selected>🌆 Mixed Urban Center</option>
+            <option value="downtown">🏙️ Downtown Metropolis (Towers)</option>
+            <option value="suburban">🏡 Suburban Residential (Houses & Garages)</option>
+            <option value="small_town">🏪 Small Town Main Street (Shops & Diner)</option>
+            <option value="industrial">🏭 Industrial Zone (Warehouses & Silos)</option>
+            <option value="survivor_slum">🛡️ Survivor Stronghold (Barricades & Watchtowers)</option>
+            <option value="historic_pagoda">⛩️ Historic Old Town (Pagoda Temples)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>Damage & Decay State</label>
+          <select id="selDamage">
+            <option value="pristine" selected>✨ Pristine (Clean Pre-Apocalypse)</option>
+            <option value="abandoned">🌿 Abandoned & Overgrown</option>
+            <option value="looted">💥 Looted & Smashed</option>
+            <option value="barricaded">🚧 Fortified & Barricaded</option>
+            <option value="scorched">🔥 Scorched & Ruined</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>Interior Cutaway Mode</label>
+          <select id="selInterior">
+            <option value="solid" selected>🧱 Solid Exterior Shell</option>
+            <option value="hollow_shell">🚪 Hollow Enterable Shell</option>
+            <option value="dollhouse">✂️ Dollhouse Cutaway (0.8m Half-Walls)</option>
+            <option value="furnished_tactical">🪑 Furnished Rooms (Loot & Cover)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label>Lighting & Atmosphere</label>
+          <select id="selLighting">
+            <option value="midday_clear" selected>☀️ Studio Clay / Crisp Matcap</option>
+            <option value="night_neon">🌙 Midnight Cyberpunk Glow</option>
+            <option value="golden_hour">🌅 Golden Hour Sunset</option>
+            <option value="toxic_twilight">☣️ Toxic Radioactive Smog</option>
+            <option value="overcast_bleak">☁️ Overcast Bleak Grey</option>
+          </select>
+        </div>
+
         <div class="form-group">
           <label>Skyline Profile</label>
           <select id="selHeight">
@@ -830,6 +875,10 @@ function getDashboardHtml() {
       const payload = {
         seed: parseInt(document.getElementById('inpSeed').value, 10),
         layout: document.getElementById('selLayout').value,
+        district: document.getElementById('selDistrict').value,
+        damage_state: document.getElementById('selDamage').value,
+        interior_mode: document.getElementById('selInterior').value,
+        lighting_mood: document.getElementById('selLighting').value,
         height_profile: document.getElementById('selHeight').value,
         enable_setbacks: document.getElementById('chkSetbacks').checked,
         roof_clutter: document.getElementById('chkClutter').checked,
@@ -906,7 +955,7 @@ function getDashboardHtml() {
           statusEl.textContent = 'Fetch failed: ' + (data.error || 'unknown error');
           return;
         }
-        statusEl.textContent = 'Fetch complete. Mode: ' + mode + '\nFetched: ' + (data.results?.length ?? 0) + ' entries';
+        statusEl.textContent = 'Fetch complete. Mode: ' + mode + '\\nFetched: ' + (data.results?.length ?? 0) + ' entries';
         await loadToolkitReport();
       } catch (err) {
         statusEl.textContent = 'Fetch request failed: ' + err.message;
@@ -926,7 +975,7 @@ function getDashboardHtml() {
         const cloned = report.filter((x) => x.action === 'cloned' || x.action === 'updated').length;
         const skipped = report.filter((x) => x.action === 'skipped').length;
         const failed = report.filter((x) => x.action === 'failed').length;
-        statusEl.textContent = 'Report loaded\n' +
+        statusEl.textContent = 'Report loaded\\n' +
           'cloned/updated: ' + cloned + ' | skipped: ' + skipped + ' | failed: ' + failed;
       } catch (err) {
         statusEl.textContent = 'Failed to load report: ' + err.message;
@@ -1086,6 +1135,62 @@ const server = http.createServer((req, res) => {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: err.message }));
     }
+    return;
+  }
+
+  // Unreal Engine 5.7 Automation API
+  if (req.method === 'GET' && url.pathname === '/api/unreal/status') {
+    const pyScript = path.join(__dirname, 'unreal', 'ue_controller.py');
+    execFile('python', [pyScript, 'status'], (err, stdout, stderr) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: err.message, stderr }));
+        return;
+      }
+      try {
+        const status = JSON.parse(stdout);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, status }));
+      } catch {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, raw: stdout }));
+      }
+    });
+    return;
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/unreal/launch') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = body ? JSON.parse(body) : {};
+        const arena = payload.arena || 'duel_pit';
+        const bots = String(payload.bots || 4);
+        const level = payload.level || 'sharp';
+        const zombies = String(payload.zombies || 12);
+        const zkind = payload.zkind || 'runner';
+        const isHeadless = Boolean(payload.headless);
+
+        const pyScript = path.join(__dirname, 'unreal', 'ue_controller.py');
+        const args = [pyScript, 'play', '--arena', arena, '--bots', bots, '--level', level, '--zombies', zombies, '--zkind', zkind];
+        if (isHeadless) args.push('--headless');
+
+        const proc = spawn('python', args, { detached: true, stdio: 'ignore' });
+        proc.unref();
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+          success: true,
+          pid: proc.pid,
+          mode: isHeadless ? 'headless' : 'standalone',
+          command: `python tools/unreal/ue_controller.py play --arena ${arena} --bots ${bots} --level ${level} --zombies ${zombies} --zkind ${zkind}${isHeadless ? ' --headless' : ''}`
+        }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: err.message }));
+      }
+    });
     return;
   }
 

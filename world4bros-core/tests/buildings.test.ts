@@ -44,6 +44,21 @@ test('walls block movement but the door and interior are open; the roof lifts wh
   assert.ok(DOOR_W > 1.2, 'door wide enough for the player');
 });
 
+test('modular snap pieces include interior door links and keep passage open', () => {
+  const g = new Game(DEFAULT_CONFIG);
+  const b = townBuildings(g).find((x) => x.pieces?.some((p) => p.kind === 'door' && p.exterior === false));
+  assert.ok(b, 'expected at least one building with interior modular door pieces');
+  const interiorDoor = b!.pieces!.find((p) => p.kind === 'door' && p.exterior === false)!;
+  const cx = (interiorDoor.x0 + interiorDoor.x1) / 2;
+  const cy = (interiorDoor.y0 + interiorDoor.y1) / 2;
+  assert.equal(g.world.blocked(cx, cy, 0.25), false, 'interior door link is walkable for NPC/player movement');
+  const interiorWall = b!.pieces!.find((p) => p.kind === 'wall' && p.exterior === false);
+  assert.ok(interiorWall, 'expected interior divider walls in modular layouts');
+  const wx = (interiorWall!.x0 + interiorWall!.x1) / 2;
+  const wy = (interiorWall!.y0 + interiorWall!.y1) / 2;
+  assert.equal(g.world.blocked(wx, wy, 0.25), true, 'interior divider wall blocks traversal outside door opening');
+});
+
 test('buildings are deterministic per seed', () => {
   const a = townBuildings(new Game(DEFAULT_CONFIG)).map((b) => `${b.def}:${b.x},${b.y},${b.w},${b.h},${b.door}`).sort();
   const b = townBuildings(new Game(DEFAULT_CONFIG)).map((x) => `${x.def}:${x.x},${x.y},${x.w},${x.h},${x.door}`).sort();

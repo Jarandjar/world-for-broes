@@ -83,6 +83,31 @@ export function blobShadow(g: G, rx: number, ry: number, lift = 0, x = 0.03, y =
   g.beginPath(); g.ellipse(x, y, rx * k, ry * k, 0, 0, TAU); g.fill(); g.restore();
 }
 
+function drawWheelchair(g: G, phase: number, walk: number, build: number, frame = '#5d6672'): void {
+  const seat = '#2f343d', tire = '#171a20', rim = '#aeb6bf', spin = phase * walk * 0.9, back = 0.1 * build;
+  const wheel = (x: number, y: number, r: number, rot: number): void => {
+    g.fillStyle = tire; g.beginPath(); g.arc(x, y, r, 0, TAU); g.fill();
+    g.fillStyle = rim; g.beginPath(); g.arc(x, y, r * 0.72, 0, TAU); g.fill();
+    g.fillStyle = tire; g.beginPath(); g.arc(x, y, r * 0.54, 0, TAU); g.fill();
+    g.strokeStyle = rim; g.lineWidth = 0.008;
+    for (let i = 0; i < 6; i++) {
+      const a = rot + (i / 6) * TAU;
+      g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * r * 0.68, y + Math.sin(a) * r * 0.68); g.stroke();
+    }
+  };
+
+  g.save();
+  wheel(-0.03, -0.2 * build, 0.11, spin);
+  wheel(-0.03, 0.2 * build, 0.11, -spin);
+  g.fillStyle = seat; g.fillRect(-0.05, -0.16 * build, 0.16, 0.32 * build);
+  g.fillStyle = frame; g.fillRect(-0.13, -back, 0.08, back * 2); g.fillRect(0.05, -0.18 * build, 0.04, 0.36 * build);
+  g.strokeStyle = frame; g.lineWidth = 0.018;
+  g.beginPath(); g.moveTo(-0.04, -0.14 * build); g.lineTo(0.11, -0.14 * build); g.lineTo(0.16, -0.09 * build); g.stroke();
+  g.beginPath(); g.moveTo(-0.04, 0.14 * build); g.lineTo(0.11, 0.14 * build); g.lineTo(0.16, 0.09 * build); g.stroke();
+  g.fillStyle = rim; g.beginPath(); g.arc(0.2, -0.12 * build, 0.03, 0, TAU); g.arc(0.2, 0.12 * build, 0.03, 0, TAU); g.fill();
+  g.restore();
+}
+
 // ================================================================ characters
 const BOUNDS: Record<string, [number, number, number, number]> = {
   body: [-0.5, -0.45, 0.45, 0.45], back: [-0.75, -0.42, 0.15, 0.42], held: [-0.28, -0.42, 1.25, 0.45], arm: [-0.1, -0.16, 0.42, 0.16],
@@ -132,16 +157,20 @@ export class CharacterRenderer {
     const sp = (key: string, c: ColorSet | null, extra: Partial<typeof base> = {}): Sprite | null => this.sprite(key, ppu, { ...base, ...extra, c: c ?? DEFAULT_COLORS });
     const w = pose.walk, t = pose.time, idle = 1 - w;
     const lift = 1 + CHAR_ANIM.stepLift * Math.abs(Math.sin(pose.phase)) * w;
+    const wheelchair = a.wheelchair;
 
     g.save(); g.scale(lift, lift);
+    if (wheelchair) drawWheelchair(g, pose.phase, w, b, torso?.secondary ?? '#5d6672');
     // ---- legs and feet (stride)
     for (const side of [-1, 1]) {
-      const step = Math.sin(pose.phase + (side > 0 ? 0 : Math.PI)) * 0.15 * w;
-      const fx = 0.16 + step, hy = side * 0.1 * b;
+      const step = wheelchair ? 0 : Math.sin(pose.phase + (side > 0 ? 0 : Math.PI)) * 0.15 * w;
+      const fx = wheelchair ? 0.12 : 0.16 + step;
+      const hy = side * (wheelchair ? 0.085 : 0.1) * b;
       const leg = sp(legs ? `legs:${o.legs?.item}` : 'legs:none', legs ?? { ...DEFAULT_COLORS, primary: a.skin }, { side });
-      put(leg, -0.02, hy, 0, clamp((fx + 0.02) / 0.21, 0.5, 1.8), 1, false);
+      if (wheelchair) put(leg, -0.03, hy, side * 0.02, 0.45, 0.92, false);
+      else put(leg, -0.02, hy, 0, clamp((fx + 0.02) / 0.21, 0.5, 1.8), 1, false);
       const foot = sp(feet ? `feet:${o.feet?.item}` : 'feet:none', feet, { side });
-      put(foot, fx, hy, side * 0.08 + step * 0.4, 1 + Math.max(0, step) * 0.6, 1, false);   // toe lifts (stretches) on the forward foot
+      put(foot, fx, hy, wheelchair ? side * 0.02 : side * 0.08 + step * 0.4, wheelchair ? 0.82 : 1 + Math.max(0, step) * 0.6, 1, false);   // toe lifts (stretches) on the forward foot
     }
 
     // ---- swing timeline for the main hand (top-down: a sweeping arc with foreshortening)

@@ -254,3 +254,80 @@ test('Army Base Arena: Spawning bots, zombie swarms, bot combat AI and bullet da
   assert.ok(rComp.hp < initialBotHp, `Bot must take bullet damage: ${rComp.hp} < ${initialBotHp}`);
 });
 
+test('Army Base Arena: Bots shoot each other and zombies swarm bots', () => {
+  const game = new Game(DEFAULT_CONFIG);
+  game.teleportToArena('duel_pit', 0);
+  game.clearArenaCombatants();
+
+  // Move player far outside arena view so bots only engage each other
+  game.playerT.x = 999;
+  game.playerT.y = 999;
+
+  // Spawn Bot A at spawn 0 and Bot B at spawn 1
+  const botA = game.spawnArenaBot('sharp', 'hunting_rifle', 0)!;
+  const botB = game.spawnArenaBot('sharp', 'hunting_rifle', 1)!;
+
+  const tA = game.ecs.get(botA, Comp.Transform)!;
+  const tB = game.ecs.get(botB, Comp.Transform)!;
+  const rA = game.ecs.get(botA, Comp.Raider)!;
+  const rB = game.ecs.get(botB, Comp.Raider)!;
+
+  // Position bots within sight (10m apart) along a clear lane
+  const ar = game.activeArena!;
+  tA.x = ar.originX + 8;
+  tA.y = ar.originY + 5;
+  tB.x = ar.originX + 16;
+  tB.y = ar.originY + 5;
+
+  // Clear reaction delays
+  rA.reactionTimer = 0;
+  rA.cooldown = 0;
+  rB.reactionTimer = 0;
+  rB.cooldown = 0;
+
+  // Step simulation: bots should target each other and fire projectiles
+  let botFired = false;
+  for (let i = 0; i < 40; i++) {
+    game.step(0.02, {
+      move: { x: 0, y: 0 },
+      sprint: false,
+      actionPressed: false,
+      interactPressed: false,
+      aimHeld: false,
+      shootPressed: false,
+    });
+    if ([...game.ecs.query(Comp.Projectile)].length > 0) {
+      botFired = true;
+    }
+  }
+  assert.ok(botFired, 'Bots must engage and fire projectiles at each other in the arena');
+
+  // Spawn a fresh bot and a zombie near it
+  const botC = game.spawnArenaBot('regular', 'nailgun_smg', 0)!;
+  const tC = game.ecs.get(botC, Comp.Transform)!;
+  const rC = game.ecs.get(botC, Comp.Raider)!;
+  tC.x = ar.originX + 20;
+  tC.y = ar.originY + 12;
+  const initialHpC = rC.hp;
+
+  const ze = game.spawnZombie(tC.x + 0.8, tC.y, 'runner');
+  const z = game.ecs.get(ze, Comp.Zombie)!;
+  z.state = 'chase';
+  z.target = botC;
+  z.attackTimer = 0;
+
+  // Step simulation: zombie should attack Bot C and reduce Bot C HP
+  for (let i = 0; i < 20; i++) {
+    game.step(0.02, {
+      move: { x: 0, y: 0 },
+      sprint: false,
+      actionPressed: false,
+      interactPressed: false,
+      aimHeld: false,
+      shootPressed: false,
+    });
+  }
+
+  assert.ok(rC.hp < initialHpC, `Zombie horde must attack and damage bots: ${rC.hp} < ${initialHpC}`);
+});
+

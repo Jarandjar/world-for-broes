@@ -1,6 +1,6 @@
 # Z26 plan: Status Effects, Reactions & Stagger
 
-Status: **planned, data layer done (step 1)**. Spec: `../docs/WORLD_BIBLE.md` Part 18 §115–§118. Visual target: `../docs/design/index.html`. Z27 (biomes) builds on this.
+Status: **planned, data layer done (step 1)**. Spec: `WORLD_BIBLE.md` Part 18 §115–§118. Visual target: `design/index.html`. Z27 (biomes) builds on this.
 
 Follow `AGENTS.md`: sim/data never import render/ui, deterministic RNG only (`game.rng.fork(...)`), content is data, add a node:test for every sim rule, run `npm run verify` after each step.
 
@@ -91,12 +91,12 @@ One per rule:
 14. Save/load round-trips active effects and hazards.
 
 ## Step 7 — Docs (AGENTS.md rule)
-- `../docs/WORLD_BIBLE.md`: §69 and §112 Z26 row → COMPLETE, §110 note, Part 18 "in code" notes (file names).
-- `../docs/PROGRESS.md`: Z26 row → COMPLETE.
+- `WORLD_BIBLE.md`: §69 and §112 Z26 row → COMPLETE, §110 note, Part 18 "in code" notes (file names).
+- `PROGRESS.md`: Z26 row → COMPLETE.
 - `docs/ROADMAP.md`: tick Z26.
 - `docs/EXTENDING.md` recipe 7: real steps (add a row to `EFFECTS`, an icon drawer, reaction rows; validate; test).
 - `docs/ARCHITECTURE.md`: `EffectSystem` and `Comp.Status`.
-- `../docs/STYLE.md`, `../docs/CLAUDE_HANDOVER_OVERVIEW.md`, `README.md`: one line each.
+- `STYLE_BIBLE.md`, `CLAUDE_HANDOVER_OVERVIEW.md`, `README.md`: one line each.
 
 Done = `npm run verify` green, effects visibly apply to player and zombies in-game (`npm run dev`, screenshot with `?still=1`).
 

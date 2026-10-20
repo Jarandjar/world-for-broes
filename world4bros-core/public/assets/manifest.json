@@ -1,0 +1,534 @@
+{
+  "wall_brick": {
+    "id": "wall_brick",
+    "category": "Snap kit: walls",
+    "category_slug": "snap_kit_walls",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_walls/wall_brick.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wall_brick.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "bed": {
+    "id": "bed",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/bed.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/bed.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "grass": {
+    "id": "grass",
+    "category": "Ground tiles",
+    "category_slug": "ground_tiles",
+    "directions": 1,
+    "files": [
+      "public/assets/ground_tiles/grass.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/grass.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "dirt": {
+    "id": "dirt",
+    "category": "Ground tiles",
+    "category_slug": "ground_tiles",
+    "directions": 1,
+    "files": [
+      "public/assets/ground_tiles/dirt.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/dirt.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "bush": {
+    "id": "bush",
+    "category": "Vegetation",
+    "category_slug": "vegetation",
+    "directions": 1,
+    "files": [
+      "public/assets/vegetation/bush.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/bush.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "street_light": {
+    "id": "street_light",
+    "category": "Vegetation",
+    "category_slug": "vegetation",
+    "directions": 1,
+    "files": [
+      "public/assets/vegetation/street_light.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/street_light.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "dumpster": {
+    "id": "dumpster",
+    "category": "World props",
+    "category_slug": "world_props",
+    "directions": 1,
+    "files": [
+      "public/assets/world_props/dumpster.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/dumpster.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "trash_can": {
+    "id": "trash_can",
+    "category": "World props",
+    "category_slug": "world_props",
+    "directions": 1,
+    "files": [
+      "public/assets/world_props/trash_can.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/trash_can.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "floor_wood": {
+    "id": "floor_wood",
+    "category": "Snap kit: floors",
+    "category_slug": "snap_kit_floors",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_floors/floor_wood.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/floor_wood.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "floor_concrete": {
+    "id": "floor_concrete",
+    "category": "Snap kit: floors",
+    "category_slug": "snap_kit_floors",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_floors/floor_concrete.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/floor_concrete.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "wall_siding": {
+    "id": "wall_siding",
+    "category": "Snap kit: walls",
+    "category_slug": "snap_kit_walls",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_walls/wall_siding.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wall_siding.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "wall_siding_window": {
+    "id": "wall_siding_window",
+    "category": "Snap kit: walls",
+    "category_slug": "snap_kit_walls",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_walls/wall_siding_window.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wall_siding_window.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "wall_siding_door": {
+    "id": "wall_siding_door",
+    "category": "Snap kit: walls",
+    "category_slug": "snap_kit_walls",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_walls/wall_siding_door.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wall_siding_door.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "wall_brick_window": {
+    "id": "wall_brick_window",
+    "category": "Snap kit: walls",
+    "category_slug": "snap_kit_walls",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_walls/wall_brick_window.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wall_brick_window.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "wall_brick_door": {
+    "id": "wall_brick_door",
+    "category": "Snap kit: walls",
+    "category_slug": "snap_kit_walls",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_walls/wall_brick_door.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wall_brick_door.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "roof_gable_slope": {
+    "id": "roof_gable_slope",
+    "category": "Snap kit: roofs",
+    "category_slug": "snap_kit_roofs",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_roofs/roof_gable_slope.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/roof_gable_slope.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "fence_chainlink": {
+    "id": "fence_chainlink",
+    "category": "Snap kit: structure",
+    "category_slug": "snap_kit_structure",
+    "directions": 1,
+    "files": [
+      "public/assets/snap_kit_structure/fence_chainlink.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/fence_chainlink.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "wardrobe": {
+    "id": "wardrobe",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/wardrobe.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/wardrobe.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "fridge": {
+    "id": "fridge",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/fridge.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/fridge.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "stove": {
+    "id": "stove",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/stove.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/stove.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "sink": {
+    "id": "sink",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/sink.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/sink.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "toilet": {
+    "id": "toilet",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/toilet.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/toilet.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "sofa": {
+    "id": "sofa",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/sofa.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/sofa.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "dining_table": {
+    "id": "dining_table",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/dining_table.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/dining_table.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "chair": {
+    "id": "chair",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/chair.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/chair.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "cupboard": {
+    "id": "cupboard",
+    "category": "Furniture",
+    "category_slug": "furniture",
+    "directions": 1,
+    "files": [
+      "public/assets/furniture/cupboard.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/cupboard.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "asphalt": {
+    "id": "asphalt",
+    "category": "Roads & streets",
+    "category_slug": "roads_and_streets",
+    "directions": 1,
+    "files": [
+      "public/assets/roads_and_streets/asphalt.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/asphalt.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "lane_line_white": {
+    "id": "lane_line_white",
+    "category": "Roads & streets",
+    "category_slug": "roads_and_streets",
+    "directions": 1,
+    "files": [
+      "public/assets/roads_and_streets/lane_line_white.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/lane_line_white.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "kerb": {
+    "id": "kerb",
+    "category": "Roads & streets",
+    "category_slug": "roads_and_streets",
+    "directions": 1,
+    "files": [
+      "public/assets/roads_and_streets/kerb.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/kerb.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "sidewalk": {
+    "id": "sidewalk",
+    "category": "Roads & streets",
+    "category_slug": "roads_and_streets",
+    "directions": 1,
+    "files": [
+      "public/assets/roads_and_streets/sidewalk.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/sidewalk.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "crosswalk": {
+    "id": "crosswalk",
+    "category": "Roads & streets",
+    "category_slug": "roads_and_streets",
+    "directions": 1,
+    "files": [
+      "public/assets/roads_and_streets/crosswalk.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/crosswalk.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "body_base": {
+    "id": "body_base",
+    "category": "Characters: body & clothing",
+    "category_slug": "characters_body_and_clothing",
+    "directions": 8,
+    "files": [
+      "public/assets/characters_body_and_clothing/body_base_dir0.png",
+      "public/assets/characters_body_and_clothing/body_base_dir1.png",
+      "public/assets/characters_body_and_clothing/body_base_dir2.png",
+      "public/assets/characters_body_and_clothing/body_base_dir3.png",
+      "public/assets/characters_body_and_clothing/body_base_dir4.png",
+      "public/assets/characters_body_and_clothing/body_base_dir5.png",
+      "public/assets/characters_body_and_clothing/body_base_dir6.png",
+      "public/assets/characters_body_and_clothing/body_base_dir7.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/body_base.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "blood_splat_small": {
+    "id": "blood_splat_small",
+    "category": "Decals",
+    "category_slug": "decals",
+    "directions": 1,
+    "files": [
+      "public/assets/decals/blood_splat_small.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/blood_splat_small.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "crack_ground": {
+    "id": "crack_ground",
+    "category": "Decals",
+    "category_slug": "decals",
+    "directions": 1,
+    "files": [
+      "public/assets/decals/crack_ground.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/crack_ground.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  },
+  "leaves": {
+    "id": "leaves",
+    "category": "Decals",
+    "category_slug": "decals",
+    "directions": 1,
+    "files": [
+      "public/assets/decals/leaves.png"
+    ],
+    "glb": "tools/unreal/World4Bros/Content/Import/leaves.glb",
+    "status": "done",
+    "anchor": [
+      0.5,
+      1.0
+    ]
+  }
+}

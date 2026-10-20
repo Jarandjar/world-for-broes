@@ -6,7 +6,7 @@
  * Run: npm run art:catalog   (writes docs/ASSET_CATALOG.md and tools/blender/jobs/asset_catalog.json)
  * Style rules: docs/STYLE_BIBLE.md §0. Sourcing: docs/OPEN_SOURCE_TOOLKIT.md.
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { buildContent } from '../src/data/content';
 
@@ -28,7 +28,7 @@ const SRC = {
   prop: 'Kenney / Quaternius CC0 model as base → re-shape, grime and re-texture in Blender',
   furniture: 'Kenney Furniture Kit (CC0) as base → gritty re-texture, damaged variant',
   vehicle: 'Kenney Car Kit (CC0) or our parametric car generator → parts as layers, grime',
-  human: 'MPFB 2 body (CC0 assets) or Unreal Lyra mannequin + Mixamo / Lyra animations → render',
+  human: 'MPFB 2 body (CC0 assets) or the UE5 mannequin + CC0 Quaternius Universal Animation Library (Mixamo only privately) → render',
   animal: 'Quaternius animated animals (CC0, check pack) → render',
   kit: 'Own Blender snap-kit piece (City Sample PCG rules as reference), CC0 materials',
   icon: 'Render the 3D item model top-down at 2× (or Gemini 2D concept, redrawn) → 64 px icon',
@@ -112,8 +112,24 @@ function planned(): Asset[] {
 }
 
 const assets = [...fromContent(), ...planned()];
-const cats = [...new Set(assets.map((a) => a.category))];
 const root = join(dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
+
+// Sync status with public/assets/manifest.json if it exists
+const manifestPath = join(root, 'public/assets/manifest.json');
+if (existsSync(manifestPath)) {
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as Record<string, { status?: string }>;
+    for (const a of assets) {
+      if (manifest[a.id]?.status === 'done') {
+        a.status = 'done';
+      }
+    }
+  } catch (err) {
+    console.warn('Could not read public/assets/manifest.json:', err);
+  }
+}
+
+const cats = [...new Set(assets.map((a) => a.category))];
 
 const json = join(root, 'tools/blender/jobs/asset_catalog.json');
 mkdirSync(dirname(json), { recursive: true });

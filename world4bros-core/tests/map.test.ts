@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Game, DEFAULT_CONFIG, NO_INPUT } from '../src/sim/game';
 import { Comp } from '../src/sim/components';
+import { getStreetDetails, roadPathsNear, REGIONAL_TOWNS } from '../src/sim/worldgen';
 
 test('world generates major POIs (gas stations, radio towers, towns, outposts)', () => {
   const g = new Game(DEFAULT_CONFIG);
@@ -90,7 +91,7 @@ test('player spawns at an abandoned town with town features and objects', () => 
   assert.ok(kinds.includes('crate'), 'town should contain supply crates');
 });
 
-test('teleportToTown brings player, vehicle, and pet to the town square', () => {
+test('teleportToTown brings player, vehicle, and pet to fixed town plaza slots', () => {
   const g = new Game(DEFAULT_CONFIG);
   // Move player far away
   g.playerT.x = 800;
@@ -101,9 +102,94 @@ test('teleportToTown brings player, vehicle, and pet to the town square', () => 
   assert.equal(g.playerT.x, g.world.spawn.x);
   assert.equal(g.playerT.y, g.world.spawn.y);
 
-  // Check vehicle is at town
   const vehicles = g.ecs.query(Comp.Vehicle, Comp.Transform);
   assert.ok(vehicles.length > 0);
   const vt = g.ecs.get(vehicles[0]!, Comp.Transform)!;
-  assert.ok(Math.hypot(vt.x - g.world.spawn.x, vt.y - g.world.spawn.y) < 3.0);
+  assert.equal(vt.x, g.world.spawn.x + 1.9);
+  assert.equal(vt.y, g.world.spawn.y + 0.3);
+
+  const pets = g.ecs.query(Comp.Pet, Comp.Transform);
+  assert.ok(pets.length > 0);
+  const pt = g.ecs.get(pets[0]!, Comp.Transform)!;
+  assert.equal(pt.x, g.world.spawn.x - 1.1);
+  assert.equal(pt.y, g.world.spawn.y + 0.8);
+});
+
+test('teleportToTownDistrict moves player to district anchors', () => {
+  const g = new Game(DEFAULT_CONFIG);
+  const sp = g.world.spawn;
+
+  g.teleportToTownDistrict('commercial');
+  assert.equal(g.playerT.x, sp.x + 16);
+  assert.equal(g.playerT.y, sp.y);
+
+  g.teleportToTownDistrict('residential');
+  assert.equal(g.playerT.x, sp.x);
+  assert.equal(g.playerT.y, sp.y + 16);
+
+  g.teleportToTownDistrict('industrial');
+  assert.equal(g.playerT.x, sp.x - 16);
+  assert.equal(g.playerT.y, sp.y);
+});
+
+test('every town has a main street and is linked to the highway network (HD plan G2)', () => {
+  const g = new Game(DEFAULT_CONFIG);
+  const spawn = g.world.spawn;
+  const towns = [{ x: spawn.x, y: spawn.y }, ...REGIONAL_TOWNS];
+  const all = roadPathsNear(DEFAULT_CONFIG.seed, spawn, -400, -400, 400, 400, 0);
+  const highways = all.filter((p) => p.kind === 'highway');
+  assert.ok(highways.length >= towns.length - 1, `a spanning set of highways, got ${highways.length}`);
+  for (const t of towns) {
+    assert.equal(getStreetDetails(DEFAULT_CONFIG.seed, t.x + 5.5, t.y, spawn).kind, 'highway', 'town main street');
+    const linked = highways.some((p) => [p.pts[0]!, p.pts[p.pts.length - 1]!].some(([x, y]) => Math.hypot(x - t.x, y - t.y) < 70));
+    assert.ok(linked, `town at ${t.x},${t.y} has a highway`);
+  }
+  assert.ok(all.some((p) => p.kind === 'dirt_road'), 'dirt tracks lead out of towns');
+});
+
+test('highways and dirt tracks are smooth curves, not staircases', () => {
+  const g = new Game(DEFAULT_CONFIG);
+  for (const p of roadPathsNear(DEFAULT_CONFIG.seed, g.world.spawn, -400, -400, 400, 400, 0)) {
+    for (let i = 1; i < p.pts.length - 1; i++) {
+      const [ax, ay] = p.pts[i - 1]!, [bx, by] = p.pts[i]!, [cx, cy] = p.pts[i + 1]!;
+      const a1 = Math.atan2(by - ay, bx - ax), a2 = Math.atan2(cy - by, cx - bx);
+      let turn = Math.abs(a2 - a1); if (turn > Math.PI) turn = 2 * Math.PI - turn;
+      assert.ok(turn < 0.6, `turn of ${turn.toFixed(2)} rad between road samples`);
+    }
+  }
+});
+
+test('regional town centers spawn deterministic named town features', () => {
+  const g = new Game(DEFAULT_CONFIG);
+
+  let checked = 0;
+  for (const town of REGIONAL_TOWNS) {
+    const terrain = g.world.gen.sample(town.x, town.y).terrain;
+    if (terrain === 'deep' || terrain === 'shallow') continue;
+
+    const cx = Math.floor(town.x / 16);
+    const cy = Math.floor(town.y / 16);
+    const chunk = g.world.chunkAt(cx, cy);
+    const feature = chunk.features.find((f) => f.type === 'town' && f.name === town.name);
+    assert.ok(feature, `expected town feature for ${town.name} at chunk ${cx},${cy}`);
+    checked++;
+  }
+
+  assert.ok(checked >= 4, 'should verify multiple regional towns on valid land tiles');
+});
+
+test('regional town streets include parked-car variety near curbs', () => {
+  const g = new Game(DEFAULT_CONFIG);
+  let parked = 0;
+
+  for (const town of REGIONAL_TOWNS) {
+    const terrain = g.world.gen.sample(town.x, town.y).terrain;
+    if (terrain === 'deep' || terrain === 'shallow') continue;
+    const objs = g.world.objectsNear(town.x, town.y, 36);
+    for (const o of objs) {
+      if (o.kind === 'abandoned_car' || o.kind === 'wrecked_car') parked++;
+    }
+  }
+
+  assert.ok(parked >= 6, `expected multiple parked cars around regional towns, got ${parked}`);
 });

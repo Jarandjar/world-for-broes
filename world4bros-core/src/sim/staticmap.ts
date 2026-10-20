@@ -16,7 +16,7 @@ export interface StaticMapSave {
     terrain: string; biome: string; elevation?: string;
     objects: [ObjectKind, number, number, number, number][];
     features: [string, number, number, string?][];
-    buildings?: [string, number, number, number, number, Side, number][];
+    buildings?: [string, number, number, number, number, Side, number, string?][];
   }[];
 }
 
@@ -72,7 +72,7 @@ export class StaticMap {
         cx: c.cx, cy: c.cy, terrain: enc(c.terrain), biome: enc(c.biome), elevation: enc(c.elevation),
         objects: c.objects.filter((o) => !o.removed).map((o) => [o.kind, Math.round(o.x * 100), Math.round(o.y * 100), o.variant, o.hp] as [ObjectKind, number, number, number, number]),
         features: c.features.map((f) => (f.name === undefined ? [f.type, f.x, f.y] : [f.type, f.x, f.y, f.name]) as [string, number, number, string?]),
-        buildings: c.buildings.map((b) => [b.def, b.x, b.y, b.w, b.h, b.door, b.doorAt] as [string, number, number, number, number, Side, number]),
+        buildings: c.buildings.map((b) => [b.def, b.x, b.y, b.w, b.h, b.door, b.doorAt, b.pieces ? JSON.stringify(b.pieces) : undefined] as [string, number, number, number, number, Side, number, string?]),
       });
     }
     return { v: 1, radius: this.radius, order: [...order], nextId: this.nextId, chunks };
@@ -96,7 +96,11 @@ export class StaticMap {
       if (!same) for (let i = 0; i < c.terrain.length; i++) c.terrain[i] = remap[c.terrain[i] ?? 0] ?? 0;
       c.objects = s.objects.map(([kind, x, y, variant, hp], i): WorldObject => ({ id: `${s.cx},${s.cy}:${i}`, kind, x: x / 100, y: y / 100, variant, hp }));
       c.features = s.features.map(([type, x, y, name]) => (name === undefined ? { type, x, y } : { type, x, y, name }));
-      c.buildings = (s.buildings ?? []).map(([def, x, y, w, h, door, doorAt], i): Building => ({ id: `${s.cx},${s.cy}:bld${i}`, def, x, y, w, h, door, doorAt }));
+      c.buildings = (s.buildings ?? []).map(([def, x, y, w, h, door, doorAt, pieces], i): Building => ({
+        id: `${s.cx},${s.cy}:bld${i}`,
+        def, x, y, w, h, door, doorAt,
+        pieces: pieces ? (JSON.parse(pieces) as Building['pieces']) : undefined,
+      }));
       m.chunks.set(key(s.cx, s.cy), c);
     }
     return m;

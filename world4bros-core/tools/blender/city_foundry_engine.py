@@ -368,6 +368,111 @@ def build_sports_park(bm, base_pos, w, d):
             add_box(bm, bank_pos, (2.2, 0.8, 1.2), rot_z=math.radians(30))
 
 # ==========================================
+# ADDITIONAL EXPANDED ARCHETYPES
+# ==========================================
+def build_suburban_house(bm, base_pos, w, d, floor_h=2.8):
+    """Suburban 2-story family home with pitched gabled roof, front porch & attached garage."""
+    bx, by, bz = base_pos
+    main_w = w * 0.65
+    garage_w = w - main_w
+    h_main = floor_h * 2.0
+    h_garage = floor_h * 1.1
+
+    # Main house body
+    main_cx = bx - garage_w / 2.0
+    add_box(bm, Vector((main_cx, by, bz + h_main / 2.0)), (main_w, d * 0.85, h_main))
+
+    # Pitched Gabled Roof (triangular prism / pyramid)
+    roof_h = 1.8
+    add_box(bm, Vector((main_cx, by, bz + h_main + 0.15)), (main_w + 0.4, d * 0.85 + 0.4, 0.3))
+    # Gable ridge
+    add_cylinder(bm, Vector((main_cx, by, bz + h_main + roof_h * 0.7)), radius=main_w * 0.45, depth=d * 0.82, segments=4, rot_y=math.radians(45))
+
+    # Chimney on roof
+    add_box(bm, Vector((main_cx + main_w * 0.25, by + d * 0.15, bz + h_main + roof_h + 0.4)), (0.7, 0.7, 1.4))
+
+    # Front Porch with 2 posts
+    porch_w = main_w * 0.6
+    porch_d = 1.6
+    add_box(bm, Vector((main_cx, by + d * 0.85 / 2.0 + porch_d / 2.0, bz + 0.15)), (porch_w, porch_d, 0.3))
+    add_box(bm, Vector((main_cx, by + d * 0.85 / 2.0 + porch_d / 2.0, bz + 2.5)), (porch_w + 0.2, porch_d + 0.2, 0.15))
+    for px in [-porch_w / 2.2, porch_w / 2.2]:
+        add_cylinder(bm, Vector((main_cx + px, by + d * 0.85 / 2.0 + porch_d * 0.85, bz + 1.25)), radius=0.06, depth=2.5, segments=6)
+
+    # Attached Garage Wing
+    garage_cx = bx + main_w / 2.0
+    add_box(bm, Vector((garage_cx, by - d * 0.05, bz + h_garage / 2.0)), (garage_w, d * 0.75, h_garage))
+    # Garage door panel
+    add_box(bm, Vector((garage_cx, by + d * 0.75 / 2.0 - d * 0.05 + 0.05, bz + 1.2)), (garage_w - 0.6, 0.1, 2.2))
+    # Garage roof
+    add_box(bm, Vector((garage_cx, by - d * 0.05, bz + h_garage + 0.15)), (garage_w + 0.2, d * 0.75 + 0.2, 0.3))
+
+    # Windows on upper floor
+    for wx in [-main_w / 3.0, main_w / 3.0]:
+        add_box(bm, Vector((main_cx + wx, by + d * 0.85 / 2.0 + 0.05, bz + floor_h + 1.4)), (1.1, 0.1, 1.3))
+
+def build_industrial_warehouse(bm, base_pos, w, d, floor_h=2.8):
+    """High-bay industrial warehouse with corrugated shed roof, loading dock & twin silos."""
+    bx, by, bz = base_pos
+    wh_w = w * 0.75
+    wh_h = floor_h * 2.2
+
+    # Main warehouse volume
+    wh_cx = bx - (w - wh_w) / 2.0
+    add_box(bm, Vector((wh_cx, by, bz + wh_h / 2.0)), (wh_w, d * 0.9, wh_h))
+
+    # Dual Pitched Roof with central skylight vent
+    add_box(bm, Vector((wh_cx, by, bz + wh_h + 0.3)), (wh_w + 0.4, d * 0.9 + 0.4, 0.5))
+    add_box(bm, Vector((wh_cx, by, bz + wh_h + 0.8)), (wh_w * 0.4, d * 0.8, 0.6))
+
+    # Loading Dock with roll-up bay door
+    dock_w = 4.2
+    add_box(bm, Vector((wh_cx, by + d * 0.9 / 2.0 + 0.05, bz + 2.0)), (dock_w, 0.12, 3.2))
+    add_box(bm, Vector((wh_cx, by + d * 0.9 / 2.0 + 0.8, bz + 0.3)), (dock_w + 1.0, 1.6, 0.6))
+    for bx_pos in [-dock_w / 2.0 - 0.3, dock_w / 2.0 + 0.3]:
+        add_cylinder(bm, Vector((wh_cx + bx_pos, by + d * 0.9 / 2.0 + 1.4, bz + 0.5)), radius=0.1, depth=1.0, segments=6)
+
+    # Twin Industrial Silos on the side
+    silo_cx = bx + wh_w / 2.0 + 0.8
+    silo_r = (w - wh_w) * 0.45
+    silo_h = wh_h * 1.3
+    for sy in [-d * 0.22, d * 0.22]:
+        add_cylinder(bm, Vector((silo_cx, by + sy, bz + silo_h / 2.0)), radius=silo_r, depth=silo_h, segments=12)
+        add_cylinder(bm, Vector((silo_cx, by + sy, bz + silo_h + 0.4)), radius=silo_r * 0.85, depth=0.8, segments=8)
+
+def build_survivor_stronghold(bm, base_pos, w, d, floor_h=2.8):
+    """Fortified survivor outpost with barricaded openings, roof watchtower & sandbag nests."""
+    bx, by, bz = base_pos
+    floors = 3
+    total_h = floors * floor_h
+
+    # Main structure
+    add_box(bm, Vector((bx, by, bz + total_h / 2.0)), (w, d, total_h))
+
+    # Barricaded Ground Floor Openings
+    for wx in [-w / 3.0, 0, w / 3.0]:
+        add_box(bm, Vector((bx + wx, by + d / 2.0 + 0.08, bz + 1.4)), (1.4, 0.12, 1.6))
+        add_box(bm, Vector((bx + wx, by + d / 2.0 + 0.14, bz + 1.4)), (1.8, 0.08, 0.18), rot_z=math.radians(35))
+        add_box(bm, Vector((bx + wx, by + d / 2.0 + 0.14, bz + 1.4)), (1.8, 0.08, 0.18), rot_z=math.radians(-35))
+
+    # Fortified Doorway with sandbag walls
+    door_w = 2.0
+    add_box(bm, Vector((bx, by + d / 2.0 + 0.08, bz + 1.2)), (door_w, 0.12, 2.4))
+    for sx in [-door_w / 2.0 - 0.8, door_w / 2.0 + 0.8]:
+        add_box(bm, Vector((bx + sx, by + d / 2.0 + 0.7, bz + 0.45)), (1.4, 0.8, 0.9))
+
+    # Rooftop Watchtower on corner
+    tower_cx = bx + w * 0.3
+    tower_cy = by + d * 0.3
+    tower_h = 3.6
+    for px in [-1.0, 1.0]:
+        for py in [-1.0, 1.0]:
+            add_cylinder(bm, Vector((tower_cx + px, tower_cy + py, bz + total_h + tower_h / 2.0)), radius=0.08, depth=tower_h, segments=6)
+    add_box(bm, Vector((tower_cx, tower_cy, bz + total_h + tower_h)), (2.6, 2.6, 0.15))
+    add_box(bm, Vector((tower_cx, tower_cy, bz + total_h + tower_h + 0.5)), (2.6, 2.6, 1.0))
+    add_cylinder(bm, Vector((tower_cx - 0.8, tower_cy - 0.8, bz + total_h + tower_h + 1.2)), radius=0.2, depth=0.4, segments=8)
+
+# ==========================================
 # MAIN HIGH-FIDELITY CITY GENERATOR
 # ==========================================
 def generate_high_fidelity_city(config_path, out_dir):
@@ -485,21 +590,32 @@ def generate_high_fidelity_city(config_path, out_dir):
     # ------------------------------------------
     # 3. BUILDINGS & ARCHETYPES
     # ------------------------------------------
-    # Curated archetype slots for rich visual diversity
-    # Top-right: Pagoda temple
-    # Top-center: High-rise corporate tower
-    # Top-left: Sports park / stadium pitch
-    # Bottom-left: Classic tenement apartment with fire escape
-    # Bottom-center: Mixed apartment
-    # Bottom-right: Corner bodega / storefront with awning
-    archetypes = [
-        "apartment", "skyscraper", "bodega",
-        "sports_park", "skyscraper", "pagoda"
-    ]
-    random.shuffle(archetypes)
-    # Ensure at least 1 pagoda and 1 bodega are present
-    if "pagoda" not in archetypes: archetypes[0] = "pagoda"
-    if "bodega" not in archetypes: archetypes[1] = "bodega"
+    district = cfg.get("district", "mixed")
+    damage_state = cfg.get("damage_state", "pristine")
+    interior_mode = cfg.get("interior_mode", "solid")
+    lighting_mood = cfg.get("lighting_mood", "midday_clear")
+
+    if district == "suburban":
+        available_archs = ["suburban_house", "suburban_house", "bodega", "sports_park"]
+    elif district == "downtown":
+        available_archs = ["skyscraper", "skyscraper", "apartment", "bodega"]
+    elif district == "small_town":
+        available_archs = ["bodega", "bodega", "apartment", "suburban_house"]
+    elif district == "industrial":
+        available_archs = ["warehouse", "warehouse", "skyscraper", "survivor_stronghold"]
+    elif district == "survivor_slum":
+        available_archs = ["survivor_stronghold", "survivor_stronghold", "apartment", "bodega"]
+    elif district == "historic_pagoda":
+        available_archs = ["pagoda", "pagoda", "sports_park", "bodega"]
+    else:  # mixed
+        available_archs = ["apartment", "skyscraper", "bodega", "sports_park", "suburban_house", "pagoda", "warehouse", "survivor_stronghold"]
+
+    archetypes = [random.choice(available_archs) for _ in range(cols * rows)]
+    # Ensure variety
+    if cols * rows >= 4 and len(set(archetypes)) < 3:
+        archetypes[0] = "bodega"
+        archetypes[1] = "apartment"
+        archetypes[2] = "suburban_house"
 
     x_start = -((cols - 1) * (plot_w + gap_x)) / 2.0
     y_start = -((rows - 1) * (plot_d + gap_y)) / 2.0
@@ -507,6 +623,12 @@ def generate_high_fidelity_city(config_path, out_dir):
     b_idx = 0
     tactical_intel = {
         "grid": {"cols": cols, "rows": rows, "block_width": block_w, "block_depth": block_d},
+        "settings": {
+            "district": district,
+            "damage_state": damage_state,
+            "interior_mode": interior_mode,
+            "lighting_mood": lighting_mood,
+        },
         "metrics": {
             "plot_width_m": plot_w,
             "plot_depth_m": plot_d,
@@ -534,7 +656,13 @@ def generate_high_fidelity_city(config_path, out_dir):
             b_mesh = bpy.data.meshes.new(f"Mesh_{arch}_{b_idx}")
             bm = bmesh.new()
 
-            if arch == "pagoda":
+            if arch == "suburban_house":
+                build_suburban_house(bm, (0, 0, 0), plot_w, plot_d, floor_h=floor_h)
+            elif arch == "warehouse":
+                build_industrial_warehouse(bm, (0, 0, 0), plot_w, plot_d, floor_h=floor_h)
+            elif arch == "survivor_stronghold":
+                build_survivor_stronghold(bm, (0, 0, 0), plot_w, plot_d, floor_h=floor_h)
+            elif arch == "pagoda":
                 build_pagoda_temple(bm, (0, 0, 0), plot_w, plot_d)
             elif arch == "bodega":
                 build_corner_bodega(bm, (0, 0, 0), plot_w, plot_d)
@@ -595,15 +723,40 @@ def generate_high_fidelity_city(config_path, out_dir):
     cam_obj.rotation_euler = (math.radians(58), math.radians(0), math.radians(45))
     bpy.context.scene.camera = cam_obj
 
-    # Dual Sun Lighting for Rich Tactile Clay Shading
+    # Dual Sun Lighting configured per Lighting Mood
     light1_data = bpy.data.lights.new("SunKey", type='SUN')
-    light1_data.energy = 4.2
+    light2_data = bpy.data.lights.new("SunFill", type='SUN')
+
+    if lighting_mood == "night_neon":
+        light1_data.energy = 1.0
+        light1_data.color = (0.35, 0.45, 0.9)
+        light2_data.energy = 0.5
+        light2_data.color = (0.2, 0.15, 0.4)
+    elif lighting_mood == "golden_hour":
+        light1_data.energy = 5.2
+        light1_data.color = (1.0, 0.65, 0.3)
+        light2_data.energy = 1.6
+        light2_data.color = (0.4, 0.5, 0.8)
+    elif lighting_mood == "toxic_twilight":
+        light1_data.energy = 3.6
+        light1_data.color = (0.6, 0.85, 0.3)
+        light2_data.energy = 1.2
+        light2_data.color = (0.3, 0.4, 0.2)
+    elif lighting_mood == "overcast_bleak":
+        light1_data.energy = 2.2
+        light1_data.color = (0.8, 0.85, 0.9)
+        light2_data.energy = 1.8
+        light2_data.color = (0.7, 0.75, 0.8)
+    else:  # midday_clear
+        light1_data.energy = 4.2
+        light1_data.color = (1.0, 0.98, 0.95)
+        light2_data.energy = 1.4
+        light2_data.color = (0.85, 0.9, 1.0)
+
     light1_obj = bpy.data.objects.new("SunKey", light1_data)
     bpy.context.collection.objects.link(light1_obj)
     light1_obj.rotation_euler = (math.radians(54), math.radians(24), math.radians(-32))
 
-    light2_data = bpy.data.lights.new("SunFill", type='SUN')
-    light2_data.energy = 1.4
     light2_obj = bpy.data.objects.new("SunFill", light2_data)
     bpy.context.collection.objects.link(light2_obj)
     light2_obj.rotation_euler = (math.radians(-40), math.radians(-30), math.radians(120))

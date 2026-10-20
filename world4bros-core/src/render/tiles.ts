@@ -1,10 +1,41 @@
 import { makeRng, hash2 } from '../engine/rng';
 import { makeNoise, fbm } from '../engine/noise';
-import { type G, INK, TAU, alpha, mix, stroke } from './ink';
-import { CHUNK, getStreetDetails, type ChunkData, type StreetDetails } from '../sim/worldgen';
+import { type G, INK, TAU, alpha } from './ink';
+import { CHUNK, REGIONAL_TOWNS, getStreetDetails, roadPathsNear, type Building, type ChunkData, type StreetDetails } from '../sim/worldgen';
+import { drawRoadRibbons } from './roadRibbons';
 import type { GameWorld } from '../sim/world';
 import type { TerrainDef } from '../data/schema';
+import { paintGroundField } from './groundField';
 import { GROUND_DETAILS, SURFACES, lodFor, paintSurfaceBase, surfaceOf, type SurfaceId, type TileCtx } from './terrainRenderer';
+
+/** How far around a building the ground is calmed to the town ground (tiles). */
+const TOWN_GROUND_REACH = 10;
+/** Ground types a town keeps as-is; everything else under a town becomes grass. Water is never replaced. */
+const TOWN_KEEPS = new Set(['sand', 'snow']);
+const KEEP_NATURAL = new Set(['shallow', 'deep']);
+const townGroundCache = new WeakMap<GameWorld, Map<string, TerrainDef>>();
+
+/** The calm ground used near town buildings: the ground at the nearest town centre if it is sand or snow, else grass. */
+function townGround(world: GameWorld, near: readonly Building[], natural: TerrainDef, wx: number, wy: number): TerrainDef | null {
+  if (KEEP_NATURAL.has(natural.id) || !near.length) return null;
+  if (!near.some((b) => {
+    const dx = Math.max(b.x - wx, 0, wx - (b.x + b.w)), dy = Math.max(b.y - wy, 0, wy - (b.y + b.h));
+    return Math.hypot(dx, dy) <= TOWN_GROUND_REACH;
+  })) return null;
+  const centres = [world.spawn, ...REGIONAL_TOWNS];
+  let best = centres[0]!, bestD = Infinity;
+  for (const c of centres) { const d = Math.hypot(c.x - wx, c.y - wy); if (d < bestD) { bestD = d; best = c; } }
+  let cache = townGroundCache.get(world);
+  if (!cache) { cache = new Map(); townGroundCache.set(world, cache); }
+  const key = `${Math.round(best.x)},${Math.round(best.y)}`;
+  let ground = cache.get(key);
+  if (!ground) {
+    const atCentre = world.terrainDefAt(best.x, best.y);
+    ground = TOWN_KEEPS.has(atCentre.id) ? atCentre : world.content.terrain.get('grass' as never) as TerrainDef;
+    cache.set(key, ground);
+  }
+  return ground;
+}
 
 /** Paints one chunk of ground into a canvas (1 unit = 1 tile). Cached by the renderer. */
 export function paintChunk(world: GameWorld, chunk: ChunkData, px: number): HTMLCanvasElement {
@@ -16,11 +47,26 @@ export function paintChunk(world: GameWorld, chunk: ChunkData, px: number): HTML
   const order = world.gen.terrainOrder, content = world.content;
   const lod = lodFor(px);
 
-  const def = (tx: number, ty: number): TerrainDef => {
+  const rawDef = (tx: number, ty: number): TerrainDef => {
     if (tx >= 0 && ty >= 0 && tx < CHUNK && ty < CHUNK) {
       return content.terrain.get(order[chunk.terrain[ty * CHUNK + tx] ?? 0] as never) as TerrainDef;
     }
     return world.terrainDefAt(chunk.cx * CHUNK + tx + 0.5, chunk.cy * CHUNK + ty + 0.5);
+  };
+  // Towns sit on one calm ground type instead of the biome's patchwork (HD plan G0).
+  // Buildings that can calm any tile of this chunk (plus its border), looked up once.
+  const half = CHUNK / 2;
+  const nearBuildings = world.buildingsNear(chunk.cx * CHUNK + half, chunk.cy * CHUNK + half, half + 3 + TOWN_GROUND_REACH);
+  const defMemo = new Map<number, TerrainDef>();
+  const def = (tx: number, ty: number): TerrainDef => {
+    const k = (ty + 4) * (CHUNK + 8) + (tx + 4);
+    let d = defMemo.get(k);
+    if (!d) {
+      const n = rawDef(tx, ty);
+      d = townGround(world, nearBuildings, n, chunk.cx * CHUNK + tx + 0.5, chunk.cy * CHUNK + ty + 0.5) ?? n;
+      defMemo.set(k, d);
+    }
+    return d;
   };
   const elevation = (tx: number, ty: number): number => {
     if (tx >= 0 && ty >= 0 && tx < CHUNK && ty < CHUNK) {
@@ -39,79 +85,25 @@ export function paintChunk(world: GameWorld, chunk: ChunkData, px: number): HTML
       const id = def(tx, ty).id;
       const i = (ty + 1) * S + tx + 1;
       streets[i] = st;
-      surfaces[i] = id === 'deep' || id === 'shallow' ? null : surfaceOf(st);
+      // Town streets keep tile surfaces; highways and dirt tracks are drawn as ribbons below.
+      surfaces[i] = id === 'deep' || id === 'shallow' || !st.isTown ? null : surfaceOf(st);
     }
   }
   const surf = (tx: number, ty: number): SurfaceId | null => surfaces[(ty + 1) * S + tx + 1] ?? null;
 
-  // 1. Base fill: smooth world-space noise picks the tone for natural, seamless blending
+  // 1. Smooth ground: blended ground types with curved boundaries, water depth, foam, wet shore and relief (HD plan G1).
   const nz = makeNoise(world.seed ^ 0xabc123);
-  for (let ty = 0; ty < CHUNK; ty++) {
-    for (let tx = 0; tx < CHUNK; tx++) {
-      const d = def(tx, ty);
-      const wx = chunk.cx * CHUNK + tx, wy = chunk.cy * CHUNK + ty;
-      const n = fbm(nz, wx * 0.14, wy * 0.14, 2) - 0.5;
-      g.fillStyle = mix(d.colors[0], n > 0 ? d.colors[2] : d.colors[1], Math.min(0.55, Math.abs(n) * 1.7));
-      g.fillRect(tx - 0.04, ty - 0.04, 1.08, 1.08);
-    }
-  }
-
-  // 2. Ragged organic feathering where different terrain patches meet
-  for (let ty = 0; ty < CHUNK; ty++) {
-    for (let tx = 0; tx < CHUNK; tx++) {
-      const d = def(tx, ty);
-      for (const [nx, ny, vertical] of [[tx + 1, ty, true], [tx, ty + 1, false]] as [number, number, boolean][]) {
-        const o = def(nx, ny);
-        if (o.id === d.id) continue;
-        for (let k = 0; k < 8; k++) {
-          const t = (k + rng.next()) / 8;
-          const off = rng.range(-0.36, 0.36);
-          const side = rng.chance(0.5) ? d : o;
-          const bx = vertical ? tx + 1 + off : tx + t;
-          const by = vertical ? ty + t : ty + 1 + off;
-          g.fillStyle = mix(side.colors[0], side.colors[rng.chance(0.5) ? 1 : 2], rng.range(0, 0.35));
-          g.beginPath();
-          g.ellipse(bx, by, rng.range(0.16, 0.4), rng.range(0.14, 0.34), rng.range(0, 3), 0, TAU);
-          g.fill();
-        }
-      }
-    }
-  }
-
-  // 3. Soft organic ground blotches to eliminate any remaining tile grid artifacts
-  for (let i = 0; i < 140; i++) {
-    const tx = rng.int(0, CHUNK - 1), ty = rng.int(0, CHUNK - 1), d = def(tx, ty);
-    g.fillStyle = alpha(rng.chance(0.5) ? d.colors[1] : d.colors[2], rng.range(0.09, 0.22));
-    g.beginPath();
-    g.ellipse(tx + rng.next(), ty + rng.next(), rng.range(0.9, 2.2), rng.range(0.8, 1.9), rng.range(0, 3), 0, TAU);
-    g.fill();
-  }
-
-  // Elevation bands and steep transitions add readable relief without changing tile movement rules.
-  for (let ty = 0; ty < CHUNK; ty++) {
-    for (let tx = 0; tx < CHUNK; tx++) {
-      const h = elevation(tx, ty);
-      const band = Math.floor(h * 8);
-      const east = elevation(tx + 1, ty);
-      const south = elevation(tx, ty + 1);
-      if (Math.floor(east * 8) !== band || Math.abs(east - h) >= 0.08) {
-        g.strokeStyle = alpha(east < h ? '#17231b' : '#f4ead0', Math.abs(east - h) >= 0.08 ? 0.38 : 0.20);
-        g.lineWidth = Math.abs(east - h) >= 0.08 ? 0.09 : 0.045;
-        g.beginPath();
-        g.moveTo(tx + 0.98, ty + 0.1);
-        g.lineTo(tx + 0.98, ty + 0.9);
-        g.stroke();
-      }
-      if (Math.floor(south * 8) !== band || Math.abs(south - h) >= 0.08) {
-        g.strokeStyle = alpha(south < h ? '#17231b' : '#f4ead0', Math.abs(south - h) >= 0.08 ? 0.38 : 0.20);
-        g.lineWidth = Math.abs(south - h) >= 0.08 ? 0.09 : 0.045;
-        g.beginPath();
-        g.moveTo(tx + 0.1, ty + 0.98);
-        g.lineTo(tx + 0.9, ty + 0.98);
-        g.stroke();
-      }
-    }
-  }
+  const biomeAt = (tx: number, ty: number): number => (tx >= 0 && ty >= 0 && tx < CHUNK && ty < CHUNK)
+    ? chunk.biome[ty * CHUNK + tx] ?? 0
+    : world.gen.sample(chunk.cx * CHUNK + tx + 0.5, chunk.cy * CHUNK + ty + 0.5).biome;
+  const shallow = content.terrain.get('shallow' as never) as TerrainDef, deep = content.terrain.get('deep' as never) as TerrainDef;
+  paintGroundField(g, {
+    seed: world.seed, cx: chunk.cx, cy: chunk.cy,
+    ground: def,
+    height: elevation,
+    tint: (tx, ty) => content.biomes[biomeAt(tx, ty)]?.tint ?? '#808080',
+    water: [shallow.colors[2], shallow.colors[0], deep.colors[0], deep.colors[1]],
+  });
 
   // 4. Natural ground detail (blades, tufts, flowers, pebbles, tracks, puddles...), seeded per world tile.
   for (let ty = 0; ty < CHUNK; ty++) {
@@ -121,6 +113,17 @@ export function paintChunk(world: GameWorld, chunk: ChunkData, px: number): HTML
       const trng = makeRng(hash2(world.seed ^ 0x9e3779b9, chunk.cx * CHUNK + tx, chunk.cy * CHUNK + ty));
       GROUND_DETAILS[d.strokes]({ g, rng: trng, lod, tx, ty, d });
     }
+  }
+
+  // 5a. Highways and dirt tracks as smooth ribbons (HD plan G2). Whole paths are drawn; the canvas clips them,
+  // and identical geometry in every chunk keeps the seams aligned.
+  const ox = chunk.cx * CHUNK, oy = chunk.cy * CHUNK;
+  const ribbons = roadPathsNear(world.seed, world.spawn, ox, oy, ox + CHUNK, oy + CHUNK, 5);
+  if (ribbons.length) {
+    g.save();
+    g.translate(-ox, -oy);
+    drawRoadRibbons(g, ribbons, content.terrain.get('dirt' as never) as TerrainDef, content.terrain.get('grass' as never) as TerrainDef);
+    g.restore();
   }
 
   // 5. Road surfaces: all bases first (their oversize would cover neighbours' kerbs), then per-tile detail.
@@ -145,41 +148,7 @@ export function paintChunk(world: GameWorld, chunk: ChunkData, px: number): HTML
   }
   for (const c of ctxs) SURFACES[c.id].paint(c);
 
-  // 6. Shorelines & water boundary foam contours
-  for (let ty = 0; ty < CHUNK; ty++) {
-    for (let tx = 0; tx < CHUNK; tx++) {
-      const d = def(tx, ty);
-      for (const [nx, ny, x0, y0, x1, y1] of [[tx + 1, ty, tx + 1, ty, tx + 1, ty + 1], [tx, ty + 1, tx, ty + 1, tx + 1, ty + 1]] as [number, number, number, number, number, number][]) {
-        const o = def(nx, ny);
-        if (o.id === d.id) continue;
-        const water = d.id === 'deep' || o.id === 'deep' || d.id === 'shallow' || o.id === 'shallow';
-        const pts: [number, number][] = [];
-        for (let k = 0; k <= 4; k++) {
-          const t = k / 4;
-          pts.push([
-            x0 + (x1 - x0) * t + (y0 === y1 ? 0 : rng.range(-0.04, 0.04)),
-            y0 + (y1 - y0) * t + (x0 === x1 ? 0 : rng.range(-0.04, 0.04))
-          ]);
-        }
-        if (water) {
-          // Rich ink shoreline contour & foamy wave lip
-          stroke(g, pts, 0.048, INK, 0.45);
-          stroke(g, pts.map(([x, y]) => [x + (x0 === x1 ? -0.06 : 0), y + (y0 === y1 ? -0.06 : 0)] as [number, number]), 0.016, '#67e8f9', 0.6);
-        }
-      }
-    }
-  }
-
-  // 7. Atmospheric Biome Tint & subtle paper speckle
-  for (let ty = 0; ty < CHUNK; ty += 2) {
-    for (let tx = 0; tx < CHUNK; tx += 2) {
-      const b = content.biomes[chunk.biome[ty * CHUNK + tx] ?? 0];
-      if (b) {
-        g.fillStyle = alpha(b.tint, 0.08);
-        g.fillRect(tx, ty, 2, 2);
-      }
-    }
-  }
+  // 6. Subtle paper speckle (shorelines and biome tint are part of the smooth ground pass)
   for (let i = 0; i < 220; i++) {
     g.fillStyle = alpha(rng.chance(0.6) ? INK : '#efe8d6', rng.range(0.04, 0.14));
     g.beginPath();

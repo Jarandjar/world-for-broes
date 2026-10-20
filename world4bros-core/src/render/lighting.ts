@@ -31,11 +31,29 @@ export class Lighting {
   }
 
   render(g: CanvasRenderingContext2D, W: number, H: number, camX: number, camY: number, z: number, lights: Light[], darkness: number, dayT: number, t: number, quality: LightQuality = 'high'): void {
-    // dusk and dawn warm tint
-    const dusk = smoothstep(0.5, 0.6, dayT) * (1 - smoothstep(0.62, 0.7, dayT)), dawn = 1 - smoothstep(0.0, 0.12, dayT);
-    const warm = Math.max(dusk, dawn * 0.7);
+    // Stronger cinematic day/night grading:
+    // - warm dusk/dawn
+    // - cooler moonlit nights
+    const dusk = smoothstep(0.5, 0.62, dayT) * (1 - smoothstep(0.66, 0.78, dayT));
+    const dawn = 1 - smoothstep(0.0, 0.14, dayT);
+    const warm = Math.max(dusk, dawn * 0.62);
+    const coolNight = smoothstep(0.35, 0.9, darkness);
+
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0);
-    if (warm > 0.01) { g.globalCompositeOperation = 'multiply'; g.fillStyle = `rgba(255,${200 - warm * 40},${170 - warm * 50},${0.35 * warm})`; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over'; }
+    if (warm > 0.01) {
+      g.globalCompositeOperation = 'multiply';
+      g.fillStyle = `rgba(255,${198 - warm * 36},${158 - warm * 52},${0.44 * warm})`;
+      g.fillRect(0, 0, W, H);
+      g.globalCompositeOperation = 'source-over';
+    }
+
+    if (coolNight > 0.01) {
+      g.globalCompositeOperation = 'multiply';
+      g.fillStyle = `rgba(${26 + coolNight * 8},${40 + coolNight * 10},${74 + coolNight * 16},${0.12 * coolNight})`;
+      g.fillRect(0, 0, W, H);
+      g.globalCompositeOperation = 'source-over';
+    }
+
     if (darkness > 0.01) {
       const s = DARK_SCALE[quality], dw = Math.max(2, Math.floor(W * s)), dh = Math.max(2, Math.floor(H * s));
       if (this.dark.width !== dw || this.dark.height !== dh) { this.dark.width = dw; this.dark.height = dh; }

@@ -51,6 +51,7 @@ export class Customizer {
         h('label', { class: 'pick' }, 'Any color ', h('input', { type: 'color', value: a.hairColor, oninput: (e) => { a.hairColor = (e.target as HTMLInputElement).value; } }))),
       sel('Facial hair', BEARDS, a.beard, (v) => { a.beard = v; }),
       h('label', { class: 'field' }, h('span', {}, 'Build'), h('input', { type: 'range', min: 0.85, max: 1.15, step: 0.01, value: a.build, oninput: (e) => { a.build = parseFloat((e.target as HTMLInputElement).value); } })),
+      h('label', { class: 'field' }, h('span', {}, 'Mobility aid'), h('label', { class: 'check' }, h('input', { type: 'checkbox', checked: a.wheelchair, onchange: (e) => { a.wheelchair = (e.target as HTMLInputElement).checked; } }), ' Wheelchair')),
       h('label', { class: 'field' }, h('span', {}, 'Ink wash (muted colors)'), h('input', { type: 'range', min: 0, max: 0.7, step: 0.02, value: STYLE.desat, oninput: (e) => { STYLE.desat = parseFloat((e.target as HTMLInputElement).value); this.renderer.cache.clear(); clearIconCache(); } })),
       h('div', { class: 'row' },
         h('button', { onclick: () => { this.look.appearance = { ...randomLook(this.content, makeRng(++this.seed * 977)).appearance }; this.build(); } }, 'Random look'),

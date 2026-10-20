@@ -17,10 +17,12 @@
 2. `src/data/content.ts`: Add `objects.set('kind', { solid: true, radius: 0.45, hp: 200, tool: 'shovel', drawer: 'obj:kind' })`.
 3. `src/render/objects.ts`: Implement Canvas drawing function for the object.
 4. For Arena bullet-stopping covers, register rectangle coordinates in `ARENAS['duel_pit'].crates` or `sandbags` in `src/sim/arena.ts`.
+5. Unreal arena (Z34): a new arena goes into `ARENAS` in `src/sim/arena.ts` (never only into the JSON), then `npm run ue:export` and `npm run ue:arena` (builds and verifies every arena level headless) and `npm run ue:shots` to look at it (`UE_PIPELINE.md` §4.2).
 
 ## 4. Add or Customize Bot AI Tiers
-1. `src/sim/components.ts`: Inspect `RaiderC` (`level`, `sight`, `aimSpread`, `shotInterval`, `speed`, `hp`).
-2. `src/sim/game.ts`: Customize tier specs in `spawnArenaBot(level, weapon, spawnIndex)` and behavior branches in `updateRaiders(dt)`.
+1. `src/data/arenaBots.ts`: one row per level in `ARENA_BOT_LEVELS` (`reaction`, `sight`, `aimSpread`, `shotInterval`, `speed`, `hp`). The web sim and the Unreal arena both read it (`npm run ue:export` → `tools/unreal/game_data.json`); `tests/arena-bots.test.ts` checks that each level is harder than the one before.
+2. `src/sim/components.ts`: `RaiderC` holds the per-bot copy; `src/sim/game.ts`: `spawnArenaBot(level, weapon, spawnIndex)` copies the row, behaviour branches are in `updateRaiders(dt)`.
+3. Match rules for both games (rounds, limits, respawn, pies, loadout): `src/data/arenaRules.ts`.
 3. Verified in tests: `tests/arena.test.ts`.
 
 ## 5. Add a Diagnostic Dev Log or Bug Event

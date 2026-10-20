@@ -21,9 +21,29 @@ Every catalog entry goes through one of these. The catalog's "source" column say
 | :--- | :--- | :--- |
 | **A. Download + tweak** | props, furniture, items, vehicles (base), rocks | Take a CC0 model (Kenney, Quaternius, Poly Pizza, Poly Haven), then run the **"make it ours" pass** (§3). Fast and safe. |
 | **B. Generate** | buildings (snap kit), trees, ground tiles, roads, damage states | Our Blender scripts: snap-kit pieces, `destruction_demo.py`-style fracture for broken states, Sapling/tree-gen for trees, CC0 textures baked to iso tiles. Everything seeded and repeatable. |
-| **C. Rig + animate + render** | survivors, zombies, animals, clothing layers | Base body from MPFB 2 (CC0 assets) or the Unreal Lyra mannequin; animations from Mixamo / Lyra; render 8 directions × all animations; clothing as separate layers. |
+| **C. Rig + animate + render** | survivors, zombies, animals, clothing layers | Base body from MPFB 2 (CC0 assets) or the UE5 mannequin; animations from Quaternius' CC0 Universal Animation Library (incl. zombie locomotion) or Mixamo (private use only, no raw redistribution); render 8 directions × all animations; clothing as separate layers. |
 
 AI (Gemini) is for **concept frames and 2D decals/icons only** — never for things that need 8 or 16 matching directions.
+
+### 2b. Which tool: Unreal-first for Arena, Blender for scratch models and web sprites (owner decision 2026-10-20)
+
+**For the Unreal Arena (Phase Z34): Unreal first.**
+Download, tweak inside Unreal, and test directly against the arena bots (the project is built on the 5.7 First Person template, Arena Shooter variant; `UE_PIPELINE.md` §1):
+
+| Job | In Unreal |
+| :--- | :--- |
+| **Recolour, grime, rust, wear** | Material Editor: one master grime material (`UE_ARENA_PLAN.md` U10) |
+| **Small mesh edits** (cut, bend, merge, simple props) | Modeling Mode, built into Unreal Editor |
+| **Characters** | The template's UE5 mannequins with gritty material instances and CC0 accessories; CC0 animations (Quaternius Universal Animation Library, incl. zombies) via the IK Retargeter (U12). MetaHuman after the demo. |
+| **Posing and animation fixes** | Control Rig and Sequencer |
+| **Breaking walls and props** | Chaos Fracture (Fracture Mode) |
+| **Placing whole maps** | `npm run ue:arena` (`tools/unreal/pipeline/build_arena.py`, tested), later an art-dressing script over the blockout (U11) |
+
+**Blender is reserved for:**
+1. **Making new models from scratch**: Unique guns (potato cannon, nailgun SMG, slingshot), vehicles, and custom props. Modeling Mode can do basic edits, but Blender is vastly faster for precision polygon modeling and UV unwrap.
+2. **Rigging new creatures**: Non-human rigs that do not fit the standard human mannequin skeleton (zombie dogs, quadrupeds, mutant beasts).
+3. **The web game's isometric sprite sheets**: The PixiJS 2.5D browser game engine relies on `tools/blender/render_iso.py` for automated multi-angle sprite baking (`STYLE_BIBLE.md` §0.8). If the entire project ever moves permanently to Unreal, sprite rendering goes away and Blender serves strictly as a 3D modeling tool.
+
 
 ## 3. The "make it ours" pass (turn any download into a World 4 Bro's asset)
 One Blender script per category (`tools/blender/make_ours_<category>.py`), run headless, so every asset gets the same treatment:
@@ -36,6 +56,24 @@ One Blender script per category (`tools/blender/make_ours_<category>.py`), run h
 7. **Render** with `render_iso.py` (directions, frames, layers from the catalog's "make" column) and **pack** atlases into `public/assets/<category>/`.
 8. **Log** the source, author and licence in `CREDITS.md`; set the entry's status to `done` (the catalog script will read a `public/assets/manifest.json` once it exists).
 
+## 3b. Unreal Master Material Suite & Asset Hardening
+For all 3D assets in Unreal (Phase Z34):
+- **Master Material (`M_Master_Grime`)**: Parameterized material featuring BaseColor, Normal, packed ORM (Occlusion, Roughness, Metallic), world-aligned bottom contact dirt gradient (0.5m), edge-wear mask, rust overlay, and mild blood decal reception.
+- **District Instances (`MI_`)**: Parameter presets for Industrial (heavy rust, oil, grease), Suburban (weathered wood, peeling siding), and Ruined (charred concrete, broken glass).
+- **Damage Variant Standard**:
+  - `_Clean`: Intact baseline asset.
+  - `_Damaged`: Chipped, dented, or worn variant.
+  - `_Ruined`: Chaos fractured geometry collection or rubble pile.
+- **Mesh Import Presets**: Scale ($1\text{m} = 100\text{uu}$), Collision (BlockAll on solid walls, crates, sandbags; Overlap on foliage canopies), Nanite enabled on all static geometry $\ge 1,000$ triangles.
+
+## 3c. Web-Game Coexistence Plan
+1. **Isolated Blender Sprite Pipeline**: `tools/blender/render_iso.py` and `tools/blender/pipeline_runner.py` operate completely independently of Unreal, producing 2.5D PixiJS sprites into `public/assets/`.
+2. **Shared Source Assets**: Net-new 3D models created in Blender (weapons, unique props, vehicles) are stored as canonical `.glb`/`.fbx` source files in `tools/blender/` that feed both the Blender isometric sprite baker and Unreal through `npm run ue:import -- <manifest.json>` (size-checked; glTF in metres, never scaled by 100; `UE_PIPELINE.md` §4.4). The old import folder `tools/unreal/World4Bros/Content/Import/` is retired with that project.
+3. **Asset Conversion Checklist**:
+   - **Unreal-Ready**: Static Mesh (`SM_`), proper collision hull, metric scale, `M_Master_Grime` instance applied.
+   - **Sprite-Ready**: 8/16 direction turntable rendered with NW lighting (`render_iso.py`), transparent PNG, anchor point recorded in `manifest.json`.
+4. **Future Prototyping**: If Unreal Engine becomes the sole platform after Decision Gate 1, explore using Unreal's Movie Render Queue (MRQ) with an orthographic camera if 2D sprite exports are ever needed.
+
 ## 4. Download list (start here)
 Check each licence page before downloading; record it in `CREDITS.md`.
 | What | Pack | Covers in the catalog |
@@ -46,12 +84,12 @@ Check each licence page before downloading; record it in `CREDITS.md`.
 | Vehicles | Kenney Car Kit (CC0) | Vehicles (7) as base shapes |
 | Survival items, weapons | Kenney Survival Kit, Weapon Pack (CC0); Quaternius packs (check licence per pack) | Items, attachments |
 | Animals | Quaternius animated animal pack (check licence) | Animals (7) |
-| Bodies | MPFB 2 (assets CC0) / Unreal Lyra mannequins | Characters, zombies |
-| Animations | Mixamo (Adobe terms), Lyra (Epic, check use outside Unreal) | Characters, zombies |
+| Bodies | MPFB 2 (assets CC0) / UE5 mannequins (Unreal templates) | Characters, zombies |
+| Animations | Quaternius Universal Animation Library 1 + 2 (CC0, incl. zombies); Mixamo (Adobe terms, no raw redistribution) | Characters, zombies |
 | Textures | Poly Haven, ambientCG (CC0): asphalt, concrete, brick, siding, wood floor, tile, grass, dirt, sand, snow, rust, metal | Ground tiles, roads, snap kit, re-materials |
 | Trees | Sapling Tree Gen / tree-gen (generators, output ours) | Vegetation |
 
-Unreal-only sources (City Sample kits, Megascans free tier) are **not** for shipped sprites in this non-Unreal game unless the licence allows it; use them as reference.
+Unreal-only sources (City Sample kits) are **not** for shipped sprites in this non-Unreal game unless the licence allows it; use them as reference. Megascans are paid since 2025 (also inside Unreal), except a few free samples.
 
 ## 5. Order (what to make first)
 1. **Vertical slice set (step I2, ~45 assets)**: grass, dirt, asphalt, sidewalk tiles; kerb, lane line, crosswalk; snap-kit siding + brick walls (plain, window, door), wood floor, gable roof pieces; 10 furniture (bed, wardrobe, fridge, stove, sink, toilet, sofa, table, chair, cupboard); 1 car (rusty hatchback); survivor body + 2 clothing sets; walker zombie; 3 trees, 2 bushes, 2 rocks; 5 props (dumpster, street light, fence, mailbox, trash can); blood splat, crack, leaves decals.
@@ -61,18 +99,21 @@ Unreal-only sources (City Sample kits, Megascans free tier) are **not** for ship
 5. All item icons and held items.
 6. FX, lights, remaining decals.
 
-## 6. Tools to build (in `tools/`)
-| Tool | Status |
-| :--- | :--- |
-| `asset-catalog.ts` (`npm run art:catalog`) | **done** — generates the catalog from `src/data` |
-| `blender/destruction_demo.py` | done — Voronoi fracture + physics, reusable for damage states |
-| `blender/render_iso.py` | todo — style camera, directions, frames, layers, atlas naming |
-| `blender/make_ours_*.py` + `materials.blend` | todo — the §3 pass per category |
-| `blender/snap_kit.py` | todo — models every snap-kit piece |
-| atlas packer (`art:pack`) | todo — free-tex-packer-core (MIT) |
-| asset manifest + status read-back | todo — catalog shows `done` automatically |
+## 6. Tools Built (in `tools/`)
+| Tool | Status | Purpose |
+| :--- | :--- | :--- |
+| `asset-catalog.ts` (`npm run art:catalog`) | **done** | Generates catalog from `src/data` and syncs status against `manifest.json` |
+| `blender/render_iso.py` | **done** | Orthographic camera & NW sun renderer adhering strictly to `STYLE_BIBLE.md` §0.8 |
+| `blender/snap_kit.py` | **done** | Procedural 1m modular walls, floors, roofs, furniture, and vehicles |
+| `blender/pipeline_runner.py` (`npm run art:slice`) | **done** | Headless batch runner reading `asset_catalog.json` with `--slice` and `--unreal-export` |
+| `run-blender.mjs` | **done** | Cross-platform Node CLI wrapper for Blender batch tools |
+| `blender/destruction_demo.py` | **done** | Voronoi fracture + physics, reusable for damage states |
+| `unreal/pipeline/build_arena.py` + `verify_arena.py` (`npm run ue:arena`) | **done, tested 2026-10-20** | Headless level builder from `arenas.json` with a verify step; replaces `unreal/build_arena.py` (crashed headless, 100× scale, mirrored arenas) |
+| `unreal/pipeline/import_assets.py` (`npm run ue:import`) | **done, tested** | Headless glTF/FBX import with box collision and a scale check |
+| `unreal/pipeline/shoot.ps1` (`npm run ue:shots`) | **done, tested** | PNG of each Unreal level from its preview camera |
+| `pack-atlases.ts` (`npm run art:pack`) | planned | Texture packer for PixiJS sprite sheets |
 
 ## 7. Keeping it in sync
 - Adding content to `src/data` (a new item, zombie, vehicle…) adds it to the catalog on the next `npm run art:catalog`.
 - Planned non-registry art (kit pieces, furniture, decals) is listed in `tools/asset-catalog.ts` → `planned()`; move entries into `src/data` registries when the game starts using them.
-- Update this file, the catalog and World Bible §69 when a lane or tool changes.
+- Update this file, the catalog, `UE_ARENA_PLAN.md`, and World Bible §69 when a lane or tool changes.

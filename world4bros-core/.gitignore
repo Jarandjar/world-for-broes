@@ -3,3 +3,12 @@
 node_modules
 dist
 *.log
+.mcp.json
+__pycache__/
+# Unreal: generated folders are never committed (the real project lives in C:\W4B, docs/UE_PIPELINE.md section 3)
+**/Saved/
+**/Intermediate/
+**/DerivedDataCache/
+**/Binaries/
+tools/unreal/Saved_shots/
+*.blend1

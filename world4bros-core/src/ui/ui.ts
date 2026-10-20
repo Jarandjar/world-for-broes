@@ -22,7 +22,12 @@ export const sound = new SoundEngine();
 
 type PanelName = 'inventory' | 'craft' | 'build' | 'garage' | 'overseer' | 'faction' | 'customizer' | 'storage' | 'settings' | 'map' | 'editor' | 'gunsmith' | 'range' | 'swarmlab' | 'arena' | 'devlog';
 type EditTool = 'terrain' | 'biome' | 'object' | 'building' | 'erase';
+type RenderScalePreset = 'performance' | 'balanced' | 'quality';
+type ViewDistancePreset = 'near' | 'normal' | 'far';
 export const SAVE_KEY = 'w4b-core-save-v1';
+
+const RENDER_SCALE_VALUES: Record<RenderScalePreset, number> = { performance: 0.5, balanced: 0.75, quality: 1.0 };
+const VIEW_DISTANCE_ZOOMS: Record<ViewDistancePreset, number> = { near: 72, normal: 54, far: 34 };
 
 /** HUD, panels and mouse/keyboard routing. Reads the sim, never mutates rendering state directly. */
 export class Ui {
@@ -30,7 +35,7 @@ export class Ui {
   buildId: string | null = null;
   buildDir: 'N' | 'E' | 'S' | 'W' = 'E';
   debug = false;
-  mouseMoveEnabled = false;
+  mouseMoveEnabled = true;
   mouseMoveTarget: { x: number; y: number } | null = null;
   private invTab: 'backpack' | 'interior' | 'base' = 'backpack';
   private mouseNavBtn: HTMLElement | null = null;
@@ -61,6 +66,9 @@ export class Ui {
   private edit: { tool: EditTool; terrain: string; biome: number; kind: string; radius: number; building: string; door: 'N' | 'E' | 'S' | 'W' } = { tool: 'terrain', terrain: 'grass', biome: 0, kind: 'oak', radius: 2, building: 'cottage', door: 'S' };
   private brush: { x: number; y: number; r: number } | null = null;
   public toastMode: 'all' | 'important' | 'off' = (typeof localStorage !== 'undefined' && (localStorage.getItem('w4b_toast_mode') as 'all' | 'important' | 'off')) || 'all';
+  private renderScalePreset: RenderScalePreset = 'quality';
+  private viewDistancePreset: ViewDistancePreset = 'normal';
+  private showFps = false;
   private activeToasts = new Map<string, { el: HTMLElement; count: number; timer: ReturnType<typeof setTimeout> }>();
   private toastBtn?: HTMLElement;
 
@@ -142,6 +150,7 @@ export class Ui {
     game.events.on('zombieAttack', () => sound.hitFlesh());
     game.events.on('petBark', () => sound.bark());
     game.events.on('snapCamera', (e) => { this.renderer.cam.snap(e.x, e.y); });
+    this.loadGraphicsSettings();
     this.renderHotbar();
   }
 
@@ -249,6 +258,61 @@ export class Ui {
       ? '🔕 Toasts: QUIET (Important alerts only)'
       : '🔇 Toasts: MUTED (Completely off)';
     this.toast(msg, true);
+  }
+
+  private detectRenderScalePreset(scale: number): RenderScalePreset {
+    if (Math.abs(scale - RENDER_SCALE_VALUES.performance) < 0.01) return 'performance';
+    if (Math.abs(scale - RENDER_SCALE_VALUES.balanced) < 0.01) return 'balanced';
+    return 'quality';
+  }
+
+  private detectViewDistancePreset(zoom: number): ViewDistancePreset {
+    if (Math.abs(zoom - VIEW_DISTANCE_ZOOMS.near) < 2) return 'near';
+    if (Math.abs(zoom - VIEW_DISTANCE_ZOOMS.far) < 2) return 'far';
+    return 'normal';
+  }
+
+  private persistGraphicsSettings(): void {
+    try {
+      localStorage.setItem('w4b_render_scale', this.renderScalePreset);
+      localStorage.setItem('w4b_view_distance', this.viewDistancePreset);
+      localStorage.setItem('w4b_show_fps', this.showFps ? '1' : '0');
+    } catch {}
+  }
+
+  private setRenderScalePreset(preset: RenderScalePreset): void {
+    this.renderScalePreset = preset;
+    this.renderer.renderScale = RENDER_SCALE_VALUES[preset];
+    this.renderer.resize();
+    this.persistGraphicsSettings();
+  }
+
+  private setViewDistancePreset(preset: ViewDistancePreset): void {
+    this.viewDistancePreset = preset;
+    this.renderer.cam.setZoom(VIEW_DISTANCE_ZOOMS[preset]);
+    this.persistGraphicsSettings();
+  }
+
+  private toggleFpsHud(): void {
+    this.showFps = !this.showFps;
+    this.persistGraphicsSettings();
+  }
+
+  private loadGraphicsSettings(): void {
+    let scalePreset: RenderScalePreset = this.detectRenderScalePreset(this.renderer.renderScale);
+    let viewPreset: ViewDistancePreset = this.detectViewDistancePreset(this.renderer.cam.targetZoom);
+    let fpsHud = false;
+    try {
+      const storedScale = localStorage.getItem('w4b_render_scale');
+      const storedView = localStorage.getItem('w4b_view_distance');
+      const storedFps = localStorage.getItem('w4b_show_fps');
+      if (storedScale === 'performance' || storedScale === 'balanced' || storedScale === 'quality') scalePreset = storedScale;
+      if (storedView === 'near' || storedView === 'normal' || storedView === 'far') viewPreset = storedView;
+      fpsHud = storedFps === '1';
+    } catch {}
+    this.showFps = fpsHud;
+    this.setRenderScalePreset(scalePreset);
+    this.setViewDistancePreset(viewPreset);
   }
 
   toggleMouseMove(): void {
@@ -505,8 +569,9 @@ export class Ui {
       this.toast(on ? 'Fog of War: ON' : '👁️ Fog of War: OFF (World Fully Revealed)');
     }
     if (i.pressed('KeyZ')) {
-      this.renderer.cam.toggleMaxView();
-      this.toast(this.renderer.cam.targetZoom <= 12 ? '🌐 Max View Distance Enabled (Zoom 8)' : '🔍 Normal View Distance (Zoom 54)');
+      const next: ViewDistancePreset = this.viewDistancePreset === 'near' ? 'normal' : this.viewDistancePreset === 'normal' ? 'far' : 'near';
+      this.setViewDistancePreset(next);
+      this.toast(next === 'near' ? '🔎 View Distance: NEAR' : next === 'normal' ? '👀 View Distance: NORMAL' : '🌐 View Distance: FAR');
     }
     if (this.buildId) {
       if (i.pressed('KeyR') || i.pressed('KeyT')) {
@@ -637,6 +702,11 @@ export class Ui {
     if (this.debug) {
       const p = g.playerT;
       this.el.debug.textContent = `fps ${fps.toFixed(0)}  entities ${g.ecs.count()}  chunks ${this.renderer.stats.chunks}  drawn ${this.renderer.stats.drawn}  sprites ${this.renderer.cache.size}\npos ${p.x.toFixed(1)}, ${p.y.toFixed(1)}  seed ${g.config.seed}  mode ${g.config.mode}  biome ${g.world.biomeAt(p.x, p.y)}  time ${g.clock.t.toFixed(3)}`;
+    } else if (this.showFps) {
+      this.el.debug.textContent = `fps ${fps.toFixed(0)}  draw ${this.renderer.stats.drawn}  chunks ${this.renderer.stats.chunks}  scale ${(this.renderer.renderScale * 100).toFixed(0)}%  zoom ${this.renderer.cam.targetZoom.toFixed(0)}`;
+      this.el.debug.classList.add('on');
+    } else {
+      this.el.debug.classList.remove('on');
     }
   }
 
@@ -904,8 +974,9 @@ export class Ui {
     let selectedArena: 'duel_pit' | 'ffa_yard' = g.activeArena?.def.id ?? 'duel_pit';
     let selectedBotLevel: 'scarecrow' | 'regular' | 'sharp' | 'menace' = 'regular';
     let selectedBotWeapon = 'nailgun_smg';
-    let selectedZombieKind = 'walker';
-    let selectedZombieCount = 4;
+    let selectedBotCount = 4;
+    let selectedZombieKind = 'runner';
+    let selectedZombieCount = 12;
 
     const container = h('div', { class: 'arena-fight-panel', style: 'padding:4px 0;' });
 
@@ -917,8 +988,8 @@ export class Ui {
         style: 'display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:10px; margin-bottom:12px;'
       },
         h('div', {},
-          h('h2', { style: 'margin:0; color:#f97316; font-family:var(--display); font-size:22px;' }, '🏟️ Army Base Combat Arena & Fight Bench'),
-          h('p', { class: 'hint', style: 'margin:4px 0 0 0; color:#94a3b8;' }, 'Army Base live-fire tactical proving grounds. Pick bot duels, zombie containment swarms, or 3-way skirmishes.')
+          h('h2', { style: 'margin:0; color:#f97316; font-family:var(--display); font-size:22px;' }, '🏟️ Tactical Proving Ground & Spawner Studio'),
+          h('p', { class: 'hint', style: 'margin:4px 0 0 0; color:#94a3b8;' }, 'Configure bot count, weapon loadouts, and quarantined zombie swarms. Test play in Browser or native Unreal Engine 5.7 CLI.')
         ),
         h('div', { style: 'display:flex; gap:6px;' },
           h('button', {
@@ -1027,33 +1098,66 @@ export class Ui {
         }, w.label);
       });
 
+      // Bot Count Stepper & Presets
+      const botPresets = [1, 2, 4, 8, 12];
+      const botPresetBtns = botPresets.map((cnt) => {
+        const isSel = selectedBotCount === cnt;
+        return h('button', {
+          style: `padding:4px 10px; border-radius:5px; font-size:11px; font-weight:bold; cursor:pointer; border:${isSel ? '1.5px solid #f97316; background:#ea580c; color:#fff;' : '1px solid #334155; background:rgba(30,41,59,0.7); color:#94a3b8;'}`,
+          onclick: () => { selectedBotCount = cnt; render(); }
+        }, cnt === 1 ? '1v1 Duel' : cnt === 2 ? '2 Bots' : `${cnt} Bots`);
+      });
+
+      const botStepper = h('div', { style: 'display:flex; align-items:center; gap:6px;' },
+        h('button', {
+          style: 'padding:4px 10px; background:#334155; border:1px solid #475569; color:#fff; border-radius:4px; font-weight:bold; cursor:pointer;',
+          onclick: () => { if (selectedBotCount > 1) { selectedBotCount--; render(); } }
+        }, '-'),
+        h('span', { style: 'font-weight:bold; color:#f97316; font-size:14px; min-width:60px; text-align:center;' }, `${selectedBotCount} Bots`),
+        h('button', {
+          style: 'padding:4px 10px; background:#334155; border:1px solid #475569; color:#fff; border-radius:4px; font-weight:bold; cursor:pointer;',
+          onclick: () => { if (selectedBotCount < 16) { selectedBotCount++; render(); } }
+        }, '+')
+      );
+
       const botSection = h('div', {
         style: 'background:rgba(15,23,42,0.7); border:1px solid #334155; border-radius:8px; padding:12px; margin-bottom:12px;'
       },
-        h('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;' },
-          h('h3', { style: 'margin:0; font-size:15px; color:#f8fafc;' }, '🤖 Bot Gun Fight (Pick Difficulty & Loadout)'),
+        h('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;' },
+          h('div', { style: 'display:flex; align-items:center; gap:12px;' },
+            h('h3', { style: 'margin:0; font-size:15px; color:#f8fafc;' }, '🤖 Raider Bots Spawner (Pick Count, Difficulty & Gun)'),
+            botStepper
+          ),
           h('div', { style: 'display:flex; gap:6px;' }, ...weaponBtns)
+        ),
+        h('div', { style: 'display:flex; gap:6px; margin-bottom:10px; align-items:center;' },
+          h('span', { style: 'font-size:12px; color:#94a3b8;' }, 'Quick Presets:'),
+          ...botPresetBtns
         ),
         h('div', { style: 'display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;' }, ...botCards),
         h('div', { style: 'display:flex; gap:8px; justify-content:flex-end;' },
           h('button', {
             style: 'padding:8px 14px; background:rgba(51,65,85,0.8); border:1px solid #64748b; color:#f1f5f9; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;',
             onclick: () => {
-              g.spawnArenaBot(selectedBotLevel, selectedBotWeapon, Math.floor(Math.random() * 8));
-              this.toast(`🤖 Added ${selectedBotLevel.toUpperCase()} Bot to Arena!`);
+              for (let i = 0; i < selectedBotCount; i++) {
+                g.spawnArenaBot(selectedBotLevel, selectedBotWeapon, i + 1);
+              }
+              this.toast(`🤖 Injected ${selectedBotCount}x ${selectedBotLevel.toUpperCase()} Bots into Arena!`);
               render();
             }
-          }, '➕ Add Bot to Arena'),
+          }, `➕ Spawn ${selectedBotCount}x Bots to Arena`),
           h('button', {
             style: 'padding:9px 18px; background:linear-gradient(135deg, #ea580c 0%, #c2410c 100%); border:none; color:#fff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:13px; box-shadow:0 2px 6px rgba(194,65,12,0.4);',
             onclick: () => {
               g.teleportToArena(selectedArena, 0);
               g.clearArenaCombatants();
-              g.spawnArenaBot(selectedBotLevel, selectedBotWeapon, 1);
-              this.toast(`⚔️ 1v1 Bot Duel started against ${selectedBotLevel.toUpperCase()} Bot in ${selectedArena === 'duel_pit' ? 'Duel Pit' : 'FFA Yard'}!`);
+              for (let i = 0; i < selectedBotCount; i++) {
+                g.spawnArenaBot(selectedBotLevel, selectedBotWeapon, i + 1);
+              }
+              this.toast(`⚔️ Arena Match started with ${selectedBotCount}x ${selectedBotLevel.toUpperCase()} Bots in ${selectedArena === 'duel_pit' ? 'Duel Pit' : 'FFA Yard'}!`);
               this.close();
             }
-          }, `⚔️ Start 1v1 Gun Duel vs ${selectedBotLevel.toUpperCase()}`)
+          }, `⚔️ Start ${selectedBotCount}-Bot Arena Duel / FFA`)
         )
       );
 
@@ -1076,20 +1180,35 @@ export class Ui {
         );
       });
 
-      const countOptions = [1, 3, 6, 12];
+      const countOptions = [1, 6, 12, 24, 48];
       const countBtns = countOptions.map((c) => {
         const isSel = selectedZombieCount === c;
         return h('button', {
-          style: `padding:5px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; border:${isSel ? '1.5px solid #22c55e; background:#16a34a; color:#fff;' : '1px solid #334155; background:rgba(30,41,59,0.7); color:#cbd5e1;'}`,
+          style: `padding:4px 10px; border-radius:5px; font-size:11px; font-weight:bold; cursor:pointer; border:${isSel ? '1.5px solid #22c55e; background:#16a34a; color:#fff;' : '1px solid #334155; background:rgba(30,41,59,0.7); color:#cbd5e1;'}`,
           onclick: () => { selectedZombieCount = c; render(); }
         }, `${c}x`);
       });
 
+      const zombieStepper = h('div', { style: 'display:flex; align-items:center; gap:6px;' },
+        h('button', {
+          style: 'padding:4px 10px; background:#334155; border:1px solid #475569; color:#fff; border-radius:4px; font-weight:bold; cursor:pointer;',
+          onclick: () => { if (selectedZombieCount > 1) { selectedZombieCount = Math.max(1, selectedZombieCount - 2); render(); } }
+        }, '-'),
+        h('span', { style: 'font-weight:bold; color:#4ade80; font-size:14px; min-width:70px; text-align:center;' }, `${selectedZombieCount} Zombies`),
+        h('button', {
+          style: 'padding:4px 10px; background:#334155; border:1px solid #475569; color:#fff; border-radius:4px; font-weight:bold; cursor:pointer;',
+          onclick: () => { if (selectedZombieCount < 64) { selectedZombieCount += 2; render(); } }
+        }, '+')
+      );
+
       const zombieSection = h('div', {
         style: 'background:rgba(15,23,42,0.7); border:1px solid #334155; border-radius:8px; padding:12px; margin-bottom:12px;'
       },
-        h('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;' },
-          h('h3', { style: 'margin:0; font-size:15px; color:#f8fafc;' }, '🧟 Zombie Horde Combat (Quarantine Mutants)'),
+        h('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;' },
+          h('div', { style: 'display:flex; align-items:center; gap:12px;' },
+            h('h3', { style: 'margin:0; font-size:15px; color:#f8fafc;' }, '🧟 Quarantined Zombie Swarm (Pick Quantity & Mutants)'),
+            zombieStepper
+          ),
           h('div', { style: 'display:flex; gap:6px;' }, ...countBtns)
         ),
         h('div', { style: 'display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;' }, ...zombieCards),
@@ -1102,7 +1221,77 @@ export class Ui {
               this.toast(`🧟 Released ${selectedZombieCount} ${selectedZombieKind.toUpperCase()} mutants into Arena!`);
               this.close();
             }
-          }, `🧟 Release ${selectedZombieCount}x ${selectedZombieKind.toUpperCase()} Horde`)
+          }, `🧟 Swarm ${selectedZombieCount}x ${selectedZombieKind.toUpperCase()} Horde Into Arena`)
+        )
+      );
+
+      // UNREAL ENGINE 5.7 AUTOMATION & CLI CONTROLLER SECTION
+      const ueCliCmd = `python tools/unreal/ue_controller.py play --arena ${selectedArena} --bots ${selectedBotCount} --level ${selectedBotLevel} --zombies ${selectedZombieCount} --zkind ${selectedZombieKind}`;
+      const ueSection = h('div', {
+        style: 'background:linear-gradient(135deg, rgba(30,27,75,0.75) 0%, rgba(15,23,42,0.85) 100%); border:1.5px solid #6366f1; border-radius:8px; padding:12px; margin-bottom:12px;'
+      },
+        h('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;' },
+          h('div', {},
+            h('b', { style: 'color:#818cf8; font-size:14px; display:flex; align-items:center; gap:6px;' }, '🚀 Unreal Engine 5.7 CLI & Headless Bridge (AG IDE)'),
+            h('span', { style: 'color:#94a3b8; font-size:12px;' }, 'Launch this exact scenario in native UE5 Standalone window or run headless simulation in CLI.')
+          ),
+          h('div', { style: 'display:flex; gap:6px; align-items:center;' },
+            h('span', { style: 'font-size:11px; padding:2px 8px; background:rgba(34,197,94,0.2); border:1px solid #22c55e; color:#86efac; border-radius:4px;' }, 'UE 5.7 Detected')
+          )
+        ),
+        h('div', { style: 'background:rgba(2,6,23,0.8); border:1px solid #312e81; border-radius:6px; padding:8px 12px; font-family:var(--font-mono, monospace); font-size:11px; color:#c7d2fe; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; overflow-x:auto;' },
+          h('code', {}, ueCliCmd),
+          h('button', {
+            style: 'padding:4px 8px; background:#4338ca; border:none; color:#fff; border-radius:4px; font-size:11px; cursor:pointer; font-weight:bold; margin-left:8px; white-space:nowrap;',
+            onclick: () => {
+              navigator.clipboard?.writeText(ueCliCmd);
+              this.toast('📋 Copied UE 5.7 CLI command to clipboard!');
+            }
+          }, '📋 Copy')
+        ),
+        h('div', { style: 'display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;' },
+          h('button', {
+            style: 'padding:8px 14px; background:rgba(49,46,129,0.8); border:1px solid #6366f1; color:#e0e7ff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;',
+            onclick: async () => {
+              this.toast('⚡ Initiating Headless Simulation in Unreal Engine 5.7 CLI...');
+              try {
+                const res = await fetch('http://localhost:4040/api/unreal/launch', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ arena: selectedArena, bots: selectedBotCount, level: selectedBotLevel, zombies: selectedZombieCount, zkind: selectedZombieKind, headless: true })
+                });
+                const data = await res.json();
+                if (data.success) {
+                  this.toast(`⚡ UE5 Headless Simulation launched! (PID: ${data.pid})`);
+                } else {
+                  this.toast(`⚠️ Headless launch note: ${data.error || 'Check terminal'}`);
+                }
+              } catch {
+                this.toast(`⚡ Copy the command above to run headless directly in VS Code / CLI!`);
+              }
+            }
+          }, '⚡ Run Headless UE5 Simulation'),
+          h('button', {
+            style: 'padding:9px 18px; background:linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); border:none; color:#fff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:13px; box-shadow:0 2px 6px rgba(79,70,229,0.4);',
+            onclick: async () => {
+              this.toast('🚀 Launching Unreal Engine 5.7 Standalone Game Window...');
+              try {
+                const res = await fetch('http://localhost:4040/api/unreal/launch', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ arena: selectedArena, bots: selectedBotCount, level: selectedBotLevel, zombies: selectedZombieCount, zkind: selectedZombieKind, headless: false })
+                });
+                const data = await res.json();
+                if (data.success) {
+                  this.toast(`🚀 Unreal Engine 5.7 Standalone Game launched! (PID: ${data.pid})`);
+                } else {
+                  this.toast(`⚠️ Launch note: ${data.error || 'Check terminal'}`);
+                }
+              } catch {
+                this.toast(`🚀 Run command in terminal: ${ueCliCmd}`);
+              }
+            }
+          }, '🚀 Launch UE 5.7 Standalone Game')
         )
       );
 
@@ -1111,39 +1300,39 @@ export class Ui {
         style: 'background:rgba(15,23,42,0.7); border:1px solid #334155; border-radius:8px; padding:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;'
       },
         h('div', {},
-          h('b', { style: 'color:#f8fafc; font-size:14px; display:block;' }, '🔥 Multi-Faction War & Army Operations'),
-          h('span', { style: 'color:#94a3b8; font-size:12px;' }, 'Pit armed raider bots against quarantined mutants in an all-out 3-way skirmish.')
+          h('b', { style: 'color:#f8fafc; font-size:14px; display:block;' }, '🔥 All-Out Battle Royale (Browser Simulator)'),
+          h('span', { style: 'color:#94a3b8; font-size:12px;' }, `Pit ${selectedBotCount} armed raider bots against ${selectedZombieCount} ${selectedZombieKind.toUpperCase()} mutants in open war.`)
         ),
         h('div', { style: 'display:flex; gap:8px; flex-wrap:wrap;' },
           h('button', {
-            style: 'padding:9px 16px; background:linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%); border:none; color:#fff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:13px; box-shadow:0 2px 6px rgba(185,28,28,0.4);',
+            style: 'padding:10px 20px; background:linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%); border:none; color:#fff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:14px; box-shadow:0 2px 8px rgba(185,28,28,0.5);',
             onclick: () => {
               g.teleportToArena(selectedArena, 0);
               g.clearArenaCombatants();
-              g.spawnArenaBot('regular', 'nailgun_smg', 1);
-              g.spawnArenaBot('sharp', 'pump_shotgun', selectedArena === 'ffa_yard' ? 4 : 1);
-              g.spawnArenaZombies(6, 'walker');
-              g.spawnArenaZombies(2, 'runner');
-              this.toast('🔥 3-Way Battle Royale started! Bots, zombies, and player in open war!');
+              for (let i = 0; i < selectedBotCount; i++) {
+                g.spawnArenaBot(selectedBotLevel, selectedBotWeapon, i + 1);
+              }
+              g.spawnArenaZombies(selectedZombieCount, selectedZombieKind);
+              this.toast(`🔥 Started 3-Way War: ${selectedBotCount} Bots vs ${selectedZombieCount} Zombies in ${selectedArena === 'duel_pit' ? 'Duel Pit' : 'FFA Yard'}!`);
               this.close();
             }
-          }, '🔥 Start 3-Way War (Bots vs Zombies)'),
+          }, `🔥 Play Browser Arena (${selectedBotCount} Bots vs ${selectedZombieCount} Zombies)`),
           h('button', {
             style: 'padding:8px 14px; background:rgba(30,41,59,0.9); border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-weight:bold; font-size:12px;',
             onclick: () => {
               this.open('range');
             }
-          }, '🎯 Ballistics Firing Line [Y]'),
+          }, '🎯 Firing Line [Y]'),
           h('button', {
             style: 'padding:8px 14px; background:rgba(30,41,59,0.9); border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-weight:bold; font-size:12px;',
             onclick: () => {
               this.open('gunsmith');
             }
-          }, '🛠️ Open Gunsmith [U]')
+          }, '🛠️ Gunsmith [U]')
         )
       );
 
-      container.append(header, arenaSelectRow, statusCard, botSection, zombieSection, operationsSection);
+      container.append(header, arenaSelectRow, statusCard, botSection, zombieSection, ueSection, operationsSection);
     };
 
     render();
@@ -2476,10 +2665,40 @@ export class Ui {
       onclick: () => {
         g.teleportToTown();
         this.save();
-        this.toast('Spawned at Abandoned Town!');
+        this.toast('Spawned at Town Plaza!');
         this.close();
       }
-    }, '🏘️ Respawn at Abandoned Town');
+    }, '🏘️ Respawn at Town Plaza');
+
+    const respawnResidentialBtn = h('button', {
+      style: 'padding: 8px 14px; margin: 6px 0; background: rgba(42,36,30,0.9); border: 1.5px solid #c7a76a; border-radius: 999px; width: 100%; color: #f2d7a2; cursor: pointer;',
+      onclick: () => {
+        g.teleportToTownDistrict('residential');
+        this.save();
+        this.toast('Spawned in Residential Quarter');
+        this.close();
+      }
+    }, '🏡 Spawn: Residential Quarter');
+
+    const respawnCommercialBtn = h('button', {
+      style: 'padding: 8px 14px; margin: 6px 0; background: rgba(42,36,30,0.9); border: 1.5px solid #c7a76a; border-radius: 999px; width: 100%; color: #f2d7a2; cursor: pointer;',
+      onclick: () => {
+        g.teleportToTownDistrict('commercial');
+        this.save();
+        this.toast('Spawned on Commercial High Street');
+        this.close();
+      }
+    }, '🏬 Spawn: Commercial High Street');
+
+    const respawnIndustrialBtn = h('button', {
+      style: 'padding: 8px 14px; margin: 6px 0; background: rgba(42,36,30,0.9); border: 1.5px solid #c7a76a; border-radius: 999px; width: 100%; color: #f2d7a2; cursor: pointer;',
+      onclick: () => {
+        g.teleportToTownDistrict('industrial');
+        this.save();
+        this.toast('Spawned at Industrial Auto Garage');
+        this.close();
+      }
+    }, '🏭 Spawn: Industrial Auto Garage');
 
     const respawnRangeBtn = h('button', {
       style: 'padding: 9px 16px; margin: 8px 0; background: rgba(35,45,60,0.9); border: 2px solid #58b0f0; border-radius: 999px; width: 100%; font-weight: bold; color: #58b0f0; cursor: pointer;',
@@ -2516,20 +2735,79 @@ export class Ui {
       }
     }, `💬 Toasts: ${this.toastMode === 'all' ? 'ALL (Calm & Deduplicated)' : this.toastMode === 'important' ? 'QUIET (Important Only)' : 'OFF (Muted)'} [F8]`);
 
+    const renderScaleBtns = h('div', { style: 'display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 10px;' },
+      ...([
+        ['performance', '⚡ 50%'] as const,
+        ['balanced', '⚖️ 75%'] as const,
+        ['quality', '🖼️ 100%'] as const,
+      ]).map(([id, label]) => h('button', {
+        style: `padding: 7px 10px; border-radius: 999px; border: 1.5px solid ${this.renderScalePreset === id ? 'var(--gold)' : 'var(--line)'}; background: ${this.renderScalePreset === id ? 'rgba(80,60,40,0.95)' : 'rgba(30,22,18,0.9)'}; cursor: pointer;`,
+        onclick: () => {
+          this.setRenderScalePreset(id);
+          this.toast(id === 'performance' ? 'Render Scale: Performance (50%)' : id === 'balanced' ? 'Render Scale: Balanced (75%)' : 'Render Scale: Quality (100%)');
+          this.renderPanel();
+        }
+      }, label))
+    );
+
+    const viewDistanceBtns = h('div', { style: 'display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 10px;' },
+      ...([
+        ['near', '🔎 Near'] as const,
+        ['normal', '👀 Normal'] as const,
+        ['far', '🌐 Far'] as const,
+      ]).map(([id, label]) => h('button', {
+        style: `padding: 7px 10px; border-radius: 999px; border: 1.5px solid ${this.viewDistancePreset === id ? 'var(--gold)' : 'var(--line)'}; background: ${this.viewDistancePreset === id ? 'rgba(80,60,40,0.95)' : 'rgba(30,22,18,0.9)'}; cursor: pointer;`,
+        onclick: () => {
+          this.setViewDistancePreset(id);
+          this.toast(id === 'near' ? 'View Distance: NEAR' : id === 'normal' ? 'View Distance: NORMAL' : 'View Distance: FAR');
+          this.renderPanel();
+        }
+      }, label))
+    );
+
+    const atmosBtn = h('button', {
+      style: 'padding: 8px 16px; margin: 8px 0; background: rgba(30,22,18,0.9); border: 1.5px solid var(--line); border-radius: 999px; width: 100%;',
+      onclick: () => {
+        const next = this.renderer.atmos.quality === 'high' ? 'low' : this.renderer.atmos.quality === 'low' ? 'off' : 'high';
+        this.renderer.atmos.setQuality(next);
+        this.toast(`Atmosphere FX: ${next.toUpperCase()}`);
+        this.renderPanel();
+      }
+    }, `Atmosphere FX: ${this.renderer.atmos.quality.toUpperCase()} (high/low/off)`);
+
+    const fpsBtn = h('button', {
+      style: `padding: 8px 16px; margin: 8px 0; background: rgba(30,22,18,0.9); border: 1.5px solid ${this.showFps ? 'var(--gold)' : 'var(--line)'}; border-radius: 999px; width: 100%;`,
+      onclick: () => {
+        this.toggleFpsHud();
+        this.toast(this.showFps ? 'FPS Counter: ON' : 'FPS Counter: OFF');
+        this.renderPanel();
+      }
+    }, `FPS Counter: ${this.showFps ? 'ON' : 'OFF'}`);
+
     return h('div', {},
       h('h2', {}, 'Mode & Settings'),
       h('p', { class: 'hint' }, modeDesc),
       modeBtn,
       daylightBtn,
       toastToggleBtn,
+      h('h3', { style: 'margin: 10px 0 4px;' }, 'Performance'),
+      h('p', { class: 'hint' }, 'Resolution Scale (DLSS-style for 2D canvas):'),
+      renderScaleBtns,
+      h('p', { class: 'hint' }, 'Character View Distance (near/normal/far):'),
+      viewDistanceBtns,
+      atmosBtn,
+      fpsBtn,
       staticBtn,
       editorBtn,
       respawnTownBtn,
+      respawnResidentialBtn,
+      respawnCommercialBtn,
+      respawnIndustrialBtn,
       respawnRangeBtn,
       creativeBtn,
       soundBtn,
       h('p', { class: 'hint', style: 'margin-top: 12px;' }, `World Seed: ${g.config.seed}`),
-      h('p', { class: 'hint' }, 'Tip: Click Clock or press [L] anytime for Always Daylight · Press [F8] anytime to toggle Toasts!')
+      h('p', { class: 'hint' }, 'Tip: [Z] cycles view distance · [+/- or wheel] fine-tune zoom · [F8] toggles toasts.')
     );
   }
 

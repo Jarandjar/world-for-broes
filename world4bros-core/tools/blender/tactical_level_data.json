@@ -1,0 +1,154 @@
+{
+  "grid": {
+    "cols": 3,
+    "rows": 2,
+    "block_width": 45.699999999999996,
+    "block_depth": 35.6
+  },
+  "settings": {
+    "district": "mixed",
+    "damage_state": "pristine",
+    "interior_mode": "dollhouse",
+    "lighting_mood": "midday_clear"
+  },
+  "metrics": {
+    "plot_width_m": 11.5,
+    "plot_depth_m": 13.0,
+    "road_width_m": 11.0,
+    "sidewalk_pad_m": 3.2,
+    "plot_gap_x_m": 2.4,
+    "plot_gap_y_m": 3.2,
+    "curb_height_m": 0.22,
+    "floor_height_m": 2.8
+  },
+  "buildings": [
+    {
+      "id": "Plot_1_Apartment",
+      "archetype": "apartment",
+      "world_pos": [
+        -13.9,
+        -8.1,
+        0.22
+      ],
+      "entrance": [
+        -13.9,
+        -14.6,
+        0.22
+      ]
+    },
+    {
+      "id": "Plot_2_Suburban_house",
+      "archetype": "suburban_house",
+      "world_pos": [
+        0.0,
+        -8.1,
+        0.22
+      ],
+      "entrance": [
+        0.0,
+        -14.6,
+        0.22
+      ]
+    },
+    {
+      "id": "Plot_3_Warehouse",
+      "archetype": "warehouse",
+      "world_pos": [
+        13.9,
+        -8.1,
+        0.22
+      ],
+      "entrance": [
+        13.9,
+        -14.6,
+        0.22
+      ]
+    },
+    {
+      "id": "Plot_4_Pagoda",
+      "archetype": "pagoda",
+      "world_pos": [
+        -13.9,
+        8.1,
+        0.22
+      ],
+      "entrance": [
+        -13.9,
+        1.5999999999999996,
+        0.22
+      ]
+    },
+    {
+      "id": "Plot_5_Skyscraper",
+      "archetype": "skyscraper",
+      "world_pos": [
+        0.0,
+        8.1,
+        0.22
+      ],
+      "entrance": [
+        0.0,
+        1.5999999999999996,
+        0.22
+      ]
+    },
+    {
+      "id": "Plot_6_Bodega",
+      "archetype": "bodega",
+      "world_pos": [
+        13.9,
+        8.1,
+        0.22
+      ],
+      "entrance": [
+        13.9,
+        1.5999999999999996,
+        0.22
+      ]
+    }
+  ],
+  "cover_points": [],
+  "sniper_perches": [
+    {
+      "pos": [
+        -13.9,
+        -8.1,
+        16.799999999999997
+      ],
+      "elevation": 16.799999999999997,
+      "rating": "A"
+    },
+    {
+      "pos": [
+        0.0,
+        8.1,
+        28.0
+      ],
+      "elevation": 28.0,
+      "rating": "S"
+    }
+  ],
+  "test_dummy": {
+    "id": "Test_Dummy_Character",
+    "pos": [
+      -20.45,
+      -0.5,
+      0.22
+    ],
+    "height": 1.8
+  },
+  "spawns": {
+    "player": [
+      -26.849999999999998,
+      0,
+      0.22
+    ],
+    "enemies": [
+      [
+        26.849999999999998,
+        0,
+        0.22
+      ]
+    ]
+  }
+}
