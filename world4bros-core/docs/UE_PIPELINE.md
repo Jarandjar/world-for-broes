@@ -225,5 +225,48 @@ Log every asset in `docs/CREDITS.md`.
 | Unreal is not deterministic | record seeds and spread of repeated runs |
 | Two agents in the same files | Unreal work happens in `C:\W4B` and `tools/unreal/pipeline`; the old `tools/unreal/*.py` and `tools/run-unreal.mjs` are superseded |
 
+## 10b. Rendering and performance: DirectX 12, DLSS, Reflex and the best of Unreal 5.7 (RTX 5070)
+
+Checked on this PC 2026-10-20: the First Person template's `DefaultEngine.ini` already sets **DirectX 12 with Shader Model 6** (`DefaultGraphicsRHI_DX12`, `PCD3D_SM6`; DX11 SM5 stays as a fallback), **Lumen** for indirect light and reflections, no baked lighting, mesh distance fields; the engine sets `r.PSOPrecache.GlobalShaders=1`; and Unreal 5.7 ships its own **NVIDIA Reflex** plugin (v1.6, `Engine/Plugins/Runtime/Nvidia/Reflex`, off by default).
+
+### Settings for the arena
+| Feature | Setting | Why |
+| :--- | :--- | :--- |
+| Graphics API | DirectX 12, SM6 (template default; keep) | needed for Lumen hardware ray tracing, Nanite, Virtual Shadow Maps, DLSS frame generation |
+| Lighting | Lumen GI + reflections, **hardware ray tracing on** (`r.RayTracing=True` and Project Settings > Rendering > Lumen > Use Hardware Ray Tracing when available) | in 5.7 the hardware path is the fast one ([Unreal forum](https://forums.unrealengine.com/t/lumen-performance-less-relies-on-hwrt-in-5-7/2731297)); the RTX 5070 has it |
+| Shadows | Virtual Shadow Maps (default) | sharp shadows under the top-down camera |
+| Meshes | Nanite on static meshes ≥ 1,000 triangles | section 8 |
+| Many lights | **MegaLights off** for the demo | Beta in 5.7, production-ready only in 5.8 ([MegaLights docs](https://dev.epicgames.com/documentation/unreal-engine/megalights-in-unreal-engine)) |
+| Anti-aliasing / upscaling | **TSR** (built in) by default; **DLSS** when the NVIDIA plugin is in (below) | TSR works on every GPU |
+| Latency | **Reflex On** (engine plugin `Reflex`, enable in the `.uproject`) | lower input lag matters in a shooter |
+| Exposure | fixed exposure (no eye adaptation) | readable, steady image from above |
+
+### DLSS (NVIDIA plugin)
+- Current: **DLSS 4.5 plugin** for Unreal (Super Resolution with the transformer model, DLAA, Frame Generation and **Multi Frame Generation** on RTX 50 cards, Ray Reconstruction, Reflex, NIS), built on Streamline ([NVIDIA DLSS](https://developer.nvidia.com/rtx/dlss/get-started)). **Not yet confirmed for 5.7**: the owner downloads it from NVIDIA's developer site only if its page lists Unreal 5.7; otherwise the archive has older versions.
+- Install into `C:\W4B\W4BArena\Plugins\` (private repo only; NVIDIA's licence decides redistribution) and enable it. Use either its Reflex or the engine's Reflex plugin, not both.
+- Settings menu: Upscaler (TSR / DLSS / DLAA), DLSS mode (Quality, Balanced, Performance), Frame Generation (Off, 2x, 3x, 4x), Reflex (Off, On, On + Boost). Frame generation adds input lag, so it only turns on together with Reflex, and **defaults to Off** in this shooter.
+
+### Smooth first launch (no shader stutter)
+- PSO precaching is on in 5.x; check the packaged build's first match for hitches (`stat unit`, Insights). If it hitches, record and ship a PSO cache (Epic "PSO caching" docs) and show a short loading screen until shaders are ready.
+
+### Game-side performance rules
+- Pool projectiles, impact effects and decals; decals fade after 30 s.
+- Bot brains tick at 10 Hz, not every frame; use timers instead of `Tick` where possible.
+- Camera sees one arena: short shadow and view distances, no far LODs.
+- Simple collision on props; projectiles use one sphere sweep.
+- Niagara effects with a per-effect budget; no translucent overdraw stacks.
+
+### Scalability and settings
+Low / Medium / High / Epic through `UGameUserSettings`, plus a first-run auto-detect (`RunHardwareBenchmark`). Low turns off Lumen (screen-space GI instead) and lowers shadows. Also: resolution, window mode, VSync, frame-rate cap (`t.MaxFPS`), upscaler, Reflex, FOV-free zoom limits.
+
+### Targets and how to measure
+| Target (1440p, this PC, 8-bot FFA Yard) | Measure with |
+| :--- | :--- |
+| ≥ 60 fps native at Epic, frame time ≤ 16.6 ms, GPU ≤ 12 ms | `stat unit`, `stat gpu` |
+| ≥ 120 fps with DLSS Quality (+ Reflex) | same, plus `stat fps` |
+| 1 % lows within 30 % of the average | Unreal Insights trace (`-trace=default,gpu`) or `csvprofile start/stop` |
+| No hitch > 50 ms in the first minute of a packaged build | Insights |
+Steps: U10 sets lighting, shadows, Lumen and TSR; U14 adds DLSS/Reflex, the settings menu, scalability, PSO checks and the benchmark run.
+
 ## 11. Sources
 Epic: [VS setup](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine), [5.6 templates](https://www.unrealengine.com/news/updated-game-templates-for-unreal-engine-5-6available-now), [5.8 release notes](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-8-release-notes), [Lyra](https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine), [Python scripting](https://dev.epicgames.com/documentation/en-us/unreal-engine/scripting-the-unreal-editor-using-python), [orthographic camera](https://dev.epicgames.com/documentation/en-us/unreal-engine/orthographic-camera-in-unreal-engine), [Game Animation Sample 5.7](https://www.unrealengine.com/tech-blog/explore-the-updates-to-the-game-animation-sample-project-in-ue-5-7), [Fab licences](https://dev.epicgames.com/documentation/en-us/fab/licenses-and-pricing-in-fab), [UE-201004 spawn crash](https://issues.unrealengine.com/issue/UE-201004). Antigravity: [rules](https://antigravity.google/docs/rules), [skills](https://antigravity.google/docs/skills), [workflows (deprecated)](https://antigravity.google/docs/ide/workflows/), [workflows to skills](https://antigravity.google/docs/migration/workflows-to-skills/). GitHub: [LFS quotas](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-storage-and-bandwidth-usage). Engine source on this PC: `LaunchEngineLoop.cpp` (`-benchmark`, `-fps=`, `-deterministic`, `-testexit=`), `UnrealEngine.cpp:2703`, `AssetTools.cpp:3872`, `InterchangeEditorModule.cpp:25`, `EditorPythonExecuter.cpp:73`, `PythonScriptRemoteExecution.cpp:264`, `LiveCodingModule.cpp:431`, `Engine/Config/Windows/Windows_SDK.json`.

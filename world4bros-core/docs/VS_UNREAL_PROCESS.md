@@ -35,7 +35,7 @@ Status: ✅ have, 🟡 started, ❌ missing.
 3. **A data pipeline**: numbers live in data, not code (`npm run ue:export`).
 4. **Logging with categories** (`DEFINE_LOG_CATEGORY(LogW4B)`), and markers agents can grep.
 5. **Crash handling**: read `Saved/Crashes`, reproduce with F5 in Visual Studio.
-6. **Profiling**: `stat unit`, `stat gpu`, Unreal Insights; a frame budget (60 fps at 1440p).
+6. **Profiling and rendering**: `stat unit`, `stat gpu`, Unreal Insights; DirectX 12, Lumen hardware ray tracing, TSR/DLSS, Reflex, scalability presets, frame targets: UE_PIPELINE.md section 10b.
 7. **Performance budgets**: bots, projectiles and decals pooled; tick only what must tick.
 8. **Code review**: Copilot or a second agent reviews every diff before you approve.
 9. **Asset rules**: names, scale check, collision, licences in `CREDITS.md`.

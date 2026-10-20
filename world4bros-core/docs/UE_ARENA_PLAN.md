@@ -19,7 +19,7 @@ A zipped Windows build that runs from the desktop on this PC:
 6. **Rules**: ARENA.md §4: duel rounds (first to 3/5/7/10, 2 s pause, 30 s draw, time limit); FFA (kill or time limit, 3 s respawn at the safest spawn ≥ 12 m from enemies, 2 s spawn protection); pies heal 25 and come back after 20 s.
 7. **HUD**: health, ammo, round score or scoreboard, timer, kill feed; no enemy health bars.
 8. **Look**: gritty and readable from above: master grime material on all surfaces, CC0 art kit on the Duel Pit at least, lit camera-facing walls, outlined characters, muzzle flashes, impacts, mild blood decals.
-9. **Performance**: 60 fps at 1440p in an 8-bot FFA on this PC.
+9. **Performance**: DirectX 12, Lumen with hardware ray tracing, TSR and DLSS (if the NVIDIA plugin supports 5.7), Reflex; 60 fps native and 120+ with DLSS at 1440p in an 8-bot FFA on this PC (UE_PIPELINE.md section 10b).
 10. **Quality**: automation tests green; a 30-minute headless bot soak run without a crash; all third-party assets in `docs/CREDITS.md`.
 
 Out of scope for the demo (later phases): online play, Chaos destruction, PCG clutter, mood presets, MetaHumans, the open world.
@@ -233,7 +233,7 @@ Stop for the owner after every step. After every step update: this file's status
   ```
   Use the w4b-unreal skill. Do step U10 of docs/UE_ARENA_PLAN.md only.
   1. Before the owner builds anything, write a click-by-click recipe for M_W4B_Master and the outline material in
-     docs/UE_PIPELINE.md (new section 12) and stop until the owner says they exist.
+     docs/UE_PIPELINE.md (new section 12) and stop until the owner says they exist. Apply the rendering settings in UE_PIPELINE.md section 10b (DirectX 12, Lumen hardware ray tracing, Virtual Shadow Maps, TSR, fixed exposure).
   2. With Python: material instances for floor, walls, crates, sandbags, barrels, trees with STYLE_BIBLE.md palette
      values; assign them in build_arena.py through an optional --materials JSON (keep the blockout working without it).
   3. Lighting: keep the sun relative to the camera (SUN in build_arena.py), fixed exposure, a little fog, colour
@@ -284,7 +284,7 @@ Stop for the owner after every step. After every step update: this file's status
 - **Antigravity prompt**:
   ```
   Use the w4b-unreal skill. Do step U14 of docs/UE_ARENA_PLAN.md only.
-  1. Measure an 8-bot FFA at 1440p (stat unit, stat gpu, an Unreal Insights trace with -trace=default,gpu).
+  1. Measure an 8-bot FFA at 1440p (stat unit, stat gpu, an Unreal Insights trace with -trace=default,gpu). Enable the engine Reflex plugin; if the owner installed the NVIDIA DLSS plugin for 5.7, add DLSS/DLAA/Frame Generation to the settings menu (Frame Generation off by default, only with Reflex). Targets and rules: docs/UE_PIPELINE.md section 10b.
      Fix the worst costs until 60 fps holds. Scalability Low/Medium/High in the pause menu.
   2. Package with RunUAT BuildCookRun (command in docs/UE_PIPELINE.md section 4.6) into C:\W4B\Builds, both
      Development and Shipping. Smoke test the .exe; run a 30-minute headless bench soak.
