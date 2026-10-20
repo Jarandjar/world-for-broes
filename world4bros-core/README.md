@@ -14,6 +14,24 @@ npm run test       # Run 120+ Node.js native tests
 npm run bundle     # Builds single self-contained playable dist/single.html
 ```
 
+## ☁️ Codespaces + Spark Workflow
+
+- Codespaces is preconfigured via `.devcontainer/devcontainer.json`.
+- On first launch, post-create bootstrap installs npm deps and Spark Python deps.
+- Start cloud playtest server:
+
+```bash
+npm run dev -- --host
+```
+
+- For telemetry analysis with Spark (local or Codespaces):
+
+```bash
+npm run telemetry:spark
+```
+
+Default input glob is `tools/spark/input/*.csv`, output parquet tables are written to `tools/spark/out/`.
+
 ### Useful URL Query Flags
 - `?seed=4242` — Set specific world seed
 - `?mode=zombie` — Enable zombie survival mode (default: classic)
@@ -96,5 +114,6 @@ Located at the **Army Base & Proving Grounds Complex** (`rx = spawn.x - 24, ry =
 - [Weapons & Ballistics Reference](docs/WEAPONS.md) — Projectile physics, spread models, and attachment matrices.
 - [Swarm Telemetry & Headless Balance](docs/SWARM_TELEMETRY.md) — Deterministic headless simulations and paired-seed tests.
 - [Architecture & Engine Design](docs/ARCHITECTURE.md) — ECS, worldgen stages, renderer, and simulation loop.
+- [HD Graphics & Animation Plan](docs/HD_GRAPHICS_PLAN.md) — What is wrong with the current look and the step-by-step fix (phase Z31).
 - [Roadmap](docs/ROADMAP.md) — Done and next phases, including Z26 status effects and Z27 biome atlas.
-- Status effects and biome atlas design pages — `../docs/design/index.html` and `../docs/design/biomes.html` (spec in World Bible Part 18).
+- Status effects and biome atlas design pages — `docs/design/index.html` and `docs/design/biomes.html` (spec in World Bible Part 18).

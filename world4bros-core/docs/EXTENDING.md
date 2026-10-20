@@ -34,26 +34,36 @@
 ## 6. Add a Biome
 1. `src/data/biomes.ts`: add a `BiomeDef` entry with `climate`, `terrain`, `tint` and `objects` scatter. Biomes are picked by nearest climate, so no engine change is needed.
 2. Draw any new props as objects (recipe 3).
-3. Planned for Z27: hazards, effect lists, ambient feel and spawn tables move into the same definition. Spec and the 6 proposed biomes: World Bible §119–§120 and `../docs/design/biomes.html`.
+3. Planned for Z27: hazards, effect lists, ambient feel and spawn tables move into the same definition. Spec and the 6 proposed biomes: World Bible §119–§120 and `design/biomes.html`.
 
 ## 7. Add a Status Effect (Z26, data layer in code; sim planned)
 1. `src/data/schema.ts`: add the id to `EffectId` and `EFFECT_IDS`.
 2. `src/data/effects.ts`: add an `EffectDef` row to `EFFECTS` (colour, icon id, sound word, tooltip, from/does/ends, numbers) and any `REACTIONS` rows keyed by effect × surface tag (`flammable`, `wet`, `conductive`, `explosive`, `oil`, `frozen`, `metal`).
 3. `npm run verify`: `validateContent` checks colours, icons, tags and references.
 4. Not yet in code (see [Z26_PLAN.md](Z26_PLAN.md)): the `EffectSystem` that applies rows in `src/sim/effects.ts`, and the icon drawer in `src/render/effectIcons.ts`.
-Spec: World Bible §115–§118 and `../docs/design/index.html`.
+Spec: World Bible §115–§118 and `design/index.html`.
 
 ## 8. Add a Building Style
 1. `src/data/buildings.ts`: add a `BuildingDef` with size range, `roof`, `walls`, `door`, `layout`, `features`, `colors`, and optional `palettes` (extra colour sets; one is picked per building from a hash of seed and position).
 2. Town lots pick styles by `weight` and `zone`; houses are placed street-facing with a yard automatically (`townBuildings` in `src/sim/worldgen.ts`).
 3. Drawing is in `src/render/buildings.ts`. Check it with `npm run dev` and `tests/buildings.test.ts`.
 
-## 9. Add a Generation Stage (Roads, Military Bases, Dungeons)
+## 9. Add a Town or Change Roads
+1. `src/sim/worldgen.ts`: add a `TownCenter` to `REGIONAL_TOWNS` with a `size` (`small`, `big`, `metro`). Keep towns at least the sum of their `TOWN_PROFILES` radii apart.
+2. Highways and dirt tracks are generated from the towns automatically (`src/sim/roads.ts`); widths are `HIGHWAY_HALF` / `DIRT_HALF` there and `MAIN_HALF` / `SIDE_HALF` in `worldgen.ts`.
+3. Road looks are in `src/render/roadRibbons.ts` (`ROAD_LOOK`). Check with `tests/map.test.ts`.
+
+## 9b. Add Art for New Content
+1. Add the content to `src/data` as usual.
+2. Run `npm run art:catalog`: the new entry appears in `docs/ASSET_CATALOG.md` with what to make and the suggested source.
+3. Make it following `docs/ASSET_PIPELINE.md` (download + "make it ours", generate, or rig + render) and log the licence in `docs/CREDITS.md`.
+
+## 10. Add a Generation Stage (Roads, Military Bases, Dungeons)
 1. Implement `GenStage` (`src/sim/worldgen.ts`) and include in `DEFAULT_STAGES`. Derive all positions deterministically from `ctx.seed` and chunk coordinates `(chunk.cx, chunk.cy)`.
 2. Filter or clear natural scatter within special boundaries (see `shootingRangeStage`).
 3. Add a determinism unit test in `tests/worldgen.test.ts`.
 
-## 10. Add a Weather or Screen Effect
+## 11. Add a Weather or Screen Effect
 Everything lives in `src/render/atmosphere.ts`; `renderer.ts` needs no change.
 1. **New weather kind** = one row in `WEATHERS`: `wx(id, name, weight, params, climate?, fogColor?)`. Params are 0..1 (`wet, fog, clouds, wind, rain, snow, leaves, gloom, dust`); existing effects react to them automatically. `climate` limits where it rolls (biome `temp`/`moist`).
 2. **New visual** = `registerAtmosEffect({ id, layer, minQuality, active?, draw })`. Layers: `ground` (after terrain, world units), `over` (after roofs, world units), `screen` (after lighting, pixels). `draw(f, s)` gets the frame `f` (camera, `f.w` weather, `f.sun`, `f.darkness`, `f.lod`, `f.quality`) and its own scratch object `s` for pools and caches. Use the helpers `pool`, `worldPattern`, `cloudTexture`, `glowSprite`, `memo`; never allocate canvases per frame and keep counts low when `f.lod === 0`.
@@ -76,7 +86,7 @@ registerAtmosEffect({
 ```
 Helpers (`wx`, `pool`, `memo`, `worldPattern`, `toScreen`) are exported, so an effect can also live in its own file that imports them and calls `registerAtmosEffect` (import that file once from `atmosphere.ts`).
 
-## 10. Add a Vehicle Decal or Paint Job
+## 12. Add a Vehicle Decal or Paint Job
 Paint jobs are optional data; drawing is a registry keyed by name, so no switch needs editing.
 1. Paint only: in `src/data/vehicles.ts`, give the vehicle id an entry in `VEHICLE_LOOKS` (`trim`, `glass`, `accent`, `accent2`, `decal`, `number`, `grime`, `rust`, `dirt`, `rustTone`; all optional, missing fields use `DEFAULT_VEHICLE_LOOK`).
 2. New decal: add its name to the `VehicleDecal` type in `src/data/vehicles.ts`, then add a painter with the same name to `DECALS` in `src/render/vehicleRenderer.ts`. TypeScript reports a missing painter. A painter draws in vehicle units (+x is forward, `c.halfL` / `c.halfW` are half the length / width) and is already clipped to the body.

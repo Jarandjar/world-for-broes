@@ -10,7 +10,13 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
     "verify": "npm run typecheck && npm test",
-    "bundle": "node tools/bundle-single.mjs"
+    "art:catalog": "tsx tools/asset-catalog.ts",
+    "bundle": "node tools/bundle-single.mjs",
+    "foundry": "node tools/city_foundry_server.mjs",
+    "telemetry:spark": "python tools/spark/analyze_swarm.py --input tools/spark/input/*.csv --output tools/spark/out",
+    "toolkit:fetch": "pwsh -ExecutionPolicy Bypass -File tools/vendor/fetch-toolkit.ps1",
+    "toolkit:fetch:tools": "pwsh -ExecutionPolicy Bypass -File tools/vendor/fetch-toolkit.ps1 -IncludeToolsOnly",
+    "toolkit:fetch:all": "pwsh -ExecutionPolicy Bypass -File tools/vendor/fetch-toolkit.ps1 -IncludeToolsOnly -IncludeStudyOnly"
   },
   "devDependencies": {
     "esbuild": "^0.24.0",
