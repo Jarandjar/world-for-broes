@@ -297,6 +297,20 @@ EditorStartupMap={map_asset_path}
 r.DefaultFeature.AntiAliasing=2
 r.AntiAliasingMethod=2
 r.ShadowQuality=4
+
+[/Script/PythonScriptPlugin.PythonScriptPluginSettings]
+bRemoteExecution=True
+
+[/Script/Engine.CollisionProfile]
++DefaultChannelResponses=(Channel=ECC_GameTraceChannel1,Name="Projectile",DefaultResponse=ECR_Block,bTraceType=False,bStaticObject=False)
++Profiles=(Name="W4BCover",CollisionEnabled=QueryAndPhysics,bCanModify=False,ObjectTypeName="WorldStatic",CustomResponses=,HelpMessage="W4B arena cover: blocks movement, bullets and sight")
++Profiles=(Name="W4BBulletPass",CollisionEnabled=QueryAndPhysics,bCanModify=False,ObjectTypeName="WorldStatic",CustomResponses=((Channel="Projectile",Response=ECR_Ignore),(Channel="Visibility",Response=ECR_Ignore),(Channel="Camera",Response=ECR_Ignore)),HelpMessage="W4B arena: blocks movement; bullets and sight pass")
+
+[/Script/NavigationSystem.RecastNavMesh]
+RuntimeGeneration=Dynamic
+
+[ConsoleVariables]
+Interchange.FeatureFlags.Import.SyncToBrowser=0
 """
     with open(engine_ini, "w", encoding="utf-8") as f:
         f.write(ini_content)

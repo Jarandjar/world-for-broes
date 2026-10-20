@@ -65,6 +65,16 @@ export type Target =
   | { kind: 'animal'; entity: Entity; prompt: string; key: 'E' | 'SPACE'; action?: 'pet' | 'milk' | 'shear' | 'eggs' | 'feed' | 'hunt' }
   | null;
 
+export interface ArenaSettings {
+  ammoConsumption: boolean;
+  noiseAttractsZombies: boolean;
+  damageFalloff: boolean;
+  arenaCoverBlocksBullets: boolean;
+  botsFightEachOther: boolean;
+  botsTargetPlayer: boolean;
+  allyFriendlyFire: boolean;
+}
+
 export interface SaveData {
   v: 1; seed: number; mode: GameConfig['mode']; t: number; day: number; alwaysDay?: boolean;
   player: { x: number; y: number; angle: number; look: Look; inv: unknown; held: number; needs: { hunger: number; health: number; sanity: number } };
@@ -110,6 +120,15 @@ export class Game {
   };
   readonly activeFlares: { x: number; y: number; timer: number }[] = [];
   readonly baseStorage: Inventory;
+  readonly arenaSettings: ArenaSettings = {
+    ammoConsumption: true,
+    noiseAttractsZombies: true,
+    damageFalloff: true,
+    arenaCoverBlocksBullets: true,
+    botsFightEachOther: true,
+    botsTargetPlayer: true,
+    allyFriendlyFire: false,
+  };
   activeArena: { def: ArenaDef; originX: number; originY: number } | null = null;
   player: Entity;
   simTime = 0;
@@ -1071,6 +1090,20 @@ export class Game {
     return this.fogOfWar;
   }
 
+  setArenaSetting<K extends keyof ArenaSettings>(key: K, value: ArenaSettings[K]): ArenaSettings[K] {
+    this.arenaSettings[key] = value;
+    return this.arenaSettings[key];
+  }
+
+  toggleArenaSetting<K extends keyof ArenaSettings>(key: K): ArenaSettings[K] {
+    this.arenaSettings[key] = !this.arenaSettings[key] as ArenaSettings[K];
+    return this.arenaSettings[key];
+  }
+
+  getArenaSettings(): ArenaSettings {
+    return { ...this.arenaSettings };
+  }
+
   private controlPlayer(dt: number, input: SimInput): void {
     const drivingVeh = this.drivingVehicle();
     if (drivingVeh) {
@@ -1132,20 +1165,26 @@ export class Game {
       const pt = this.playerT;
       let nearestDist = Number.POSITIVE_INFINITY;
 
-      // 1. Target other bots / raiders (arena bots engage other bots in free-for-all)
-      for (const otherRe of this.ecs.query(Comp.Raider, Comp.Transform)) {
-        if (otherRe === re) continue;
-        const otherT = this.ecs.get(otherRe, Comp.Transform)!;
-        const distOther = Math.hypot(otherT.x - rt.x, otherT.y - rt.y);
-        if (distOther < r.sight && distOther < nearestDist) {
-          nearestDist = distOther;
-          targetPos = { x: otherT.x, y: otherT.y };
+      // 1. Target other bots / raiders.
+      // Enemy bots (`bot` / `raider`) can free-for-all each other if enabled.
+      // Player-allied bots (`ally`) avoid targeting other allies.
+      if (this.arenaSettings.botsFightEachOther) {
+        for (const otherRe of this.ecs.query(Comp.Raider, Comp.Transform)) {
+          if (otherRe === re) continue;
+          const otherR = this.ecs.get(otherRe, Comp.Raider)!;
+          if (r.team === 'ally' && otherR.team === 'ally') continue;
+          const otherT = this.ecs.get(otherRe, Comp.Transform)!;
+          const distOther = Math.hypot(otherT.x - rt.x, otherT.y - rt.y);
+          if (distOther < r.sight && distOther < nearestDist) {
+            nearestDist = distOther;
+            targetPos = { x: otherT.x, y: otherT.y };
+          }
         }
       }
 
-      // 2. Target player if hostile or inside active combat arena
+      // 2. Target player only if bot is not player-allied and player targeting is enabled
       const distPlayer = Math.hypot(pt.x - rt.x, pt.y - rt.y);
-      if ((r.team !== 'bot' || this.activeArena) && distPlayer < r.sight && distPlayer < nearestDist) {
+      if (this.arenaSettings.botsTargetPlayer && r.team !== 'ally' && (r.team !== 'bot' || this.activeArena) && distPlayer < r.sight && distPlayer < nearestDist) {
         nearestDist = distPlayer;
         targetPos = { x: pt.x, y: pt.y };
       }
@@ -1452,7 +1491,9 @@ export class Game {
 
     // Check & consume ammo
     let hasAmmo = false;
-    if (heldItem === 'potato_cannon') {
+    if (!this.arenaSettings.ammoConsumption) {
+      hasAmmo = true;
+    } else if (heldItem === 'potato_cannon') {
       if (this.playerInv.inv.remove('wild_carrot', 1)) {
         hasAmmo = true;
       } else if (this.playerInv.inv.remove('canned_beans', 1)) {
@@ -1484,7 +1525,9 @@ export class Game {
     }
 
     // Noise alert
-    this.emitNoise(t.x, t.y, eff.noiseRadius);
+    if (this.arenaSettings.noiseAttractsZombies) {
+      this.emitNoise(t.x, t.y, eff.noiseRadius);
+    }
 
     // Aim direction
     const baseAngle = aimWorld ? Math.atan2(aimWorld.y - t.y, aimWorld.x - t.x) : t.angle;
@@ -1578,7 +1621,7 @@ export class Game {
       }
 
       // Check active Arena bullet-stopping obstacles (crates, sandbags, low walls)
-      if (!hitSolid && this.activeArena) {
+      if (this.arenaSettings.arenaCoverBlocksBullets && !hitSolid && this.activeArena) {
         const ar = this.activeArena;
         const lx0 = x0 - ar.originX, ly0 = y0 - ar.originY;
         const lx1 = x1 - ar.originX, ly1 = y1 - ar.originY;
@@ -1595,6 +1638,7 @@ export class Game {
 
       // Calculate travel damage falloff
       const calcDamage = (): number => {
+        if (!this.arenaSettings.damageFalloff) return proj.baseDamage;
         if (proj.distTraveled <= proj.falloffStartDist) return proj.baseDamage;
         const ratio = (proj.distTraveled - proj.falloffStartDist) / Math.max(1, proj.maxDist - proj.falloffStartDist);
         return Math.max(proj.minDamage, Math.round(proj.baseDamage - (proj.baseDamage - proj.minDamage) * clamp(ratio, 0, 1)));
@@ -1647,6 +1691,8 @@ export class Game {
       for (const re of this.ecs.query(Comp.Raider, Comp.Transform, Comp.Character)) {
         if (proj.source === re) continue;
         const rt = this.ecs.get(re, Comp.Transform)!, r = this.ecs.get(re, Comp.Raider)!, ch = this.ecs.get(re, Comp.Character)!;
+        const sourceRaider = this.ecs.get(proj.source, Comp.Raider);
+        if (!this.arenaSettings.allyFriendlyFire && sourceRaider?.team === 'ally' && r.team === 'ally') continue;
         if (distToSeg(rt.x, rt.y) <= 0.48 + proj.radius) {
           const dmg = calcDamage();
           r.hp -= dmg;
@@ -1670,6 +1716,8 @@ export class Game {
 
       // Check Player (when shot by enemy bots)
       if (proj.source !== this.player) {
+        const sourceRaider = this.ecs.get(proj.source, Comp.Raider);
+        if (sourceRaider?.team === 'ally') continue;
         const ptPos = this.playerT;
         if (distToSeg(ptPos.x, ptPos.y) <= 0.45 + proj.radius) {
           const dmg = calcDamage();
@@ -1904,27 +1952,23 @@ export class Game {
     this.events.emit('toast', { text: `🏟️ Entered ${def.name} at Army Base! Solids & bullet-stopping active.` });
   }
 
-  /** Spawns an armed combat bot inside the arena */
-  spawnArenaBot(level: ArenaBotLevel = 'regular', weapon = 'nailgun_smg', spawnIndex = 1): Entity | null {
-    if (!this.activeArena) this.teleportToArena('duel_pit');
-    const ar = this.activeArena!;
-    const def = ar.def;
-    const sp = def.spawns[spawnIndex % def.spawns.length] ?? def.spawns[0];
-    const bx = ar.originX + sp.x;
-    const by = ar.originY + sp.y;
-
+  private spawnCombatBotAt(level: ArenaBotLevel, weapon: string, x: number, y: number, team: 'bot' | 'ally', roleLabel: string, angle = 0): Entity {
     const e = this.ecs.create();
-    this.ecs.add(e, Comp.Transform, { x: bx, y: by, angle: Math.PI });
+    this.ecs.add(e, Comp.Transform, { x, y, angle });
     this.ecs.add(e, Comp.Body, { radius: 0.32, speed: 2.8, vx: 0, vy: 0 });
 
     const botLook = defaultLook();
-    botLook.outfit.head = { item: 'hood', colors: { primary: '#b91c1c' } };
-    botLook.outfit.torso = { item: 'hoodie', colors: { primary: '#991b1b' } };
+    if (team === 'ally') {
+      botLook.outfit.head = { item: 'beanie', colors: { primary: '#0ea5e9' } };
+      botLook.outfit.torso = { item: 'jacket', colors: { primary: '#0369a1' } };
+    } else {
+      botLook.outfit.head = { item: 'hood', colors: { primary: '#b91c1c' } };
+      botLook.outfit.torso = { item: 'hoodie', colors: { primary: '#991b1b' } };
+    }
     botLook.outfit.mainHand = { item: weapon as never };
-    this.ecs.add(e, Comp.Character, { name: `Bot (${level.toUpperCase()})`, look: botLook, anim: newAnim() });
+    this.ecs.add(e, Comp.Character, { name: `${roleLabel} (${level.toUpperCase()})`, look: botLook, anim: newAnim() });
 
     const specs = ARENA_BOT_LEVELS[level];
-
     this.ecs.add(e, Comp.Raider, {
       kind: weapon === 'pump_shotgun' ? 'heavy' : weapon === 'hunting_rifle' ? 'marksman' : 'raider',
       hp: specs.hp,
@@ -1933,7 +1977,7 @@ export class Game {
       sight: specs.sight,
       weapon,
       level,
-      team: 'bot',
+      team,
       target: this.player,
       state: 'engage',
       cooldown: 0.5,
@@ -1948,8 +1992,66 @@ export class Game {
       aimSpread: specs.aimSpread,
       shotInterval: specs.shotInterval,
     });
+    return e;
+  }
 
+  private spawnArenaBotCore(level: ArenaBotLevel, weapon: string, spawnIndex: number, team: 'bot' | 'ally', roleLabel: string): Entity | null {
+    if (!this.activeArena) this.teleportToArena('duel_pit');
+    const ar = this.activeArena!;
+    const def = ar.def;
+    const sp = def.spawns[spawnIndex % def.spawns.length] ?? def.spawns[0];
+    const bx = ar.originX + sp.x;
+    const by = ar.originY + sp.y;
+    return this.spawnCombatBotAt(level, weapon, bx, by, team, roleLabel, team === 'ally' ? 0 : Math.PI);
+  }
+
+  /** Spawns an armed player-allied bot near player in the main world (non-arena). */
+  spawnPlayerBot(level: ArenaBotLevel = 'regular', weapon = 'hunting_rifle', offsetX = 1.8, offsetY = 0): Entity {
+    const pt = this.playerT;
+    const e = this.spawnCombatBotAt(level, weapon, pt.x + offsetX, pt.y + offsetY, 'ally', 'Companion Bot', 0);
+    this.events.emit('toast', { text: `🛡️ Companion Bot deployed with ${weapon}!` });
+    return e;
+  }
+
+  /** Starts a district defense scenario in the main world (non-arena). */
+  startTownDefense(district: TownDistrict = 'plaza', allyBots = 3, zombies = 12, botWeapon = 'hunting_rifle', zombieKind = 'runner'): void {
+    this.teleportToTownDistrict(district);
+
+    const pt = this.playerT;
+    for (const re of this.ecs.query(Comp.Raider, Comp.Transform)) {
+      const rt = this.ecs.get(re, Comp.Transform)!;
+      if (Math.hypot(rt.x - pt.x, rt.y - pt.y) <= 40) this.ecs.destroy(re);
+    }
+    for (const ze of this.ecs.query(Comp.Zombie, Comp.Transform)) {
+      const zt = this.ecs.get(ze, Comp.Transform)!;
+      if (Math.hypot(zt.x - pt.x, zt.y - pt.y) <= 40) this.ecs.destroy(ze);
+    }
+
+    for (let i = 0; i < allyBots; i++) {
+      const a = (Math.PI * 2 * i) / Math.max(1, allyBots);
+      this.spawnPlayerBot('regular', botWeapon, Math.cos(a) * 2.2, Math.sin(a) * 2.2);
+    }
+
+    for (let i = 0; i < zombies; i++) {
+      const a = (Math.PI * 2 * i) / Math.max(1, zombies);
+      const r = 12 + (i % 3) * 2.4;
+      this.spawnZombie(pt.x + Math.cos(a) * r, pt.y + Math.sin(a) * r, zombieKind);
+    }
+
+    this.events.emit('toast', { text: `🧟 Town defense live: ${allyBots} companion bots vs ${zombies} zombies.` });
+  }
+
+  /** Spawns an armed enemy combat bot inside the arena */
+  spawnArenaBot(level: ArenaBotLevel = 'regular', weapon = 'nailgun_smg', spawnIndex = 1): Entity | null {
+    const e = this.spawnArenaBotCore(level, weapon, spawnIndex, 'bot', 'Bot');
     this.events.emit('toast', { text: `🤖 Spawned ${level.toUpperCase()} Bot armed with ${weapon}!` });
+    return e;
+  }
+
+  /** Spawns an armed player-allied combat bot inside the arena */
+  spawnArenaAllyBot(level: ArenaBotLevel = 'regular', weapon = 'hunting_rifle', spawnIndex = 0): Entity | null {
+    const e = this.spawnArenaBotCore(level, weapon, spawnIndex, 'ally', 'Ally Bot');
+    this.events.emit('toast', { text: `🛡️ Spawned allied ${level.toUpperCase()} Bot armed with ${weapon}!` });
     return e;
   }
 

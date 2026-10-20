@@ -10,6 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
     "verify": "npm run typecheck && npm test",
+    "test:fast": "node --import tsx --test tests/arena-bots.test.ts tests/arena.test.ts tests/weapons-food.test.ts tests/zombie.test.ts",
+    "test:combat": "node --import tsx --test tests/arena-bots.test.ts tests/arena.test.ts tests/swarm.test.ts tests/zombie.test.ts",
     "art:catalog": "tsx tools/asset-catalog.ts",
     "art:slice": "node tools/run-blender.mjs --slice",
     "art:render": "node tools/run-blender.mjs",

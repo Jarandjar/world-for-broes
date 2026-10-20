@@ -17,7 +17,7 @@ Antigravity: load the skill `.agents/skills/w4b-unreal/SKILL.md` (short version 
 | Levels | `npm run ue:arena` builds every arena headless in ~8 s and verifies it; `npm run ue:shots` saves a PNG of each. **Tested.** |
 | Code | C++ in the template module; agents build with `Build.bat` (editor closed) or Live Coding through `npm run ue:remote` (editor open). |
 | Art | Unreal first (materials, Modeling Mode); download CC0 (Kenney, Quaternius, Poly Haven); Blender only for new models; imports go through `npm run ue:import` with size checks. **Tested.** |
-| Tests | Unreal automation tests from the command line; bot-vs-bot matches headless with `-benchmark -fps=30` (120 s of game in 8.6 s wall clock, **tested**). |
+| Tests | Unreal automation tests from the command line; bot-vs-bot matches headless with `-benchmark -fps=30` (120 s of game in 8.6 s wall clock, **tested**). Validation smoke loop includes both headless UE playtest (`node tools/run-unreal.mjs sim-headless`) and windowed launch (`npm run ue:test:window`). |
 | Agents | Antigravity drives Unreal through scripts and Python remote execution (**tested**), not by editing binary assets. Workflows stopped working on 2026-10-19; we use an **Agent Skill**. |
 | Blockers today | This PC has **no C++ compiler** (Visual Studio 2026 has only the core editor) and git is not on PATH. Fix in step U0. |
 
@@ -154,6 +154,18 @@ C++ (agent) --> Build.bat or Live Coding --> automation tests --> headless bot m
 
 ### 4.6 Packaging
 `"C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="C:\W4B\W4BArena\W4BArena.uproject" -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory="C:\W4B\Builds" -map=/Game/W4B/Maps/L_W4B_DuelPit+/Game/W4B/Maps/L_W4B_FFAYard -unattended -utf8output`. Smoke test: run the .exe with `-benchmark -benchmarkseconds=60` and check the log.
+
+### 4.6b Where our code sits in Unreal's architecture
+Unreal's layers, top to bottom; lower layers never know about upper ones. Our classes only live in the top two layers and use the rest.
+| Unreal layer | Unreal parts | Ours (step) |
+| :--- | :--- | :--- |
+| 1 Gameplay framework | GameMode (rules, server only), GameState + PlayerState (score, timer, per-player stats), PlayerController (input), Pawn/Character (body) | `AW4BArenaGameMode`, `AW4BArenaGameState`, `AW4BPlayerState` (U7); `AW4BPlayerController` (U3); `AW4BCharacter`, `AW4BPlayerCharacter` (U3); `AW4BBotController` (U6) |
+| 2 World and actors | `UWorld`, `AActor` as containers for components | `UW4BHealthComponent` (U5), `AW4BWeapon` and projectiles (U4), `UW4BBotBrainComponent` (U6), `AW4BPiePickup` (U5); levels built by `build_arena.py` (U2) |
+| 3 Subsystems and modules | AI (navmesh, perception, EQS), Chaos physics, animation, UMG, audio, Niagara | `UW4BDataSubsystem` (U4), `UW4BBenchSubsystem` (U9), `UW4BAutoShotSubsystem` (U3); dynamic navmesh (section 5); ragdolls; `ABP_TP_Rifle`; UMG in C++ (U8) |
+| 4 RHI (render hardware interface) | DirectX 12 / Vulkan / Metal behind one interface | DirectX 12 SM6 (section 10b); we never call the graphics API ourselves |
+| 5 Core / HAL | files, threads, `UObject`, garbage collection, serialization | rule: every `UObject*` member is a `UPROPERTY()` or a `TObjectPtr` in one, or garbage collection may delete it |
+
+Pipeline stages (mesh to beta) in our plan: **ingest** `npm run ue:import` (U11) → **assemble and look-dev** `npm run ue:arena`, art dressing, lighting (U2, U10, U11) → **gameplay and rigging** in C++, Animation Blueprints from the template (U3-U7, U12) → **alpha**, feature complete with Niagara, sound and Unreal Insights (U8-U13) → **beta**, cooked and packaged with UAT, playable start to finish without crashes (U14). Differences from generic Unreal guides: we write gameplay in C++, not Blueprints (agents can read and change it); World Partition is off (an arena is one small level); Datasmith is not used; console builds (PlayStation, Xbox) need platform licences and dev kits and are out of scope.
 
 ### 4.7 Source control
 - Private UE repo: commit after each approved step. Code, config and JSON are text; assets go through LFS.

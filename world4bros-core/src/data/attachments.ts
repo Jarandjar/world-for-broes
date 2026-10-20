@@ -228,4 +228,207 @@ export const ATTACHMENTS: GunAttachmentDef[] = [
     },
     recipe: { copper_wire: 3, scrap_metal: 3 },
   },
+
+  // ==========================================
+  // EXPANDED OPTICS
+  // ==========================================
+  {
+    id: 'optic_welder_mask_scope',
+    name: 'Welder Mask Flip Scope',
+    slot: 'optic',
+    description: 'Flip-up dark welding lens reduces glare and steadies precision fire.',
+    rangeMod: 12,
+    spreadMod: 0.72,
+    visualInfo: { targetHealthBar: true },
+    recipe: { scrap_metal: 4, cloth: 2 },
+  },
+  {
+    id: 'optic_binocular_half',
+    name: 'Half-Binocular Scout Optic',
+    slot: 'optic',
+    description: 'One-tube binocular rig for cheap mid-range recon and cleaner sight picture.',
+    rangeMod: 9,
+    spreadMod: 0.82,
+    visualInfo: { rangefinder: true },
+    recipe: { glass: 2, scrap_metal: 2 },
+  },
+  {
+    id: 'optic_periscope',
+    name: 'Periscope Corner Sight',
+    slot: 'optic',
+    description: 'Offset mirror tube for peeking corners with threat highlighting.',
+    spreadMod: 0.9,
+    recoilMod: 0.9,
+    visualInfo: { threatScanner: true },
+    recipe: { scrap_metal: 3, glass: 1, cloth: 1 },
+  },
+  {
+    id: 'optic_laser_grid',
+    name: 'Laser Grid Composer',
+    slot: 'optic',
+    description: 'Projected micro-grid helps track recoil pattern and follow-up shots.',
+    spreadMod: 0.78,
+    recoilMod: 0.82,
+    recipe: { copper_wire: 3, battery: 1, scrap_metal: 2 },
+  },
+
+  // ==========================================
+  // EXPANDED MUZZLES
+  // ==========================================
+  {
+    id: 'muzzle_bottle_suppressor',
+    name: 'Bottle Suppressor',
+    slot: 'muzzle',
+    description: 'Plastic bottle baffling tames report at the cost of slight accuracy drift.',
+    noiseMod: 0.35,
+    spreadMod: 1.08,
+    recipe: { cloth: 1, scrap_metal: 1 },
+  },
+  {
+    id: 'muzzle_rebar_comp',
+    name: 'Rebar Compensator',
+    slot: 'muzzle',
+    description: 'Cut rebar ports vent blast upward for tighter recoil control.',
+    recoilMod: 0.72,
+    noiseMod: 1.1,
+    recipe: { scrap_metal: 3, copper_wire: 1 },
+  },
+  {
+    id: 'muzzle_forked_brake',
+    name: 'Forked Muzzle Brake',
+    slot: 'muzzle',
+    description: 'Kitchen fork prongs split gas flow and reduce climb while staying loud.',
+    recoilMod: 0.7,
+    noiseMod: 1.25,
+    recipe: { scrap_metal: 2, cloth: 1 },
+  },
+  {
+    id: 'muzzle_pressure_cone',
+    name: 'Pressure Cone Booster',
+    slot: 'muzzle',
+    description: 'Forward pressure cone boosts velocity and close-range stopping power.',
+    damageMod: 5,
+    rangeMod: 6,
+    recoilMod: 1.15,
+    recipe: { scrap_metal: 4, copper_wire: 2 },
+  },
+
+  // ==========================================
+  // EXPANDED UNDERBARRELS
+  // ==========================================
+  {
+    id: 'under_angle_grip',
+    name: 'Angled Scrap Grip',
+    slot: 'underbarrel',
+    description: 'Improvised angled foregrip for recoil smoothing and snap transitions.',
+    recoilMod: 0.74,
+    spreadMod: 0.88,
+    recipe: { wood: 2, scrap_metal: 1 },
+  },
+  {
+    id: 'under_wire_stock',
+    name: 'Wire Tension Brace',
+    slot: 'underbarrel',
+    description: 'Cable tension brace stabilizes the frame under sustained fire.',
+    recoilMod: 0.8,
+    fireRateMod: 1.08,
+    recipe: { copper_wire: 3, scrap_metal: 2 },
+  },
+  {
+    id: 'under_stun_prong',
+    name: 'Stun Prong Bayonet',
+    slot: 'underbarrel',
+    description: 'Charged improvised prong that improves weapon bash effectiveness.',
+    meleeDmg: 42,
+    damageMod: 2,
+    recipe: { copper_wire: 2, battery: 1, scrap_metal: 2 },
+  },
+  {
+    id: 'under_pipe_bipod',
+    name: 'Pipe Bipod Kit',
+    slot: 'underbarrel',
+    description: 'Fold-out pipe bipod for steadier long-range shots.',
+    spreadMod: 0.68,
+    recoilMod: 0.86,
+    recipe: { scrap_metal: 3, wood: 1 },
+  },
+
+  // ==========================================
+  // EXPANDED MAGAZINES
+  // ==========================================
+  {
+    id: 'mag_drum_diy',
+    name: 'DIY Drum Mag',
+    slot: 'magazine',
+    description: 'Riveted drum housing dramatically increases ammo capacity.',
+    capacityMod: 2.4,
+    spreadMod: 1.1,
+    recipe: { scrap_metal: 5, cloth: 2 },
+  },
+  {
+    id: 'mag_quad_stack',
+    name: 'Quad Stack Mag',
+    slot: 'magazine',
+    description: 'Four-lane feed stack with high capacity and modest reliability loss.',
+    capacityMod: 1.9,
+    spreadMod: 1.06,
+    recipe: { scrap_metal: 4, copper_wire: 2 },
+  },
+  {
+    id: 'mag_featherlight',
+    name: 'Featherlight Race Mag',
+    slot: 'magazine',
+    description: 'Low-mass spring follower boosts cyclic speed for burst builds.',
+    fireRateMod: 1.2,
+    capacityMod: 1.1,
+    recipe: { cloth: 1, copper_wire: 2 },
+  },
+  {
+    id: 'mag_tape_jungle',
+    name: 'Jungle Tape Dual Mag',
+    slot: 'magazine',
+    description: 'Two mags taped together for rapid flips and sustained fire.',
+    capacityMod: 1.5,
+    fireRateMod: 1.08,
+    recipe: { cloth: 2, scrap_metal: 2 },
+  },
+
+  // ==========================================
+  // EXPANDED GOOFY CHARMS
+  // ==========================================
+  {
+    id: 'goofy_party_whistle',
+    name: 'Party Whistle Trigger Charm',
+    slot: 'goofy',
+    description: 'Every shot toots with party chaos while dampening perceived kick.',
+    squeakSound: true,
+    recoilMod: 0.7,
+    recipe: { cloth: 2 },
+  },
+  {
+    id: 'goofy_lucky_sock',
+    name: 'Lucky Sock Wrap',
+    slot: 'goofy',
+    description: 'A questionable lucky sock wrapped around the stock for confidence damage.',
+    damageMod: 6,
+    recipe: { cloth: 2 },
+  },
+  {
+    id: 'goofy_honk_bulb',
+    name: 'Honk Bulb Grip',
+    slot: 'goofy',
+    description: 'Bike honk bulb on the foregrip turns every burst into noisy panic.',
+    honkSound: true,
+    noiseMod: 1.7,
+    damageMod: 2,
+    recipe: { scrap_metal: 1, cloth: 1 },
+  },
+  {
+    id: 'goofy_confetti_canister',
+    name: 'Confetti Canister',
+    slot: 'goofy',
+    description: 'A ridiculous confetti module that improves morale and target callouts.',
+    visualInfo: { targetHealthBar: true, threatScanner: true },
+    recipe: { cloth: 2, copper_wire: 1 },
+  },
 ];

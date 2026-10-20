@@ -3,38 +3,48 @@ import assert from 'node:assert/strict';
 import { Game, DEFAULT_CONFIG } from '../src/sim/game';
 import { STRUCTURE_DRAWERS } from '../src/render/structures';
 
-test('registers 20+ homemade and visual attachments in content', () => {
+test('registers expanded homemade and visual attachments in content', () => {
   const game = new Game({ ...DEFAULT_CONFIG, creative: true, mode: 'zombie' });
   const atts = game.content.attachments;
-  assert.ok(atts.size >= 20, `Expected at least 20 attachments, got ${atts.size}`);
+  assert.ok(atts.size >= 35, `Expected at least 35 attachments, got ${atts.size}`);
 
   // Optics
   assert.ok(atts.has('optic_rangefinder'));
   assert.ok(atts.has('optic_camcorder'));
   assert.ok(atts.has('optic_googly'));
   assert.ok(atts.has('optic_toilet_roll'));
+  assert.ok(atts.has('optic_welder_mask_scope'));
+  assert.ok(atts.has('optic_periscope'));
 
   // Muzzles
   assert.ok(atts.has('muzzle_potato_silencer'));
   assert.ok(atts.has('muzzle_soup_can'));
   assert.ok(atts.has('muzzle_car_horn'));
   assert.ok(atts.has('muzzle_kazoo'));
+  assert.ok(atts.has('muzzle_bottle_suppressor'));
+  assert.ok(atts.has('muzzle_pressure_cone'));
 
   // Underbarrels
   assert.ok(atts.has('under_cat_laser'));
   assert.ok(atts.has('under_plunger_bayonet'));
   assert.ok(atts.has('under_kitchen_fork'));
   assert.ok(atts.has('under_flashlight'));
+  assert.ok(atts.has('under_angle_grip'));
+  assert.ok(atts.has('under_pipe_bipod'));
 
   // Magazines
   assert.ok(atts.has('mag_twin_soda'));
   assert.ok(atts.has('mag_rubber_band'));
+  assert.ok(atts.has('mag_drum_diy'));
+  assert.ok(atts.has('mag_tape_jungle'));
 
   // Goofy charms
   assert.ok(atts.has('goofy_rubber_duck'));
   assert.ok(atts.has('goofy_fuzzy_dice'));
   assert.ok(atts.has('goofy_whoopee'));
   assert.ok(atts.has('goofy_windup_clock'));
+  assert.ok(atts.has('goofy_honk_bulb'));
+  assert.ok(atts.has('goofy_confetti_canister'));
 });
 
 test('dynamically computes effective weapon stats and visual info flags', () => {

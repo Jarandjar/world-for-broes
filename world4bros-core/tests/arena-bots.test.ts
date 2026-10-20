@@ -26,5 +26,47 @@ test('spawned arena bots take their numbers from the data table', () => {
     assert.equal(r.aimSpread, row.aimSpread);
     assert.equal(r.shotInterval, row.shotInterval);
     assert.equal(r.hp, row.hp);
+    assert.equal(r.team, 'bot');
   }
+});
+
+test('spawned ally bots use same level stats, carry weapon, and are marked ally team', () => {
+  const g = new Game({ ...DEFAULT_CONFIG, creative: true, mode: 'zombie' });
+  const e = g.spawnArenaAllyBot('sharp', 'hunting_rifle', 0);
+  assert.ok(e !== null);
+
+  const r = g.ecs.get(e!, Comp.Raider)!;
+  const ch = g.ecs.get(e!, Comp.Character)!;
+  const row = ARENA_BOT_LEVELS.sharp;
+
+  assert.equal(r.team, 'ally');
+  assert.equal(r.weapon, 'hunting_rifle');
+  assert.equal(r.reactionTimer, row.reaction);
+  assert.equal(r.aimSpread, row.aimSpread);
+  assert.equal(r.shotInterval, row.shotInterval);
+  assert.equal(r.hp, row.hp);
+  assert.equal(ch.look.outfit.mainHand?.item, 'hunting_rifle');
+});
+
+test('arena settings toggle APIs flip and report values', () => {
+  const g = new Game({ ...DEFAULT_CONFIG, creative: true, mode: 'zombie' });
+  const defaults = g.getArenaSettings();
+
+  assert.equal(defaults.ammoConsumption, true);
+  assert.equal(defaults.botsTargetPlayer, true);
+  assert.equal(defaults.allyFriendlyFire, false);
+
+  const ammo = g.toggleArenaSetting('ammoConsumption');
+  const target = g.toggleArenaSetting('botsTargetPlayer');
+  const ff = g.toggleArenaSetting('allyFriendlyFire');
+
+  assert.equal(ammo, false);
+  assert.equal(target, false);
+  assert.equal(ff, true);
+  assert.equal(g.getArenaSettings().ammoConsumption, false);
+  assert.equal(g.getArenaSettings().botsTargetPlayer, false);
+  assert.equal(g.getArenaSettings().allyFriendlyFire, true);
+
+  g.setArenaSetting('ammoConsumption', true);
+  assert.equal(g.getArenaSettings().ammoConsumption, true);
 });

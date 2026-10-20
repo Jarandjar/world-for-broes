@@ -15,6 +15,8 @@ Written 2026-10-20 as an answer to a pasted guide, "Building a game and custom e
 
 A hand-made engine (layers 1-5) is months of work before the first bot fight and would still lack an editor, importers, animation, navigation, audio and packaging. The guide's own "Beta" (playable start to finish without crashes) is what our U14 delivers on Unreal. Keep the guide's good ideas: layer-by-layer order, the **Prompt → Verify → Refactor** cycle, tweakable numbers at the top (ours are in `src/data` → `game_data.json`), and pasting crash logs back to the agent.
 
+(Unreal's own architecture layers and where each of our classes sits: UE_PIPELINE.md section 4.6b.)
+
 ## 2. The max list: what else you need
 
 Status: ✅ have, 🟡 started, ❌ missing.
@@ -50,6 +52,7 @@ Status: ✅ have, 🟡 started, ❌ missing.
 18. **Versioning and release notes**: `W4BArena-demo-<date>.zip` with a README.
 19. **Backups**: private repo pushed after every step; the downloads folder is not the only copy of bought assets.
 20. **Documentation**: the master plan and the docs updated after every step (already a rule).
+21. **Validation workflow**: include both Unreal smoke modes before shipping changes (`node tools/run-unreal.mjs sim-headless` and `npm run ue:test:window`) plus `npm run verify`.
 
 ### 2.3 Game features a finished arena demo needs (beyond UE_ARENA_PLAN.md §1)
 Kill feed, hit markers, damage numbers off by default, reload and ammo display, weapon switch, spawn protection effect, round start countdown, round-end slow motion (optional), scoreboard (Tab), results with accuracy and time to kill, "play again" with the same settings, pause with restart, settings (graphics, audio, controls), camera zoom limits, cursor that shows the aim point at the combat plane, bots that announce their level, a short tutorial overlay for controls.

@@ -172,7 +172,7 @@ export interface RaiderC {
   sight: number;
   weapon: string;
   level: 'scarecrow' | 'regular' | 'sharp' | 'menace';
-  team: 'bot' | 'raider';
+  team: 'bot' | 'raider' | 'ally';
   target: Entity | null;
   state: 'idle' | 'advance' | 'investigate' | 'engage' | 'cover' | 'flee';
   cooldown: number;

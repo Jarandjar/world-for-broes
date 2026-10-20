@@ -6,7 +6,7 @@ const UE_DEFAULT = 'C:\\Program Files\\Epic Games\\UE_5.7\\Engine\\Binaries\\Win
 const UE_BIN_DIR = process.env.UE_BIN_DIR || UE_DEFAULT;
 const UE_CMD = process.env.UE_CMD_PATH || resolve(UE_BIN_DIR, 'UnrealEditor-Cmd.exe');
 const UE_EDITOR = process.env.UE_EDITOR_PATH || resolve(UE_BIN_DIR, 'UnrealEditor.exe');
-const UPROJECT = process.env.UE_PROJECT_PATH || resolve('tools/unreal/World4Bros/World4Bros.uproject');
+const UPROJECT = process.env.UE_PROJECT_PATH || process.env.W4B_UE_PROJECT || resolve('tools/unreal/World4Bros/World4Bros.uproject');
 
 const argv = process.argv.slice(2);
 const command = argv.find((a) => !a.startsWith('--')) || 'open';

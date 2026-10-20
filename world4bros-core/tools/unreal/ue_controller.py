@@ -66,11 +66,29 @@ ProjectID=B4B749B24D98B6F3E6C18B991F2478A0
 ProjectName=World4Bros Combat Arena
 Description=Tactical Diorama Combat Arena with Bot PvP and Zombie Swarms
 
+[/Script/EngineSettings.GameMapsSettings]
+GameDefaultMap=/Game/Maps/L_W4B_SquareArena
+EditorStartupMap=/Game/Maps/L_W4B_SquareArena
+
 [/Script/Engine.RendererSettings]
 r.DefaultFeature.AntiAliasing=2
 r.ShadowQuality=5
 r.GlobalIllumination.Method=1
 r.Reflections.Method=1
+
+[/Script/PythonScriptPlugin.PythonScriptPluginSettings]
+bRemoteExecution=True
+
+[/Script/Engine.CollisionProfile]
++DefaultChannelResponses=(Channel=ECC_GameTraceChannel1,Name="Projectile",DefaultResponse=ECR_Block,bTraceType=False,bStaticObject=False)
++Profiles=(Name="W4BCover",CollisionEnabled=QueryAndPhysics,bCanModify=False,ObjectTypeName="WorldStatic",CustomResponses=,HelpMessage="W4B arena cover: blocks movement, bullets and sight")
++Profiles=(Name="W4BBulletPass",CollisionEnabled=QueryAndPhysics,bCanModify=False,ObjectTypeName="WorldStatic",CustomResponses=((Channel="Projectile",Response=ECR_Ignore),(Channel="Visibility",Response=ECR_Ignore),(Channel="Camera",Response=ECR_Ignore)),HelpMessage="W4B arena: blocks movement; bullets and sight pass")
+
+[/Script/NavigationSystem.RecastNavMesh]
+RuntimeGeneration=Dynamic
+
+[ConsoleVariables]
+Interchange.FeatureFlags.Import.SyncToBrowser=0
 
 [SystemSettings]
 r.SetRes=1280x720w

@@ -189,8 +189,10 @@ Stop for the owner after every step. After every step update: this file's status
      ends when the player fires.
   2. Match setup from the command line (-W4BMode=duel|ffa -W4BArena=duel_pit -W4BBots=... -W4BTarget=5
      -W4BSeed=1) and from a struct the menu will fill in U8.
-  3. FW4BMatchResult (winner, scores, per fighter shots, hits, kills, deaths, time to kill, who fired first per round)
-     written as JSON to Saved/W4B/results/.
+  3. AW4BPlayerState for every fighter, player and bots alike (shots, hits, kills, deaths, score, team), so the
+     scoreboard, kill feed and results read one place and online play later needs no rewrite. FW4BMatchResult
+     (winner, scores, per fighter stats from the player states, time to kill, who fired first per round) written
+     as JSON to Saved/W4B/results/.
   4. Tests W4B.Rules.*: a draw round resets, the kill limit and the time limit end the match, spawn protection
      blocks damage and ends on firing, the safe-spawn rule.
   Update the docs.
@@ -297,6 +299,7 @@ Stop for the owner after every step. After every step update: this file's status
 
 ## 5. Status
 - [x] Pipeline built and tested on 2026-10-20 (`tools/unreal/pipeline/`, UE_PIPELINE.md §6); `npm run ue:export` writes arenas.json + game_data.json; bot levels moved to `src/data/arenaBots.ts`, match rules in `src/data/arenaRules.ts`
+- [x] Validation smoke loop updated and re-run on 2026-10-20: headless playtest (`node tools/run-unreal.mjs sim-headless`) and windowed editor launch (`npm run ue:test:window`) both succeeded; repo verify green (149/149).
 - [ ] U0 Prepare this PC (2026-10-20 doctor: git + Git LFS on PATH OK, `C:\W4B` created; **Visual Studio C++ not installed yet**: the first command did not run in PowerShell; the fixed one left no installer log on the second try either (UAC prompt not accepted, or run outside PowerShell), so use Visual Studio Installer > Modify by hand)
 - [ ] U1 Create the project
 - [ ] U2 Arenas and pipeline in the project

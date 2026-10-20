@@ -102,7 +102,8 @@ export class Ui {
       btn('Arena', 'H', () => this.toggle('arena')),
       btn('SwarmLab', 'J', () => this.toggle('swarmlab')),
       btn('Garage', 'V', () => this.toggle('garage')),
-      btn('Overseer', 'O', () => this.toggle('overseer')),
+      btn('Arena Spawn', 'O', () => this.toggle('arena')),
+      btn('Overseer', '-', () => this.toggle('overseer')),
       btn('Faction', 'P', () => this.toggle('faction')),
       btn('Map', 'TAB', () => this.toggle('map')),
       btn('Character', 'C', () => this.toggle('customizer')),
@@ -589,7 +590,7 @@ export class Ui {
     if (i.pressed('KeyH')) this.toggle('arena');
     if (i.pressed('KeyJ')) this.toggle('swarmlab');
     if (i.pressed('KeyV')) this.toggle('garage');
-    if (i.pressed('KeyO')) this.toggle('overseer');
+    if (i.pressed('KeyO')) this.toggle('arena');
     if (i.pressed('KeyP')) this.toggle('faction');
     if (i.pressed('KeyC')) this.toggle('customizer');
     if (i.pressed('KeyK')) this.toggle('settings');
@@ -1022,9 +1023,9 @@ export class Ui {
         style: 'background:rgba(15,23,42,0.8); border:1.5px solid #1e293b; border-radius:8px; padding:10px 14px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;'
       },
         h('div', {},
-          h('b', { style: 'color:#e2e8f0; font-size:14px; display:block;' }, '📍 Select Arena Battleground (Army Base)'),
+          h('b', { style: 'color:#e2e8f0; font-size:14px; display:block;' }, '📍 Select Arena Battleground (Army Base Rooms)'),
           h('span', { style: 'color:#94a3b8; font-size:12px;' },
-            selectedArena === 'duel_pit' ? 'Duel Pit (40x24m): 2 spawns, half-turn symmetry, tactical crate/sandbag cover.' : 'FFA Yard (64x40m): 8 spawns, open crossfires, bunker corridors & perimeter walls.'
+            selectedArena === 'duel_pit' ? 'Duel Pit Room (40x24m): 2 spawns, mirrored tactical cover.' : 'FFA Yard Room (64x40m): 8 spawns, crossfire lanes and perimeter walls.'
           )
         ),
         h('div', { style: 'display:flex; gap:8px;' },
@@ -1135,7 +1136,7 @@ export class Ui {
           ...botPresetBtns
         ),
         h('div', { style: 'display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;' }, ...botCards),
-        h('div', { style: 'display:flex; gap:8px; justify-content:flex-end;' },
+        h('div', { style: 'display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;' },
           h('button', {
             style: 'padding:8px 14px; background:rgba(51,65,85,0.8); border:1px solid #64748b; color:#f1f5f9; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;',
             onclick: () => {
@@ -1146,6 +1147,16 @@ export class Ui {
               render();
             }
           }, `➕ Spawn ${selectedBotCount}x Bots to Arena`),
+          h('button', {
+            style: 'padding:8px 14px; background:rgba(14,165,233,0.18); border:1px solid #0ea5e9; color:#bae6fd; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;',
+            onclick: () => {
+              for (let i = 0; i < selectedBotCount; i++) {
+                g.spawnArenaAllyBot(selectedBotLevel, selectedBotWeapon, i);
+              }
+              this.toast(`🛡️ Deployed ${selectedBotCount}x allied ${selectedBotLevel.toUpperCase()} Bots with ${selectedBotWeapon}!`);
+              render();
+            }
+          }, `🛡️ Spawn ${selectedBotCount}x Ally Bots`),
           h('button', {
             style: 'padding:9px 18px; background:linear-gradient(135deg, #ea580c 0%, #c2410c 100%); border:none; color:#fff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:13px; box-shadow:0 2px 6px rgba(194,65,12,0.4);',
             onclick: () => {
@@ -1295,7 +1306,57 @@ export class Ui {
         )
       );
 
+      const arenaCfg = g.getArenaSettings();
+      const toggleBtn = (key: keyof typeof arenaCfg, label: string, onText: string, offText: string) => {
+        const enabled = arenaCfg[key];
+        return h('button', {
+          style: `padding:7px 10px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px; border:${enabled ? '1.5px solid #22c55e' : '1px solid #475569'}; background:${enabled ? 'rgba(34,197,94,0.2)' : 'rgba(30,41,59,0.8)'}; color:${enabled ? '#bbf7d0' : '#cbd5e1'};`,
+          onclick: () => {
+            const next = g.toggleArenaSetting(key);
+            this.toast(`${label}: ${next ? onText : offText}`);
+            render();
+          }
+        }, `${enabled ? '✅' : '⛔'} ${label}`);
+      };
+
+      const toggleSection = h('div', {
+        style: 'background:rgba(15,23,42,0.7); border:1px solid #334155; border-radius:8px; padding:12px; margin-bottom:12px;'
+      },
+        h('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:8px; flex-wrap:wrap;' },
+          h('b', { style: 'color:#f8fafc; font-size:14px;' }, '⚙️ Arena Combat Toggles'),
+          h('span', { style: 'color:#94a3b8; font-size:12px;' }, 'Turn systems on/off live for testing and balance passes')
+        ),
+        h('div', { style: 'display:flex; gap:6px; flex-wrap:wrap;' },
+          toggleBtn('ammoConsumption', 'Ammo Use', 'Ammo consumption ON', 'Infinite ammo ON'),
+          toggleBtn('noiseAttractsZombies', 'Noise Aggro', 'Noise attracts zombies', 'Noise aggro disabled'),
+          toggleBtn('damageFalloff', 'Damage Falloff', 'Distance falloff ON', 'Distance falloff OFF'),
+          toggleBtn('arenaCoverBlocksBullets', 'Cover Blocks Bullets', 'Arena cover blocks bullets', 'Arena cover bullet block OFF'),
+          toggleBtn('botsFightEachOther', 'Bot Crossfire', 'Bots can fight each other', 'Bot-vs-bot disabled'),
+          toggleBtn('botsTargetPlayer', 'Bots Target Player', 'Bots can target player', 'Bots ignore player'),
+          toggleBtn('allyFriendlyFire', 'Ally Friendly Fire', 'Allies can hurt allies', 'Allied friendly fire OFF')
+        )
+      );
+
       // THREE-WAY CHAOS & PROVING GROUND OPERATIONS
+      const spawnRoomSection = h('div', {
+        style: 'background:rgba(15,23,42,0.72); border:1px solid #334155; border-radius:8px; padding:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;'
+      },
+        h('div', {},
+          h('b', { style: 'color:#f8fafc; font-size:14px; display:block;' }, '🚪 Spawn Into Arena Room'),
+          h('span', { style: 'color:#94a3b8; font-size:12px;' }, selectedArena === 'duel_pit' ? 'Spawn directly inside Duel Pit room.' : 'Spawn directly inside FFA Yard room.')
+        ),
+        h('div', { style: 'display:flex; gap:8px; flex-wrap:wrap;' },
+          h('button', {
+            style: 'padding:9px 14px; background:linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border:none; color:#fff; border-radius:6px; font-weight:bold; cursor:pointer; font-size:13px;',
+            onclick: () => {
+              g.teleportToArena(selectedArena, 0);
+              this.toast(selectedArena === 'duel_pit' ? '🏟️ Spawned in Duel Pit room.' : '🏟️ Spawned in FFA Yard room.');
+              this.close();
+            }
+          }, selectedArena === 'duel_pit' ? '🚪 Spawn: Duel Pit Room' : '🚪 Spawn: FFA Yard Room')
+        )
+      );
+
       const operationsSection = h('div', {
         style: 'background:rgba(15,23,42,0.7); border:1px solid #334155; border-radius:8px; padding:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;'
       },
@@ -1332,7 +1393,7 @@ export class Ui {
         )
       );
 
-      container.append(header, arenaSelectRow, statusCard, botSection, zombieSection, ueSection, operationsSection);
+      container.append(header, arenaSelectRow, statusCard, botSection, zombieSection, toggleSection, spawnRoomSection, ueSection, operationsSection);
     };
 
     render();

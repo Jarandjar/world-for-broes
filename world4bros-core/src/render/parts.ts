@@ -639,4 +639,26 @@ PARTS['mainHand:scrap_nailgun'] = (p) => {
   stroke(g, [[-0.08, 0.06], [-0.14, 0.16], [-0.08, 0.24]], 0.018, c.accent, 0.9);
 };
 
+// Expanded weapon pack render mappings (reuse closest silhouettes for now)
+PARTS['mainHand:plinker_pistol'] = PARTS['mainHand:nailgun_smg'] as Drawer;
+PARTS['mainHand:bark_revolver'] = PARTS['mainHand:hunting_rifle'] as Drawer;
+PARTS['mainHand:foam_dart_blaster'] = PARTS['mainHand:slingshot'] as Drawer;
+PARTS['mainHand:cork_crossbow'] = PARTS['mainHand:hunting_rifle'] as Drawer;
+PARTS['mainHand:chicken_cannon'] = PARTS['mainHand:potato_cannon'] as Drawer;
+PARTS['mainHand:garage_lmg'] = PARTS['mainHand:nailgun_smg'] as Drawer;
+PARTS['mainHand:pipe_dmr'] = PARTS['mainHand:recon_rifle'] as Drawer;
+PARTS['mainHand:double_barrel'] = PARTS['mainHand:pump_shotgun'] as Drawer;
+PARTS['mainHand:urban_carbine'] = PARTS['mainHand:hunting_rifle'] as Drawer;
+PARTS['mainHand:handmade_mortar'] = PARTS['mainHand:potato_cannon'] as Drawer;
+PARTS['mainHand:rail_spike_driver'] = PARTS['mainHand:recon_rifle'] as Drawer;
+PARTS['mainHand:bottle_rocket_launcher'] = PARTS['mainHand:potato_cannon'] as Drawer;
+PARTS['mainHand:garage_burst_pdw'] = PARTS['mainHand:nailgun_smg'] as Drawer;
+PARTS['mainHand:street_sweeper'] = PARTS['mainHand:pump_shotgun'] as Drawer;
+PARTS['mainHand:silent_needle'] = PARTS['mainHand:hunting_rifle'] as Drawer;
+PARTS['mainHand:junkyard_sniper'] = PARTS['mainHand:recon_rifle'] as Drawer;
+PARTS['mainHand:flare_burner'] = PARTS['mainHand:potato_cannon'] as Drawer;
+PARTS['mainHand:beanbag_launcher'] = PARTS['mainHand:potato_cannon'] as Drawer;
+PARTS['mainHand:drillgun'] = PARTS['mainHand:scrap_nailgun'] as Drawer;
+PARTS['mainHand:coil_carbine'] = PARTS['mainHand:hunting_rifle'] as Drawer;
+
 
