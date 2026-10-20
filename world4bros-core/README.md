@@ -111,7 +111,7 @@ Located at the **Army Base & Proving Grounds Complex** (`rx = spawn.x - 24, ry =
 - [Gemini Asset Generation Guide](docs/GEMINI_ASSET_GENERATION_GUIDE.md) — Style bible, prompts, and schemas for AI generation.
 - [Dev Log & Bug Tracking Manual](docs/DEV_LOG_AND_BUGS.md) — Runtime logging, error trapping, and diagnostic API.
 - [Aim Arena & Test Bench Architecture](docs/ARENA.md) — Layout rules, symmetry tests, bot specs, and line-of-sight checks.
-- [Unreal Arena: step-by-step to a finished demo](docs/UE_ARENA_PLAN.md) and [Unreal pipeline reference](docs/UE_PIPELINE.md) — phase Z34: the arena rebuilt in Unreal Engine 5.7 against bots; tested commands `npm run ue:doctor`, `ue:export`, `ue:arena`, `ue:shots`, `ue:import`, `ue:remote`.
+- [Unreal Arena: step-by-step to a finished demo](docs/UE_ARENA_PLAN.md) and [Unreal pipeline reference](docs/UE_PIPELINE.md) — phase Z34: the arena rebuilt in Unreal Engine 5.8 against bots (project World4Bros); tested commands `npm run ue:doctor`, `ue:export`, `ue:arena`, `ue:shots`, `ue:import`, `ue:remote`.
 - [Weapons & Ballistics Reference](docs/WEAPONS.md) — Projectile physics, spread models, and attachment matrices.
 - [Swarm Telemetry & Headless Balance](docs/SWARM_TELEMETRY.md) — Deterministic headless simulations and paired-seed tests.
 - [Architecture & Engine Design](docs/ARCHITECTURE.md) — ECS, worldgen stages, renderer, and simulation loop.

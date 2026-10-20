@@ -11,7 +11,7 @@ Written 2026-10-20 as an answer to a pasted guide, "Building a game and custom e
 | 3 Core (math, assets) | Unreal math, Interchange import (glTF/FBX) | TypeScript + `src/data` registries | `npm run ue:import`, data JSON (U4) |
 | 4 ECS rig | Actors + Components (and Mass for crowds) | **already an ECS**: `src/engine/ecs.ts` | C++ components: health, weapon, bot brain (U4-U6) |
 | 5 Loop and physics | Unreal tick, Chaos physics, fixed step with `-benchmark` | deterministic sim loop | match rules, Test Bench (U7, U9) |
-| 6 Game code to beta | our C++ in `Source/W4BArena/W4B/` | `src/sim`, `src/ui` | U3-U14 |
+| 6 Game code to beta | our C++ in `Source/World4Bros/W4B/` | `src/sim`, `src/ui` | U3-U14 |
 
 A hand-made engine (layers 1-5) is months of work before the first bot fight and would still lack an editor, importers, animation, navigation, audio and packaging. The guide's own "Beta" (playable start to finish without crashes) is what our U14 delivers on Unreal. Keep the guide's good ideas: layer-by-layer order, the **Prompt → Verify → Refactor** cycle, tweakable numbers at the top (ours are in `src/data` → `game_data.json`), and pasting crash logs back to the agent.
 
@@ -23,11 +23,12 @@ Status: ✅ have, 🟡 started, ❌ missing.
 
 ### 2.1 Tools and setup
 - ❌ **Visual Studio C++ for Unreal** (Game development with C++, MSVC 14.44, Windows 11 SDK, IDE support for Unreal): the blocker for U1. Install by hand (UE_ARENA_PLAN.md U0).
-- ✅ Unreal 5.7.3, Blender 5.2, git + Git LFS on PATH, `C:\W4B`, 68 GB free.
+- ✅ Unreal 5.8.3 (since 2026-10-20), Blender 5.2, git + Git LFS on PATH, Visual Studio C++ (U0), `C:\W4B`, ~76 GB free.
+- ❌ MSVC **14.50** toolset: Unreal 5.8 rejects the installed 14.44.35207 and does not support 14.51 (UE_PIPELINE.md section 2).
 - ❌ Private GitHub repo `world4bros-ue` for the Unreal project (U1).
 - 🟡 GitHub `main` now holds a different project (swarm/fitness); the game is on `game-main`. Decide which project owns `main`.
 - ❌ Copilot instructions for the Unreal repo (`.github/copilot-instructions.md`, template in §4) so Copilot in Visual Studio follows the same rules as Antigravity.
-- ❌ Unreal **editor debug symbols** (Epic Launcher > Unreal 5.7 > Options > "Editor symbols for debugging", tens of GB): only if you need to step into engine code; skip while disk is tight.
+- ❌ Unreal **editor debug symbols** (Epic Launcher > Unreal 5.8 > Options > "Editor symbols for debugging", tens of GB): only if you need to step into engine code; skip while disk is tight.
 - ❌ A gamepad for testing twin-stick controls.
 - ✅ Antigravity skill `w4b-unreal`; ✅ tested pipeline `npm run ue:*`.
 
@@ -67,8 +68,8 @@ Everything in 2.2 plus: window and input layer, renderer (shaders, materials, sh
 2. In `world4bros-core`: `npm run ue:doctor`. Every line PASS except `W4B_UE_PROJECT` (that comes in U1).
 
 ### V1 — Open the project (after U1 created it)
-1. Right-click `C:\W4B\W4BArena\W4BArena.uproject` > **Generate Visual Studio project files**.
-2. Open `W4BArena.sln`. Toolbar: **Development Editor** + **Win64**. Right-click **W4BArena** > **Set as Startup Project**.
+1. Right-click `C:\W4B\W4BArena\World4Bros.uproject` > **Generate Visual Studio project files**.
+2. Open `World4Bros.sln`. Toolbar: **Development Editor** + **Win64**. Right-click **W4BArena** > **Set as Startup Project**.
 3. **Build > Build Solution** once (Ctrl+Shift+B). The first build takes a few minutes; later ones seconds.
 4. **F5**: the Unreal Editor starts with the debugger attached. Press Play, Esc to stop.
 5. Add `C:\W4B\W4BArena\.github\copilot-instructions.md` (§4) and commit it.
@@ -97,7 +98,7 @@ With "IDE support for Unreal Engine" installed, **Test > Test Explorer** lists t
 ### V5 — Copilot in Visual Studio: prompts by layer
 Use Copilot Chat (Agent mode if your version has it) for questions, reviews and small fixes; big changes go through Antigravity so only one agent writes at a time. The guide's four prompts, rewritten for our project:
 
-1. **Layer 1, input (U3)**: "In `Source/W4BArena/W4B/Core/W4BPlayerController.cpp`, explain how the Enhanced Input actions are created in code and list anything that would break gamepad support. Do not change files."
+1. **Layer 1, input (U3)**: "In `Source/World4Bros/W4B/Core/W4BPlayerController.cpp`, explain how the Enhanced Input actions are created in code and list anything that would break gamepad support. Do not change files."
 2. **Layer 2, look (U10)**: "List every material instance and light the arena uses and check them against `docs/STYLE_BIBLE.md` section 0.3 (palette) and the sun rule in section 0.2."
 3. **Layer 4, components (U4-U6)**: "Review `UW4BHealthComponent`, `AW4BWeapon` and `UW4BBotBrainComponent` for: missing `UPROPERTY()` on UObject pointers, ticking when not needed, work done every frame that could be a timer, and data that should come from `game_data.json`."
 4. **Layer 6, tweaking (U4-U9)**: "Which numbers in our C++ are hard-coded but should be in `src/data` (exported by `npm run ue:export`)? Give a table: file, line, value, proposed JSON field."
@@ -109,8 +110,8 @@ Use Copilot Chat (Agent mode if your version has it) for questions, reviews and 
 
 ## 4. Template: `C:\W4B\W4BArena\.github\copilot-instructions.md`
 ```markdown
-# World 4 Bro's Arena (Unreal 5.7.3, C++)
-- Our code lives in Source/W4BArena/W4B/. Template code (Variant_Shooter, Variant_Horror, FirstPerson) is reference: derive or copy, do not rewrite.
+# World 4 Bro's Arena (Unreal 5.8.3, C++, project World4Bros)
+- Our code lives in Source/World4Bros/W4B/. Template code (Variant_Shooter, Variant_Horror, FirstPerson) is reference: derive or copy, do not rewrite.
 - Numbers come from Content/W4B/Data/game_data.json (exported from the web game by `npm run ue:export`); never hard-code gun, bot or rule values.
 - Coordinates: 1 m = 100 units; bullets and bot sight use the combat plane at 90 cm.
 - Collision profiles: W4BCover (stops bullets and sight), W4BBulletPass (barrels, trees).

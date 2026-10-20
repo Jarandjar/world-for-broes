@@ -8,7 +8,7 @@ description: Use for any World 4 Bro's Unreal Engine work (the Unreal arena, pha
 Read first: `docs/UE_ARENA_PLAN.md` (the step you were given, and only that step) and the `docs/UE_PIPELINE.md` sections it names. `docs/UE_WORKFLOW.md` says what the owner and Visual Studio do around your work. Section 6 of UE_PIPELINE.md lists every known trap.
 
 ## Facts
-- Unreal 5.7.3 at `C:\Program Files\Epic Games\UE_5.7`. Project `C:\W4B\W4BArena\W4BArena.uproject` (env `W4B_UE_PROJECT`), made from the First Person C++ template, Arena Shooter variant. Our C++ goes in `Source/W4BArena/W4B/`. Template code is reference: derive or copy, do not rewrite it.
+- Unreal **5.8.3** at `C:\Program Files\Epic Games\UE_5.8`. Project `C:\W4B\W4BArena\World4Bros.uproject` (env `W4B_UE_PROJECT`, module and build target `World4Bros`). Blueprint-only until U1 copies in the First Person C++ template (Arena Shooter variant). C++ on 5.8 needs MSVC 14.50.35723+ or 14.44.35211+ (`npm run ue:doctor`). 5.8 also has Epic's experimental Unreal MCP plugin (untested; remote execution is the tested path). Our C++ goes in `Source/World4Bros/W4B/`. Template code is reference: derive or copy, do not rewrite it.
 - The web game is the source of truth: `npm run ue:export` writes `tools/unreal/arenas.json` and `game_data.json` (guns, bot levels, match rules). Add arenas in `src/sim/arena.ts`, never by hand in the JSON.
 - Coordinates: Unreal X = (x - width/2) * 100, Y = (y - height/2) * 100. No Y flip. Combat plane (bullets, bot sight) at 90 cm.
 - Collision profiles: `W4BCover` stops movement, bullets and sight; `W4BBulletPass` (barrels, trees) blocks movement only.
@@ -22,7 +22,7 @@ Read first: `docs/UE_ARENA_PLAN.md` (the step you were given, and only that step
 | `npm run ue:shots` | `W4B_SHOT try=1 ok=True`; then open the PNGs in `<project>/Saved/W4B/shots/` |
 | `npm run ue:import -- manifest.json` | `W4B_IMPORT_OK` (fails on wrong scale) |
 | `npm run ue:remote -- --exec "..."` | `W4B_REMOTE ...` (runs in the open editor) |
-| Build (editor closed) | `"C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\Build.bat" W4BArenaEditor Win64 Development -Project="C:\W4B\W4BArena\W4BArena.uproject" -WaitMutex` |
+| Build (editor closed) | `"C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat" World4BrosEditor Win64 Development -Project="C:\W4B\W4BArena\World4Bros.uproject" -WaitMutex` |
 | Live Coding (editor open) | `npm run ue:remote -- --exec "unreal.SystemLibrary.execute_console_command(None, 'LiveCoding.Compile')"` |
 | Tests | `UnrealEditor-Cmd.exe <uproject> -ExecCmds="Automation RunTests W4B;Quit" -unattended -nullrhi -nosplash -nosound -testexit="Automation Test Queue Empty" -ReportExportPath=C:/W4B/reports` |
 | Fast headless game | `UnrealEditor-Cmd.exe <uproject> <map> -game -nullrhi -nosound -unattended -benchmark -fps=30 -benchmarkseconds=<s>` |

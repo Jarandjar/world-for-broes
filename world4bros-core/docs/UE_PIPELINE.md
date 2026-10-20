@@ -10,21 +10,22 @@ Antigravity: load the skill `.agents/skills/w4b-unreal/SKILL.md` (short version 
 
 | Question | Answer |
 | :--- | :--- |
-| Engine | **Unreal Engine 5.7.3**, already installed. Stay on 5.7 for the demo (section 1.3 explains 5.8). |
+| Engine | **Unreal Engine 5.8.3** at `C:\Program Files\Epic Games\UE_5.8` (installed 2026-10-20; 5.7 was uninstalled). The pipeline was built on 5.7.3 and **re-tested unchanged on 5.8.3** (section 6). |
+| Project | `C:\W4B\W4BArena\World4Bros.uproject`, module and target name **World4Bros**. Today it is Antigravity's Blueprint-only project moved and upgraded to 5.8 (no C++, no template content yet); U1 adds the template code and content to it (UE_ARENA_PLAN.md U1). |
 | Base project | **Unreal's own First Person C++ template with the Arena Shooter variant**: bots that see, move, take cover and shoot (StateTree + perception), guns with ammo and pickups, health and team score, all in about 100 KB of plain C++. We add the top-down camera and aim from the **Top Down template's Twin Stick variant**. **Not Lyra** (section 1.2). **Approved by the owner 2026-10-20.** |
 | Where | `C:\W4B\W4BArena\` (outside OneDrive, short path) in its own **private** GitHub repo with Git LFS. This public repo keeps docs, tools and exported data. |
 | Data | The web game is the source of truth: `npm run ue:export` writes `tools/unreal/arenas.json` and `game_data.json` (guns, bot levels, match rules). Levels are built from the JSON; game code reads the JSON at runtime. |
 | Levels | `npm run ue:arena` builds every arena headless in ~8 s and verifies it; `npm run ue:shots` saves a PNG of each. **Tested.** |
 | Code | C++ in the template module; agents build with `Build.bat` (editor closed) or Live Coding through `npm run ue:remote` (editor open). |
 | Art | Unreal first (materials, Modeling Mode); download CC0 (Kenney, Quaternius, Poly Haven); Blender only for new models; imports go through `npm run ue:import` with size checks. **Tested.** |
-| Tests | Unreal automation tests from the command line; bot-vs-bot matches headless with `-benchmark -fps=30` (120 s of game in 8.6 s wall clock, **tested**). Validation smoke loop includes both headless UE playtest (`node tools/run-unreal.mjs sim-headless`) and windowed launch (`npm run ue:test:window`). |
+| Tests | Unreal automation tests from the command line; bot-vs-bot matches headless with `-benchmark -fps=30` (120 s of game in 8.6 s wall clock, **tested**). **Not a test**: `node tools/run-unreal.mjs sim-headless` runs `tools/unreal/run_headless_match.py`, which still only prints made-up "ballistics fired" lines with `time.sleep` (checked 2026-10-20); a real headless match is step U9. `npm run ue:test:window` only opens the editor. |
 | Agents | Antigravity drives Unreal through scripts and Python remote execution (**tested**), not by editing binary assets. Workflows stopped working on 2026-10-19; we use an **Agent Skill**. |
-| Blockers today | This PC has **no C++ compiler** (Visual Studio 2026 has only the core editor) and git is not on PATH. Fix in step U0. |
+| Blockers today | U0 is done (Visual Studio C++, Windows SDK, git/LFS). For C++ on **5.8** one thing is missing: an allowed compiler. 5.8 wants MSVC **14.50.35723+** or **14.44.35211+**; this PC has 14.44.35207 (banned by Unreal for a known compile bug) and 14.51 (not supported). Add the 14.50 toolset (section 2). Blueprint-only work and the whole pipeline run without it. |
 
 ## 1. What we build on, and why
 
-### 1.1 Recommended: the 5.7 templates (C++)
-Unreal 5.6 added genre "variants" to the templates ([Epic, 5.6 templates](https://www.unrealengine.com/news/updated-game-templates-for-unreal-engine-5-6available-now)). Read on this PC in `C:\Program Files\Epic Games\UE_5.7\Templates\`:
+### 1.1 Recommended: the templates (C++; same variants in 5.7 and 5.8)
+Unreal 5.6 added genre "variants" to the templates ([Epic, 5.6 templates](https://www.unrealengine.com/news/updated-game-templates-for-unreal-engine-5-6available-now)). Read on this PC in `C:\Program Files\Epic Games\UE_5.8\Templates\`:
 
 | Template / variant | What it gives us (files) |
 | :--- | :--- |
@@ -45,22 +46,24 @@ The C++ template "includes code and content for all variants" (TemplateDefs.ini)
 Lyra stays useful as a **reference** (animation, networking) in a separate folder, never in the repo. The earlier "Lyra map" table in the old plan was filled in before Lyra was installed; ignore it.
 
 ### 1.3 Unreal 5.8
-5.8 (June 2026) adds an **experimental first-party MCP plugin** (AI agents connect to the editor), Lumen Lite, State Tree start states and orthographic viewport fixes ([5.8 release notes](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-8-release-notes)). It needs ~27 GB more disk and Epic recommends the 14.44 or 14.50 toolset for it ([forum, Epic staff](https://forums.unrealengine.com/t/ue-5-8-fails-to-compile-with-visual-studio-2026-hash-map-missing-source-fix/2732357)). Decision: **finish the demo on 5.7**; Python remote execution already gives agents live editor control. Revisit 5.8 at the decision gate (UE_ARENA_PLAN.md U14).
+5.8 (June 2026) adds an **experimental first-party MCP plugin** (AI agents connect to the editor), Lumen Lite, State Tree start states and orthographic viewport fixes ([5.8 release notes](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-8-release-notes)). Epic recommends the 14.44 or 14.50 toolset for it ([forum, Epic staff](https://forums.unrealengine.com/t/ue-5-8-fails-to-compile-with-visual-studio-2026-hash-map-missing-source-fix/2732357)). **Update 2026-10-20: the owner switched to 5.8.3** (41.9 GB installed; 5.7 uninstalled). Checked on this PC: the MCP server plugin is `Engine/Plugins/Experimental/ModelContextProtocol` ("Unreal MCP", experimental: "MCP server implementation for Unreal Engine"); 5.8 also ships about 27 agent **Toolsets** plugins (`Experimental/Toolsets`: Editor, LiveCoding, AutomationTest, StateTree, PCG, UMG, Niagara, AIModule and more) and `MCPClientToolset`, which only lets the editor call outside MCP servers. The MCP plugin is **not tested yet**; Python remote execution (section 6) keeps working as the tested path. Templates, Reflex plugin and the DX12 SM6 + Lumen template settings are the same as in 5.7.
 
 ## 2. This PC (checked 2026-10-20) and what it needs
 
 | Item | Found | Needed |
 | :--- | :--- | :--- |
 | CPU / RAM / GPU | Ryzen 5 8400F (6c/12t), 64 GB, RTX 5070 | fine (Lumen, Nanite, VSM OK) |
-| Disk | one NVMe, C: with 54-69 GB free | ≥ 45 GB free before U1; keep ≥ 25 GB free always |
-| Unreal | 5.7.3 at `C:\Program Files\Epic Games\UE_5.7` (26.6 GB) | done |
-| Visual Studio | **VS 2026 Professional 18.11 with only the core editor; no C++, no MSVC, no Windows SDK** | see below |
-| Git | Git 2.x + **Git LFS 3.7.1** at `C:\Program Files\Git`, **not on PATH** | add `C:\Program Files\Git\cmd` to PATH |
+| Disk | one NVMe, C: with ~76 GB free (after 5.8) | keep ≥ 25 GB free always |
+| Unreal | **5.8.3** at `C:\Program Files\Epic Games\UE_5.8` (41.9 GB); 5.7 uninstalled | done |
+| Visual Studio | VS 2026 Professional 18.11 with Game development with C++, Windows SDK 10.0.22621/26100/28000, MSVC **14.44.35207** and **14.51.36231** (U0 done 2026-10-20) | for C++ on 5.8: add MSVC **14.50** (below) |
+| Git | Git 2.55 + Git LFS 3.7.1 on PATH | done |
 | Python | 3.15 on PATH; Unreal has its own 3.11 | fine |
 | Long paths | enabled | still keep paths short |
 | Blender | 5.2 | fine |
 
-**Visual Studio components.** Unreal 5.7 officially supports VS 2022 17.8+; VS 2026 is "Experimental" ([Epic VS setup](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)). The engine's own `Engine/Config/Windows/Windows_SDK.json` says: preferred MSVC **14.44.35207+**, banned 14.39-14.43 and 14.44.0-14.44.35210, minimum 14.38, Windows SDK 10.0.22621, minimum VS 2026 version 18.0. The newest VS 2026 toolset (14.5x) can break Unreal headers, so install the 14.44 toolset next to it; Unreal picks it automatically because it is the preferred version. Owner, in any **PowerShell** window (it asks for admin rights itself; close Visual Studio first), or tick the same items in Visual Studio Installer > Modify:
+**Compiler for Unreal 5.8 (checked 2026-10-20 in `UE_5.8/Engine/Config/Windows/Windows_SDK.json`)**: preferred MSVC `14.50.35717-14.50.99999` or `14.44.35207-14.44.99999`, but banned `14.50.0-14.50.35722` and `14.44.0-14.44.35210`, so the usable versions are **14.50.35723 or newer 14.50**, or **14.44.35211 or newer 14.44**. Installed 14.44.35207 is banned (Epic's note: template compile error, fixed in 35211) and 14.51 is not in the list. Fix: Visual Studio Installer > Modify > **Individual components** > tick the **MSVC v145 build tools (v14.50)** for x64/x86 (the 14.50 LTS toolset of VS 2026), or update Visual Studio so the 14.44 component moves to 35211+. Then `npm run ue:doctor` reads the same JSON from the installed engine and says PASS. The text below is the original 5.7 setup (U0) and stays for reference.
+
+**Visual Studio components (as installed for 5.7 in U0).** Unreal 5.7 officially supports VS 2022 17.8+; VS 2026 is "Experimental" ([Epic VS setup](https://dev.epicgames.com/documentation/en-us/unreal-engine/setting-up-visual-studio-development-environment-for-cplusplus-projects-in-unreal-engine)). The engine's own `Engine/Config/Windows/Windows_SDK.json` says: preferred MSVC **14.44.35207+**, banned 14.39-14.43 and 14.44.0-14.44.35210, minimum 14.38, Windows SDK 10.0.22621, minimum VS 2026 version 18.0. The newest VS 2026 toolset (14.5x) can break Unreal headers, so install the 14.44 toolset next to it; Unreal picks it automatically because it is the preferred version. Owner, in any **PowerShell** window (it asks for admin rights itself; close Visual Studio first), or tick the same items in Visual Studio Installer > Modify:
 
 ```powershell
 Start-Process "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" -Verb RunAs -Wait -ArgumentList 'modify --installPath "C:\Program Files\Microsoft Visual Studio\18\Professional" --add Microsoft.VisualStudio.Workload.NativeGame --add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Component.VC.14.44.17.14.x86.x64 --add Microsoft.VisualStudio.Component.Windows11SDK.22621 --add Component.Unreal.Ide --add Component.Unreal.Debugger --includeRecommended --passive --norestart'
@@ -70,7 +73,7 @@ The 14.44 toolset is installable in VS 2026 (GitHub's VS 2026 runner images ship
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <Configuration xmlns="https://www.unrealengine.com/BuildConfiguration">
-  <WindowsPlatform><CompilerVersion>14.44.35207</CompilerVersion></WindowsPlatform>
+  <WindowsPlatform><CompilerVersion>14.50.35723</CompilerVersion></WindowsPlatform>
 </Configuration>
 ```
 `npm run ue:doctor` checks all of this and prints the fix for each problem.
@@ -83,7 +86,7 @@ The 14.44 toolset is installable in VS 2026 (GitHub's VS 2026 runner images ship
 C:\W4B\W4BArena\                 Unreal project (private repo "world4bros-ue", Git LFS)  <- W4B_UE_PROJECT points here
   W4BArena.uproject
   Config\DefaultEngine.ini        includes tools/unreal/pipeline/DefaultEngine.W4B.ini (merged by hand once)
-  Source\W4BArena\                template code (Variant_Shooter, Variant_Horror) + ours in W4B\Core, W4B\Combat, W4B\AI, W4B\UI, W4B\Tests
+  Source\World4Bros\                template code (Variant_Shooter, Variant_Horror) + ours in W4B\Core, W4B\Combat, W4B\AI, W4B\UI, W4B\Tests
   Content\W4B\Maps\               L_W4B_DuelPit, L_W4B_FFAYard, ... (built by build_arena.py)
   Content\W4B\Data\               arenas.json, game_data.json (copied by npm run ue:export; staged as non-asset files)
   Content\W4B\{Input,Materials,Props,Characters,Weapons,FX,Audio,UI}
@@ -103,9 +106,9 @@ Why not inside `world4bros-core`: OneDrive syncs and locks the thousands of file
 Environment variables (set once with `setx`, then open a new terminal):
 | Variable | Value |
 | :--- | :--- |
-| `W4B_UE_PROJECT` | `C:\W4B\W4BArena\W4BArena.uproject` |
-| `W4B_UE_ROOT` | only if Unreal is not in `C:\Program Files\Epic Games\UE_5.7` |
-| `W4B_UE_PROJECT_NAME` | `W4BArena` (default; used by `ue:remote` to pick the right editor) |
+| `W4B_UE_PROJECT` | `C:\W4B\W4BArena\World4Bros.uproject` |
+| `W4B_UE_ROOT` | only if Unreal is not in `C:\Program Files\Epic Games\UE_5.8` |
+| `W4B_UE_PROJECT_NAME` | `World4Bros` (default; used by `ue:remote` to pick the right editor) |
 
 Private repo `.gitignore`: `Binaries/ DerivedDataCache/ Intermediate/ Saved/ .vs/ .vscode/ *.sln *.suo *.VC.db *.VC.opendb compile_commands.json Plugins/*/Binaries/ Plugins/*/Intermediate/`. `.gitattributes`: `*.uasset *.umap *.fbx *.glb *.blend *.png *.tga *.wav *.ogg` → `filter=lfs diff=lfs merge=lfs -text`. Keep LFS under 10 GiB: commit art once it is approved, not every experiment.
 
@@ -134,10 +137,10 @@ C++ (agent) --> Build.bat or Live Coding --> automation tests --> headless bot m
 - Blockout first, art later: the art pass places visual-only meshes on top; the blockout keeps the exact collision and is hidden in game.
 
 ### 4.3 Code
-- All gameplay in C++ (`Source/W4BArena/W4B/...`), derived from or copied out of the template classes. Blueprints only as thin subclasses for asset references (meshes, sounds), made once by the owner or by Python.
-- Build with the editor closed: `"C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\Build.bat" W4BArenaEditor Win64 Development -Project="C:\W4B\W4BArena\W4BArena.uproject" -WaitMutex`.
-- With the editor open: Live Coding, triggered by an agent with `npm run ue:remote -- --exec "unreal.SystemLibrary.execute_console_command(None, 'LiveCoding.Compile')"` (console command exists in 5.7: `LiveCodingModule.cpp`). Header/UPROPERTY layout changes still need a full build with the editor closed.
-- IDE files: Visual Studio 2026 solution and a VS Code workspace (Antigravity is a VS Code fork): `"C:\Program Files\Epic Games\UE_5.7\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.exe" -projectfiles -project="C:\W4B\W4BArena\W4BArena.uproject" -game -rocket -progress -vscode` (drop `-vscode` for the Visual Studio solution). For C++ code intelligence in Antigravity use the clangd extension (Microsoft's C++ extension is licensed for Microsoft's VS Code only) with `UnrealBuildTool.exe -mode=GenerateClangDatabase -project="C:\W4B\W4BArena\W4BArena.uproject" W4BArenaEditor Win64 Development -OutputDir="C:\W4B\W4BArena"` (writes `compile_commands.json`).
+- All gameplay in C++ (`Source/World4Bros/W4B/...`), derived from or copied out of the template classes. Blueprints only as thin subclasses for asset references (meshes, sounds), made once by the owner or by Python.
+- Build with the editor closed: `"C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat" World4BrosEditor Win64 Development -Project="C:\W4B\W4BArena\World4Bros.uproject" -WaitMutex`.
+- With the editor open: Live Coding, triggered by an agent with `npm run ue:remote -- --exec "unreal.SystemLibrary.execute_console_command(None, 'LiveCoding.Compile')"` (console command exists in 5.7 and 5.8: `LiveCodingModule.cpp`). Header/UPROPERTY layout changes still need a full build with the editor closed.
+- IDE files: Visual Studio 2026 solution and a VS Code workspace (Antigravity is a VS Code fork): `"C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.exe" -projectfiles -project="C:\W4B\W4BArena\World4Bros.uproject" -game -rocket -progress -vscode` (drop `-vscode` for the Visual Studio solution). For C++ code intelligence in Antigravity use the clangd extension (Microsoft's C++ extension is licensed for Microsoft's VS Code only) with `UnrealBuildTool.exe -mode=GenerateClangDatabase -project="C:\W4B\W4BArena\World4Bros.uproject" World4BrosEditor Win64 Development -OutputDir="C:\W4B\W4BArena"` (writes `compile_commands.json`).
 
 ### 4.4 Art (tested import)
 - Order of preference: tweak in Unreal → download CC0 → generate/model in Blender (UE_ARENA_PLAN.md §1b of the old plan stays true).
@@ -153,7 +156,7 @@ C++ (agent) --> Build.bat or Live Coding --> automation tests --> headless bot m
 - Unreal is not fully deterministic (threads, physics). Record the seed and settings with every result and report how far repeated runs differ, instead of promising identical results (ARENA.md §6 asked for determinism; this is the honest Unreal version).
 
 ### 4.6 Packaging
-`"C:\Program Files\Epic Games\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="C:\W4B\W4BArena\W4BArena.uproject" -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory="C:\W4B\Builds" -map=/Game/W4B/Maps/L_W4B_DuelPit+/Game/W4B/Maps/L_W4B_FFAYard -unattended -utf8output`. Smoke test: run the .exe with `-benchmark -benchmarkseconds=60` and check the log.
+`"C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="C:\W4B\W4BArena\World4Bros.uproject" -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory="C:\W4B\Builds" -map=/Game/W4B/Maps/L_W4B_DuelPit+/Game/W4B/Maps/L_W4B_FFAYard -unattended -utf8output`. Smoke test: run the .exe with `-benchmark -benchmarkseconds=60` and check the log.
 
 ### 4.6b Where our code sits in Unreal's architecture
 Unreal's layers, top to bottom; lower layers never know about upper ones. Our classes only live in the top two layers and use the rest.
@@ -179,7 +182,7 @@ bRemoteExecution=True
 ```
 Edit `.ini` files as text; scripts must never rewrite them (the old builder replaced the whole `DefaultEngine.ini`).
 
-## 6. Verified facts and traps (tested 2026-10-20 in a throwaway 5.7.3 project)
+## 6. Verified facts and traps (tested 2026-10-20 in a throwaway 5.7.3 project; build, verify and screenshots re-tested unchanged on 5.8.3 in a copy of World4Bros: build 7 s, verify 8 s, screenshot 35 s)
 
 | Symptom | Cause | Fix |
 | :--- | :--- | :--- |
@@ -207,7 +210,7 @@ Live control (tested): with `bRemoteExecution=True`, `npm run ue:remote -- --exe
 - **The loop for every step**: read the step → change C++/Python/JSON/ini (text only) → build → run tests → `npm run ue:arena` / `ue:shots` or the game screenshot command → open the PNGs and check them → write what was verified (markers, test counts, screenshots) → update docs → stop for the owner.
 - **Never**: edit `.uasset`/`.umap` files directly; print results that were not measured; scale imports by 100; rewrite `.ini` files from scripts; add build steps to `init_unreal.py`; commit `Saved`, `Intermediate`, `Binaries`, `DerivedDataCache`; put Fab, Mixamo, Lyra or Megascans files in the public repo.
 - **Owner-only steps** (GUI or accounts): Visual Studio Installer, Epic Launcher, Fab downloads, creating the GitHub repo, playtests and look approvals. Agents write a checklist for these and wait.
-- **MCP**: not needed on 5.7 (Python remote execution covers it). Third-party Unreal MCP servers exist but are unverified; 5.8's first-party plugin is experimental.
+- **MCP**: 5.8 ships Epic's experimental "Unreal MCP" server plugin (`ModelContextProtocol`, section 1.3); enabling it and connecting Antigravity is an open, untested step. Python remote execution covers live control meanwhile. Third-party Unreal MCP servers exist but are unverified; 5.8's first-party plugin is experimental.
 
 ## 8. Content standards (kept from the earlier plan)
 - Prefixes: `SM_` static mesh, `SK_` skeletal mesh, `M_` master material, `MI_` material instance, `T_` texture (`_BaseColor`, `_Normal`, `_ORM`), `GC_` geometry collection, `WBP_` widget, `B_` blueprint, `DA_` data asset, `L_` level, `IA_`/`IMC_` input, `NS_` Niagara, `S_`/`MS_` sound.
@@ -230,31 +233,31 @@ Log every asset in `docs/CREDITS.md`.
 ## 10. Risks
 | Risk | Mitigation |
 | :--- | :--- |
-| VS 2026 newest toolset breaks Unreal headers | install 14.44 (preferred by 5.7); pin with BuildConfiguration.xml |
+| VS 2026 newest toolset breaks Unreal headers | use a version the installed engine allows (5.8: 14.50.35723+ or 14.44.35211+); `npm run ue:doctor` reads the engine's own list; pin with BuildConfiguration.xml |
 | Disk runs out | budget in section 2; `npm run ue:doctor` warns under 45 GB, fails under 25 GB |
 | Agents claim results they did not measure | every step's "Done when" needs markers, test counts or PNGs; the owner checks them |
 | Binary assets edited blind | code and text first; GUI steps are owner checklists |
 | Unreal is not deterministic | record seeds and spread of repeated runs |
 | Two agents in the same files | Unreal work happens in `C:\W4B` and `tools/unreal/pipeline`; the old `tools/unreal/*.py` and `tools/run-unreal.mjs` are superseded |
 
-## 10b. Rendering and performance: DirectX 12, DLSS, Reflex and the best of Unreal 5.7 (RTX 5070)
+## 10b. Rendering and performance: DirectX 12, DLSS, Reflex and the best of Unreal 5.8 (RTX 5070)
 
-Checked on this PC 2026-10-20: the First Person template's `DefaultEngine.ini` already sets **DirectX 12 with Shader Model 6** (`DefaultGraphicsRHI_DX12`, `PCD3D_SM6`; DX11 SM5 stays as a fallback), **Lumen** for indirect light and reflections, no baked lighting, mesh distance fields; the engine sets `r.PSOPrecache.GlobalShaders=1`; and Unreal 5.7 ships its own **NVIDIA Reflex** plugin (v1.6, `Engine/Plugins/Runtime/Nvidia/Reflex`, off by default).
+Checked on this PC 2026-10-20: the First Person template's `DefaultEngine.ini` already sets **DirectX 12 with Shader Model 6** (`DefaultGraphicsRHI_DX12`, `PCD3D_SM6`; DX11 SM5 stays as a fallback), **Lumen** for indirect light and reflections, no baked lighting, mesh distance fields; the engine sets `r.PSOPrecache.GlobalShaders=1`; and Unreal ships its own **NVIDIA Reflex** plugin (5.7 and 5.8 checked) (v1.6, `Engine/Plugins/Runtime/Nvidia/Reflex`, off by default).
 
 ### Settings for the arena
 | Feature | Setting | Why |
 | :--- | :--- | :--- |
 | Graphics API | DirectX 12, SM6 (template default; keep) | needed for Lumen hardware ray tracing, Nanite, Virtual Shadow Maps, DLSS frame generation |
-| Lighting | Lumen GI + reflections, **hardware ray tracing on** (`r.RayTracing=True` and Project Settings > Rendering > Lumen > Use Hardware Ray Tracing when available) | in 5.7 the hardware path is the fast one ([Unreal forum](https://forums.unrealengine.com/t/lumen-performance-less-relies-on-hwrt-in-5-7/2731297)); the RTX 5070 has it |
+| Lighting | Lumen GI + reflections, **hardware ray tracing on** (`r.RayTracing=True` and Project Settings > Rendering > Lumen > Use Hardware Ray Tracing when available) | since 5.7 the hardware path is the fast one ([Unreal forum](https://forums.unrealengine.com/t/lumen-performance-less-relies-on-hwrt-in-5-7/2731297)); the RTX 5070 has it |
 | Shadows | Virtual Shadow Maps (default) | sharp shadows under the top-down camera |
 | Meshes | Nanite on static meshes ≥ 1,000 triangles | section 8 |
-| Many lights | **MegaLights off** for the demo | Beta in 5.7, production-ready only in 5.8 ([MegaLights docs](https://dev.epicgames.com/documentation/unreal-engine/megalights-in-unreal-engine)) |
+| Many lights | **MegaLights optional** (try in U10 if the arena gets many lamps) | Beta in 5.7, production-ready in 5.8 ([MegaLights docs](https://dev.epicgames.com/documentation/unreal-engine/megalights-in-unreal-engine)) |
 | Anti-aliasing / upscaling | **TSR** (built in) by default; **DLSS** when the NVIDIA plugin is in (below) | TSR works on every GPU |
 | Latency | **Reflex On** (engine plugin `Reflex`, enable in the `.uproject`) | lower input lag matters in a shooter |
 | Exposure | fixed exposure (no eye adaptation) | readable, steady image from above |
 
 ### DLSS (NVIDIA plugin)
-- Current: **DLSS 4.5 plugin** for Unreal (Super Resolution with the transformer model, DLAA, Frame Generation and **Multi Frame Generation** on RTX 50 cards, Ray Reconstruction, Reflex, NIS), built on Streamline ([NVIDIA DLSS](https://developer.nvidia.com/rtx/dlss/get-started)). **Not yet confirmed for 5.7**: the owner downloads it from NVIDIA's developer site only if its page lists Unreal 5.7; otherwise the archive has older versions.
+- Current: **DLSS 4.5 plugin** for Unreal (Super Resolution with the transformer model, DLAA, Frame Generation and **Multi Frame Generation** on RTX 50 cards, Ray Reconstruction, Reflex, NIS), built on Streamline ([NVIDIA DLSS](https://developer.nvidia.com/rtx/dlss/get-started)). **Not yet confirmed for 5.8**: the owner downloads it from NVIDIA's developer site only if its page lists Unreal 5.8.
 - Install into `C:\W4B\W4BArena\Plugins\` (private repo only; NVIDIA's licence decides redistribution) and enable it. Use either its Reflex or the engine's Reflex plugin, not both.
 - Settings menu: Upscaler (TSR / DLSS / DLAA), DLSS mode (Quality, Balanced, Performance), Frame Generation (Off, 2x, 3x, 4x), Reflex (Off, On, On + Boost). Frame generation adds input lag, so it only turns on together with Reflex, and **defaults to Off** in this shooter.
 

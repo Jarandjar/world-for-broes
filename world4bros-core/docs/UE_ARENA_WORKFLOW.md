@@ -22,8 +22,8 @@ How you, Antigravity (AG IDE) and Visual Studio 2026 work together to build the 
 5. Restart Antigravity after `setx W4B_UE_PROJECT ...` so it sees the variable.
 
 ### 2.2 Visual Studio 2026 (after U1)
-1. In File Explorer, right-click `C:\W4B\W4BArena\W4BArena.uproject` > **Generate Visual Studio project files**, or let Antigravity run the command in UE_PIPELINE.md §4.3 without `-vscode`.
-2. Open `C:\W4B\W4BArena\W4BArena.sln`. Toolbar: **Development Editor**, **Win64**; right-click **W4BArena** > **Set as Startup Project**.
+1. In File Explorer, right-click `C:\W4B\W4BArena\World4Bros.uproject` > **Generate Visual Studio project files**, or let Antigravity run the command in UE_PIPELINE.md §4.3 without `-vscode`.
+2. Open `C:\W4B\W4BArena\World4Bros.sln`. Toolbar: **Development Editor**, **Win64**; right-click **W4BArena** > **Set as Startup Project**.
 3. **F5** builds and starts the Unreal Editor with the debugger attached; **Ctrl+F5** without it. Breakpoints in our C++ work when you then press Play in the editor.
 4. Already running editor: **Debug > Attach to Process > UnrealEditor.exe**.
 5. **Copilot Chat**: ask it about the code (for example "why does AW4BWeapon not hit through W4BBulletPass?") and paste its answer to Antigravity, or let it review Antigravity's changes (**Git Changes** window).
@@ -53,7 +53,7 @@ Rules for building: one builder at a time. Editor **closed** → Antigravity's `
 | Step | You | Antigravity | Visual Studio | Done when |
 | :--- | :--- | :--- | :--- | :--- |
 | **U0** Prepare PC | Run the Visual Studio command (UE_ARENA_PLAN.md U0), git on PATH, `C:\W4B` exists, ≥ 45 GB free | `npm run ue:doctor`, report | Installer only | doctor fails only on `W4B_UE_PROJECT` |
-| **U1** Project | Launcher: First Person, C++, Arena Shooter, `C:\W4B`, `W4BArena`; play `Lvl_Shooter`; `setx W4B_UE_PROJECT ...`; create private repo `world4bros-ue`; set up Antigravity (§2.1) | Merge settings, `.gitignore`/`.gitattributes`, LFS, build, project files, `compile_commands.json`, doctor, remote check | Generate project files, open `.sln`, F5 once (§2.2) | build OK, doctor all PASS, remote prints `5.7.3` |
+| **U1** Project | Add MSVC 14.50; Launcher (5.8): First Person, C++, Arena Shooter, `C:\W4B\Template`, name `World4Bros`; play `Lvl_Shooter`; `setx W4B_UE_PROJECT ...`; create private repo `world4bros-ue`; set up Antigravity (§2.1) | Merge settings, `.gitignore`/`.gitattributes`, LFS, build, project files, `compile_commands.json`, doctor, remote check | Generate project files, open `.sln`, F5 once (§2.2) | build OK, doctor all PASS, remote prints `5.7.3` |
 | **U2** Arenas | Look at the PNGs; approve retiring the old `tools/unreal/World4Bros` | `ue:export`, `ue:arena`, `ue:shots`, startup map, list old files | – | `W4B_VERIFY` OK for every arena |
 | **U3** Player | Play: walk, aim, zoom; judge camera angle | C++ character, camera, input in code, game mode, game screenshots | Breakpoint in the aim code if aiming feels off | you approve the controls |
 | **U4** Guns | Play: shoot crates (stop) and trees (pass) | Data subsystem, weapons, projectiles, tests | Debug a weapon that does not fire; Copilot review of the falloff formula | tests green, guns feel different |
@@ -69,7 +69,7 @@ Rules for building: one builder at a time. Editor **closed** → Antigravity's `
 | **U14** Release | Final playthrough on the packaged .exe; decide the next phase | Profiling, scalability, package, soak test, content check, zip, release notes | Profile with Unreal Insights if fps is low | every point of UE_ARENA_PLAN.md §1 ticked |
 
 ## 5. Daily routine (about 1-2 hours a session)
-1. Start: open the Antigravity workspace; in Visual Studio open `W4BArena.sln` only if you plan to debug.
+1. Start: open the Antigravity workspace; in Visual Studio open `World4Bros.sln` only if you plan to debug.
 2. One step (or one fix round) per session; do not start the next step before you approved and committed the last one.
 3. End: commit both repos; if a step is half done, ask Antigravity to write where it stopped into UE_ARENA_PLAN.md §5.
 

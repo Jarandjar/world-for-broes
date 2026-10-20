@@ -1,5 +1,5 @@
 """
-Checks a built arena level against arenas.json (run after build_arena.py; tested on UE 5.7.3 headless).
+Checks a built arena level against arenas.json (run after build_arena.py; tested on UE 5.7.3 and re-tested on 5.8.3 headless).
 Fails (non-zero exit) if counts, tags or collision profiles do not match the plan.
 
   UnrealEditor-Cmd.exe <Project>.uproject -run=pythonscript -script="<this file> --arena all" -unattended -nullrhi -nosplash -nosound -stdout

@@ -125,11 +125,11 @@ Ordered list of generators the game needs. Each lives in `tools/` (Blender, Pyth
 ---
 
 ## 5b. Unreal Engine from the command line (headless)
-Installed: **Unreal Engine 5.7** at `C:\Program Files\Epic Games\UE_5.7`. Tested 2026-10-20: a headless Python script ran and printed `5.7.3-50162420+++UE5+Release-5.7` (about 40 s, exit code 0).
+Installed: **Unreal Engine 5.8.3** at `C:\Program Files\Epic Games\UE_5.8` (5.7 was used until 2026-10-20). Tested 2026-10-20 on 5.7.3 and again on 5.8.3: headless Python scripts run, the arena pipeline works unchanged; 5.8 adds Epic's experimental Unreal MCP server plugin (`Engine/Plugins/Experimental/ModelContextProtocol`) (about 40 s, exit code 0).
 
 **Run a Python script with no editor window:**
 ```bash
-"C:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" MyProject.uproject -run=pythonscript -script="path/or/code.py" -unattended -nullrhi -nosplash -nosound -stdout -FullStdOutLogOutput
+"C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" MyProject.uproject -run=pythonscript -script="path/or/code.py" -unattended -nullrhi -nosplash -nosound -stdout -FullStdOutLogOutput
 ```
 | Flag | What it does |
 | :--- | :--- |
@@ -165,8 +165,8 @@ Licences come from news and docs summaries; read each licence before shipping. K
 | Source | Cost / licence | Notes |
 | :--- | :--- | :--- |
 | [MetaHuman](https://www.cgchannel.com/2025/06/you-can-now-sell-metahumans-or-use-them-in-unity-or-godot/) (Creator built into UE 5.6+) | Free under the Unreal EULA under $1M/year revenue; since June 2025 usable in other engines too ([details](https://digitalproduction.com/2025/06/05/metahumans-graduate-ready-for-unity-godot-and-the-fab-cash-register/), [summary](https://renderu.com/en/news/post/26778)) | Realistic humans, clothing, Mesh to MetaHuman, MetaHuman Animator. Very detailed — good for portraits or close-up sprites; heavy for small iso sprites. No AI training use. |
-| [Lyra Starter Game](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine) (Fab) | Free sample | UE5 mannequins Manny and Quinn, optimised locomotion animations, weapon system ([animation notes](https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine), [retargeting](https://www.unrealengine.com/tech-blog/adapting-lyra-animation-to-your-ue5-game)). **Reference only** since 2026-10-20: the arena uses the 5.7 templates instead (UE_PIPELINE.md §1.2); Lyra content must not go into the public repo. |
-| Unreal 5.7 templates: First Person **Arena Shooter**, Top Down **Twin Stick** variants | Free with the engine (template code may be shared publicly) | Bots with perception and StateTree, guns, pickups, team score; top-down camera and mouse/stick aim. **The base of the Unreal arena.** |
+| [Lyra Starter Game](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine) (Fab) | Free sample | UE5 mannequins Manny and Quinn, optimised locomotion animations, weapon system ([animation notes](https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine), [retargeting](https://www.unrealengine.com/tech-blog/adapting-lyra-animation-to-your-ue5-game)). **Reference only** since 2026-10-20: the arena uses the 5.7/5.8 templates instead (UE_PIPELINE.md §1.2); Lyra content must not go into the public repo. |
+| Unreal 5.7/5.8 templates: First Person **Arena Shooter**, Top Down **Twin Stick** variants | Free with the engine (template code may be shared publicly) | Bots with perception and StateTree, guns, pickups, team score; top-down camera and mouse/stick aim. **The base of the Unreal arena.** |
 | [Game Animation Sample](https://www.unrealengine.com/tech-blog/explore-the-updates-to-the-game-animation-sample-project-in-ue-5-7) (5.7, Fab) | Free sample | Motion-matched locomotion for the mannequins; migrate animations if the template's are not enough. |
 | [Quaternius Universal Animation Library 1 + 2](https://quaternius.itch.io/universal-animation-library-2) | **CC0** | 8-way locomotion, deaths, **zombie locomotion**; GLB for Unreal 5+, retarget with the IK Retargeter. |
 | [MPFB 2 / MakeHuman](https://www.cgchannel.com/2025/03/check-out-open-source-blender-character-generation-plugin-mpfb-2) (Blender) | GPL tool, CC0 assets | Open alternative; export to Unreal as FBX/glTF (see §3). |

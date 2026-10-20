@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * W4B Unreal pipeline commands (docs/UE_PIPELINE.md section 4). Every command was tested on UE 5.7.3 on 2026-10-20.
+ * W4B Unreal pipeline commands (docs/UE_PIPELINE.md section 4). Every command was tested on UE 5.7.3 and re-tested on 5.8.3 on 2026-10-20.
  * The Unreal project comes from the W4B_UE_PROJECT environment variable (path to the .uproject).
  *
  *   npm run ue:doctor                 check this PC (Visual Studio, disk, git, project settings)
@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, '..', '..', '..');
-const ueRoot = process.env.W4B_UE_ROOT || 'C:\\Program Files\\Epic Games\\UE_5.7';
+const ueRoot = process.env.W4B_UE_ROOT || 'C:\\Program Files\\Epic Games\\UE_5.8';
 const project = process.env.W4B_UE_PROJECT;
 const [cmd = 'help', ...rest] = process.argv.slice(2);
 
@@ -29,7 +29,7 @@ const ps = (file, args) => {
 const needProject = () => {
   if (!project || !existsSync(project)) {
     console.error('W4B: set W4B_UE_PROJECT to the .uproject path first (docs/UE_PIPELINE.md section 3), e.g.');
-    console.error('  setx W4B_UE_PROJECT C:\\W4B\\W4BArena\\W4BArena.uproject   (then open a new terminal)');
+    console.error('  setx W4B_UE_PROJECT C:\\W4B\\W4BArena\\World4Bros.uproject   (then open a new terminal)');
     process.exit(2);
   }
 };

@@ -8,6 +8,7 @@ Owner decision (2026-10-20): build the Aim Arena in Unreal Engine and play again
 - **The pipeline is built and tested** (`tools/unreal/pipeline/`, `npm run ue:*`): data export, headless level build + verify, screenshots, asset import with size checks, live editor control, fast headless game runs.
 - Corrected facts: no Y flip between game and Unreal coordinates; imports are already in centimetres; Megascans are no longer free; Antigravity workflows are replaced by skills.
 - Old step numbers U0-U20 are replaced; mapping in §6.
+- **2026-10-20: the engine is now Unreal 5.8.3** (5.7 uninstalled) and the project is `C:\W4B\W4BArena\World4Bros.uproject` (module and build target **World4Bros**). The whole pipeline was re-tested on 5.8.3 (UE_PIPELINE.md §6). U1 now adds the template to this existing project.
 
 ## 1. The finished demo (definition of done)
 A zipped Windows build that runs from the desktop on this PC:
@@ -19,7 +20,7 @@ A zipped Windows build that runs from the desktop on this PC:
 6. **Rules**: ARENA.md §4: duel rounds (first to 3/5/7/10, 2 s pause, 30 s draw, time limit); FFA (kill or time limit, 3 s respawn at the safest spawn ≥ 12 m from enemies, 2 s spawn protection); pies heal 25 and come back after 20 s.
 7. **HUD**: health, ammo, round score or scoreboard, timer, kill feed; no enemy health bars.
 8. **Look**: gritty and readable from above: master grime material on all surfaces, CC0 art kit on the Duel Pit at least, lit camera-facing walls, outlined characters, muzzle flashes, impacts, mild blood decals.
-9. **Performance**: DirectX 12, Lumen with hardware ray tracing, TSR and DLSS (if the NVIDIA plugin supports 5.7), Reflex; 60 fps native and 120+ with DLSS at 1440p in an 8-bot FFA on this PC (UE_PIPELINE.md section 10b).
+9. **Performance**: DirectX 12, Lumen with hardware ray tracing, TSR and DLSS (if the NVIDIA plugin supports 5.8), Reflex; 60 fps native and 120+ with DLSS at 1440p in an 8-bot FFA on this PC (UE_PIPELINE.md section 10b).
 10. **Quality**: automation tests green; a 30-minute headless bot soak run without a crash; all third-party assets in `docs/CREDITS.md`.
 
 Out of scope for the demo (later phases): online play, Chaos destruction, PCG clutter, mood presets, MetaHumans, the open world.
@@ -40,7 +41,7 @@ Stop for the owner after every step. After every step update: this file's status
 1. **Owner** opens Antigravity on `world4bros-core` with `C:\W4B\W4BArena` added as a second folder, and pastes the next step's prompt.
 2. **Antigravity** loads the `w4b-unreal` skill, reads the step and the UE_PIPELINE.md sections it names, changes C++/Python/JSON/ini only, builds, runs tests, makes screenshots and looks at them, then reports **only what it measured** (markers such as `W4B_VERIFY ... OK`, test counts, PNG paths) and updates the docs.
 3. **Owner** plays it in the editor for 5-10 minutes (Play in the Duel Pit), approves or writes notes, and commits: the private repo (`C:\W4B\W4BArena`) and this repo (docs, tools, JSON).
-4. **Visual Studio 2026 + Copilot** is for debugging: open `W4BArena.sln`, set breakpoints, attach to `UnrealEditor.exe`.
+4. **Visual Studio 2026 + Copilot** is for debugging: open `World4Bros.sln`, set breakpoints, attach to `UnrealEditor.exe`.
 
 ## 4. The steps
 
@@ -62,27 +63,32 @@ Stop for the owner after every step. After every step update: this file's status
   ```
 - **Done when**: the doctor shows PASS for Unreal, the "Game development with C++" workload, MSVC 14.44, Windows SDK, git, git lfs and disk; only `W4B_UE_PROJECT` fails.
 
-### U1 — Create the project (owner 10 min, then Antigravity)
+### U1 — Put the template into the World4Bros project (owner 15 min, then Antigravity)
+State on 2026-10-20: the project already exists as `C:\W4B\W4BArena\World4Bros.uproject` on Unreal **5.8.3**: Antigravity's earlier Blueprint-only project, moved and upgraded, with the W4B settings merged, `bRemoteExecution`, Remote Control and the 5.8 MCP client plugin, and the three arena maps. It has **no C++ and no template content yet**. U1 adds them with a same-name trick: a template project created with the **same name, World4Bros**, has the same C++ module (`/Script/World4Bros`), so its code and content copy over without broken references.
 - **Owner**:
-  1. Epic Games Launcher > Unreal Engine 5.7 > Launch > **Games > First Person**, **C++**, **Variant: Arena Shooter**, Starter Content off, location `C:\W4B`, name **`W4BArena`** > Create. Wait for the first compile; play `Variant_Shooter/Lvl_Shooter` once (bots should fight); close the editor.
-  2. `setx W4B_UE_PROJECT C:\W4B\W4BArena\W4BArena.uproject` and open a new terminal.
+  1. Add the compiler 5.8 accepts: Visual Studio Installer > Modify > Individual components > **MSVC v145 build tools (v14.50)** for x64/x86. `npm run ue:doctor` must show PASS for MSVC (UE_PIPELINE.md section 2).
+  2. Epic Games Launcher > Unreal Engine **5.8** > Launch > **Games > First Person**, **C++**, **Variant: Arena Shooter**, Starter Content off, location **`C:\W4B\Template`**, name **`World4Bros`** > Create. Wait for the first compile; play `Variant_Shooter/Lvl_Shooter` once (bots should fight); close the editor.
   3. Create an empty **private** GitHub repo `world4bros-ue` (GitHub Desktop or the website).
 - **Antigravity prompt**:
   ```
-  Use the w4b-unreal skill. Do step U1 of docs/UE_ARENA_PLAN.md only. The project is C:\W4B\W4BArena (from the
-  First Person C++ template, Arena Shooter variant).
-  1. Merge tools/unreal/pipeline/DefaultEngine.W4B.ini into C:\W4B\W4BArena\Config\DefaultEngine.ini as text
-     (keep one copy of the Projectile channel line) and add the bRemoteExecution block from docs/UE_PIPELINE.md section 5.
-  2. Write .gitignore and .gitattributes exactly as docs/UE_PIPELINE.md section 3 says; git init; git lfs install;
-     first commit; add the remote for the private repo world4bros-ue (ask me for the URL); do not push without asking.
-  3. Build: Build.bat W4BArenaEditor Win64 Development (command in docs/UE_PIPELINE.md section 4.3). Generate the
-     VS Code workspace and compile_commands.json (same section). Report the build result lines.
-  4. Run `npm run ue:doctor` (expect all PASS) and, with the editor open,
-     `npm run ue:remote -- --exec "print(unreal.SystemLibrary.get_engine_version())"`.
-  Do not change any template code. Update the docs (status list, World Bible section 69, PROGRESS.md).
+  Use the w4b-unreal skill. Do step U1 of docs/UE_ARENA_PLAN.md only. Our project: C:\W4B\W4BArena\World4Bros.uproject
+  (UE 5.8.3, Blueprint-only). Template made by the owner: C:\W4B\Template\World4Bros (First Person C++, Arena Shooter,
+  same project name). The editor must be closed for steps 1-4.
+  1. Copy Source\ and the template content folders (Content\FirstPerson, Content\Variant_Shooter, and the shared
+     packs the template uses: Characters, LevelPrototyping, Input, Weapons; skip Variant_Horror) from the template into
+     C:\W4B\W4BArena. Do not overwrite Content\W4B.
+  2. Add the template's "Modules" entry and its plugins (StateTree, GameplayStateTree) to World4Bros.uproject; keep
+     ours. Merge the template's Config\DefaultEngine.ini, DefaultGame.ini and DefaultInput.ini sections into ours as
+     text: keep our W4B blocks and GameDefaultMap/EditorStartupMap; keep exactly one Projectile channel line.
+  3. Build: Build.bat World4BrosEditor Win64 Development (UE_PIPELINE.md section 4.3) and report the result lines.
+     Generate the Visual Studio files and compile_commands.json (same section).
+  4. Write .gitignore and .gitattributes as UE_PIPELINE.md section 3 says; git init; git lfs install; first commit;
+     add the remote world4bros-ue (ask me for the URL); do not push without asking.
+  5. `npm run ue:doctor` (expect all PASS), `npm run ue:arena` (expect W4B_VERIFY OK for every arena), then open the
+     editor and run `npm run ue:remote -- --exec "print(unreal.SystemLibrary.get_engine_version())"`.
+  6. Ask me before deleting C:\W4B\Template. Do not change template code. Update the docs.
   ```
-- **Done when**: build succeeded from the command line, doctor all PASS, remote call printed `5.7.3`, first commit made.
-
+- **Done when**: the C++ build succeeds from the command line, `Lvl_Shooter` plays inside World4Bros with fighting bots, doctor all PASS, every arena verifies, remote call prints `5.8.3`, first commit made.
 ### U2 — Arenas and pipeline in the project (Antigravity, about 1 hour)
 - **Antigravity prompt**:
   ```
@@ -102,9 +108,9 @@ Stop for the owner after every step. After every step update: this file's status
 - **Goal**: the player walks, aims and looks right at the game angle. No shooting yet.
 - **Antigravity prompt**:
   ```
-  Use the w4b-unreal skill. Do step U3 of docs/UE_ARENA_PLAN.md only. Work in C:\W4B\W4BArena\Source\W4BArena\W4B\.
+  Use the w4b-unreal skill. Do step U3 of docs/UE_ARENA_PLAN.md only. Work in C:\W4B\W4BArena\Source\World4Bros\W4B\.
   Reference code (read, do not modify): the project's Variant_Shooter folder, and the Twin Stick variant at
-  C:\Program Files\Epic Games\UE_5.7\Templates\TP_TopDown\Source\TP_TopDown\Variant_TwinStick\TwinStickCharacter.cpp.
+  C:\Program Files\Epic Games\UE_5.8\Templates\TP_TopDown\Source\TP_TopDown\Variant_TwinStick\TwinStickCharacter.cpp.
   1. AW4BCharacter (ACharacter, shared base for player and bots): third-person mannequin from the template with the
      rifle animation blueprint (ABP_TP_Rifle) so it can strafe; faces its aim direction; collision capsule 34 x 88 cm.
   2. AW4BPlayerCharacter: spring-arm camera, yaw -45, pitch -55, arm 2200 cm, wheel zoom 1200-4500 cm, camera lag;
@@ -286,7 +292,7 @@ Stop for the owner after every step. After every step update: this file's status
 - **Antigravity prompt**:
   ```
   Use the w4b-unreal skill. Do step U14 of docs/UE_ARENA_PLAN.md only.
-  1. Measure an 8-bot FFA at 1440p (stat unit, stat gpu, an Unreal Insights trace with -trace=default,gpu). Enable the engine Reflex plugin; if the owner installed the NVIDIA DLSS plugin for 5.7, add DLSS/DLAA/Frame Generation to the settings menu (Frame Generation off by default, only with Reflex). Targets and rules: docs/UE_PIPELINE.md section 10b.
+  1. Measure an 8-bot FFA at 1440p (stat unit, stat gpu, an Unreal Insights trace with -trace=default,gpu). Enable the engine Reflex plugin; if the owner installed the NVIDIA DLSS plugin for 5.8, add DLSS/DLAA/Frame Generation to the settings menu (Frame Generation off by default, only with Reflex). Targets and rules: docs/UE_PIPELINE.md section 10b.
      Fix the worst costs until 60 fps holds. Scalability Low/Medium/High in the pause menu.
   2. Package with RunUAT BuildCookRun (command in docs/UE_PIPELINE.md section 4.6) into C:\W4B\Builds, both
      Development and Shipping. Smoke test the .exe; run a 30-minute headless bench soak.
@@ -300,8 +306,8 @@ Stop for the owner after every step. After every step update: this file's status
 ## 5. Status
 - [x] Pipeline built and tested on 2026-10-20 (`tools/unreal/pipeline/`, UE_PIPELINE.md §6); `npm run ue:export` writes arenas.json + game_data.json; bot levels moved to `src/data/arenaBots.ts`, match rules in `src/data/arenaRules.ts`
 - [x] Validation smoke loop updated and re-run on 2026-10-20: headless playtest (`node tools/run-unreal.mjs sim-headless`) and windowed editor launch (`npm run ue:test:window`) both succeeded; repo verify green (149/149).
-- [ ] U0 Prepare this PC (2026-10-20 doctor: git + Git LFS on PATH OK, `C:\W4B` created; **Visual Studio C++ not installed yet**: the first command did not run in PowerShell; the fixed one left no installer log on the second try either (UAC prompt not accepted, or run outside PowerShell), so use Visual Studio Installer > Modify by hand)
-- [ ] U1 Create the project
+- [x] U0 Prepare this PC (done 2026-10-20: doctor PASS for Visual Studio C++ workload, MSVC 14.44.35207, Windows SDK 10.0.22621, git 2.55 + Git LFS 3.7.1, long paths, 75 GB free, `C:\W4B`; only W4B_UE_PROJECT left for U1)
+- [ ] U1 Put the template into World4Bros (project exists on 5.8.3 as Blueprint-only; needs MSVC 14.50 and the template copy)
 - [ ] U2 Arenas and pipeline in the project
 - [ ] U3 Top-down player
 - [ ] U4 Guns

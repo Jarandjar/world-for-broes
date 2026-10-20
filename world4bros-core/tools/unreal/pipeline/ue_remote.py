@@ -1,7 +1,7 @@
 """
 Runs Python inside an Unreal Editor that is already open (Unreal's built-in Python remote execution).
 Lets an agent change the open editor without restarting it: rebuild a level, trigger Live Coding, take a shot.
-Tested on UE 5.7.3 (docs/UE_PIPELINE.md section 6). Needs, in the project's DefaultEngine.ini:
+Tested on UE 5.7.3 and re-tested on 5.8.3 (docs/UE_PIPELINE.md section 6). Needs, in the project's DefaultEngine.ini:
   [/Script/PythonScriptPlugin.PythonScriptPluginSettings]
   bRemoteExecution=True
 
@@ -17,7 +17,7 @@ import os
 import sys
 import time
 
-UE_ROOT = os.environ.get("W4B_UE_ROOT", r"C:\Program Files\Epic Games\UE_5.7")
+UE_ROOT = os.environ.get("W4B_UE_ROOT", r"C:\Program Files\Epic Games\UE_5.8")
 sys.path.insert(0, os.path.join(UE_ROOT, "Engine", "Plugins", "Experimental", "PythonScriptPlugin", "Content", "Python"))
 import remote_execution  # noqa: E402  (engine file)
 
@@ -28,7 +28,7 @@ def main():
     ap.add_argument("--args", default="", help="arguments for --file (sys.argv inside the editor)")
     ap.add_argument("--exec", help="Python statement(s) to run inside the editor ('unreal' is imported)")
     ap.add_argument("--wait", type=float, default=15.0, help="seconds to look for a running editor")
-    ap.add_argument("--project", default=os.environ.get("W4B_UE_PROJECT_NAME", "W4BArena"),
+    ap.add_argument("--project", default=os.environ.get("W4B_UE_PROJECT_NAME", "World4Bros"),
                     help="only talk to the editor that has this project open (several editors may be running)")
     a = ap.parse_args()
     if not a.file and not a.exec:

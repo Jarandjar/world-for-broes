@@ -1,17 +1,17 @@
 <#
   W4B Unreal runner: runs one Python script inside Unreal without a window and returns Unreal's exit code.
   Prints only the lines that matter (W4B_* markers and errors). Full log: <Project>/Saved/Logs/<Project>.log
-  Tested on UE 5.7.3 (docs/UE_PIPELINE.md section 6).
+  Tested on UE 5.7.3 and re-tested on 5.8.3 (docs/UE_PIPELINE.md section 6).
 
   Example:
-    powershell -File tools/unreal/pipeline/ue.ps1 -Project C:/W4B/W4BArena/W4BArena.uproject -Script tools/unreal/pipeline/build_arena.py -ScriptArgs "--arena all"
+    powershell -File tools/unreal/pipeline/ue.ps1 -Project C:/W4B/W4BArena/World4Bros.uproject -Script tools/unreal/pipeline/build_arena.py -ScriptArgs "--arena all"
     powershell -File tools/unreal/pipeline/ue.ps1 -Project ... -Script tools/unreal/pipeline/verify_arena.py
 #>
 param(
   [Parameter(Mandatory = $true)][string]$Project,
   [Parameter(Mandatory = $true)][string]$Script,
   [string]$ScriptArgs = "",
-  [string]$Engine = $(if ($env:W4B_UE_ROOT) { $env:W4B_UE_ROOT } else { 'C:\Program Files\Epic Games\UE_5.7' }),
+  [string]$Engine = $(if ($env:W4B_UE_ROOT) { $env:W4B_UE_ROOT } else { 'C:\Program Files\Epic Games\UE_5.8' }),
   [string]$Filter = 'LogPython: (W4B_|Error)|LogPython: Warning: W4B|Error: W4B|Assertion failed|Unhandled Exception|Fatal error|Python script executed with errors'
 )
 $exe = Join-Path $Engine 'Engine\Binaries\Win64\UnrealEditor-Cmd.exe'

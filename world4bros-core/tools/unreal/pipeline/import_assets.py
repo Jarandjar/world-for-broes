@@ -1,6 +1,6 @@
 """
 Imports .glb/.gltf/.fbx files into Unreal headless and reports their real size, so wrong-scale exports are caught.
-Tested on UE 5.7.3 with the -run=pythonscript commandlet (docs/UE_PIPELINE.md section 6).
+Tested on UE 5.7.3 and re-tested on 5.8.3 with the -run=pythonscript commandlet (docs/UE_PIPELINE.md section 6).
 
   ue.ps1 -Project <P>.uproject -Script tools/unreal/pipeline/import_assets.py -ScriptArgs "--manifest <file.json>"
   ue.ps1 -Project <P>.uproject -Script tools/unreal/pipeline/import_assets.py -ScriptArgs "--src C:/art/crate.glb --dest /Game/W4B/Props"

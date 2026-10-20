@@ -1,10 +1,10 @@
-# W4B Unreal pipeline (tested on UE 5.7.3, 2026-10-20)
+# W4B Unreal pipeline (tested on UE 5.7.3 and re-tested on 5.8.3, 2026-10-20)
 
 Scripts that build and check the Unreal arena from the web game's data. Full reference: `docs/UE_PIPELINE.md`; steps: `docs/UE_ARENA_PLAN.md`. Set `W4B_UE_PROJECT` to the `.uproject` first.
 
 | Command | What it does | Script |
 | :--- | :--- | :--- |
-| `npm run ue:doctor` | checks Visual Studio C++, MSVC 14.44, Windows SDK, git/LFS, disk, project location and settings | `doctor.ps1` |
+| `npm run ue:doctor` | checks Visual Studio C++, the MSVC versions the installed Unreal allows, Windows SDK, git/LFS, disk, project location and settings | `doctor.ps1` |
 | `npm run ue:export` | `src/sim/arena.ts`, `src/data/items.ts`, `arenaBots.ts`, `arenaRules.ts` → `tools/unreal/arenas.json` + `game_data.json` (+ copies into `Content/W4B/Data` of the project) | `tools/export-unreal.ts` |
 | `npm run ue:arena [-- id]` | builds the arena levels headless, then verifies counts, tags and collision profiles | `build_arena.py`, `verify_arena.py`, `ue.ps1` |
 | `npm run ue:shots [-- id]` | PNG of each level from its preview camera → `<project>/Saved/W4B/shots/` | `shoot_level.py`, `shoot.ps1` |

@@ -28,7 +28,7 @@ AI (Gemini) is for **concept frames and 2D decals/icons only** — never for thi
 ### 2b. Which tool: Unreal-first for Arena, Blender for scratch models and web sprites (owner decision 2026-10-20)
 
 **For the Unreal Arena (Phase Z34): Unreal first.**
-Download, tweak inside Unreal, and test directly against the arena bots (the project is built on the 5.7 First Person template, Arena Shooter variant; `UE_PIPELINE.md` §1):
+Download, tweak inside Unreal, and test directly against the arena bots (the project is built on the First Person template (Unreal 5.8), Arena Shooter variant; `UE_PIPELINE.md` §1):
 
 | Job | In Unreal |
 | :--- | :--- |

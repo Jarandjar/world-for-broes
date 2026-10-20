@@ -68,7 +68,7 @@ The project currently has a production deployment live at **[https://world4bros-
 
 We want the world to feel like an extraordinarily rich, tactile, unpredictable physics playground where interacting with *anything* yields delightful reactions, slapstick consequences, and emergent survival opportunities.
 
-**Side track since 2026-10-20 — the Unreal arena (phase Z34).** The Aim Arena is being rebuilt as a finished demo in Unreal Engine 5.7.3, on Unreal's First Person C++ template (Arena Shooter variant) plus the Twin Stick camera code, in `C:\W4B\W4BArena` (private repo). The web game stays the source of truth for arenas, guns, bot levels and rules (`npm run ue:export`). Start with `docs/UE_ARENA_PLAN.md` (steps U0–U14 with Antigravity prompts) and `docs/UE_PIPELINE.md` (tested commands and known traps); Antigravity uses the skill `.agents/skills/w4b-unreal/`. Where to resume: World Bible §69.
+**Side track since 2026-10-20 — the Unreal arena (phase Z34).** The Aim Arena is being rebuilt as a finished demo in Unreal Engine 5.8.3 (project `C:\W4B\W4BArena\World4Bros.uproject`), on Unreal's First Person C++ template (Arena Shooter variant) plus the Twin Stick camera code, in `C:\W4B\W4BArena` (private repo). The web game stays the source of truth for arenas, guns, bot levels and rules (`npm run ue:export`). Start with `docs/UE_ARENA_PLAN.md` (steps U0–U14 with Antigravity prompts) and `docs/UE_PIPELINE.md` (tested commands and known traps); Antigravity uses the skill `.agents/skills/w4b-unreal/`. Where to resume: World Bible §69.
 
 ---
 

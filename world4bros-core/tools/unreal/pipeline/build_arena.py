@@ -1,6 +1,6 @@
 """
 W4B arena builder: turns tools/unreal/arenas.json (npm run arena:export) into Unreal levels.
-Tested headless on UE 5.7.3 (docs/UE_PIPELINE.md section 6). Engine classes only, so it works in any project.
+Tested headless on UE 5.7.3 and re-tested on 5.8.3 (docs/UE_PIPELINE.md section 6). Engine classes only, so it works in any project.
 
 Headless (no editor window, ~15 s):
   UnrealEditor-Cmd.exe <Project>.uproject -run=pythonscript -script="<this file> --arena all"
