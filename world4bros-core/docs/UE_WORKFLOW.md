@@ -1,6 +1,6 @@
 # Unreal Arena Workflow: Antigravity + Visual Studio, step by step
 
-How you, Antigravity (AG IDE) and Visual Studio 2026 work together to build the Unreal arena demo. **What** to build is in [UE_ARENA_PLAN.md](UE_ARENA_PLAN.md) (steps U0-U14 with paste-ready prompts); **how the tools work** is in [UE_PIPELINE.md](UE_PIPELINE.md). Written 2026-10-20.
+How you, Antigravity (AG IDE) and Visual Studio 2026 work together to build the Unreal arena demo. **What** to build is in [UE_ARENA_PLAN.md](UE_ARENA_PLAN.md) (steps U0-U14 with paste-ready prompts); **how the tools work** is in [UE_PIPELINE.md](UE_PIPELINE.md); the detailed Visual Studio process (install, debugging recipes, tests, Copilot prompts, Copilot instructions template) and the "what else do I need" list are in [VS_UNREAL_PROCESS.md](VS_UNREAL_PROCESS.md). Written 2026-10-20.
 
 ## 1. Who does what
 | Who / tool | Job | Never |
